@@ -1,0 +1,31 @@
+---
+permalink: solaris/concept_managing_storage_using_a_wizard.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, wizard 
+summary: Você pode usar o assistente SnapDrive para UNIX para criar armazenamento de forma interativa e eficiente. O assistente leva você por um conjunto de perguntas para ajudá-lo a criar armazenamento. 
+---
+= Gerenciamento do storage usando um assistente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o assistente SnapDrive para UNIX para criar armazenamento de forma interativa e eficiente. O assistente leva você por um conjunto de perguntas para ajudá-lo a criar armazenamento.
+
+Você pode iniciar o assistente usando o `snapdrive storage wizard create` comando.
+
+As seguintes operações de gerenciamento de storage podem ser executadas:
+
+* Criando um LUN
+* Criar um grupo de discos e configurar automaticamente o LUN
+* Criando um grupo de discos e especificando o LUN.
+* Criar um volume de host e configurar automaticamente o LUN
+* Criando um volume de host e especificando o LUN
+* Criando um sistema de arquivos em um LUN e configurando automaticamente o LUN
+* Criando um sistema de arquivos em um LUN e especificando o LUN.
+* Criar um sistema de ficheiros num LUN e configurar o LUN automaticamente com o Logical volume Manager (LVM) e o grupo de discos especificados
+* Criando um sistema de arquivos em um LUN e especificando o LUN com LVM e grupo de discos especificados
+* Criando um sistema de arquivos em um LUN e configurando o LUN automaticamente com o LVM e o volume do host especificados
+* Criando um sistema de arquivos em um LUN e especificando o LUN com LVM e volume de host especificado
+

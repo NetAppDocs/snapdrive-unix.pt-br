@@ -1,0 +1,37 @@
+---
+permalink: linux-administration/concept_tasks_performed_by_snapdrive_dc.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, diagnostic, copy, log, file, data, utility 
+summary: O utilitário de coleta de dados executa os utilitários de diagnóstico do NetApp, copia arquivos de log do SnapDrive para UNIX e cria um arquivo compactado que é usado para análise. 
+---
+= Tarefas executadas por SnapDrive.dc
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O utilitário de coleta de dados executa os utilitários de diagnóstico do NetApp, copia arquivos de log do SnapDrive para UNIX e cria um arquivo compactado que é usado para análise.
+
+O `snapdrive.dc` utilitário executa as seguintes tarefas:
+
+* Executa os `host_info` utilitários e `filer_info` para coletar informações sobre o host e os sistemas de armazenamento conetados ao host e salva essas informações em um arquivo compactado. O `host_info` utilitário e `filer_info` utilitário vem junto com o pacote de instalação do SnapDrive para UNIX.
++
+Por exemplo, no Linux, é o `linux_info` utilitário.
+
+* Cria um diretório chamado /tmp/NetApp/ntap_SnapDrive_name. A ferramenta coloca cópias dos seguintes arquivos no diretório:
++
+** SnapDrive para a versão UNIX, conforme indicado executando o comando SnapDrive version
+** O `snapdrive.conf` ficheiro
+** Os arquivos de log de auditoria
+** Os ficheiros de registo de rastreio
+** Os arquivos de log de recuperação
+** Os arquivos criados pelo utilitário host_info
+
+
+* Cria um arquivo compactado do conteúdo do diretório e exibe uma mensagem informando que você enviou esse arquivo para o suporte técnico da NetApp.
+
+
+*Informações relacionadas*
+
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2547936["Guia de instalação do Linux Unified Host Utilities 7,1"]

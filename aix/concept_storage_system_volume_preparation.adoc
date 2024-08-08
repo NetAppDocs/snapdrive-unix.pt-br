@@ -1,0 +1,32 @@
+---
+permalink: aix/concept_storage_system_volume_preparation.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, system, volume, preparation 
+summary: Você pode usar o prompt de comando no sistema de armazenamento ou a opção FilerView para criar um volume de sistema de armazenamento para o uso dedicado do SnapDrive para UNIX. 
+---
+= Preparação do volume do sistema de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o prompt de comando no sistema de armazenamento ou a opção FilerView para criar um volume de sistema de armazenamento para o uso dedicado do SnapDrive para UNIX.
+
+Você deve concluir as seguintes tarefas no sistema de storage para criar um volume que possa conter as entidades SnapDrive para UNIX Logical Unit Numbers (LUN) ou NFS (Network File System) conetadas a um único host:
+
+* Criar um volume de sistema de storage.
+* Se você estiver em um ambiente iSCSI (Fibre Channel ou Internet Small Computer System Interface), redefina a `snapdrive snap reserve` opção para zero por cento no volume do sistema de armazenamento que contém todos os LUNs conetados ao host, para otimização de volume.
+
+
+Quando você cria um volume em um sistema de storage para armazenar LUNs ou árvores de diretório NFS, deve estar ciente do seguinte:
+
+* É possível criar vários LUNs ou árvores de diretório NFS em um volume do sistema de storage.
+* Você não deve armazenar os dados do usuário no volume raiz no sistema de storage ou na unidade do vFiler.
+
+
+*Informações relacionadas*
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["Referência NFS da ONTAP 9"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1401220["Guia de gerenciamento de protocolos e acesso a arquivos do Data ONTAP 8.2 para o modo 7"]

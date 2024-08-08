@@ -1,0 +1,14 @@
+---
+permalink: linux-administration/concept_volume_based_snaprestore.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snaprestore, volume, restore, storage 
+summary: O SnapDrive 4,0 para UNIX e posterior fornece a funcionalidade de restauração Snapshot em um nível de volume. Isso explica as várias operações de storage que você pode realizar usando a restauração do Snapshot baseada em volume. 
+---
+= SnapRestore baseado em volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive 4,0 para UNIX e posterior fornece a funcionalidade de restauração Snapshot em um nível de volume. Isso explica as várias operações de storage que você pode realizar usando a restauração do Snapshot baseada em volume.

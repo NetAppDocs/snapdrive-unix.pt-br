@@ -1,0 +1,21 @@
+---
+permalink: solaris/task_installing_iscsi_host_utilities.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, install, solaris, host, utility 
+summary: Antes de instalar o SnapDrive para UNIX, você deve instalar os Utilitários de host do Solaris. 
+---
+= Instalar os Utilitários do Solaris Host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar o SnapDrive para UNIX, você deve instalar os Utilitários de host do Solaris.
+
+.Passos
+. Para instalar os Utilitários do Solaris Host, consulte a documentação dos Utilitários do Solaris Host para garantir que o sistema esteja configurado corretamente.
++
+Ele contém informações sobre gerenciadores de volume, multipathing e outros recursos que você deve configurar antes de instalar o SnapDrive para UNIX.
+
+

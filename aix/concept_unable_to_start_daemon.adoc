@@ -1,0 +1,26 @@
+---
+permalink: aix/concept_unable_to_start_daemon.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, restart, daemon, storage, system, host 
+summary: O daemon não pode ser iniciado quando o host não é capaz de se comunicar com qualquer sistema de armazenamento configurado. 
+---
+= Não é possível reiniciar o daemon quando o host não consegue se comunicar com o sistema de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O daemon não pode ser iniciado quando o host não é capaz de se comunicar com qualquer sistema de armazenamento configurado.
+
+Durante esta condição, quando você tenta reiniciar o daemon, o daemon não inicia e a seguinte mensagem de erro é encontrada.
+
+[listing]
+----
+Unable to start daemon...check daemon log file for more details
+----
+Principalmente, você precisa garantir se o host está se comunicando com o sistema de armazenamento executando o comando ping para o sistema de armazenamento. Se o host ainda não conseguir se comunicar com o sistema de armazenamento, tente usar as seguintes opções:
+
+* Exclua o sistema de armazenamento que não está se comunicando com o host e tente reiniciar o daemon.
+* No caso, você não deseja excluir o sistema de armazenamento configurado para o host e, em seguida, desativar a opção `_autosupport-enabled_` para `_off_` no `snapdrive.conf` arquivo para suprimir a mensagem de erro.
+

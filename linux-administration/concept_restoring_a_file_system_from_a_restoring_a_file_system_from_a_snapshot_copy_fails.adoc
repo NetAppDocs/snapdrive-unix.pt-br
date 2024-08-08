@@ -1,0 +1,20 @@
+---
+permalink: linux-administration/concept_restoring_a_file_system_from_a_restoring_a_file_system_from_a_snapshot_copy_fails.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, restore, file, snapshot, copy, fail, error 
+summary: Após a migração das atualizações do Red Hat Enterprise Linux 3 para as atualizações do Red Hat Enterprise Linux 4, ou seja, de LVM1 para LVM2, a restauração de um sistema de arquivos de uma cópia Snapshot falha. 
+---
+= A restauração de um sistema de arquivos a partir de uma cópia Snapshot falha
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Após a migração das atualizações do Red Hat Enterprise Linux 3 para as atualizações do Red Hat Enterprise Linux 4, ou seja, de LVM1 para LVM2, a restauração de um sistema de arquivos de uma cópia Snapshot falha.
+
+Durante a restauração de um sistema de arquivos (que é obtido em LVM1) a partir de uma cópia Snapshot usando LVM2, o `snapdrive snap restore -fs` comando não monta o sistema de arquivos. No entanto, ele restaura com sucesso o grupo de discos e o volume de host associados a ele.
+
+Por exemplo, o volume do host criado pelo LVM1 tem um arquivo de dispositivo em `/dev/Mydg_SDDg/Mydg_Sdhv`; e o volume do host criado pelo LVM2 tem um arquivo de dispositivo em `/dev/mapper/Mydg_SdDg-Mydg_Sdhv`
+
+Isso acontece porque os hosts Red Hat Enterprise Linux 4 update 3 usam o LVM2, que usa um mapeador de dispositivos para fazer interface com o kernel, enquanto os hosts Red Hat Enterprise Linux 3 update 5 usam o LVM1, que não usa um mapeador de dispositivos.

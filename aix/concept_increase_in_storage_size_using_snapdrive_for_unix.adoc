@@ -1,0 +1,25 @@
+---
+permalink: aix/concept_increase_in_storage_size_using_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, size, increase 
+summary: O SnapDrive para UNIX permite aumentar o tamanho do grupo de volume do sistema de storage ou do grupo de discos. Você usa o comando SnapDrive storage resize para fazer isso. 
+---
+= Aumento do tamanho do storage usando o SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX permite aumentar o tamanho do grupo de volume do sistema de storage ou do grupo de discos. Você usa o `snapdrive storage resize` comando para fazer isso.
+
+
+NOTE: Este comando não permite redimensionar volumes de host ou sistemas de arquivos. Por exemplo, você não pode usar o comando redimensionar para alterar o tamanho de um sistema de arquivos em um LUN. Você precisa usar os comandos LVM para redimensionar volumes de host e sistemas de arquivos depois de redimensionar o grupo de discos subjacente.
+
+Você pode colocar as operações de redimensionamento de armazenamento nas seguintes categorias gerais:
+
+* Definir um tamanho de destino em bytes para o qual você deseja aumentar o armazenamento
+* Especificando um número de bytes pelos quais você deseja aumentar o armazenamento
+
+
+O SnapDrive para UNIX adiciona um LUN gerado pelo sistema. Se você especificar uma quantidade pela qual deseja aumentar o armazenamento, como 50 MB, ele fará o LUN 50 MB. Se você especificar um tamanho de destino para o armazenamento, ele calcula a diferença entre o tamanho atual e o tamanho de destino. A diferença se torna o tamanho do LUN que ele cria.

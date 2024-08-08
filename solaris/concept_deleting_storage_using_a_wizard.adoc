@@ -1,0 +1,24 @@
+---
+permalink: solaris/concept_deleting_storage_using_a_wizard.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, storage, wizard 
+summary: Você pode usar o assistente de exclusão de armazenamento para executar determinadas operações de exclusão. 
+---
+= Exclusão de armazenamento usando um assistente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o assistente de exclusão de armazenamento para executar determinadas operações de exclusão.
+
+Você pode iniciar o assistente usando o `snapdrive storage wizard delete` comando.
+
+Você pode excluir as seguintes entidades:
+
+* UM LUN
+* Um grupo de discos
+* Um volume lógico
+* Um sistema de arquivos
+

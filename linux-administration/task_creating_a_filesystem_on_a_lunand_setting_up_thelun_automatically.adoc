@@ -1,0 +1,61 @@
+---
+permalink: linux-administration/task_creating_a_filesystem_on_a_lunand_setting_up_thelun_automatically.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, lun, create, file 
+summary: Você pode criar um sistema de arquivos em um LUN usando o SnapDrive para UNIX. O SnapDrive para UNIX cria automaticamente o LUN associado. 
+---
+= Criando um sistema de arquivos em um LUN e configurando o LUN automaticamente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode criar um sistema de arquivos em um LUN usando o SnapDrive para UNIX. O SnapDrive para UNIX cria automaticamente o LUN associado.
+
+.Passos
+. Na linha de comando, digite o seguinte comando:
++
+`*snapdrive storage create -fs _file_spec_ -nolvm [-fstype type] [-fsopts options] [-mntopts options] [-nopersist] -filervol _long_filer_path_ -lunsize size [-igroup _ig_name[ig_name ...]]_ [{-reserve | -noreserve }]*`
+
++
+O SnapDrive para UNIX cria o sistema de arquivos especificado e cria um LUN para ele no sistema de storage especificado. Ele executa todas as tarefas associadas à preparação e descoberta do host para os LUNs, bem como mapeando e conetando os LUNs à entidade do host.
+
+
+
+
+
+== Exemplos:
+
+*Criando um sistema de arquivos de 100 MB diretamente em um LUN:*
+
+[listing]
+----
+# snapdrive storage create -fs /mnt/acct1 -filervol acctfiler:/vol/vol1 -lunsize 100m -nolvm
+----
+*Criando um sistema de arquivos em um LUN bruto sem qualquer gerenciador de volume:*
+
+[listing]
+----
+# snapdrive storage create -fs /mnt/vxfs2 -fstype vxfs -lun
+snoopy:/vol/vol1/lunVxvm2 -lunsize 50m -nolvm
+LUN snoopy:/vol/vol1/lunVxvm2 ... created
+mapping new lun(s) ... done
+discovering new lun(s) ... done
+LUN to device file mappings:
+- snoopy:/vol/vol1/lunVxvm2 => /dev/vx/dmp/Disk_1
+file system /mnt/vxfs2 created
+----
+*Criando um sistema de arquivos em um LUN RDM sem qualquer gerenciador de volume:*
+
+[listing]
+----
+# snapdrive storage create -fs /mnt/fs -fstype ext3 -lun
+lech:/vol/vol_1/lun1 -lunsize 50m -nolvm
+LUN lech:/vol/vol1/lun1 ... created
+exporting new lun(s) to Guest OS ... done
+discovering new lun(s) ... done
+LUN to device file mappings:
+- lech:/vol/vol1/lun1 => /dev/sdb
+file system /mnt/fs created
+----

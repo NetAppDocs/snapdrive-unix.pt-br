@@ -1,0 +1,14 @@
+---
+permalink: aix/task_stopping_the_daemon.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, daemon, stop 
+summary: Se você alterar o arquivo de configuração do SnapDrive para UNIX, você deve parar e reiniciar o daemon. Você pode parar o daemon de forma não forçada ou forçada. 
+---
+= Parando o daemon
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se você alterar o arquivo de configuração do SnapDrive para UNIX, você deve parar e reiniciar o daemon. Você pode parar o daemon de forma não forçada ou forçada.

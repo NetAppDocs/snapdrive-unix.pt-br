@@ -1,0 +1,16 @@
+---
+permalink: aix/concept_command_syntax_for_disconnecting_a_filesystem_created_on_alun_from_the_host.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, syntax, disconnect, file, system, host, lun 
+summary: Para usar o comando SnapDrive storage disconnect para remover um sistema de arquivos criado diretamente em um LUN, use a seguinte sintaxe. 
+---
+= Sintaxe de comando para desconetar um sistema de arquivos criado em um LUN do host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para usar o `snapdrive storage disconnect` comando para remover um sistema de arquivos criado diretamente em um LUN, use a seguinte sintaxe:
+
+`snapdrive storage disconnect -fs file_spec [-fstype type] [-vmtype type]`

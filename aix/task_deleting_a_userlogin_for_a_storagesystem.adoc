@@ -1,0 +1,33 @@
+---
+permalink: aix/task_deleting_a_userlogin_for_a_storagesystem.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, user, login, storage 
+summary: Você pode excluir um login de usuário para um ou mais sistemas de armazenamento, executando o comando SnapDrive config delete. 
+---
+= Eliminar um início de sessão de utilizador para um sistema de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode excluir um login de usuário para um ou mais sistemas de armazenamento, executando o `snapdrive config delete` comando.
+
+Certifique-se de que você está conetado como um usuário root.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive config delete _appliance_name [appliance_name]_*`
+
++
+`_appliance_name_` é o nome do sistema de armazenamento para o qual você deseja excluir as informações de login do usuário.
+
++
+O SnapDrive para UNIX remove as informações de login de nome de usuário ou senha para os sistemas de armazenamento especificados.
+
++
+
+NOTE: Para ativar o SnapDrive para UNIX para aceder ao sistema de armazenamento, tem de especificar um novo início de sessão de utilizador.
+
+

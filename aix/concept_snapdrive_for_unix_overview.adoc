@@ -1,0 +1,23 @@
+---
+permalink: aix/concept_snapdrive_for_unix_overview.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, overview, data, management 
+summary: O SnapDrive para UNIX simplifica o gerenciamento de dados e aumenta a disponibilidade e a confiabilidade dos dados de aplicações por meio de provisionamento de storage simplificado e cópias Snapshot consistentes com o sistema de arquivos. 
+---
+= Visão geral do SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX simplifica o gerenciamento de dados e aumenta a disponibilidade e a confiabilidade dos dados de aplicações por meio de provisionamento de storage simplificado e cópias Snapshot consistentes com o sistema de arquivos.
+
+O SnapDrive para UNIX simplifica o backup de dados para que você possa recuperar dados mesmo que eles sejam excluídos ou modificados. O SnapDrive para UNIXusa a tecnologia Snapshot para criar uma imagem dos dados em um sistema de storage compartilhado ou não compartilhado anexado a um host UNIX. Ao restaurar uma cópia Snapshot, ela substitui os dados atuais no sistema de storage pelos dados na cópia Snapshot.
+
+O SnapDrive para UNIX fornece recursos de armazenamento que permitem gerenciar toda a hierarquia de armazenamento, como o arquivo visível do aplicativo do lado do host, o Gerenciador de volumes e o número de unidade lógica (LUN) do lado do sistema de storage.
+
+O SnapDrive para UNIX fornece suporte para controle de acesso baseado em funções. Um administrador de storage usa o RBAC para restringir o acesso de um usuário ao sistema de storage com base na função e na tarefa que o usuário executa.
+
+
+NOTE: Você deve usar o console do Operations Manager 3,7 ou posterior para usar o RBAC.

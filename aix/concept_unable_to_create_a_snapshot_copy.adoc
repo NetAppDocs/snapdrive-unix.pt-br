@@ -1,0 +1,30 @@
+---
+permalink: aix/concept_unable_to_create_a_snapshot_copy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, create, snapshot, copy 
+summary: Há poucas condições que afetam a capacidade do comando SnapDrive snap Create de criar uma cópia Snapshot. 
+---
+= Não é possível criar uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Existem poucas condições que afetam `snapdrive snap create` a capacidade do comando de criar uma cópia Snapshot.
+
+* O `snapdrive snap create` comando deve ser capaz de executar as seguintes tarefas:
++
+** Consulte todos os grupos de discos para obter uma lista de LUNs.
+** Consultar todos os LUNs por meio de comandos SCSI.
+
+
+* Os LUNs no grupo de discos devem estar online e mapeados para o grupo de discos antes de fazer a cópia Snapshot. Se algum dos LUNs estiver offline ou não mapeado, a operação criar falha.
++
+Certifique-se de que todos os LUNs estejam online e mapeados para o host antes de tentar fazer uma cópia Snapshot.
+
+* As permissões de acesso não permitem que o host crie uma cópia Snapshot das informações nesse sistema de storage.
++
+Além disso, como ele funciona com entradas LVM, você deve estar conetado ao host com permissão suficiente para que ele manipule as entradas LVM.
+
+

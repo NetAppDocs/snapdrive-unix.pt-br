@@ -1,0 +1,32 @@
+---
+permalink: aix/task_verifying_login_information_for_vserver.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, verify, login, information, vserver 
+summary: Você pode verificar se o SVM está configurado no SnapDrive para UNIX usando o comando SnapDrive config list. 
+---
+= Verificando as informações de login para o SVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode verificar se o SVM está configurado no SnapDrive para UNIX usando o `snapdrive config list` comando.
+
+.Passos
+. Introduza o seguinte comando: `snapdrive config list`
++
+Este comando exibe o nome de usuário ou SVM especificado no SnapDrive para UNIX e não exibe as senhas do SVM.
+
++
+O exemplo a seguir exibe o `_vsadmin_` como um `_StorageSystem_`.
+
++
+[listing]
+----
+# snapdrive config list
+username    appliance name   appliance type
+-------------------------------------------
+vsadmin     clstr-vs2        StorageSystem
+----
+

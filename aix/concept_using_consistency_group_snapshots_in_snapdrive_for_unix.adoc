@@ -1,0 +1,27 @@
+---
+permalink: aix/concept_using_consistency_group_snapshots_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, copy, consistency, group 
+summary: O Snapshot do Grupo de consistência é uma cópia Snapshot de um conjunto de volumes que abrangem diferentes VServers ou nós de um cluster, que é gerenciado como uma única entidade. 
+---
+= Cópias Snapshot do grupo de consistência no SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O Snapshot do Grupo de consistência é uma cópia Snapshot de um conjunto de volumes que abrangem diferentes VServers ou nós de um cluster, que é gerenciado como uma única entidade.
+
+O SnapDrive para UNIX captura cópias Snapshot consistentes com falhas em todos os volumes, abrangendo diferentes VServers ou nós de um cluster. Você também pode configurar o período de tempo em que a cópia Snapshot deve ser capturada.
+
+O SnapDrive para UNIX captura cópias Snapshot do grupo de consistência por padrão. Você pode desativar esse recurso e reverter para a captura de cópias Snapshot no modo de melhor esforço.
+
+
+NOTE: O SnapDrive para UNIX 5,2 oferece suporte a cópias Snapshot de grupo de consistência para Clustered Data ONTAP somente no Data ONTAP 8.2 ou versões posteriores.
+
+*Informações relacionadas*
+
+xref:task_capturing_a_consistency_group_snapshot.adoc[Criando uma cópia Snapshot do grupo de consistência]
+
+xref:task_disabling_consistency_group_snapshots.adoc[Desativando cópias de instantâneos de grupos de consistência]

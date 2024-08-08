@@ -1,0 +1,38 @@
+---
+permalink: aix/task_verifying_storagesystem_user_namesassociated_withsnapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, verify, storage, name, user 
+summary: Você pode verificar qual nome de usuário o SnapDrive para UNIX associou a um sistema de armazenamento executando o comando SnapDrive config list. 
+---
+= Verificando os nomes de usuários do sistema de armazenamento associados ao SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode verificar qual nome de usuário o SnapDrive para UNIX associou a um sistema de armazenamento executando o `snapdrive config list` comando.
+
+Você deve ter feito login como usuário root.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive config list*`
+
++
+Este comando exibe o nome de usuário ou pares de sistema de armazenamento para todos os sistemas que têm usuários especificados no SnapDrive para UNIX. Ele não exibe as senhas dos sistemas de armazenamento.
+
++
+Este exemplo exibe os usuários associados aos sistemas de armazenamento chamados rapunzel e sistema de armazenamento médio:
+
++
+[listing]
+----
+# snapdrive config list
+user name           storage system name
+-----------------------------
+rumplestiltskins    rapunzel
+longuser            mediumstoragesystem
+----
+

@@ -1,0 +1,38 @@
+---
+permalink: linux-installation-7mode/task_connecting_linux_host_to_the_storage_system.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, connect, linux, host, storage, system 
+summary: Para operações bem-sucedidas do SnapDrive para UNIX, é necessário configurar o sistema de storage antes de conectá-lo ao host Linux. 
+---
+= Conexão de hosts Linux a sistemas de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para operações bem-sucedidas do SnapDrive para UNIX, é necessário configurar o sistema de storage antes de conectá-lo ao host Linux.
+
+O nome do sistema de armazenamento tem de ser registado num servidor DNS (Domain Name Service) na sua rede ou `/etc/hosts` no ficheiro.
+
+.Passos
+. Crie um usuário no sistema de armazenamento:
++
+`*snapdrive config set _user_name storage_system_name_*`
+
+. Visualize os usuários associados ao sistema de armazenamento e obtenha os detalhes do nome de usuário ou do par do sistema de armazenamento:
++
+`*snapdrive config list*`
+
++
+O comando exibe o nome de usuário ou os pares de sistema de armazenamento para todos os sistemas que têm os usuários especificados no SnapDrive para UNIX.
+
+. Se o sistema de storage tiver várias interfaces de dados, configure a interface de dados para a nova interface de gerenciamento:
++
+`*snapdrive config set -mgmtpath _management_interface_path data_interface_path_*`
+
+. Verifique se todas as interfaces de dados e gerenciamento estão configuradas corretamente:
++
+`*snapdrive config list -mgmtpath*`
+
+

@@ -1,0 +1,18 @@
+---
+permalink: linux-installation-7mode/task_provisioning_volumes.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, volume, provision, storage 
+summary: Com o Data ONTAP, você provisiona o storage criando um volume no sistema de storage e montando o volume ao host com o protocolo NFS habilitado. 
+---
+= Provisionamento de volumes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Com o Data ONTAP, você provisiona o storage criando um volume no sistema de storage e montando o volume ao host com o protocolo NFS habilitado.
+
+*Informações relacionadas*
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1368859["Guia de gerenciamento de storage do Data ONTAP 8.2 para o modo 7"]

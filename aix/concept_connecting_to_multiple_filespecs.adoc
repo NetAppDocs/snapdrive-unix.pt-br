@@ -1,0 +1,74 @@
+---
+permalink: aix/concept_connecting_to_multiple_filespecs.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, connect, multiple, filspec 
+summary: Você pode se conetar a vários filespecs que residem em um volume. O exemplo a seguir descreve como você pode concluir esta operação. 
+---
+= Conetando-se a vários filespecs
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode se conetar a vários filespecs que residem em um volume. O exemplo a seguir descreve como você pode concluir esta operação.
+
+Para criar FlexClone restrito, você precisa definir o `san-clone-method=unrestricted` no `snapdrive.conf` arquivo ou dar `-clone unrestricted` antes de se conetar a vários filespec. Este exemplo exibe os resultados quando você deseja se conetar a vários filespec `/mnt/fs_1` e `/mnt/fs_2` em snap1 que residem no volume vol1.
+
+O layout de /mnt/fs_1 e /mnt/fs_2 é dado no seguinte:
+
+[listing]
+----
+ # snapdrive storage show -fs /mnt/fs_1 /mnt/fs_2 -capabilities
+raw device: /dev/sdc1   mount point: /mnt/fs_1 (persistent) fstype jfs2
+allowed operations: all
+
+device filename      adapter     path     size    proto   state     clone     lun path           backing snapshot
+----------------     -------     ----    ------   -----   -----    -------  ----------------     ----------------
+/dev/sdc                -         P       100m    iscsi   online      No    homer:/vol/vol1/lun1        -
+
+raw device: /dev/sdo1   mount point: /mnt/fs_2 (persistent) fstype jfs2
+allowed operations: all
+
+device filename     adapter path    size     proto   state   clone    lun path               backing snapshot
+----------------    ------- ----    ----    -------  -----   -----    --------               ----------------
+/dev/sdo               -     P      100m     iscsi   online   No      homer:/vol/vol1/lun2        -
+----
+Aqui, o usuário usou o Snapshot snap2 que contém snapshots consistentes com aplicativos `/mnt/fs1` de e `/mnt/fs2` para snap Connect.
+
+[listing]
+----
+ # snapdrive snap connect -fs /mnt/fs_1 -fs /mnt/fs_2 -snapname homer:/vol/vol1:snap2 -autorename -clone unrestricted
+
+ connecting /mnt/fs_1:
+        creating unrestricted volume clone homer:/vol/Snapdrive_vol1_volume_clone_from_snap2_snapshot ... success
+
+        mapping new lun(s) ... done
+
+ connecting /mnt/fs_2:
+
+        mapping new lun(s) ... done
+        discovering new lun(s) ... done
+Successfully connected to snapshot homer:/vol/vol1:snap2
+        file system: /mnt/fs_1_0
+        file system: /mnt/fs_2_0
+----
+Aqui, o SnapDrive para UNIX criou um único FlexClone irrestrito `Snapdrive_vol1_0_volume_clone_from_snap2_Snapshot` a partir do Snapshot snap2. Isso é conetado ao LUN testlun1 e testlun2 para criar um sistema de arquivos de host clonado e `/mnt/fs1_0` `/mnt/fs2_0`, respetivamente.
+
+[listing]
+----
+# snapdrive storage show -fs /mnt/fs_1_0 /mnt/fs_2_0 -capabilities
+raw device: /dev/sde1   mount point: /mnt/fs_1_0 (persistent) fstype jfs2
+allowed operations: all
+
+device filename      adapter   path  size    proto   state   clone      lun path                                                         backing snapshot
+----------------      -------  ----  ----    -----   -----   -----       --------                                                        ----------------
+/dev/sde                 -      P    100m    iscsi   online  flex-clone  homer:/vol/Snapdrive_vol1_volume_clone_from_snap2_snapshot/lun1   vol1:snap2
+
+raw device: /dev/sdac1  mount point: /mnt/fs_2_0 (persistent) fstype jfs2
+allowed operations: all
+
+device filename      adapter  path    size    proto   state   clone      lun path                                                            backing snapshot
+----------------      -------  ----    ----    -----   -----   -----      --------                                                           ----------------
+/dev/sdac                 -     P      100m    iscsi   online  flex-clone homer:/vol/Snapdrive_vol1_volume_clone_from_snap2_snapshot/lun2     vol1:snap2
+----

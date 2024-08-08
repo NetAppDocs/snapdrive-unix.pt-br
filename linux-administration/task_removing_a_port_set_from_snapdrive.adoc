@@ -1,0 +1,33 @@
+---
+permalink: linux-administration/task_removing_a_port_set_from_snapdrive.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, remove, portset, delete, command, port, set 
+summary: Você pode usar o comando SnapDrive portset delete para excluir um conjunto de portas configurado no SnapDrive. 
+---
+= Remover um conjunto de portas do SnapDrive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o `snapdrive portset delete` comando para excluir um conjunto de portas configurado no SnapDrive.
+
+.Passos
+. Digite o seguinte comando no sistema host:
++
+`*snapdrive portset delete _filername_ [_filername..._]*`
+
++
+`_filername_` É o nome do SVM no qual o conjunto de portas está configurado.
+
++
+[listing]
+----
+snapdrive portset delete vs91
+Deleted portset configuration for appliance: vs91
+----
++
+O conjunto de portas configurado para o SnapDrive é removido com êxito.
+
+

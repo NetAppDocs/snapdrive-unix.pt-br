@@ -1,0 +1,21 @@
+---
+permalink: linux-administration/concept_configuring_sd_admin_in_operations_manager.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, configure, admin, operations, console, manager 
+summary: O administrador do console do Operations Manager pode criar o usuário sd-admin. 
+---
+= Configurando o SD-admin no console do Operations Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O administrador do console do Operations Manager pode criar o usuário sd-admin.
+
+O administrador do console do Operations Manager cria um usuário chamado sd-admin, com a capacidade de executar uma verificação de acesso principal no grupo global (global `DFM.Core.AccessCheck`). Depois que o administrador do console do Gerenciador de operações configurar o usuário sd-admin, você deve enviar manualmente as informações de credenciais para o administrador do SnapDrive para UNIX. Para obter mais informações sobre como usar o console do Operations Manager para configurar usuários e funções, consulte link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["Guia de administração do Console do Operations Manager"]e a Ajuda on-line.
+
+
+NOTE: Você pode usar qualquer nome no lugar de sd-admin; no entanto, é melhor usar sd-admin.
+
+Para criar uma função no console do Operations Manager, selecione *Setup* > *Roles*. Na página de configuração sd-admin, o administrador do console do Gerenciador de operações deve atribuir `DFM.Database.Write` capacidade no grupo global à função sd-admin, para que o SnapDrive para UNIX possa atualizar entidades de armazenamento no console do Gerenciador de operações.

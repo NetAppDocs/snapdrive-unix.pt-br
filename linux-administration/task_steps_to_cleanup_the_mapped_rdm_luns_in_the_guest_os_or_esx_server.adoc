@@ -1,0 +1,156 @@
+---
+permalink: linux-administration/task_steps_to_cleanup_the_mapped_rdm_luns_in_the_guest_os_or_esx_server.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, rdm, lun, esx, server, clean 
+summary: Você deve limpar os LUNs RDM no sistema operacional convidado, bem como no servidor ESX. 
+---
+= Limpeza dos LUNs RDM mapeados no sistema operacional convidado e no servidor ESX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve limpar os LUNs RDM no sistema operacional convidado, bem como no servidor ESX.
+
+
+
+== Limpeza dos LUNs RDM mapeados no sistema operativo convidado
+
+[role="lead"]
+As etapas a seguir devem ser feitas no sistema operacional convidado.
+
+.Passos
+. No painel de navegação *vCenter*, selecione a máquina virtual na qual o mapeamento RDM é feito.
+. Clique com o botão direito do rato na máquina virtual e desligue o sistema operativo convidado.
+. Clique com o botão direito do rato na máquina virtual e selecione *Editar definições*.
++
+A caixa de diálogo *propriedades da máquina virtual* é exibida.
+
+. Na caixa de diálogo *propriedades da máquina virtual*, selecione a guia *hardware*.
++
+Você encontrará toda a entrada RDM mapeada como LUN RAW mapeado para cada entrada RDM.
+
+. Selecione a entrada RDM mapeada e clique em *Remover*.
++
+*Opções de remoção* aparece no painel direito.
+
+. Em *Opções de remoção*, selecione *Remover da máquina virtual e exclua arquivos do disco*.
+. Clique em *OK*.
++
+Todas as entradas mapeadas RDM são removidas do sistema operacional convidado.
+
++
+Depois de remover entradas de LUN RDM do sistema operacional convidado, você precisa removê-las do servidor ESX.
+
+
+
+
+
+== Limpeza dos LUNs RDM mapeados no servidor ESX
+
+[role="lead"]
+As etapas a seguir devem ser feitas somente pelo administrador do servidor ESX para uma limpeza completa de todas as entradas de LUN RDM no servidor ESX.
+
+Desligue a máquina virtual antes de trabalhar no diretório da máquina virtual.
+
+.Passos
+. Vá para o diretório da máquina virtual.
+. Mude para o diretório `cd /vmfs/volumes/Data store path`.
++
+[listing]
+----
+# ls -l
+total 1024
+drwxr-xr-t 1 root root 1540 Apr 19 23:54 4bc702de-fa7ec190-992b-001a6496f353
+lrwxr-xr-x 1 root root   35 May 11 07:56 local_storage (1) -> 4bc702de-fa7ec190-992b-001a6496f353
+----
++
+Todos os arquivos e diretórios estão listados aqui.
+
+. Selecione o armazenamento de dados apropriado no qual as máquinas virtuais residem.
+. Altere o diretório para armazenamento de dados.
++
+O diretório da máquina virtual é exibido aqui.
+
+. Altere o diretório para máquina virtual na qual você deseja limpar o mapeamento de LUN RDM.
++
+Todos os arquivos são listados no diretório de máquina virtual.
+
+. Exclua todos `vmdk` os arquivos, que têm string SMVI incorporada. Alternativamente, você também pode identificar o `vmdk` arquivo usando o nome LUN.
++
+Alternativamente, você também pode identificar o `vmdk` arquivo usando o nome LUN.
+
++
+Se você tiver um `vmdk` arquivo com o nome LUN como `_rdm1_`, exclua somente `_rhel4u8-141-232_SMVI_vol_esx3u5_rdm1-rdmp.vmdk_` e `_rhel4u8-141-232_SMVI_vol_esx3u5_rdm1.vmdk_` arquivos.
+
++
+Eliminar `_vmlnx5U4-197-23_SMVI_10.72.197.93_C4koV4XzK2HT_22-rdmp.vmdk_` e `_vmlnx5U4-197-23_SMVI_10.72.197.93_C4koV4XzK2HT_22.vmdk vmlnx5U4-197-23_SMVI_10.72.197.93_C4koV4YG4NuD_53-rdmp.vmdk_` ficheiros.
+
+. Remova(`vmx` também as `vmdk` entradas de arquivo do arquivo de configuração da máquina virtual ).
++
+O seguinte é um exemplo de remoção `vmdk` de entradas de arquivo do `vmx` arquivo.
+
++
+|===
+| *Nome* | *Descrição* 
+
+
+ a| 
+`_rhel4u8-141-232_`
+ a| 
+Nome da máquina virtual
+
+
+
+ a| 
+`_SMVI_`
+ a| 
+Indica que esse arquivo vmdk é criado pelo SnapManager para servidor de infraestrutura virtual
+
+
+
+ a| 
+`_vol_esx3u5_`
+ a| 
+Nome do volume em que o LUN é criado
+
+
+
+ a| 
+`_rdm1_`
+ a| 
+Nome do LUN
+
+
+
+ a| 
+`_rdmp_`
+ a| 
+Significa que este é um LUN RDM fisicamente compatível
+
+
+
+ a| 
+`_vmdk_`
+ a| 
+Arquivo de disco da máquina virtual
+
+|===
++
+[listing]
+----
+[root@ rhel4u8-141-232]# vi rhel4u8-141-232.vmx
+		:
+		:
+scsi3:1.fileName = "rhel4u8-141-232_SMVI__vol_esx3u5_rdm1.vmdk"
+scsi3:1.mode = "independent-persistent"
+scsi3:1.ctkEnabled = "FALSE"
+scsi3:1.deviceType = "scsi-hardDisk"
+scsi3:1.present = "TRUE"
+scsi3:1.redo = ""
+----
+. Exclua as entradas conforme especificado no exemplo anterior, incluindo aspas e vírgulas, exceto para a `_scsi3:1.present_` entrada, que você deve mudar `_FALSE_` de `_TRUE_`.
+. Salve e saia do arquivo.
+. Ligue a máquina virtual.
+

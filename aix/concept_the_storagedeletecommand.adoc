@@ -1,0 +1,17 @@
+---
+permalink: aix/concept_the_storagedeletecommand.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, delete, command 
+summary: O comando SnapDrive storage DELETE remove as entidades de storage no host, além de todas as entidades do lado do host subjacentes e LUNs do sistema de storage que as fazem backup. 
+---
+= O comando de exclusão de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O `snapdrive storage delete` comando remove as entidades de storage no host, além de todas as entidades do lado do host subjacentes e LUNs do sistema de storage que as suportam.
+
+
+IMPORTANT: Este comando exclui dados.

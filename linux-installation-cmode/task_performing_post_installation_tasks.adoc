@@ -1,0 +1,34 @@
+---
+permalink: linux-installation-cmode/task_performing_post_installation_tasks.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, installation, task, perform, configure, install 
+summary: Após a conclusão da instalação, você deve configurar recursos e funções adicionais. Você deve instalar o certificado do servidor e configurar o SnapDrive para UNIX para usar uma conexão segura com o sistema de armazenamento e serviço daemon. 
+---
+= Executar tarefas de pós-instalação
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Após a conclusão da instalação, você deve configurar recursos e funções adicionais. Você deve instalar o certificado do servidor e configurar o SnapDrive para UNIX para usar uma conexão segura com o sistema de armazenamento e serviço daemon.
+
+.Passos
+. Instale o certificado do servidor que é usado pelo SnapDrive para UNIX no `sdu-daemoncertificate-path=/opt/NetApp/snapdrive/snapdrive.pem` local se você estiver usando uma conexão segura com o sistema de armazenamento e serviço daemon.
++
+O caminho do certificado é definido na `sdu-daemoncertificate-path` variável de configuração no `snapdrive.conf` arquivo.
+
+. Defina `_use-https-to-sdu-daemon=on_` no `snapdrive.conf` arquivo para usar HTTPS para uma conexão segura com o sistema de armazenamento e serviço daemon.
++
+
+NOTE: O SnapDrive 5,0 para UNIX e versões posteriores suportam HTTPS para comunicação daemon. Por padrão, esse parâmetro opcional é desativado.
+
+. Reinicie o serviço daemon SnapDrive:
++
+`*snapdrived start*`
+
++
+
+NOTE: Você deve reiniciar o daemon SnapDrive toda vez que você alterar manualmente o arquivo de configuração.
+
+

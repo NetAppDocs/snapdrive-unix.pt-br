@@ -1,0 +1,98 @@
+---
+permalink: linux-administration/concept_informationrequired_forusing_the_snapdrive_snapdisconnect_command.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, disconnect, lun, disk, file 
+summary: Para desconetar uma cópia Snapshot, especifique o tipo de entidade de storage a ser usada, como LUN, grupos de discos, sistemas de arquivos ou volume de host. 
+---
+= Informações necessárias para usar o comando SnapDrive snap Disconnect
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para desconetar uma cópia Snapshot, especifique o tipo de entidade de storage a ser usada, como LUN, grupos de discos, sistemas de arquivos ou volume de host.
+
+A tabela a seguir fornece as informações que você precisa fornecer quando você usa o `snapdrive snap disconnect` comando.
+
+|===
+| Requisito/opção | Argumento 
+
+
+ a| 
+(`-lun _file_spec_`LUN )
+ a| 
+_Nome do LUN. Inclua o nome do arquivador, volume e LUN._
+
+
+
+ a| 
+Grupo de discos (`-dg _file_spec_`) ou grupo de (`-vg _file_spec_`volumes )
+ a| 
+_nome do disco ou grupo de volume_
+
+
+
+ a| 
+Sistema de (`-fs _file_spec_`ficheiros )
+ a| 
+`_filesystem_name_`
+
+
+
+ a| 
+Volume do (`-hostvol _file_spec_`host ) ou volume (`-lvol _file_spec_` lógico )
+ a| 
+_nome do host ou volume lógico_
+
+
+
+ a| 
+Especifique o tipo de entidade de storage que você deseja usar para desconetar a cópia Snapshot e fornecer o nome dessa entidade com o argumento apropriado.
+
+Este é o valor para o `_file_spec_` argumento.
+
+
+
+ a| 
+`-full`
+ a| 
+.
+
+
+
+ a| 
+Inclua a opção -full na linha de comando se desejar que o SnapDrive para UNIX desconete os objetos da cópia Snapshot mesmo que uma entidade do lado do host na linha de comando tenha outras entidades (como um grupo de discos que tenha um ou mais volumes de host). Se você não incluir essa opção, você deve especificar apenas entidades vazias do lado do host.
+
+
+
+ a| 
+`-fstype`
+ a| 
+`_type_`
+
+
+
+ a| 
+`-vmtype`
+ a| 
+`_type_`
+
+
+
+ a| 
+Opcional: Especifique o tipo de sistema de arquivos e gerenciador de volume a ser usado.
+
+
+
+ a| 
+`-split`
+ a| 
+.
+
+
+
+ a| 
+Permite dividir os volumes clonados ou LUNs durante as operações do Snapshot Connect e do Snapshot Disconnect.
+
+|===

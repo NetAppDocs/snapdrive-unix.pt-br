@@ -1,0 +1,18 @@
+---
+permalink: solaris/concept_uninstall_files_installed_by_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, uninstall, install 
+summary: O SnapDrive para UNIX usa os arquivos de desinstalação para remover o SnapDrive para UNIX. 
+---
+= Desinstalar arquivos instalados pelo SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX usa os arquivos de desinstalação para remover o SnapDrive para UNIX.
+
+Os arquivos são instalados no seguinte local:
+
+`/opt/NTAPsnapdrive/snapdrive.conf`

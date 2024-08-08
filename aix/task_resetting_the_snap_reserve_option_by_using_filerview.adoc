@@ -1,0 +1,22 @@
+---
+permalink: aix/task_resetting_the_snap_reserve_option_by_using_filerview.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, reset, reserve, filerview 
+summary: 'Quando você usa o Data ONTAP em um ambiente FC ou iSCSI, você deve redefinir a opção snap Reserve para 0% usando o FilerView.' 
+---
+= Repor a opção snap Reserve utilizando FilerView
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando você usa o Data ONTAP em um ambiente FC ou iSCSI, você deve redefinir a opção snap Reserve para 0% usando o FilerView.
+
+.Passos
+. Abra uma sessão FilerView no sistema de armazenamento que mantém o volume cuja `snap reserve` definição deve ser alterada.
+. A partir do FilerView principal, navegue até *volumes* > *Snapshot* > *Configure*.
+. No campo *volume*, selecione o volume cuja `snap reserve` definição deve ser alterada.
+. No campo *reserva Instantânea*, insira 0.
+. Clique em *aplicar*.
+

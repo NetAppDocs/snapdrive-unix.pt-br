@@ -1,0 +1,26 @@
+---
+permalink: linux-administration/concept_what_volume_based_snaprestore_is.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, volume, snaprestore, vbsr, storage, object, flexcone, vfiler, ontap 
+summary: O SnapRestore baseado em volume restaura o volume com todos os seus objetos de armazenamento. A restauração baseada em volume é mais rápida do que cada objeto de storage restaurado individualmente. O VBSR também funciona com volumes FlexClone e configurações do vFiler. VBSR para vFiler está disponível para Data ONTAP 7,3 e posterior. 
+---
+= O que é SnapRestore baseado em volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapRestore baseado em volume (VBSR) restaura o volume com todos os seus objetos de armazenamento. A restauração baseada em volume é mais rápida do que cada objeto de storage restaurado individualmente. O VBSR também funciona com volumes FlexClone e configurações do vFiler. VBSR para vFiler está disponível para Data ONTAP 7,3 e posterior.
+
+O SnapDrive 3,0 para UNIX e anterior pode restaurar LUNs para uma entidade no lado do host, como sistema de arquivos, grupos de disco e volumes de host, ou arquivos normais criados em NFS a partir de um snapshot consistente com aplicativos. O SnapDrive para UNIX usa o SFSR de recuperação de snap de arquivo único implementado no Data ONTAP. SFSR funciona da seguinte forma:
+
+* Para arquivos normais enquanto o SFSR estiver prosseguindo, qualquer operação que tente alterar o arquivo é suspensa até que o SFSR esteja concluído.
+* Para LUNs, quando SFSR está a prosseguir, o LUN está disponível e e/S (leituras e gravações) são permitidos. O SFSR para arquivos normais, bem como LUNs, pode levar muito tempo, dependendo do tamanho do LUN ou do arquivo sendo restaurado.
+
+
+Portanto, para alguns ambientes o SFSR é uma obstrução.
+
+O SnapDrive 4,0 para UNIX e posterior permite que você faça cópias Snapshot baseadas em volume. O VBSR é muito mais rápido e requer menos recursos de CPU e armazenamento. Ele restaura todos os dados no sistema de arquivos ativo. Essa funcionalidade pode ser usada se um usuário quiser restaurar todos os LUNs ou arquivos normais em um volume a partir da mesma cópia Snapshot.
+
+A cópia Snapshot baseada em volume deve ser usada com cuidado porque todas as cópias snapshot obtidas após a cópia Snapshot de volume usada para a operação de restauração são excluídas. Todos os novos arquivos e novos LUNs criados nesse volume devem ser excluídos.

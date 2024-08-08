@@ -1,0 +1,26 @@
+---
+permalink: linux-administration/concept_supported_fc_iscsi_or_nfs_configurations.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, fc, iscsi, nfs, support, ha, host, cluster 
+summary: O SnapDrive para UNIX é compatível com topologias de pares de HA e cluster de host. As configurações FC ou iSCSI dão suporte às mesmas configurações de cluster de host e par de HA compatíveis com os Utilitários de host FC ou iSCSI Host Utilities. 
+---
+= Configurações FC, iSCSI ou NFS compatíveis
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX é compatível com topologias de pares de HA e cluster de host. As configurações FC ou iSCSI dão suporte às mesmas configurações de cluster de host e par de HA compatíveis com os Utilitários de host FC ou iSCSI Host Utilities.
+
+O SnapDrive para UNIX é compatível com as seguintes topologias de cluster de host e par de HA:
+
+* Uma configuração independente na qual um único host é conetado a um único sistema de storage
+* Qualquer topologia que envolva failover de par de HA em um sistema de storage
+* Qualquer topologia que tenha clusters de host compatíveis com o NetApp
+
+
+Para obter mais informações sobre as configurações recomendadas para o seu host e os sistemas de armazenamento que você está usando, consulte a documentação Utilitários de host do Linux.
+
+
+NOTE: Se você precisar de uma configuração do SnapDrive para UNIX que não seja mencionada na documentação de utilitários, entre em Contato com o suporte técnico.

@@ -1,0 +1,74 @@
+---
+permalink: aix/concept_volume_based_snaprestore_for_space_reservation.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snaprestore, space, reservation, volume 
+summary: Para reserva de espaço com reserva de snap baseada em volume, você precisa definir a opção de reserva de espaço ativada para volume no arquivo SnapDrive.conf. 
+---
+= SnapRestore baseado em volume para reserva de espaço
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para reserva de espaço com reserva instantânea baseada em volume, você precisa definir `_space-reservations-volume-enabled_` a opção no `snapdrive.conf` arquivo.
+
+A `_space-reservations-volume-enabled_` opção é usada para definir a política de garantia de espaço no volume e pode tomar os três valores a seguir.
+
+* *Snapshot*: Este é o valor padrão. A garantia de espaço no volume não muda.
+* *Volume*: A garantia de espaço no volume está ao nível do volume.
+* *Nenhum*: A garantia de espaço é definida como nenhuma.
+
+
+A tabela a seguir descreve o comportamento da reserva instantânea baseada em volume para reserva de espaço.
+
+|===
+| Nenhuma opção CLI de reserva de espaço usada; `-vbsr execute` é especificada | espaço-reservas-volume-habilitado | Resultado 
+
+
+ a| 
+nenhum
+ a| 
+snapshot
+ a| 
+A garantia de espaço no volume não muda.
+
+
+
+ a| 
+nenhum
+ a| 
+nenhum
+ a| 
+Tentar definir a garantia de espaço como "nenhum" para os volumes.
+
+
+
+ a| 
+`-reserve`
+ a| 
+o valor de configuração é sobreposto
+ a| 
+Tentativa de definir a garantia de espaço para volumes como "volume"
+
+
+
+ a| 
+`-noreserve`
+ a| 
+o valor de configuração é sobreposto
+ a| 
+Tentativa de definir a garantia de espaço para volumes como "nenhum"
+
+
+
+ a| 
+nenhum
+ a| 
+volume
+ a| 
+Tentativa de definir a garantia de espaço para volumes como "volume"
+
+|===
+
+NOTE: `-vbsr preview` não verifica nenhuma das opções de reserva de espaço.

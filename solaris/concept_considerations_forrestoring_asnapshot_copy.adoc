@@ -1,0 +1,21 @@
+---
+permalink: solaris/concept_considerations_forrestoring_asnapshot_copy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, restore, snapshot, copy 
+summary: Antes de restaurar cópias Snapshot, certifique-se de que não está a utilizar o sistema de ficheiros e de que não interrompe o processo de restauro. 
+---
+= Considerações para restaurar uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de restaurar cópias Snapshot, certifique-se de que não está a utilizar o sistema de ficheiros e de que não interrompe o processo de restauro.
+
+Antes de restaurar uma cópia Snapshot, considere as seguintes informações importantes:
+
+* Certifique-se de que não está em nenhum diretório de um sistema de arquivos que você deseja restaurar. Você pode executar o `snapdrive snap restore` comando de qualquer diretório, exceto aquele em um sistema de arquivos para o qual você deseja restaurar as informações.
+* Não interrompa a operação de restauração inserindo Ctrl-C. isso pode deixar seu sistema em uma configuração inutilizável. Se isso acontecer, você pode ter que entrar em Contato com o suporte técnico da NetApp para recuperar.
+* Ao exportar as entidades NFS para um volume, defina a opção ID de usuário anônimo como "'0"" para que o `snapdrive snap restore` comando funcione com êxito.
+

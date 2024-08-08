@@ -1,0 +1,58 @@
+---
+permalink: solaris/task_setting_up_an_sfrac_i_o_fencing_environment_on_a_storage_system.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, sfrac, fencing, environment, storage 
+summary: O SnapDrive para UNIX fornece opções de provisionamento de storage e gerenciamento de Snapshot para gerenciar grupos de discos compartilhados e de nós locais em todo o cluster de host e sistemas de arquivos em um ambiente SFRAC. 
+---
+= Configurando um ambiente de esgrima de e/S SFRAC em um sistema de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX fornece opções de provisionamento de storage e gerenciamento de Snapshot para gerenciar grupos de discos compartilhados e de nós locais em todo o cluster de host e sistemas de arquivos em um ambiente SFRAC.
+
+.Passos
+. Configure `rsh` ou `ssh` manualmente para usar o prompt de acesso sem senha para o usuário raiz em todos os nós do cluster de host.
++
+Para obter instruções de configuração, consulte o _Veritas Cluster Server Installation Guide for Solaris_.
+
+. Instale o SnapDrive para UNIX em todos os nós do cluster de host.
++
+Se diferentes versões do SnapDrive para UNIX forem instaladas em nós diferentes, as operações do SnapDrive para UNIX falharão.
+
+. Verifique a conectividade FC entre os sistemas de storage.
++
+Para saber mais sobre os requisitos de hardware para hosts, consulte SFRAC _Notas de versão_.
+
++
+
+NOTE: O `/opt/NTAPsnapdrive/snapdrive.conf` arquivo em todos os nós deve ter a `default-transport` variável de configuração definida como FCP.
+
+. Defina um valor para a `_secure-communication-among-cluster-nodes_` variável de configuração para garantir que o `rsh` prompt de acesso ou `ssh` sem senha para o usuário raiz esteja configurado para todos os nós no cluster.
++
+Esse valor é necessário porque, se você iniciar os comandos SnapDrive para UNIX de qualquer nó (mestre ou não mestre) no cluster de host, o SnapDrive para UNIX realiza operações em outros nós no cluster de host.
+
+. Verifique a deteção de dispositivo nos nós do cluster de host executando o seguinte comando em cada nó no cluster de host:
++
+`*snapdrive storage create -lun _long_lun_name_ [_lun_name..._] -lunsize size [{_-reserve_ | _-noreserve_}] [_-igroup ig_name_ [_ig_name ..._]]*`
+
++
+[listing]
+----
+
+	# snapdrive storage create -lun f270-197-109:/vol/vol2/luntest -lunsize 20m
+
+		LUN f270-197-109:/vol/vol2/luntest ... created
+
+		mapping new lun(s) ... done
+		discovering new lun(s) ... done
+
+		LUN to device file mappings:
+	-f270-197-109:/vol/vol2/luntest => /dev/vx/dmp/c5t0d6s2
+
+	# snapdrive storage delete -lun f270-197-109:/vol/vol2/luntest -lunsize 20m
+	- LUN f270-197-109:/vol/vol2/luntest ... deleted
+----
+

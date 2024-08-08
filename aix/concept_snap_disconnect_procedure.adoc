@@ -1,0 +1,36 @@
+---
+permalink: aix/concept_snap_disconnect_procedure.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, disconnect, procedure 
+summary: Esta secção explica o procedimento seguido para a desconexão de encaixe. 
+---
+= Procedimento de desconexão de encaixe
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Esta secção explica o procedimento seguido para a desconexão de encaixe.
+
+Os seguintes passos descrevem o procedimento de desconexão de encaixe:
+
+.Passos
+. O SnapDrive para UNIX obtém as especificações de arquivos de host `snap disconnect` da CLI e descobre o volume do sistema de storage.
+. Depois de excluir especificações de arquivos host e desmapear os LUNs, o SnapDrive para UNIX verifica se o volume atual é um clone criado pelo SnapDrive.
+. Se o FlexClone for criado pelo SnapDrive, o SnapDrive para UNIX verifica se:
++
+.. Há LUNs mapeados no volume do clone
+.. Há novos LUNs no volume clonado
+.. Há novas cópias Snapshot
+
+
+
+
+Se todas as condições estiverem satisfeitas, o SnapDrive para UNIX excluirá o volume clonado. Para um FlexClone irrestrito, se o RBAC estiver configurado, o SnapDrive para UNIX não executará as verificações da subetapa 1 e da subetapa 2.
+
+Em sistemas de storage com a versão do Data ONTAP anterior a 7,2, os volumes FlexClone restritos não são excluídos pelo SnapDrive para UNIX. Os comandos do sistema de armazenamento devem ser usados para excluí-los. No entanto, os volumes FlexClone não restritos são excluídos quando o recurso RBAC apropriado é fornecido ao usuário.
+
+*Informações relacionadas*
+
+xref:concept_role_based_access_control_in_snapdrive_for_unix.adoc[Controle de acesso baseado em função no SnapDrive para UNIX]

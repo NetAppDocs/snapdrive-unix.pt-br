@@ -1,0 +1,245 @@
+---
+permalink: aix/concept_snapdrive_commands_and_capabilities.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, capability, storage, operations 
+summary: 'No controle de acesso baseado em função (RBAC), uma capacidade específica é necessária para que cada operação seja bem-sucedida. Um utilizador tem de ter o conjunto correto de capacidades atribuído para efetuar operações de armazenamento.' 
+---
+= Comandos e recursos do SnapDrive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+No controle de acesso baseado em função (RBAC), é necessário um recurso específico para que cada operação seja bem-sucedida. Um utilizador tem de ter o conjunto correto de capacidades atribuído para efetuar operações de armazenamento.
+
+A tabela a seguir lista os comandos e as capacidades correspondentes necessárias:
+
+|===
+| Comando | Capacidade 
+
+
+ a| 
+`storage show`
+ a| 
+SD.Storage.Leia no volume
+
+
+
+ a| 
+`storage list`
+ a| 
+SD.Storage.Leia no volume
+
+
+
+ a| 
+`storage create`
+ a| 
+* Para LUNs dentro de volumes: `SD.Storage.Write` Em volume
+* Para LUNs dentro do qtrees: `SD.Storage.Write` Em qtree
+
+
+
+
+ a| 
+`storage resize`
+ a| 
+`SD.Storage.Write` No LUN
+
+
+
+ a| 
+`storage delete`
+ a| 
+`SD.Storage.Delete` No LUN
+
+
+
+ a| 
+`snap show`
+ a| 
+`SD.SnapShot.Read` no volume
+
+
+
+ a| 
+`snap list`
+ a| 
+`SD.SnapShot.Read` no volume
+
+
+
+ a| 
+`snap delete`
+ a| 
+`SD.Storage.Delete` no volume
+
+
+
+ a| 
+`snap rename`
+ a| 
+`SD.Storage.Write` no volume
+
+
+
+ a| 
+`snap connect`
+ a| 
+* Para clones de LUN em volume: `SD.SnapShot.Clone` No volume
+* Para clones de LUN em qtree: Em qtree `SD.SnapShot.Clone`
+* Para clones de volume tradicionais: `SD.SnapShot.Clone` No sistema de storage
+* Para volume FlexClone: `SD.SnapShot.Clone` No volume pai
+* Para volumes FlexClone irrestritos: `SD.SnapShot.UnrestrictedClone` No volume pai
+
+
+
+
+ a| 
+`snap connect-split`
+ a| 
+* Para clones de LUN (LUN clonados e divididos em volume): `SD.SnapShot.Clone` No volume e `SD.Storage.Write` no volume
+* Para clones de LUN (LUN clonados e divididos em qtree): `SD.SnapShot.Clone` Em qtree e em qtree `SD.Storage.Write`
+* Para clones de volume tradicionais divididos: `SD.SnapShot.Clone` No sistema de storage e `SD.Storage.Write` no sistema de storage
+* Para clones de volume Flex que são divididos: `SD.SnapShot.Clone` No volume pai.
+
+
+
+
+ a| 
+`clone split start`
+ a| 
+* Para clones de LUN em que o LUN reside em volume ou qtree: `SD.SnapShot.Clone` Contendo volume ou qtree
+* Para clones de volume: `SD.SnapShot.Clone` No volume pai
+
+
+
+
+ a| 
+`snap disconnect`
+ a| 
+* Para clones de LUN em que o LUN reside em volume ou qtree: `SD.SnapShot.Clone` Contendo volume ou qtree
+* Para clones de volume: `SD.SnapShot.Clone` No volume pai
+* Para exclusão de clones de volume irrestritos: `SD.SnapShot.DestroyUnrestrictedClone` No volume
+
+
+
+
+ a| 
+`snap disconnect-split`
+ a| 
+* Para clones de LUN em que o LUN reside em volume ou qtree: `SD.SnapShot.Clone` No volume ou qtree que contém
+* Para clones de volume: `SD.Storage.Delete` No volume pai
+* Para exclusão de clones de volume irrestritos: `SD.SnapShot.DestroyUnrestrictedClone` No volume
+
+
+
+
+ a| 
+`snap restore`
+ a| 
+* Para LUNs que existem em um volume: `SD.SnapShot.Restore` No volume e `SD.Storage.Write` no LUN
+* Para LUNs que existe em uma qtree: `SD.SnapShot.Restore` Em qtree e `SD.Storage.Write` no LUN
+* Para LUNs que não estejam nos volumes: `SD.SnapShot.Restore` No volume e `SD.Storage.Write` no volume
+* Para LUNs que não estejam em qtree: `SD.SnapShot.Restore` Em qtree e `SD.Storage.Write` em qtree
+* Para volumes: `SD.SnapShot.Restore` No sistema de storage para volumes tradicionais ou `SD.SnapShot.Restore` no agregado para volumes flexíveis
+* Para restauração instantânea de um único arquivo em volumes: `SD.SnapShot.Restore` No volume
+* Para restauração de snapshot de um único arquivo em qtree: `SD.SnapShot.Restore` Qtree
+* Para substituir cópias Snapshot de linha de base: `SD.SnapShot.DisruptBaseline` No volume
+
+
+
+
+ a| 
+`host connect`, `host disconnect`
+ a| 
+`SD.Config.Write` No LUN
+
+
+
+ a| 
+`config access`
+ a| 
+`SD.Config.Read` no sistema de armazenamento
+
+
+
+ a| 
+`config prepare`
+ a| 
+`SD.Config.Write` em pelo menos um sistema de armazenamento
+
+
+
+ a| 
+`config check`
+ a| 
+`SD.Config.Read` em pelo menos um sistema de armazenamento
+
+
+
+ a| 
+`config show`
+ a| 
+`SD.Config.Read` em pelo menos um sistema de armazenamento
+
+
+
+ a| 
+`config set`
+ a| 
+`SD.Config.Write` no sistema de storage
+
+
+
+ a| 
+`config set -dfm` `config set -mgmtpath`, ,
+ a| 
+`SD.Config.Write` em pelo menos um sistema de armazenamento
+
+
+
+ a| 
+`config delete`
+ a| 
+`SD.Config.Delete` no sistema de storage
+
+
+
+ a| 
+`config delete dfm_appliance`, `config delete -mgmtpath`
+ a| 
+`SD.Config.Delete` em pelo menos um sistema de armazenamento
+
+
+
+ a| 
+`config list`
+ a| 
+`SD.Config.Read` em pelo menos um sistema de armazenamento
+
+
+
+ a| 
+`config migrate set`
+ a| 
+`SD.Config.Write` em pelo menos um sistema de armazenamento
+
+
+
+ a| 
+`config migrate delete`
+ a| 
+`SD.Config.Delete` em pelo menos um sistema de armazenamento
+
+
+
+ a| 
+`config migrate list`
+ a| 
+`SD.Config.Read` em pelo menos um sistema de armazenamento
+
+|===
+
+NOTE: O SnapDrive para UNIX não verifica nenhum recurso para administrador (raiz).

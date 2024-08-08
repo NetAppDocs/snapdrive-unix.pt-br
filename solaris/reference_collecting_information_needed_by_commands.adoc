@@ -1,0 +1,21 @@
+---
+permalink: solaris/reference_collecting_information_needed_by_commands.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, collect, command, information 
+summary: Os comandos SnapDrive para UNIX seguem um formato e têm palavras-chave associadas a eles. Os comandos têm opções e argumentos, e requerem valores a serem inseridos pelo usuário. 
+---
+= Coleta de informações necessárias pelos comandos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os comandos SnapDrive para UNIX seguem um formato e têm palavras-chave associadas a eles. Os comandos têm opções e argumentos, e requerem valores a serem inseridos pelo usuário.
+
+As listas de verificação ajudam o usuário a executar rapidamente o SnapDrive para UNIX. Para cada comando, ele fornece o seguinte:
+
+* Formatos recomendados
+* Informações sobre as palavras-chave, opções e argumentos disponíveis com os comandos e os valores que você deve fornecer
+* Exemplos dos comandos
+

@@ -1,0 +1,14 @@
+---
+permalink: solaris/concept_prerequisites_for_using_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, harware, software, ocnfiguration 
+summary: 'Dependendo do seu sistema de armazenamento, você pode configurar Fibre Channel (FC), Internet Small Computer System Interface (iSCSI) ou uma configuração de Network File System (NFS) que usa árvores de diretório NFS.' 
+---
+= Configuração de hardware e software
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dependendo do seu sistema de storage, você pode configurar Fibre Channel (FC), Internet Small Computer System Interface (iSCSI) ou uma configuração NFS (Network File System) que usa árvores de diretório NFS.

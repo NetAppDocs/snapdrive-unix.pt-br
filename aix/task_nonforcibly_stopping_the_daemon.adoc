@@ -1,0 +1,22 @@
+---
+permalink: aix/task_nonforcibly_stopping_the_daemon.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, daemon, stop, nonforcibly 
+summary: Se o arquivo de configuração do SnapDrive para UNIX for alterado, você deverá interromper o daemon para que as alterações do arquivo de configuração entrem em vigor. Depois que o daemon é parado e reiniciado, as alterações no arquivo de configuração entram em vigor. Parar o daemon sem força permite que todos os comandos enfileirados concluam a execução. Depois que a solicitação de parada for recebida, nenhum novo comando será executado. 
+---
+= Parar o daemon sem força
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se o arquivo de configuração do SnapDrive para UNIX for alterado, você deverá interromper o daemon para que as alterações do arquivo de configuração entrem em vigor. Depois que o daemon é parado e reiniciado, as alterações no arquivo de configuração entram em vigor. Parar o daemon sem força permite que todos os comandos enfileirados concluam a execução. Depois que a solicitação de parada for recebida, nenhum novo comando será executado.
+
+Você deve estar logado como usuário root.
+
+. Digite o seguinte comando para parar o daemon de forma não forçada:
++
+`*snapdrived stop*`
+
+

@@ -1,0 +1,25 @@
+---
+permalink: solaris/concept_limitations_of_luns_managed_by_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, limitations, lun 
+summary: Ao trabalhar com o SnapDrive, você deve estar ciente das limitações relacionadas aos LUNs. 
+---
+= Limitações de LUNs gerenciados pelo SnapDrive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ao trabalhar com o SnapDrive, você deve estar ciente das limitações relacionadas aos LUNs.
+
+* Um LUN gerenciado pelo SnapDrive não pode servir como um disco de inicialização ou um disco do sistema.
+* Os hosts Solaris têm limites do sistema operacional em quantos LUNs você pode criar.
++
+Você pode executar o `snapdrive config check luns` comando ao criar os LUNs nesses hosts. Esse comando permite determinar quantos LUNs você pode criar.
+
+* O SnapDrive não suporta os dois pontos (:) nas formas longas dos nomes para LUNs e cópias Snapshot.
++
+Os dois pontos são permitidos entre os componentes de um nome de cópia Snapshot longo ou entre o nome do sistema de armazenamento e o nome do volume do sistema de armazenamento de um LUN. Por exemplo, `toaster:/vol/vol1:snap1` é um nome de instantâneo longo típico, enquanto `toaster:/vol/vol1/lunA` é um nome de LUN longo típico.
+
+

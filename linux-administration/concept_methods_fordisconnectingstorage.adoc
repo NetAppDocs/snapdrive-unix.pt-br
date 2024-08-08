@@ -1,0 +1,27 @@
+---
+permalink: linux-administration/concept_methods_fordisconnectingstorage.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, disconnect, storage, command 
+summary: Para facilitar a desconexão do armazenamento, o SnapDrive para UNIX fornece vários formatos para o comando SnapDrive Storage Disconnect. 
+---
+= Métodos para desligar o armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para facilitar a desconexão do armazenamento, o SnapDrive para UNIX fornece vários formatos para o `snapdrive storage disconnect` comando.
+
+Isso ocorre porque as operações de desconexão se enquadram nas seguintes categorias gerais:
+
+* Especificando os LUNs que você deseja desconetar do host.
+* Especificando um sistema de arquivos que é criado diretamente em um LUN que você deseja desconetar do host.
++
+O SnapDrive para UNIX desconeta o sistema de arquivos e o LUN.
+
+* Especificando um grupo de discos, volume de host ou sistema de arquivos que reside em LUNs que você deseja desconetar do host.
++
+O SnapDrive para UNIX desconeta todos os LUNs associados a essa entidade e também remove mapeamentos para o sistema de arquivos, volume de host e grupo de discos que compõem a entidade que você desconetou.
+
+

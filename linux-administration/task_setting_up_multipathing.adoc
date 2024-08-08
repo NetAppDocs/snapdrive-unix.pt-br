@@ -1,0 +1,117 @@
+---
+permalink: linux-administration/task_setting_up_multipathing.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, multipathing, configure 
+summary: Você pode configurar vários caminhos de rede entre o host e o sistema de armazenamento configurando multipathing. O SnapDrive para UNIX suporta o uso de aliases em ambientes multipath. Você precisa ter certeza de que o nome de alias adequado para os dispositivos mapper está configurado no arquivo /etc/multipath.conf. 
+---
+= Configurando multipathing
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode configurar vários caminhos de rede entre o host e o sistema de armazenamento configurando multipathing. O SnapDrive para UNIX suporta o uso de aliases em ambientes multipath. Você precisa certificar-se de que o nome de alias adequado para os dispositivos mapeadores esteja configurado no `/etc/multipath.conf` arquivo.
+
+.Passos
+. Depois que o host for reinicializado, o daemon multipath deve estar em execução como mostrado no exemplo a seguir:
++
+[listing]
+----
+root@lnx197-123 ~]# ps -ef | grep multipathd
+root      5713     1  0 22:44 ?        00:00:00 /sbin/multipathd
+root      5739  1783  0 22:44 pts/1    00:00:00 grep multipathd
+----
++
+Se o daemon multipath não estiver em execução, certifique-se de reiniciar o daemon após a reinicialização. Você pode iniciar o daemon multipath executando o seguinte comando:
+
++
+[listing]
+----
+[root@lnx197-123 ~]# chkconfig --level 345 multipathd on
+----
++
+
+NOTE: A tabela a seguir lista algumas das operações do SnapDrive que suportam o uso de nome de alias no ambiente multipath.
+
++
+|===
+| Operação | Suporte a nomes de alias | Tipo de dispositivo 
+
+
+ a| 
+Snap Create e Restore (SFSR e VBSR) do primário no host primário
+ a| 
+Sim
+ a| 
+Dispositivos com aliased
+
+
+
+ a| 
+Clonagem primária ou secundária
+ a| 
+Sim
+ a| 
+Dispositivos sem fonte de alimentação
+
+
+
+ a| 
+Restaure para alternar
+ a| 
+Sim
+ a| 
+Dispositivos sem fonte de alimentação
+
+
+
+ a| 
+Restauração a partir do secundário
+ a| 
+Sim
+ a| 
+Dispositivos sem fonte de alimentação
+
+|===
++
+** Você não precisa definir nenhum valor no `/etc/multipath.conf` arquivo se estiver usando Red Hat Enterprise Linux (RHEL) 6,4 ou posterior ou Oracle Linux 6,4 ou posterior.
++
+No entanto, você ainda deve manter um arquivo fictício `/etc/multipath.conf`, que pode estar vazio ou contendo informações na lista negra e nomes de alias, se necessário.
+
+** Você não precisa manter um `/etc/multipath.conf` arquivo se estiver usando o SUSE Linux Enterprise Server (SLES) 11 SP3 ou posterior.
++
+No entanto, você pode ter um `/etc/multipath.conf` arquivo para conter as informações de lista negra e nomes de alias, se necessário.
+
+
+
+. Substitua a cadeia de carateres `HITACHI_HUS103073FL3800_V3WTL7XA` pela saída do comando `scsi_id -gus /block/<LD>`, onde `LD` está o nome do dispositivo de bloco local.
++
+
+NOTE: Para alguns dispositivos de bloco local, o `scsi_id` comando pode não retornar nenhuma string. Nesse caso, o dispositivo de bloco local deve ser colocado na lista negra usando a diretiva devnode.
+
+. Aumente o número de descritores de arquivo que um processo pode abrir no host anexando as seguintes linhas `/etc/security/limits.conf` no arquivo:
++
+[listing]
+----
+soft nofile 4096
+       hard nofile 4096
+----
+. Certifique-se de que o driver SG do Linux esteja sempre carregado após a reinicialização do sistema, inserindo o seguinte comando:
++
+[listing]
+----
+echo "modprobe sg" >> /etc/rc.local
+----
+. Reinicie o host para garantir que as configurações estejam ativas.
++
+
+NOTE: O lvm2-2.02.17-7.27.8 e a `_filter_` configuração devem ser atribuídos como: `["r|/dev/.\*/by-path/.*|"` `"r|/dev/.\*/by-id/.*|"` , `"r|/dev/cciss/.\*|", "a/.*/"]` No `lvm.conf` arquivo em SLES10 SP2.
+
+
+
+*Informações relacionadas*
+
+http://mysupport.netapp.com["Suporte à NetApp"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2547936["Guia de instalação do Linux Unified Host Utilities 7,1"]

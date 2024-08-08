@@ -1,0 +1,28 @@
+---
+permalink: linux-administration/concept_available_access_control_levels.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, control, access 
+summary: O SnapDrive para UNIX fornece vários níveis de controle de acesso aos usuários. Esses níveis de acesso estão relacionados às cópias Snapshot e às operações do sistema de storage. 
+---
+= Níveis de controle de acesso disponíveis
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX fornece vários níveis de controle de acesso aos usuários. Esses níveis de acesso estão relacionados às cópias Snapshot e às operações do sistema de storage.
+
+Você pode definir os seguintes níveis de acesso:
+
+* NENHUM - o host não tem acesso ao sistema de storage.
+* SNAP CREATE - o host pode criar cópias Snapshot.
+* USO INSTANTÂNEO - o host pode excluir e renomear cópias Snapshot.
+* SNAP ALL - o host pode criar, restaurar, excluir e renomear cópias Snapshot.
+* ARMAZENAMENTO CRIAR EXCLUSÃO - o host pode criar, redimensionar e excluir o armazenamento.
+* USO DO ARMAZENAMENTO - o host pode conetar e desconetar o armazenamento e também executar a estimativa de divisão de clones e iniciar divisão de clones no armazenamento.
+* STORAGE ALL - o host pode criar, excluir, conetar e desconetar o armazenamento e também executar a estimativa de divisão de clones e iniciar divisão de clones no armazenamento.
+* TODO O ACESSO - o host tem acesso a todas as operações anteriores do SnapDrive para UNIX.
+
+
+Cada nível é distinto. Se você especificar permissão para apenas determinadas operações, o SnapDrive para UNIX poderá executar apenas essas operações. Por exemplo, se você especificar O USO DO ARMAZENAMENTO, o host poderá usar o SnapDrive para UNIX para conetar e desconetar o armazenamento, mas não poderá executar outras operações regidas pelas permissões de controle de acesso.

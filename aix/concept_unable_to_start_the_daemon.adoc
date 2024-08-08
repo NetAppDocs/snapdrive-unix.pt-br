@@ -1,0 +1,32 @@
+---
+permalink: aix/concept_unable_to_start_the_daemon.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, daemon, start, error 
+summary: O daemon não pode ser iniciado quando o daemon encontra algumas entradas obsoletas no processo SnapDrive. 
+---
+= Não foi possível iniciar o daemon
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O daemon não pode ser iniciado quando o daemon encontra algumas entradas obsoletas no processo SnapDrive.
+
+A seguinte mensagem de erro aparece quando o daemon é iniciado ou reiniciado.
+
+[listing]
+----
+Starting snapdrive daemon: snapdrive daemon port 4094 is in use ...
+snapdrive daemon port 4094 is in use ...
+snapdrive daemon port 4094 is in use ...
+snapdrive daemon port 4094 is in use ...
+Unable to start daemon...check daemon log file for more details
+----
+Durante a operação de reinício/início do daemon, você pode encontrar entradas de processo SnapDrive padrão, o que resulta em falha do daemon.
+
+A solução alternativa para este problema é executar o seguinte:
+
+* Exclua manualmente as entradas obsoletas no processo SnapDrive.
+* Encontre as portas gratuitas disponíveis no host. Em seguida, no `snapdrive.conf` arquivo, especifique a porta na opção `_contact-http-port-sdu-daemon_`.
+

@@ -1,0 +1,36 @@
+---
+permalink: aix/concept_guidelines_forsnapshot_copycreation.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, guidelines, snapshot, copy, creation, create 
+summary: Considere o seguinte ao criar cópias Snapshot usando o SnapDrive para UNIX. Você pode manter o máximo de 255 cópias snapshot por volume, o SnapDrive para UNIX suporta apenas as cópias Snapshot que ele cria, não é possível criar cópias Snapshot de grupos de discos raiz, dispositivo de inicialização ou dispositivo de troca, e o SnapDrive para UNIX requer uma operação de congelamento para manter a consistência de falhas. 
+---
+= Diretrizes para criação de cópias Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Considere o seguinte ao criar cópias Snapshot usando o SnapDrive para UNIX: Você pode manter o máximo de 255 cópias snapshot por volume, o SnapDrive para UNIX suporta apenas as cópias Snapshot que ele cria, não pode criar cópias Snapshot de grupos de discos raiz e inicializar dispositivo ou trocar dispositivo, e o SnapDrive para UNIX requer uma operação de congelamento para manter a consistência de falhas.
+
+Siga estas diretrizes ao inserir comandos que criam cópias Snapshot:
+
+* Você pode manter um máximo de 255 cópias Snapshot por volume de sistema de storage. Este limite é definido pelo sistema de armazenamento. O número total pode variar dependendo se outras ferramentas usam essas cópias Snapshot.
++
+Quando o número de cópias Snapshot atingir o limite máximo, a operação criação de snapshot falha. Você deve excluir algumas das cópias Snapshot antigas antes de poder usar o SnapDrive para UNIX para levar mais tempo.
+
+* O SnapDrive para UNIX não oferece suporte a cópias Snapshot que não cria. Por exemplo, ela não dá suporte a cópias Snapshot criadas a partir do console do sistema de storage, porque essa prática pode levar a inconsistências no sistema de arquivos.
+* Você não pode usar o SnapDrive para UNIX para criar cópias Snapshot do seguinte:
++
+** Grupos de discos raiz
++
+A operação criação de instantâneo falha quando você tenta fazer uma cópia Snapshot de um grupo de discos raiz para um LVM.
+
+** Dispositivo de inicialização ou dispositivo de troca
++
+O SnapDrive para UNIX não tira uma cópia Snapshot de um dispositivo de inicialização do sistema ou de um dispositivo de troca do sistema.
+
+
+
+* Quando uma cópia Snapshot abrange vários sistemas de storage ou volumes de sistema de storage, o SnapDrive para UNIX requer uma operação de congelamento para garantir a consistência de falhas. Para obter informações sobre como criar cópias Snapshot em configurações para as quais não é fornecida uma operação de congelamento.
+

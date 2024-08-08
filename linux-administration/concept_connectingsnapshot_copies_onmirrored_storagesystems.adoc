@@ -1,0 +1,16 @@
+---
+permalink: linux-administration/concept_connectingsnapshot_copies_onmirrored_storagesystems.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, connect, snapshot, mirrored, storage 
+summary: No caso de uma cópia Snapshot em um sistema de storage espelhado, é possível conectar a cópia Snapshot ao sistema de storage de origem e ao sistema de destino. 
+---
+= Conexão de cópias Snapshot em sistemas de storage espelhado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+No caso de uma cópia Snapshot em um sistema de storage espelhado, é possível conectar a cópia Snapshot ao sistema de storage de origem e ao sistema de destino.
+
+Quando você cria uma cópia Snapshot em um sistema de storage espelhado, a cópia Snapshot é replicada automaticamente, do sistema de origem onde ela é criada, para o sistema de storage de destino (espelhado). O SnapDrive para UNIX permite que você conete a cópia Snapshot no sistema de armazenamento de origem. Você também pode conetar a cópia Snapshot no sistema de storage de destino.

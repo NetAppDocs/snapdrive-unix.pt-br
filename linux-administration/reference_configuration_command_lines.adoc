@@ -1,0 +1,36 @@
+---
+permalink: linux-administration/reference_configuration_command_lines.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, configuration, command, line, operations, config 
+summary: Os comandos SnapDrive para UNIX são usados para operações de configuração. 
+---
+= Linhas de comando de configuração
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os comandos SnapDrive para UNIX são usados para operações de configuração.
+
+As seguintes opções de linha de comando são usadas para operações de configuração.
+
+* `snapdrive config access {show | list} _filername_`
+* `snapdrive config check luns`
+* `snapdrive config delete _appliance_name [appliance_name ...]_`
+* `snapdrive config list`
+* `snapdrive config set [-dfm] _user_name_ appliance_name [appliance_name ...]`
+* `snapdrive config set [-viadmin] _user_name viadmin_name_`
+* `snapdrive config show [_host_file_name_]`
+* `snapdrive config check cluster`
+* `snapdrive config prepare luns -count count`
+* `snapdrive config migrate set _storage_system_name new_storage_system_nam_`
+* `snapdrive config migrate delete _new_storage_system_name [new_storage_system_name...]_`
+* `snapdrive config migrate list`
+* `snapdrive portset add portset_name filername [filername ...]`
+* `snapdrive portset delete filername [filername ...]``
+* `snapdrive portset list`
+* `snapdrive igroup add igroup_name filername [filername ...]``
+* `snapdrive igroup delete filername [filername ...]``
+* `snapdrive igroup list`
+

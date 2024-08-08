@@ -1,0 +1,85 @@
+---
+permalink: linux-administration/concept_example_of_an_autosupport_message.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, autosupport, message, example 
+summary: O SnapDrive para UNIX fornece exemplos para diferentes cenários. O conteúdo de uma mensagem do AutoSupport em todos os exemplos é essencialmente o mesmo, independentemente do seu sistema operacional. 
+---
+= Exemplos de mensagens AutoSupport
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX fornece exemplos para diferentes cenários. O conteúdo de uma mensagem do AutoSupport em todos os exemplos é essencialmente o mesmo, independentemente do seu sistema operacional.
+
+Exemplo: Adicionando um novo sistema de armazenamento
+
+O exemplo a seguir é uma mensagem enviada de um host `_x336-207-58_` chamado :
+
+[listing]
+----
+computerName="x336-207-58"
+        eventSource="snapdrive"
+        appVersion="5.2 for UNIX"
+        eventID="3"
+        category="sduvs2 configured"
+        subject="host_name=x336-207-58, host_os=Linux, host_os_release=2.6.32-279.el6.x86_64, host_os_version=#1 SMP Wed Jun 13 18:24:36 EDT 2012, No of controller=2, PM/RBAC=native, Host Virtualization=No, Multipath-type=nativempio, Protection Enabled=No, Protocol=fcp
+----
+Exemplo: Reiniciando o Daemon
+
+O SnapDrive para UNIX envia a seguinte mensagem AutoSupport para o sistema de armazenamento, quando você reinicia o daemon:
+
+[listing]
+----
+computerName="x336-207-58"
+        eventSource="snapdrive"
+        appVersion="5.2 for UNIX"
+        eventID="2"
+        category="daemon restarted"
+        subject="host_name=x336-207-58, host_os=Linux, host_os_release=2.6.32-279.el6.x86_64, host_os_version=#1 SMP Wed Jun 13 18:24:36 EDT 2012, No of controller=2, PM/RBAC=native, Host Virtualization=No, Multipath-type=nativempio, Protection Enabled=No, Protocol=fcp
+----
+O SnapDrive para UNIX envia a seguinte mensagem AutoSupport para o sistema de armazenamento, se `dfm` estiver configurado e `rbac-method` estiver definido como `dfm`:
+
+[listing]
+----
+computerName="x336-207-58"
+        eventSource="snapdrive"
+        appVersion="5.2 for UNIX"
+        eventID="2"
+        category="daemon restarted"
+        subject="host_name=x336-207-58, host_os=Linux, host_os_release=2.6.32-279.el6.x86_64, host_os_version=#1 SMP Wed Jun 13 18:24:36 EDT 2012, No of controller=2, PM/RBAC=dfm, Host Virtualization=No, Multipath-type=nativempio, Protection Enabled=Yes, Protocol=fcp"
+----
+O SnapDrive para UNIX envia a seguinte mensagem AutoSupport para o sistema de armazenamento, se `dfm` estiver configurado e `rbac-method` estiver definido como nativo.
+
+[listing]
+----
+computerName="x336-207-58"
+        eventSource="snapdrive"
+        appVersion="5.2 for UNIX"
+        eventID="2"
+        category="daemon restarted"
+        subject="host_name=x336-207-58, host_os=Linux, host_os_release=2.6.32-279.el6.x86_64, host_os_version=#1 SMP Wed Jun 13 18:24:36 EDT 2012, No of controller=2, PM/RBAC=native, Host Virtualization=No, Multipath-type=nativempio, Protection Enabled=Yes, Protocol=fcp"
+----
+O SnapDrive para UNIX envia a seguinte mensagem AutoSupport ao sistema de storage quando uma `snap create` operação é bem-sucedida:
+
+[listing]
+----
+computerName="x336-207-58"
+        eventSource="snapdrive"
+        appVersion="5.2 for UNIX"
+        eventID="5"
+        category="snap create successful"
+        subject="host_name=x336-207-58, host_os=Linux, host_os_release=2.6.32-279.el6.x86_64, host_os_version=#1 SMP Wed Jun 13 18:24:36 EDT 2012, No of controller=3, PM/RBAC=native, Host Virtualization=No, Multipath-type=nativempio, Protection Enabled=No, Protocol=iscsi, snapshot_name=dg_snap"
+----
+O SnapDrive para UNIX envia a seguinte mensagem AutoSupport para o sistema de storage quando a operação de exibição de storage for bem-sucedida:
+
+[listing]
+----
+computerName="x336-207-58"
+        eventSource="snapdrive"
+        appVersion="5.2 for UNIX"
+        eventID="3"
+        category="general"
+        subject="protos=fcp, Connect Luns=8, dgs=4, hvs=3, fs=3, host_name=x336-207-58, host_os=Linux, host_os_release=2.6.32-279.el6.x86_64, host_os_version=#1 SMP Wed Jun 13 18:24:36 EDT 2012, No of controller=2, PM/RBAC=native, Host Virtualization=No, Multipath-type=nativempio, Protection Enabled=No, Protocol=fcp"
+----

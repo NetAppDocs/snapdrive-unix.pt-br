@@ -1,0 +1,32 @@
+---
+permalink: aix/task_deleting_a_storage_system_entry.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, storage, mapping, host, system 
+summary: Você pode excluir as informações de mapeamento do sistema de armazenamento do sistema host. 
+---
+= Excluindo as informações de mapeamento do sistema de storage do sistema host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode excluir as informações de mapeamento do sistema de armazenamento do sistema host.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive config migrate deletenew_storage_system_name [new_storage_system_name...]*`
+
++
+** `_new_storage_system_name_` é o nome do novo sistema de armazenamento.
+** `_[new_storage_system_name...]_` define que você pode excluir vários nomes de sistema de armazenamento em uma linha de comando.
+
+
++
+[listing]
+----
+snapdrive config migrate delete roaster
+Deleted entry for appliance: roaster
+----
+

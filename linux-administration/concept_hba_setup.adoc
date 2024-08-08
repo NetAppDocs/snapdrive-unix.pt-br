@@ -1,0 +1,22 @@
+---
+permalink: linux-administration/concept_hba_setup.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, hba, setup, install 
+summary: HBA Setup é o processo de instalação de uma placa HBA apropriada e os drivers suportados em um host Linux. 
+---
+= Configuração HBA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+HBA Setup é o processo de instalação de uma placa HBA apropriada e os drivers suportados em um host Linux.
+
+A seguir estão as placas HBA que são suportadas para uma configuração Linux MPIO:
+
+* QLOGIC
+* EMULEX
+
+
+Estas placas HBA são suportadas pelo FC Host Utilities Linux Attach Kit 3,0 e superior com RHEL4 Update 6 e superior.

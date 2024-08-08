@@ -1,0 +1,14 @@
+---
+permalink: aix/concept_summary_of_the_snapdrive_for_unix_commands.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command 
+summary: Os comandos SnapDrive para UNIX são usados para configuração, provisionamento de storage, gerenciamento no lado do host e operação Snapshot. 
+---
+= Resumo dos comandos SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os comandos SnapDrive para UNIX são usados para configuração, provisionamento de storage, gerenciamento no lado do host e operação Snapshot.

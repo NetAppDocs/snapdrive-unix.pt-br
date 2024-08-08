@@ -1,0 +1,69 @@
+---
+permalink: aix/concept_requirements_for_storage_systems.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, system, requirement 
+summary: Você deve considerar os requisitos do sistema de armazenamento antes de configurá-lo. 
+---
+= Requisitos para sistemas de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve considerar os requisitos do sistema de armazenamento antes de configurá-lo.
+
+|===
+| Componente | Requisito 
+
+
+ a| 
+Sistema operacional
+ a| 
+Data ONTAP 7.3.5 ou posterior.
+
+* O SnapDrive para UNIX suporta volumes FlexVol, mas não usa todos os recursos do FlexVol volume.
+* As configurações que usam NFS devem usar o Data ONTAP 7.3.5 ou posterior e o FlexVol volumes devem usar `snapdrive snap connect` para ler e gravar em um arquivo NFS ou árvore de diretórios conectados.
++
+As configurações com volumes tradicionais são fornecidas com acesso somente leitura a arquivos NFS e árvores de diretório.
+
+
+
+
+
+ a| 
+Configuração do sistema de storage
+ a| 
+Você deve especificar o endereço IP do parceiro no par de HA que pode ser usado se ocorrer um failover do sistema de storage.
+
+
+NOTE: Especifique o endereço IP quando executar o programa de configuração no sistema de armazenamento.
+
+
+
+ a| 
+Licenças
+ a| 
+* FC, iSCSI ou NFS, dependendo da plataforma de host
+* Licença FlexClone
++
+
+NOTE: Você precisa ter protocolos apropriados executados no sistema de storage para que o SnapDrive para UNIX seja executado.
+
+* Software SnapRestore
+* Software MultiStore
++
+Você deve definir as licenças SnapRestore e MultiStore quando configurar o sistema de storage. Você precisa de uma licença do MultiStore se quiser configurar um ambiente do vFiler.
+
+* Acesso HTTP seguro ao sistema de armazenamento.
+
+
+|===
+As operações do SnapDrive para UNIX não diferenciam maiúsculas de minúsculas em relação ao nome do host do sistema de armazenamento, você deve garantir que os endereços IP sejam exclusivos ao configurar o sistema de armazenamento.
+
+
+NOTE: Para obter os requisitos mais recentes do SnapDrive, consulte a Matriz de interoperabilidade.
+
+*Informações relacionadas*
+
+https://mysupport.netapp.com/NOW/products/interoperability["Interoperabilidade do NetApp"]

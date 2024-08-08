@@ -1,0 +1,47 @@
+---
+permalink: aix/concept_contents_of_autosupport_message_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, autosupport, message, support 
+summary: As mensagens AutoSupport contêm as seguintes informações. 
+---
+= Conteúdo de mensagens AutoSupport
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+As mensagens AutoSupport contêm as seguintes informações.
+
+* Origem do evento
+* ID do evento
+* Versão do SnapDrive para UNIX
+* Status da mensagem: Mensagens de nível de log, por exemplo 1 para alerta, 2 para crítico, 3 para erro, 4 para aviso, 5 para aviso, 6 para informações e 7 para depuração
+* Nome do host
+* Sistema operacional de host
+* Versão de lançamento do sistema operacional host
+* Nome do sistema de armazenamento
+* Uso do Gerenciador de proteção/Controle de Acesso baseado em função
+* Categoria de erro
+* AutoSupport Sinalizar a entrada de mensagem COMO FALSA
+* Tipo de multipathing de host: O valor configurado no `snapdrive.conf` arquivo é registrado. Se o assistente não for carregado devido ao valor de configuração incorreto, nenhum tipo de multipathing do host será registrado.
+* Virtualização de host habilitada: Isso é capturado apenas para o sistema operacional convidado VMware.
+* Protocol (Protocolo): O valor configurado para `_default-transport_` `snapdrive.conf` no ficheiro.
+* Proteção ativada: Se o OnCommand Data Fabric Manager (DFM) estiver configurado com o SnapDrive para UNIX, o valor `_Yes_` será registrado.
++
+
+NOTE: O SnapDrive para UNIX não verifica se o OnCommand DFM está em uso.
+
+
+
+As seguintes informações adicionais estão disponíveis quando você executa o `snapdrive storage show -all` comando:
+
+* Tipo de protocolos (FCP/iSCSI): Protocolos usados para criar os luns, se houver.
+* Número de LUNs conetados
+* Número de grupos de disco ou volume
+* Número de especificações de arquivo
+* Número de volumes de host
+
+
+
+NOTE: Quando o AutoSupport está habilitado no SnapDrive para UNIX, em caso de falhas de operação, as mensagens de erro são registradas no sistema de armazenamento de sistema de Gerenciamento de Eventos (EVM). Se a mensagem de erro contiver carateres especiais, como (>, >, &, ", ", r), os valores de distorção são apresentados na vista de registo EMS do sistema de armazenamento.

@@ -1,0 +1,68 @@
+---
+permalink: linux-administration/reference_script_example.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, script, example, exit, status 
+summary: Este é um exemplo de um script que usa valores de status de saída. 
+---
+= Exemplo de script
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Este é um exemplo de um script que usa valores de status de saída.
+
+O script a seguir usa os valores de status de saída do SnapDrive para UNIX:
+
+[listing]
+----
+
+	#!/bin/sh
+	# This script demonstrates a SnapDrive
+	# script that uses exit codes.
+
+	RET=0;
+	#The above statement initializes RET and sets it to 0
+
+	snapdrive snap create -dg vg22 -snapname vg22_snap1;
+	# The above statement executes the snapdrive command
+
+	RET=$?;
+	#The above statement captures the return code.
+	#If the operation worked, print
+	#success message. If the operation failed, print
+	#failure message and exit.
+
+	if [ $RET -eq 0 ]; then
+	echo "snapshot created successfully"
+	else
+	echo "snapshot creation failed, snapdrive exit code was $RET"
+	exit 1
+	fi
+	exit 0;
+----
+Se RET-0, o comando executado com sucesso e o script produz o seguinte:
+
+[listing]
+----
+
+
+	# ./tst_script
+	snap create: snapshot vg22_snap1 contains:
+	disk group vg22 containing host volumes
+	lvol1
+	snap create: created snapshot betty:/vol/vol2:vg22_snap1
+	snapshot created successfully
+----
+Se RET um valor diferente de zero, o comando não foi executado com sucesso. O exemplo a seguir mostra a saída típica:
+
+[listing]
+----
+
+	# ./tst_script
+	0001-185 Command error: snapshot betty:/vol/vol2:vg22_snap1 already
+	exists on betty:/vol/vol2.
+	Please use -f (force) flag to overwrite existing snapshot
+	snapshot creation failed, snapdrive exit code was 4
+----

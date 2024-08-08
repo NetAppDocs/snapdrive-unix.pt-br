@@ -1,0 +1,29 @@
+---
+permalink: solaris/task_creating_asnapshot_copy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, create, snapshot, copy 
+summary: Para criar uma cópia Snapshot, execute o comando SnapDrive snap Create . 
+---
+= Criando uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para criar uma cópia Snapshot, execute o `snapdrive snap create` comando.
+
+Antes de executar essa sintaxe, você deve entender as opções, palavras-chave e argumentos mencionados neste comando.
+
+.Passos
+. Digite a seguinte sintaxe de comando para criar uma cópia Snapshot:
++
+`*snapdrive snap create {-lun | -dg | -fs | -hostvol } _file_spec_[_file_spec_ ...] [ {-lun |-dg | -fs | -hostvol } _file_spec_ [_file_spec_...]] -snapname _snap_name_ [ -force [-noprompt]][-unrelated] [-nofilerfence] [-fstype _type_][-vmtype _type_]*`
+
+
+
+Os `file_spec` argumentos representam um conjunto de entidades de armazenamento em um ou mais sistemas de armazenamento. A operação criação de Snapshot pega uma cópia Snapshot do volume do sistema de storage que contém essas entidades e dá a ela o nome especificado no `snap_name` argumento.
+
+*Informações relacionadas*
+
+xref:concept_creating_snapshotcopies_of_unrelatedentities.adoc[Criação de cópias Snapshot de entidades não relacionadas]

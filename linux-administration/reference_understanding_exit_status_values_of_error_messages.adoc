@@ -1,0 +1,27 @@
+---
+permalink: linux-administration/reference_understanding_exit_status_values_of_error_messages.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, exit, error, status, warning, admin, command, fatal 
+summary: Cada mensagem de erro do SnapDrive para UNIX está associada a um valor de status de saída. O valor de status de saída contém a causa do erro e seu tipo-Aviso, comando, Admin ou fatal. 
+---
+= Entendendo os valores de status de saída das mensagens de erro
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cada mensagem de erro do SnapDrive para UNIX está associada a um valor de status de saída. O valor de status de saída contém a causa do erro e seu tipo-Aviso, comando, Admin ou fatal.
+
+Cada ID de mensagem de erro do SnapDrive está vinculado a um valor de status de saída. Os valores de status de saída contêm as seguintes informações:
+
+* Valor de status de saída - indica a causa básica da condição de erro.
+* Type--indica o tipo de erro. O nível de seriedade depende da mensagem, não do valor. Os seguintes são os valores possíveis:
++
+** Warning--SnapDrive para UNIX executou o comando, mas emitiu um aviso sobre condições que podem exigir sua atenção.
+** Comando--SnapDrive para UNIX falhou ao executar o comando devido a um erro na linha de comando. Verifique o formato da linha de comando para garantir que estão corretos.
+** Admin--SnapDrive para UNIX falhou ao executar o comando devido a incompatibilidades na configuração do sistema. Contacte o Administrador do sistema para rever os parâmetros de configuração.
+** Fatal--SnapDrive para UNIX falhou ao executar o comando devido a uma condição inesperada. Erros fatais são raros. Se ocorrer um erro fatal e você tiver problemas para resolvê-lo, entre em Contato com o suporte técnico da NetApp para obter assistência para determinar as etapas que você precisa tomar para recuperar corretamente e corrigir qualquer condição de erro.
+
+
+

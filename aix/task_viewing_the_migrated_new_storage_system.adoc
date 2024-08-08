@@ -1,0 +1,28 @@
+---
+permalink: aix/task_viewing_the_migrated_new_storage_system.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, view, migrate, new, storage 
+summary: Você pode verificar se o sistema de armazenamento migrado está incluído no sistema host executando o comando SnapDrive config migrate list. 
+---
+= Visualização do novo sistema de armazenamento migrado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode verificar se o sistema de armazenamento migrado está incluído no sistema host executando o `snapdrive config migrate list` comando.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive config migrate list*`
+
++
+[listing]
+----
+New Entry            Old Entry
+------------------------------------------------
+roaster              tuffleskin
+----
+

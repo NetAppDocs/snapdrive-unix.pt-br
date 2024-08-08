@@ -1,0 +1,14 @@
+---
+permalink: solaris/concept_understanding_error_messages.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, error, message 
+summary: O SnapDrive para UNIX fornece informações sobre mensagens de erro, que aparecem em locais diferentes e em vários formatos. 
+---
+= Compreender mensagens de erro
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX fornece informações sobre mensagens de erro, que aparecem em locais diferentes e em vários formatos.

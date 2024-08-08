@@ -1,0 +1,169 @@
+---
+permalink: linux-administration/concept_automatic_detection_of_host_entities.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, detection, host, automatic 
+summary: O SnapDrive para UNIX deteta automaticamente a configuração da entidade host para alguns comandos. Alguns comandos snap storage precisam apenas do nome da entidade host. Nesses casos, você não precisa especificar o tipo da entidade host. 
+---
+= Detecção automática de entidades de host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX deteta automaticamente a configuração da entidade host para alguns comandos.  `snap storage`Alguns comandos precisam apenas do nome da entidade host. Nesses casos, você não precisa especificar o tipo da entidade host.
+
+Os seguintes comandos estão ativados para deteção automática:
+
+* `storage delete`
+* `storage resize`
+* `snap create`
+* `snap restore`
+* `snap connect`
+* `snap list`
+
+
+Quando a entidade host existe, o SnapDrive para UNIX deteta automaticamente o tipo da entidade host. Nesse caso, você precisa fornecer apenas o nome da entidade host; você não precisa especificar o tipo. Os comandos SnapDrive `snap` e alguns `storage` comandos também precisam apenas do nome da entidade host; você não precisa especificar o tipo.
+
+A deteção automática de comandos demora mais tempo para o SnapDrive 4,1 e posterior, uma vez que recolhe os detalhes de todos os recursos de armazenamento. Se você quiser uma resposta mais rápida, especifique a especificação de arquivo com os comandos SnapDrive para UNIX.
+
+Você pode ativar a deteção automática para a operação de exclusão de armazenamento executando o `snapdrive storage delete` comando.
+
+*Exemplo 1:*
+
+[listing]
+----
+snapdrive storage delete host_dg my_fs -full
+----
+No exemplo, `host_dg` e `my_fs` são detetados automaticamente.
+
+*Exemplo 2:*
+
+[listing]
+----
+snapdrive storage delete mydg -fs myfs -full
+----
+No exemplo, o `mydg` grupo de discos é detetado automaticamente.
+
+Você pode ativar a deteção automática para a operação de redimensionamento de armazenamento executando o `snapdrive storage resize` comando.
+
+*Por exemplo*:
+
+[listing]
+----
+[root@lnx197-132 ~]# snapdrive storage resize mydg23 -addlun -growby 10m
+Auto detecting the type of filespec 'mydg23' in progress ... detected as disk group
+        discovering filer LUNs in disk group mydg23...done
+        LUN bart:/vol/voldm/mydg23-1_SdLun ... created
+
+        mapping new lun(s) ... done
+        discovering new lun(s) ... done.
+        initializing LUN(s) and adding to disk group mydg23...done
+Disk group mydg23 has been resized
+----
+Você pode ativar a deteção automática para a operação snap create executando o `snapdrive snap create` comando.
+
+*Por exemplo*:
+
+[listing]
+----
+root@lnx197-132 ~]# snapdrive snap create mydg22 mydg23 /mnt/mnt12 -snapname new_snap
+Auto detecting the type of filespec 'mydg22' in progress ... detected as disk group
+Auto detecting the type of filespec 'mydg23' in progress ... detected as disk group
+Auto detecting the type of filespec '/mnt/mnt12 ' in progress ... detected as file system
+
+Starting snap create /dev/mapper/mydg22, /dev/mapper/mydg23, /mnt/mnt12
+  WARNING:  DO NOT CONTROL-C!
+            If snap create is interrupted, incomplete snapdrive
+                 generated data may remain on the filer volume(s)
+                 which may interfere with other snap operations.
+Successfully created snapshot new_snap on bart:/vol/voldm
+
+        snapshot new_snap contains:
+        disk group mydg22
+        disk group mydg23
+        disk group dg121 containing host volumes
+                lv121 (filesystem: /mnt/mnt12)
+----
+Você pode ativar a deteção automática para a operação snap connect executando o `snapdrive snap connect` comando.
+
+*Por exemplo*:
+
+[listing]
+----
+[root@lnx197-132 ~]# snapdrive snap connect mydg22 xxx mydg23 yyy -snapname bart:/vol/voldm:snap_1
+Auto detecting the type of filespec 'mydg22' in progress ... detected as disk group
+Auto detecting the type of filespec 'xxx' in progress ...
+        xxx does not exist - Taking xxx as a destination to fspec mydg22Auto detecting the type of filespec 'mydg23' in progress ... detected as disk group
+Auto detecting the type of filespec 'yyy' in progress ...
+        yyy does not exist - Taking yyy as a destination to fspec mydg23
+ connecting mydg22:
+        LUN copy mydg22_SdLun_0 ... created
+                 (original: bart:/vol/voldm/mydg22_SdLun)
+
+        mapping new lun(s) ... done
+
+ connecting mydg23:
+        LUN copy mydg23_SdLun_1 ... created
+                 (original: bart:/vol/voldm/mydg23_SdLun)
+
+        mapping new lun(s) ... done
+        discovering new lun(s) ... done
+        Importing xxx, yyy
+Successfully connected to snapshot bart:/vol/voldm:snap_1
+        disk group xxx
+        disk group yyy
+----
+Você pode ativar a deteção automática para a operação snap Restore executando o `snapdrive snap restore` comando.
+
+*Por exemplo*:
+
+[listing]
+----
+snapdrive snap restore bart:/vol/voldm/lun44 /mnt/fs3 fs5_SdDg/fs5_SdHv fs4_SdDg -snapname bart:/vol/voldm:toi_snap
+
+        Auto detection of file_spec(s) in progress ...
+               - 'bart:/vol/voldm/lun44' detected as LUN.
+               - '/mnt/fs3' detected as file system.
+               - 'fs5_SdDg/fs5_SdHv' detected as logical volume.
+               - 'fs4_SdDg' detected as disk group.
+        Starting to restore /dev/mapper/fs4_SdDg, /mnt/fs3, /dev/mapper/fs5_SdDg-fs5_SdHv, bart:/vol/voldm/lun44
+         WARNING:  This can take several minutes.
+           DO NOT CONTROL-C!
+           If snap restore is interrupted, the filespecs
+           being restored may have inconsistent or corrupted
+           data.
+       For detailed progress information, see the log file /var/log/sd-recovery.log
+           Importing fs4_SdDg, fs3_SdDg, fs5_SdDg
+           Successfully restored snapshot toi_snap on bart:/vol/voldm
+       disk group fs4_SdDg containing host volumes
+               fs4_SdHv (filesystem: /mnt/fs4)
+       disk group fs3_SdDg containing host volumes
+               fs3_SdHv (filesystem: /mnt/fs3)
+       disk group fs5_SdDg containing host volumes
+               fs5_SdHv (filesystem: /mnt/fs5)
+       raw LUN: bart:/vol/voldm/lun44
+----
+O SnapDrive não oferece suporte à deteção automática para operações de snap connect e snap Restore para especificação incorreta de arquivos.
+
+Você pode ativar a deteção automática para a operação snap list executando o `snapdrive snap list` comando.
+
+*Por exemplo*:
+
+[listing]
+----
+root@lnx197-132 ~]# snapdrive snap list -snapname bart:/vol/voldm:snap_1
+
+snap name                            host                   date         snapped
+--------------------------------------------------------------------------------
+bart:/vol/voldm:snap_1           lnx197-132.xyz.com Apr  9 06:04 mydg22 mydg23 dg121
+[root@lnx197-132 ~]# snapdrive snap list mydg23
+Auto detecting the type of filespec 'mydg23' in progress ... detected as disk group
+
+snap name                            host                   date         snapped
+--------------------------------------------------------------------------------
+bart:/vol/voldm:snap_1           lnx197-132.xyz.com Apr  9 06:04 mydg22 mydg23 dg121
+bart:/vol/voldm:all                  lnx197-132.xyz.com Apr  9 00:16 mydg22 mydg23 fs1_SdDg
+bart:/vol/voldm:you                  lnx197-132.xyz.com Apr  8 21:03 mydg22 mydg23
+bart:/vol/voldm:snap_2                  lnx197-132.xyz.com Apr  8 18:05 mydg22 mydg23
+----

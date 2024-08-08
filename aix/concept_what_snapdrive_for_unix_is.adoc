@@ -1,0 +1,21 @@
+---
+permalink: aix/concept_what_snapdrive_for_unix_is.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, management, provisioning 
+summary: O SnapDrive para UNIX simplifica as tarefas de gerenciamento de storage para você. O SnapDrive para UNIX usa a tecnologia Snapshot para criar uma imagem de dados armazenados em um sistema de armazenamento compartilhado ou não compartilhado. O SnapDrive também ajuda você com o provisionamento de storage. 
+---
+= O que o SnapDrive para UNIX faz
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX simplifica as tarefas de gerenciamento de storage para você. O SnapDrive para UNIX usa a tecnologia Snapshot para criar uma imagem de dados armazenados em um sistema de armazenamento compartilhado ou não compartilhado. O SnapDrive também ajuda você com o provisionamento de storage.
+
+Você pode usar o SnapDrive para UNIX para executar as seguintes tarefas:
+
+* **Backup e restauração de dados: **O SnapDrive para UNIX permite que você use a tecnologia Snapshot para criar uma imagem (cópia Snapshot) dos dados do host armazenados em um sistema de armazenamento. Essa cópia Snapshot fornece uma cópia desses dados, que pode ser restaurada posteriormente. Os dados na cópia Snapshot podem existir em um sistema de storage ou abranger vários sistemas de storage e seus volumes. Esses sistemas de storage podem estar em pares de HA ou em sistemas de arquivos locais de nós ou em grupos de disco, ou LUNs em um ambiente de cluster de host.
+* *Gerenciar armazenamento:* você pode criar e excluir componentes de armazenamento, incluindo grupos de discos, volumes de host, sistemas de arquivos e LUNs em ambientes de cluster de host e não cluster. O SnapDrive para UNIX permite gerenciar esse storage expandindo-o, conetando-o a um host e desconectando-o.
+* **Controle de acesso baseado em função: **O SnapDrive para UNIX fornece controle de acesso baseado em função (RBAC). Com o RBAC, um administrador do SnapDrive restringe o acesso a um sistema de storage para várias operações do SnapDrive. Esse acesso para operações de armazenamento depende da função atribuída ao usuário. O RBAC permite que os administradores de storage limitem as operações que os usuários do SnapDrive podem executar dependendo das funções atribuídas.
+

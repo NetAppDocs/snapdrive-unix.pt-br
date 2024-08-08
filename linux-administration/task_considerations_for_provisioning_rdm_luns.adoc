@@ -1,0 +1,29 @@
+---
+permalink: linux-administration/task_considerations_for_provisioning_rdm_luns.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, rdm, lun, provisioning 
+summary: O SnapDrive para UNIX tem algumas considerações para provisionar LUNs RDM. 
+---
+= Considerações para provisionar LUNs RDM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX tem algumas considerações para provisionar LUNs RDM.
+
+* Verifique se a variável de configuração `default-transport` está definida como `fcp` no `snapdrive.conf` arquivo no sistema operacional convidado.
+* Configure o SnapDrive para UNIX para acessar o Console de armazenamento virtual do NetApp para VMware vSphere.
+* Certifique-se de que as variáveis de configuração para suporte a LUN RDM sejam usadas no `snapdrive.conf` arquivo. As variáveis `contact-viadmin-port, use-https-to-viadmin, vif-password-file` como e `virtualization-operation-timeoutsecs=600` são usadas para suporte a LUN RDM.
+
+
+*Informações relacionadas*
+
+xref:concept_limitations_of_rdm_luns_managed_by_snapdrive.adoc[Limitações de LUNs RDM gerenciados pelo SnapDrive]
+
+xref:concept_storage_provisioning_for_rdm_luns.adoc[Suporte ao VMware VMotion no SnapDrive para UNIX]
+
+xref:task_configuring_virtual_storage_console_in_snapdrive_for_unix.adoc[Configurando o console de storage virtual para SnapDrive para UNIX]
+
+xref:concept_configuration_options_and_their_default_values.adoc[Opções de configuração e seus valores padrão]

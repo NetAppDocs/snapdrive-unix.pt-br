@@ -1,0 +1,26 @@
+---
+permalink: solaris/concept_guidelines_for_disconnecting_snapshot_copies_in_a_host_clusterenvironment.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, disconnect, snapshot, copy, host, cluster 
+summary: Ao desconetar uma cópia Snapshot para uma entidade NFS, o SnapDrive para UNIX desmonta o sistema de arquivos, remove a entrada de montagem no sistema de arquivos, remove o ponto de montagem e assim por diante. 
+---
+= Diretrizes para desconetar cópias Snapshot em um ambiente de cluster de host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ao desconetar uma cópia Snapshot para uma entidade NFS, o SnapDrive para UNIX desmonta o sistema de arquivos, remove a entrada de montagem no sistema de arquivos, remove o ponto de montagem e assim por diante.
+
+* O `snapdrive snap disconnect` comando pode ser executado a partir de qualquer nó no cluster de host.
+* Para que a operação de desconexão Instantânea seja bem-sucedida, qualquer uma das seguintes opções deve ser verdadeira:
++
+** As entidades de storage devem ser compartilhadas em todos os nós do cluster de host.
+** Os LUNs devem ser mapeados para todos os nós no cluster de host.
+
+
+* Você pode desconetar uma entidade de storage de um nó específico usando a `-devicetype dedicated` opção ou `shared` . Se você estiver desconetanto uma entidade de armazenamento que está em um modo dedicado, você pode omitir `-devicetype` a opção da sintaxe da linha de comando, porque o valor padrão é dedicado.
+* O `snapdrive snap disconnect` comando dá um erro se uma entidade de armazenamento compartilhado ou LUN for desconetada com a `dedicated` opção, ou se uma entidade de armazenamento dedicado ou LUN for desconetada com a opção compartilhada.
+* O SnapDrive para UNIX executa o `snapdrive snap disconnect` comando no nó principal. Ele destrói as entidades de storage, desconeta os LUNs em todos os nós que não são mestres e, em seguida, desconeta os LUNs do nó mestre no cluster de host. Se você encontrar algum erro, a operação de desconexão de instantâneo falhará.
+

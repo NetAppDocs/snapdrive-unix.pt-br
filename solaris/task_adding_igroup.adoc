@@ -1,0 +1,30 @@
+---
+permalink: solaris/task_adding_igroup.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, add, igroup 
+summary: O SnapDrive para UNIX permite que você adicione um iggroup específico para o sistema de armazenamento ao host e execute operações SnapDrive usando o iggroup configurado. Você deve garantir que o grupo esteja disponível no sistema de armazenamento. 
+---
+= Adicionando um igroup
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX permite que você adicione um iggroup específico para o sistema de armazenamento ao host e execute operações SnapDrive usando o iggroup configurado. Você deve garantir que o grupo esteja disponível no sistema de armazenamento.
+
+.Passos
+. Digite o seguinte comando no host:
++
+`*snapdrive igroup add _igroup_name filer_name_ [_filer_name..._]*`
+
++
+[listing]
+----
+snapdrive igroup add ig toaster
+Added igroup configuration for appliance: toaster
+----
++
+O `ig` grupo foi adicionado com sucesso para a torradeira do sistema de armazenamento.
+
+

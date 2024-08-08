@@ -1,0 +1,31 @@
+---
+permalink: solaris/task_migrating_from_old_host_name_to_new_host_name.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, migrate, old, new, storage, system 
+summary: Você pode migrar do sistema de armazenamento antigo para um novo sistema de armazenamento usando o comando SnapDrive config migrate set. Após a migração, você pode executar todas as operações do SnapDrive no sistema host usando o novo sistema de storage. 
+---
+= Migração do sistema de armazenamento antigo para o novo sistema de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode migrar do sistema de storage antigo para um novo sistema de storage usando o `snapdrive config migrate set` comando. Após a migração, você pode executar todas as operações do SnapDrive no sistema host usando o novo sistema de storage.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive config migrate set _old_storage_system_name new_storage_system_name_*`
+
+
+
+O exemplo a seguir mostra que você pode migrar do antigo sistema de armazenamento "tuffleskin" para o novo sistema de armazenamento "Roaster".
+
+[listing]
+----
+snapdrive config migrate set tuffleskin roaster
+----
+*Informações relacionadas*
+
+xref:concept_migrating_to_new_vserver_name.adoc[Migrando para o novo nome de SVM]

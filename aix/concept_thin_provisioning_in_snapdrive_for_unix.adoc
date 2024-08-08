@@ -1,0 +1,20 @@
+---
+permalink: aix/concept_thin_provisioning_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, thin, provisioning 
+summary: O recurso de thin Provisioning no SnapDrive para UNIX permite que o usuário tenha mais espaço de armazenamento para os hosts do que está realmente disponível no sistema de armazenamento. 
+---
+= Thin Provisioning no SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O recurso de thin Provisioning no SnapDrive para UNIX permite que o usuário tenha mais espaço de armazenamento para os hosts do que está realmente disponível no sistema de armazenamento.
+
+No SnapDrive para UNIX, não é possível definir o valor de reserva fracionária e não há integração com recursos do Data ONTAP, como o dimensionamento automático e o modelo de transferência. Esses recursos do Data ONTAP podem ser usados com segurança com o SnapDrive para UNIX; no entanto, não há reconhecimento dentro do SnapDrive para UNIX, se ocorrer um evento de dimensionamento automático ou de design.
+
+*Informações relacionadas*
+
+https://www.netapp.com/pdf.html?item=/media/19670-tr-3483.pdf["Relatório técnico da NetApp 3483: Provisionamento reduzido em um ambiente empresarial SAN NetApp ou SAN IP"^]

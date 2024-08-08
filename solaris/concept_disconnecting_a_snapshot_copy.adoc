@@ -1,0 +1,17 @@
+---
+permalink: solaris/concept_disconnecting_a_snapshot_copy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, disconnect, snapshot, copy 
+summary: Você pode desconetar uma cópia Snapshot de um LUN, de um sistema de arquivos em um LUN, grupos de discos, diretórios NFS ou grupos de discos compartilhados, volumes de host e sistemas de arquivos em um LUN. 
+---
+= Desligar uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode desconetar uma cópia Snapshot de um LUN, de um sistema de arquivos em um LUN, grupos de discos, diretórios NFS ou grupos de discos compartilhados, volumes de host e sistemas de arquivos em um LUN.
+
+
+NOTE: Você pode desconetar os volumes de clone dividido do SnapDrive para UNIX 4,2 e versões posteriores.

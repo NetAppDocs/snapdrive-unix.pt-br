@@ -1,0 +1,21 @@
+---
+permalink: aix/reference_rules_for_keywords.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, rule, keyword 
+summary: O SnapDrive para UNIX usa palavras-chave para especificar o destino das operações do SnapDrive para UNIX. 
+---
+= Regras para palavras-chave
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX usa palavras-chave para especificar o destino das operações do SnapDrive para UNIX.
+
+O SnapDrive para UNIX usa palavras-chave para especificar sequências de strings correspondentes aos objetos do sistema de armazenamento e host com os quais você está trabalhando. As seguintes regras se aplicam às palavras-chave do SnapDrive para UNIX:
+
+* Preceda cada palavra-chave com um hífen (-).
+* Não concatenar palavras-chave.
+* Digite a palavra-chave inteira e hífen, não uma abreviatura.
+

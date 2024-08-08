@@ -1,0 +1,38 @@
+---
+permalink: solaris/concept_guidelines_for_storage_deletion_in_a_host_cluster_environment.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, delete, host, cluster 
+summary: Você deve estar ciente de algumas diretrizes para o uso do comando de exclusão de armazenamento napdrive em um ambiente de cluster de host. 
+---
+= Diretrizes para a exclusão de storage em um ambiente de cluster de host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve estar ciente de algumas diretrizes para usar o `snapdrive storage delete` comando em um ambiente de cluster de host.
+
+* Se você iniciar o `snapdrive storage delete` comando com `-devicetype` opção compartilhada a partir de qualquer nó não-mestre no cluster de host, o comando será enviado para o nó mestre e executado. Para que isso aconteça, você precisa garantir que o rsh ou ssh `access-without-password-prompt` seja permitido em todos os nós do cluster de host.
+* O `snapdrive storage delete` comando pode ser executado a partir de qualquer nó no cluster de host.
+* Para que a operação de exclusão de armazenamento seja bem-sucedida, nenhum deles deve ser falso:
++
+** As entidades de armazenamento têm de ser partilhadas.
+** Os LUNs devem ser mapeados para todos os nós no cluster de host.
+
+
+* Você pode excluir uma entidade de armazenamento em um nó específico usando a `-devicetype dedicated` opção ou omitindo a `-devicetype` opção na sintaxe da linha de comando, porque o valor padrão é dedicado.
+* O `snapdrive storage delete` comando dá uma mensagem de erro se uma entidade de armazenamento compartilhado ou LUN for excluída com `-devicetype dedicated` a opção, ou se uma entidade de armazenamento dedicado ou LUN for excluída com a opção compartilhada.
+* A operação de exclusão de armazenamento falha, se uma das seguintes situações acontecer:
++
+** Se ocorrer algum erro durante o processo de exclusão de uma entidade de armazenamento.
++
+O SnapDrive para UNIX exclui as entidades de storage, desconeta os LUNs de todos os nós não-mestre e, em seguida, desconete e exclua os LUNs do nó mestre no cluster de host.
+
+** Se um nó no cluster de host for desligado e reinicializado antes que o `snapdrive storage delete` comando seja executado.
++
+Isso acontece porque os LUNs ainda estão mapeados para o nó não existente. Para evitar isso, use a `-force` opção.
+
+
+
+

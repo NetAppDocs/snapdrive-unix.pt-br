@@ -1,0 +1,18 @@
+---
+permalink: solaris/concept_stale_devices_in_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, lun, clone, stale, device 
+summary: Excluir LUNS e clones pode deixar dispositivos obsoletos no UNIX e excluir esses dispositivos obsoletos não é executado pelo SnapDrive para UNIX. 
+---
+= Excluir LUNs e clones deixam dispositivos obsoletos no UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Excluir LUNS e clones pode deixar dispositivos obsoletos no UNIX e excluir esses dispositivos obsoletos não é executado pelo SnapDrive para UNIX.
+
+Quando você cria dispositivos para LUNs e clones de LUNs a partir de cópias Snapshot, manualmente ou com o SnapDrive para UNIX, as entradas de dispositivo são criadas automaticamente no UNIX. A exclusão de dispositivos para LUNs e clones de LUNs de cópias Snapshot com o SnapDrive para UNIX pode levar a dispositivos obsoletos no UNIX.
+
+A exclusão de dispositivos obsoletos é uma responsabilidade do usuário final e deve ser realizada por um administrador UNIX.

@@ -1,0 +1,62 @@
+---
+permalink: solaris/task_estimating_the_storage_space_to_split_a_volume_clone.html 
+sidebar: sidebar 
+keywords: clone, split, estimate, snap, snapdrive, volume 
+summary: 'A estimativa de divisão de clones ajuda você a estimar o espaço de armazenamento necessário (em MB) para dividir um clone de volume. Dependendo da estimativa de divisão de clones fornecida pelo SnapDrive para UNIX, é possível determinar a disponibilidade de espaço para dividir um clone de volume.' 
+---
+= Estimando o espaço de armazenamento para dividir um clone de volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A estimativa de divisão de clones ajuda você a estimar o espaço de armazenamento necessário (em MB) para dividir um clone de volume. Dependendo da estimativa de divisão de clones fornecida pelo SnapDrive para UNIX, é possível determinar a disponibilidade de espaço para dividir um clone de volume.
+
+.Passos
+. Digite o seguinte comando para estimar o espaço de armazenamento necessário para dividir um clone de volume.
++
+`*snapdrive clone split estimate [-lun] _long_lun_name_ [long___lun_name__...] | [{-dg | -vg | -fs | -hostvol | -lvol} _file_spec_ [_file_spec..._]] | [-snapname _long_snap_name_] {-volclone|-lunclone}] [-v | -verbose] [-dump | -dumpall]*`
+
++
+Esta operação apresenta as seguintes informações:
+
++
+** Nome do recurso
+** Container - agregado para um FlexClone
+** Espaço necessário - espaço necessário para dividir o clone de volume
+** Espaço disponível - espaço disponível no recipiente
+** Estado de armazenamento - indica a disponibilidade de espaço para um grupo clone de volume
+** Espaço possuído - espaço ocupado pelo clone de volume
+** Espaço compartilhado - espaço ocupado pelo clone de volume junto com o pai
+
+
++
+O `Owned Space` e `Shared Space` é apresentado quando utiliza `-verbose` a opção.
+
+
+
+O exemplo a seguir estima o espaço de storage para dividir um clone de volume.
+
+[listing]
+----
+# snapdrive clone split estimate -fs /mnt/my_mnt1 -fs /mnt/my_mnt2
+Resource     Container  Required Available  Storage
+                        Space(MB) Space(MB) Status
+/mnt/my_mnt1  f3050-220  400      61500    AVAILABLE
+              -111:aggr0
+/mnt/my_mnt2  f3050-220  3292     1129     NOT AVAILABLE
+              -112:aggr1
+----
+Para cada especificação de arquivo, o SnapDrive para UNIX determina o espaço necessário disponível no sistema de storage para dividir um clone de volume. Aqui, a `/mnt/my_mnt1` especificação do arquivo tem o espaço necessário para dividir e, portanto, o status do armazenamento é exibido como DISPONÍVEL. Considerando que a `/mnt/my_mnt2` especificação do arquivo não tem o espaço necessário para dividir e, portanto, o status do armazenamento é exibido como NÃO DISPONÍVEL.
+
+O seguinte é um exemplo de uso da `-verbose` opção. Alternativamente, você pode usar `-v` a opção.
+
+[listing]
+----
+# snapdrive clone split estimate -fs /mnt/my_mnt1 -verbose
+Resource    Container Owned    Shared   Required Available Storage
+                      Space(MB)Space(MB)Space(MB)Space(MB) Status
+/mnt/my_mnt1 f3050-220 32365  403      403     55875 AVAILABLE
+             -111:aggr0
+----

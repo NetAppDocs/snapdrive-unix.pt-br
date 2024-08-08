@@ -1,0 +1,19 @@
+---
+permalink: aix/concept_snapdrived_stop_or_snapdrived_start_command_hangs.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, stop, start, command, hang 
+summary: em alguns casos, o comando de parada ou início ajustado pode ser suspenso. 
+---
+= o comando de paragem fixa ou início ajustado está suspenso
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+`snapdrived stop` ou `snapdrived start` comando pode travar em alguns casos.
+
+Para resolver esse problema, execute o `snapdrived status` para verificar quantos comandos estão em execução e em que momento eles começaram. `snapdrived stop` o comando espera que todos os comandos em execução sejam concluídos. Se você acredita que qualquer comando trava, emita `snapdrived -force stop` ou `snapdrived -force restart` comande.
+
+
+IMPORTANT: A `-force` opção mata todos os comandos em execução e o daemon pára. Isso pode ter efeitos colaterais no estado do sistema, como entradas de dispositivo obsoletas e futuros daemon iniciados.

@@ -1,0 +1,95 @@
+---
+permalink: aix/task_verifying_the_status_of_clone_split.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, view, status, volume, lun, clone, split 
+summary: Você pode consultar o status da divisão de clones usando uma ID de tarefa ou especificação de arquivo. O SnapDrive para UNIX indica o status atual da divisão de clones como em andamento, com falha ou concluída. 
+---
+= Exibindo o status de um clone de volume ou divisão de clone de LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode consultar o status da divisão de clones usando uma ID de tarefa ou especificação de arquivo. O SnapDrive para UNIX indica o status atual da divisão de clones como em andamento, com falha ou concluída.
+
+.Passos
+. Digite o seguinte comando para consultar o status do grupo clone usando uma ID de tarefa ou especificação de arquivo.
++
+`*snapdrive clone split status [-lun] _long_lun_name_ [_long_lun_name_...] [{-dg | -vg | -fs | -hostvol | -lvol} _file_spec_ [_file_spec_...]][-job _<jobid>_ ] [-all]*`
+
+
+
+O exemplo a seguir mostra o status da divisão de clones usando um ID de tarefa.
+
+[listing]
+----
+# snapdrive clone split status -job SVE2oxKXzH
+Clone-Split-Status for /fs1-1_3 is 1% Complete
+Clone-Split-Status for /fs1_0 is 73% Complete
+Clone-Split-Status for /fs1_1 is 73% Complete
+Clone-Split-Status for /fs1_2 is 74% Complete
+Clone-Split-Status for /fs1_3 is 1% Complete
+----
+[NOTE]
+====
+Você pode verificar o status de um progresso de divisão de clone de uma das seguintes maneiras:
+
+* É possível verificar o clone usando o.
++
+`*snapdrive storage show -fs /mnt/my_mnt*`
+
++
+ou
+
++
+`*snapdrive storage show -lun _long_lun_pathname_*`
+
++
+comandos. Em ambos os casos, o tipo de clone é exibido como um clone de FlexClone ou LUN se a divisão não tiver sido concluída.
+
+* Você pode verificar o estado de progresso da divisão do clone fazendo login no sistema de storage e usando os seguintes comandos na CLI do sistema de storage:
++
+`*vol clone split status _vol_name_*`
+`*lun clone split status _lun_name_*`
+
+
+
+====
+O exemplo a seguir mostra uma consulta de status de divisão clone feita usando a especificação de arquivo:
+
+[listing]
+----
+# snapdrive clone split status -fs /mnt/my_mnt3 -fs /mnt/my_mnt4
+Clone-Split-Status for /mnt/my_mnt3 is 14% Complete
+Clone-Split-Status for /mnt/my_mnt4 is 17% Complete
+----
+O exemplo a seguir mostra uma consulta de status de divisão de clones que está sendo executada:
+
+[listing]
+----
+# snapdrive clone split status -all
+Job ID: SVE2oxKXzH:
+Clone-Split-Status for /fs1-1_3 is 100% Complete
+Clone-Split-Status for /fs1_0 is 100% Complete
+Clone-Split-Status for /fs1_1 is 100% Complete
+Clone-Split-Status for /fs1_2 is 100% Complete
+Clone-Split-Status for /fs1_3 is 100% Complete
+----
+* Quando uma tarefa é removida do conjunto de tarefas e você consulta o status de um status de divisão clone usando a especificação de arquivo, o SnapDrive para UNIX exibe a mensagem de erro como
++
+`No split is currently in progress for the given resource`
+
+* Quando uma tarefa é removida do conjunto de tarefas e você consulta o status de uma divisão de clones usando um ID de tarefa, o SnapDrive para UNIX exibe a mensagem de erro como
++
+`Job ID is not valid`
+
+* Quando todas as especificações de arquivo são removidas de uma tarefa e você consulta o status de uma divisão clone usando o ID da tarefa, o SnapDrive para UNIX é exibido como
++
+`Job ID is not valid`
+
++
+porque o trabalho é removido do conjunto de trabalhos.
+
+* Se alguma especificação de ficheiro falhar devido a espaço insuficiente no sistema de armazenamento, o trabalho continua a ser dividido para as restantes especificações de ficheiro. Isso significa que o trabalho não é excluído da fila de trabalhos e o status do trabalho é mantido até que você consulte o resultado geral do trabalho.
+

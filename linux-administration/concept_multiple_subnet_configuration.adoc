@@ -1,0 +1,24 @@
+---
+permalink: linux-administration/concept_multiple_subnet_configuration.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, multiple, subnet, configuration, data, traffic, network, ha 
+summary: Várias sub-redes são úteis em um ambiente onde você deseja separar o tráfego de gerenciamento e o tráfego de dados. Essa separação cria um ambiente mais seguro para gerenciar o tráfego de rede. O SnapDrive 4.1.1 para UNIX e versões posteriores executadas em servidores nesses ambientes oferecem suporte a todas as operações SnapDrive disponíveis em ambientes autônomos e ambientes de pares de host e HA. 
+---
+= Configuração de sub-rede múltipla
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Várias sub-redes são úteis em um ambiente onde você deseja separar o tráfego de gerenciamento e o tráfego de dados. Essa separação cria um ambiente mais seguro para gerenciar o tráfego de rede. O SnapDrive 4.1.1 para UNIX e versões posteriores executadas em servidores nesses ambientes oferecem suporte a todas as operações SnapDrive disponíveis em ambientes autônomos e ambientes de pares de host e HA.
+
+Os dados relacionados ao gerenciamento de sistemas de armazenamento são transmitidos através da interface de gerenciamento. O Gerenciador DataFabric, o Gerenciador de proteção e o SnapDrive para UNIX podem fazer parte da interface de gerenciamento. A interface de dados é usada para tráfego de dados entre sistemas de storage.
+
+Para configurar várias sub-redes em seu ambiente, você deve usar a `mgmtpath` opção com o `snapdrive config set` comando.
+
+O SnapDrive para UNIX não oferece suporte a operações em um ambiente SAN em que o nome de host do sistema de storage é diferente do nome público, mas ambos os nomes são resolvidos para o mesmo endereço IP. Para contornar essa situação, você pode fazer um dos seguintes procedimentos:
+
+* Atribua um endereço IP diferente para o nome do sistema.
+* Configure o sistema para que ele não responda quando você tentar se conetar a ele.
+

@@ -1,0 +1,30 @@
+---
+permalink: aix/concept_fc_or_iscsi_configuration_checks.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, fc, iscsi, configuration, check 
+summary: 'Embora o Fibre Channel Protocol (FCP) e a Internet Small Computer System Interface (iSCSI) tenham sido distribuídos como utilitários separados, você pode encontrar suporte à configuração FCP e iSCSI disponíveis nos Utilitários de host AIX.' 
+---
+= Verificações de configuração FC ou iSCSI
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Embora o Fibre Channel Protocol (FCP) e a Internet Small Computer System Interface (iSCSI) tenham sido distribuídos como utilitários separados, você pode encontrar suporte à configuração FCP e iSCSI disponível nos Utilitários de host AIX.
+
+Se você tiver uma configuração que use FC ou iSCSI, deve concluir as seguintes tarefas antes de instalar o SnapDrive para UNIX:
+
+* Certifique-se de que instalou os Utilitários de anfitrião AIX no seu sistema anfitrião.
+* Configure seus sistemas de host e storage.
++
+Para trabalhar com o host, siga as instruções na documentação fornecida com os utilitários host para seus sistemas de armazenamento. As configurações que incluem software multipathing ou Gerenciador de volume devem usar o software que é suportado pelos Utilitários de host AIX e SnapDrive para UNIX.
+
+
+
+
+NOTE: As informações mais recentes sobre o SnapDrive para UNIX e seus requisitos estão disponíveis na Matriz de interoperabilidade.
+
+*Informações relacionadas*
+
+https://mysupport.netapp.com/NOW/products/interoperability["Interoperabilidade do NetApp"]

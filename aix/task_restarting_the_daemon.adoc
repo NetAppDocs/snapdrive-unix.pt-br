@@ -1,0 +1,25 @@
+---
+permalink: aix/task_restarting_the_daemon.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, restart, daemon 
+summary: Você deve reiniciar o daemon depois de pará-lo para que as alterações feitas no arquivo de configuração ou nos outros módulos entrem em vigor. O daemon SnapDrive para UNIX reinicia somente depois de concluir todos os comandos que estão em execução e na fila. Depois que a solicitação de reinicialização for recebida, nenhum novo comando será executado. 
+---
+= Reiniciando o daemon
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve reiniciar o daemon depois de pará-lo para que as alterações feitas no arquivo de configuração ou nos outros módulos entrem em vigor. O daemon SnapDrive para UNIX reinicia somente depois de concluir todos os comandos que estão em execução e na fila. Depois que a solicitação de reinicialização for recebida, nenhum novo comando será executado.
+
+* Certifique-se de que você está conetado como um usuário root.
+* Certifique-se de que nenhuma outra sessão esteja sendo executada no mesmo host em paralelo. O `snapdrived restart` comando trava o sistema em tais situações.
+
+
+.Passos
+. Digite o seguinte comando para reiniciar o daemon:
++
+`*snapdrived restart*`
+
+

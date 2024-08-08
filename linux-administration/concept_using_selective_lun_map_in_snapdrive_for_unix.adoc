@@ -1,0 +1,92 @@
+---
+permalink: linux-administration/concept_using_selective_lun_map_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, lun, selective, map, path, ha, data, clustered, slm 
+summary: 'A partir do cluster Data ONTAP 8.3, o mapa de LUN seletivo (SLM) é ativado por padrão em todos os novos mapas de LUN. Quando você cria um novo mapa LUN, o LUN só pode ser acessado por meio de caminhos encontrados no nó que possui esse LUN e seu parceiro de HA.' 
+---
+= Usando o mapa LUN seletivo no SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A partir do cluster Data ONTAP 8.3, o mapa de LUN seletivo (SLM) é ativado por padrão em todos os novos mapas de LUN. Quando você cria um novo mapa LUN, o LUN só pode ser acessado por meio de caminhos encontrados no nó que possui esse LUN e seu parceiro de HA.
+
+Por padrão, os LUNs podem ser acessados em todas as LIFs de uma máquina virtual de storage (SVM). Você deve atribuir LIFs às SVMs em cada nó de cluster na rede. À medida que o número de nós no cluster aumenta, o número de caminhos potenciais também se multiplica. Isso pode resultar em um número excessivo de caminhos para um LUN, vários grupos por host e eventos de mobilidade disruptivos. O SLM soluciona esses problemas restringindo a acessibilidade de LUN ao nó proprietário do LUN e do nó do parceiro de HA. Ele também cria um único grupo por host e dá suporte a operações de mobilidade LUN sem interrupções que não exigem manipulação de portset ou remapeamento de LUN.
+
+
+NOTE: O SLM não se aplica automaticamente aos mapas LUN criados antes do cluster Data ONTAP 8.3.
+
+Se você estiver acessando o LUN através do nó que possui o LUN, o caminho é chamado de "ativo otimizado". No entanto, se você acessar esse LUN por meio do nó do parceiro de HA, o caminho será chamado de "ativo não otimizado".
+
+|===
+| Comando SnapDrive | Descrição 
+
+
+ a| 
+`snapdrive lun showpaths _long_lun_name_`
+ a| 
+O `snapdrive lun showpaths` comando lista todos os caminhos para LUN. Ele também exibe qual caminho está ativo otimizado e qual caminho está ativo não otimizado.
+
+`_long_lun_name_` É o nome do LUN. Se você não especificar o LUN, a operação será executada em todos os LUNs.
+
+[listing]
+----
+snapdrive lun showpaths
+lun path            device filename                   asymmetric access state
+------------------------------------------------------------------------------
+vs1:/vol/vol2/lun10  /dev/mapper/3600a09807746505a4e24455450473655   Non-optimized
+vs1:/vol/vol2/lun2  /dev/mapper/3600a09807746505a4d3f455432474b30    Optimized
+vs1:/vol/vol2/lun1  /dev/mapper/3600a09807746505a4e24455450473656    Optimized
+----
+
+
+ a| 
+`snapdrive lun fixpaths _long_lun_name_`
+ a| 
+O `snapdrive lun fixpaths` comando tenta corrigir o caminho dos LUNs para os LUNs que não têm pelo menos um caminho otimizado ativo.
+
+`_long_lun_name_` É o nome do LUN. Se você não especificar o LUN, a operação será executada em todos os LUNs que não têm pelo menos um caminho otimizado ativo.
+
+[listing]
+----
+snapdrive lun fixpaths
+The following LUNs are using Non-optimized paths
+-------------------------------------------------
+vs1:/vol/vol2/lun10
+
+Path correction successful for the following LUNs
+--------------------------------------------------
+vs1:/vol/vol2/lun10
+----
+
+NOTE: O `snapdrive lun fixpaths` comando não funciona no sistema operacional convidado.
+
+|===
+O `lunpath-monitor-frequency` parâmetro permite especificar a frequência em que o SnapDrive para UNIX corrige automaticamente o caminho para LUNs. O valor padrão é 24 horas.
+
+Se a `snapdrive lun fixpaths` operação falhar, uma mensagem AutoSupport (ASUP) será gerada para todos os LUNs. A mensagem ASUP contém os seguintes detalhes:
+
+* Nome do computador
+* EventSource
+* AppVersion
+* ID do evento
+* categoria
+* assunto
+
+
+O seguinte é um exemplo de uma mensagem ASUP:
+
+[listing]
+----
+computerName="owhyee"
+       eventSource="snapdrive"
+       appVersion="5.2.2 for UNIX"
+       eventID="6"
+       category="lun path"
+       subject="Paths are misconfigured for the Luns /vol/June12v1/LUN2 in storage system sdu_100_101_60_62_vs1 on owhyee host."
+----
+*Informações relacionadas*
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanag/home.html["Guia de administração de SAN ONTAP 9"]

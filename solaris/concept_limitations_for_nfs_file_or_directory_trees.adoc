@@ -1,0 +1,16 @@
+---
+permalink: solaris/concept_limitations_for_nfs_file_or_directory_trees.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, nfs, directory, tree, limitations 
+summary: O SnapDrive não fornece comandos de provisionamento de storage para arquivos NFS ou árvores de diretório. O SnapDrive suporta os comandos SnapDrive snap Create e SnapDrive snap Restore apenas se estiver a utilizar o Data ONTAP 7.3.5 e posterior. 
+---
+= Limitações para arquivos NFS ou árvores de diretório
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive não fornece comandos de provisionamento de storage para arquivos NFS ou árvores de diretório. O SnapDrive suporta `snapdrive snap create` e `snapdrive snap restore` comandos somente se você estiver usando o Data ONTAP 7.3.5 e posterior.
+
+Os `snapdrive snap connect` comandos e `snapdrive snap disconnect` envolvem NFS e usam o recurso Data ONTAP FlexVol volumes para acesso de leitura e gravação. Portanto, você pode executar esses comandos somente se estiver usando o Data ONTAP 7.3.5 ou posterior. As configurações com o Data ONTAP 7.3.5 ou posterior e volumes tradicionais permitem que você crie e restaure cópias Snapshot, mas a operação de conexão Snapshot está restrita apenas a acesso somente leitura.

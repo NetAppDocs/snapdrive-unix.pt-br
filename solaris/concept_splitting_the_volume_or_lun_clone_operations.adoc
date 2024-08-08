@@ -1,0 +1,33 @@
+---
+permalink: solaris/concept_splitting_the_volume_or_lun_clone_operations.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, split, volume, clone, lun 
+summary: O SnapDrive para UNIX permite dividir um clone de volume ou um clone de LUN. Após a conclusão da divisão de clones, a relação entre o volume pai e o clone é destruída, e ambas as entidades são independentes umas das outras e têm seu próprio espaço de armazenamento individual. 
+---
+= Divisão de um clone de volume ou clone de LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX permite dividir um clone de volume ou um clone de LUN. Após a conclusão da divisão de clones, a relação entre o volume pai e o clone é destruída, e ambas as entidades são independentes umas das outras e têm seu próprio espaço de armazenamento individual.
+
+A seguir estão as operações de divisão de clones:
+
+* Estime o espaço em disco (em MB) para um clone de volume ou clone de LUN.
+* Dividir um clone de volume ou um clone de LUN.
+* Pare o clone de volume ou a divisão de clone de LUN.
+* Exibir o status do grupo de clones que está em andamento, concluído ou com falha.
+
+
+[NOTE]
+====
+* Se um clone de volume for dividido, todas as cópias Snapshot no volume clonado serão excluídas.
+* É obrigatório executar o comando clone split orcamento antes de dividir a especificação do arquivo para determinar se há cópias Snapshot feitas no volume clonado.
+* Para todos os comandos de divisão de clones, apenas o nome de LUN longo deve ser especificado com `-lun` a opção. Você não pode especificar `-lun` opção na mesma linha de comando junto com outras entidades de armazenamento (-vg, -dg, -fs, - lvol ou -hostvol opções).
+* É sempre obrigatório usar o caminho absoluto para as especificações de arquivo com comandos de divisão clone.
+* A estimativa de divisão de clone de LUN usando Snapshot está disponível apenas para cópias Snapshot criadas a partir do SnapDrive 4,2 para UNIX e posterior.
+
+
+====

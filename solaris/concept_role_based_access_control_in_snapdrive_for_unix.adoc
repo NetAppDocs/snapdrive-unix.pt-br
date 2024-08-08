@@ -1,0 +1,24 @@
+---
+permalink: solaris/concept_role_based_access_control_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, rbac, access, control 
+summary: 'O controle de acesso baseado em função (RBAC) é usado para login de usuário e permissões de função. O RBAC permite que os administradores gerenciem grupos de usuários definindo funções. Se você precisar restringir o acesso ao banco de dados a administradores específicos, configure contas de administrador para eles. Além disso, se você quiser restringir as informações, esses administradores podem exibir e as operações que podem executar, você deve aplicar funções às contas de administrador criadas.' 
+---
+= Controle de acesso baseado em função no SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O controle de acesso baseado em função (RBAC) é usado para login de usuário e permissões de função. O RBAC permite que os administradores gerenciem grupos de usuários definindo funções. Se você precisar restringir o acesso ao banco de dados a administradores específicos, configure contas de administrador para eles. Além disso, se você quiser restringir as informações, esses administradores podem exibir e as operações que podem executar, você deve aplicar funções às contas de administrador criadas.
+
+O RBAC é usado no SnapDrive para UNIX com a ajuda do console do Gerenciador de operações. O console do Operations Manager fornece acesso granular a objetos de storage, como LUNs, qtrees, volumes, agregados e unidades do vFiler.
+
+*Informações relacionadas*
+
+xref:concept_mandatory_checks_for_volume_based_snaprestore.adoc[Verificações obrigatórias para SnapRestore baseado em volume]
+
+xref:concept_restoring_snapshotcopies_ona_destination_storagesystem.adoc[Restauração de cópias Snapshot em um sistema de storage de destino]
+
+xref:concept_snap_disconnect_procedure.adoc[Procedimento de desconexão de encaixe]

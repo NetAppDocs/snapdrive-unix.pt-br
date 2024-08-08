@@ -1,0 +1,20 @@
+---
+permalink: aix/concept_contents_of_the_recovery_log.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, recovery, log 
+summary: O log de recuperação ajuda você a rastrear as razões para um estado de sistema inconsistente. O SnapDrive para UNIX gera esse arquivo quando alguma operação deixa de funcionar. 
+---
+= Conteúdo do log de recuperação
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O log de recuperação ajuda você a rastrear as razões para um estado de sistema inconsistente. O SnapDrive para UNIX gera esse arquivo quando alguma operação deixa de funcionar.
+
+Se você pressionar Ctrl-C para interromper o SnapDrive para UNIX, ou se o host ou o sistema de armazenamento falhar no meio de uma operação, o sistema pode não ser capaz de recuperar automaticamente.
+
+Durante qualquer operação que, se interrompida, possa deixar o sistema em um estado inconsistente, o SnapDrive para UNIX grava informações em um arquivo de log de recuperação. Se ocorrer um problema, você pode enviar este arquivo para o suporte técnico da NetApp para que ele possa ajudá-lo a recuperar o estado do sistema.
+
+O utilitário de log de recuperação mantém os Registros dos comandos que são emitidos durante a operação. Cada comando é marcado com um operation_index (um número que identifica exclusivamente a operação que está sendo executada), seguido do carimbo de data/hora e do texto da mensagem.

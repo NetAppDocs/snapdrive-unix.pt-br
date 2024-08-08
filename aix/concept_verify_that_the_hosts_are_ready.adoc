@@ -1,0 +1,31 @@
+---
+permalink: aix/concept_verify_that_the_hosts_are_ready.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, verify, host, ready 
+summary: Você deve verificar se os hosts estão prontos. Para iniciar as operações de verificação, primeiro você deve testar se o host está conetado ao sistema de armazenamento inserindo o comando ping filername. 
+---
+= Verificando se os hosts estão prontos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve verificar se os hosts estão prontos. Para iniciar as operações de verificação, primeiro você deve testar se o host está conetado ao sistema de armazenamento digitando o `ping filername` comando.
+
+Você também deve confirmar se os hosts e o sistema de armazenamento podem se comunicar uns com os outros. Para confirmar isso, execute o `snapdrive storage show -all` comando e verifique se os hosts e o sistema de armazenamento estão se comunicando. Verifique se os hosts estão prontos executando determinadas operações:
+
+* Confirme se você configurou o host e o sistema de armazenamento corretamente de acordo com as instruções na documentação dos Utilitários do host.
+* Confirme se você tem uma configuração que usa NFS e configure o arquivo de exportação.
+* Confirme se o host atende aos requisitos mínimos do SnapDrive para UNIX, incluindo os patches necessários do sistema operacional.
+
+
+*Informações relacionadas*
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["Referência NFS da ONTAP 9"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1401220["Guia de gerenciamento de protocolos e acesso a arquivos do Data ONTAP 8.2 para o modo 7"]
+
+http://mysupport.netapp.com["Suporte à NetApp"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1119223["AIX Host Utilities 6,0 Guia de instalação e configuração"]

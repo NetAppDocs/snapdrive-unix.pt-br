@@ -1,0 +1,33 @@
+---
+permalink: solaris/concept_snap_connect_procedure.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, connect 
+summary: O procedimento de encaixe é válido para o Data ONTAP 7,2 ou posterior e explica os passos para a operação de encaixe. 
+---
+= Procedimento de encaixe de ligação
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O procedimento de encaixe é válido para o Data ONTAP 7,2 ou posterior e explica os passos para a operação de encaixe.
+
+Os seguintes passos descrevem o procedimento de ligação de encaixe:
+
+. O SnapDrive para UNIX obtém o nome da especificação do arquivo e o nome do instantâneo na CLI do snap Connect. Em seguida, ele descobre o(s) volume(s) do sistema de storage original(s) onde reside(m) instantâneo(s).
+. O SnapDrive para UNIX escolhe um método de clonagem apropriado para entidades de sistema de storage com base nas opções de configuração de CLI.
++
+
+NOTE: Se a opção CLI for especificada, ela sempre substitui a `snapdrive.conf` opção de arquivo.
+
++
+.. Se `-clone lunclone` a opção for especificada na CLI ou na `san-clone-method=lunclone` opção no `snapdrive.conf` arquivo, o SnapDrive para UNIX criará um clone de LUN no mesmo volume a partir do snapshot fornecido.
+.. Se `-clone unrestricted` a opção for especificada na CLI ou na `san-clone-method=unrestricted` opção no `snapdrive.conf` arquivo, o SnapDrive para UNIX cria ou reutiliza FlexClone de todos os propósitos a partir do instantâneo dado.
+.. Se `-clone optimal` a opção for especificada na CLI ou na `san-clone-method=optimal` opção no `snapdrive.conf` arquivo, o SnapDrive para UNIX escolherá automaticamente entre FlexClone restrito e clone de LUN, com base na configuração do sistema de storage.
+
+
+
+
+
+NOTE: Por padrão, os clones criados pelo SnapDrive para UNIX são clones de backup.

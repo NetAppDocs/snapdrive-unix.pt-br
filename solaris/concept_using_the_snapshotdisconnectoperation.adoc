@@ -1,0 +1,32 @@
+---
+permalink: solaris/concept_using_the_snapshotdisconnectoperation.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, disconnect, operation 
+summary: Use o comando SnapDrive snap Disconnect para desconetar uma cópia Snapshot que esteja em vários sistemas de storage ou volumes de sistema de storage. 
+---
+= Usando a operação de desconexão de instantâneo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Use o `snapdrive snap disconnect` comando para desconetar uma cópia Snapshot que esteja em vários sistemas de storage ou volumes de sistema de storage.
+
+Use o `snapdrive snap disconnect` comando para remover os mapeamentos de LUNs, ou para entidades de storage e LUNs subjacentes, ou para diretórios NFS na cópia Snapshot.
+
+Você pode usar este comando para desconetar cópias Snapshot que abrangem vários volumes de sistema de storage ou vários sistemas de storage. As entidades e volumes de storage podem residir no mesmo sistema de storage ou em sistemas de storage diferentes.
+
+Use este comando para desconetar qualquer uma das seguintes opções:
+
+* LUNs
+* Um sistema de arquivos criado diretamente em um LUN
+* Grupos de discos, volumes de host e sistemas de arquivos criados em LUNs
+* Árvores de diretório NFS
+* Grupos de discos compartilhados, volumes de host e sistemas de arquivos criados em LUNs
+
+
+A operação desconetar não modifica a cópia Snapshot conetada. No entanto, por padrão, a operação exclui quaisquer LUNs ou clones temporários criados pela operação de conexão correspondente.
+
+
+NOTE: Para LUNs, sistemas de arquivos em LUNs e entidades LVM, esse comando é equivalente `snapdrive storage delete` ao .

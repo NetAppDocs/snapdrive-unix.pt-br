@@ -1,0 +1,22 @@
+---
+permalink: aix/concept_snap_restore_operation_fails_nfsv3_and_nfsv4_versions_enabled_in_host_and_storage_system.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, restore, nfsv3, nfsv4, host, storage, system 
+summary: A operação de restauração de snap falha quando há versões NFSv3 e NFSv4 ativadas no host e no sistema de armazenamento. 
+---
+= A operação de restauração de snap falha quando você tem as versões NFSv3 e NFSv4 ativadas no host e no sistema de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A operação de restauração de snap falha quando há versões NFSv3 e NFSv4 ativadas no host e no sistema de armazenamento.
+
+Se você tiver as versões NFSv3 e NFSv4 ativadas no host e no sistema de armazenamento, e montar o volume no host sem `-o vers` opção, `nobody:nobody` a propriedade será definida para arquivos e diretórios.
+
+
+
+== Solução alternativa
+
+Recomenda-se usar `-o vers` a opção durante a montagem do volume nfs ou verificar as opções padrão nfs para um valor apropriado no host.

@@ -1,0 +1,27 @@
+---
+permalink: solaris/concept_considerations_for_using_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, unix, considerations 
+summary: Você deve estar ciente de várias considerações para usar o SnapDrive para UNIX. 
+---
+= Considerações sobre o uso do SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve estar ciente de várias considerações para usar o SnapDrive para UNIX.
+
+* Você deve usar o valor padrão para a configuração de reserva de espaço para qualquer LUN gerenciado pelo SnapDrive para UNIX.
+* Nas configurações FC e iSCSI, `set snap reserve` no sistema de storage a zero por cento para cada volume.
+* Coloque todos os LUNs conectados ao mesmo host em um volume de sistema de storage dedicado acessível somente por esse host.
+* Se você usar cópias Snapshot, não poderá usar todo o espaço no volume de um sistema de storage para armazenar LUNs.
++
+O volume do sistema de storage que hospeda os LUNs deve ser pelo menos o dobro do tamanho combinado de todos os LUNs no volume do sistema de storage.
+
+* O Data ONTAP usa `/vol/vol0` (volume raiz) para administrar o sistema de storage.
++
+Não utilize este volume para armazenar dados. Se tiver configurado qualquer outro volume (que não `/vol/vol0`o ) como volume raiz para administrar o sistema de armazenamento, não o utilize para armazenar dados.
+
+

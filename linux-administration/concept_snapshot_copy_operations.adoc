@@ -1,0 +1,14 @@
+---
+permalink: linux-administration/concept_snapshot_copy_operations.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, copy, create, command 
+summary: Você pode criar cópias Snapshot usando o comando SnapDrive snap Create . 
+---
+= Operações de cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+É possível criar cópias Snapshot usando o `snapdrive snap create command`.

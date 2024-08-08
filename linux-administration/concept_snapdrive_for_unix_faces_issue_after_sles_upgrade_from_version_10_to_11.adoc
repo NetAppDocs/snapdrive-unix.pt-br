@@ -1,0 +1,43 @@
+---
+permalink: linux-administration/concept_snapdrive_for_unix_faces_issue_after_sles_upgrade_from_version_10_to_11.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, error, suse, upgrade, file, base, device 
+summary: O SnapDrive para UNIX exibe um erro depois de atualizar o SLES da versão 10 para 11. Tem de criar um nome de dispositivo base e montar o sistema de ficheiros. 
+---
+= O SnapDrive para UNIX exibe uma mensagem de erro depois que o SUSE Linux Enterprise Server é atualizado da versão 10 para 11
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX exibe um erro depois de atualizar o SLES da versão 10 para 11. Tem de criar um nome de dispositivo base e montar o sistema de ficheiros.
+
+Quando você executa operações de armazenamento, o SnapDrive para UNIX relata o seguinte erro: `0001-791 Admin error: Device /dev/sdc does not have a partition. A single partition is required to support a persistent mount for file system /mnt/testfs. Retry command with '-nopersist' option`
+
+
+
+== Solução alternativa
+
+. Use as opções `-fs` e `-nopersist` para gravar o nome do dispositivo base, como mostrado no exemplo a seguir:
++
+`*IBMX336-250-111:/etc/udev/rules.d # snapdrive storage connect -fs /mnt/testfs -lun f3020-207-11:/vol/san1/lun200_0 -nolvm -nopersist*``
+
++
+Um sistema de arquivos não é criado como esperado, mas o nome do dispositivo base é gravado (neste caso, `/dev/sdc` ).
+
+. Crie o `mkdir --p /mnt/testfs` diretório no nome do dispositivo base.
+.  `blkid`Executar .
+. Especifique o seguinte:
++
+`*UUID=239ae9a1-75fd-4faf-b9f4-a0b80bf7b62c /mnt/testfs ext3*`
+
+. Monte o sistema de arquivos:
++
+`*#mount /mnt/testfs*``
+
+. Apresentar as opções de armazenamento:
++
+`*#snapdrive storage show -fs /mnt/testfs3*`
+
+

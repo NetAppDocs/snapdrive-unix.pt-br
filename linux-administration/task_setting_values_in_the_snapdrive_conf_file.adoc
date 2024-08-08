@@ -1,0 +1,68 @@
+---
+permalink: linux-administration/task_setting_values_in_the_snapdrive_conf_file.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, conf, value, name 
+summary: Você pode alterar os valores no arquivo SnapDrive.conf ou adicionar novos pares nome-valor. 
+---
+= Definindo valores no arquivo SnapDrive.conf
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode alterar os valores no `snapdrive.conf` arquivo ou adicionar novos pares nome-valor.
+
+Você deve estar logado como usuário root.
+
+.Passos
+. Faça uma cópia de segurança do `snapdrive.conf` ficheiro.
+. Abra o `snapdrive.conf` arquivo em um editor de texto.
+. Para adicionar um par nome-valor, use o seguinte formato:
++
+`*config-option-name=value value # optional comment*``
+
++
+`_config-option-name_` é o nome da variável que você deseja configurar; por exemplo, audit-log-file. `_value_` é o valor que você deseja atribuir a essa opção.
+
++
+Se você quiser incluir um comentário com o par nome-valor, preceda o comentário com um sinal de número ( no).
+
++
+Deve introduzir apenas um par de nome-valor, por linha.
+
++
+Se o nome ou o valor usar uma string, insira a string entre aspas simples ('') ou duplas ("). Você pode colocar as aspas ao redor do par nome-valor inteiro ou ao redor apenas do valor. Os exemplos a seguir mostram como você pode usar aspas e comentários com pares nome-valor:
+
++
+`*`"config-option-one=string with white space" # double quotes around the pair*`
+
++
+`*config-option-two="string with white space" # double quotes around the value*`
+
++
+`*config-option-2B=`'string with white space`' # single quotes around the value*``
+
+. Para modificar um par nome-valor, substitua o valor atual pelo novo valor.
++
+Siga as etapas abaixo para garantir que os valores padrão sejam registrados no arquivo.
+
++
+.. Adicione o sinal ( no) à linha que você deseja modificar.
+.. Copie a linha.
+.. Ative o texto copiado removendo o sinal de número ( no).
+.. Modifique o valor.
+
+
++
+Se pretender especificar um valor em branco (por exemplo, para desativar o ficheiro de registo de auditoria), introduza um par de aspas duplas (""").
+
+. Salve o arquivo depois de fazer as alterações.
++
+O SnapDrive para UNIX verifica automaticamente esse arquivo sempre que ele for iniciado. Suas alterações entram em vigor na próxima vez que elas começarem.
+
+. Reinicie o daemon SnapDrive para UNIX usando o `snapdrived restart` comando.
++
+Reiniciar o daemon é necessário para `snapdrive.conf` que as alterações de arquivo entrem em vigor.
+
+

@@ -1,0 +1,16 @@
+---
+permalink: aix/concept_data_collection_utility.html 
+sidebar: sidebar 
+keywords: snap, snapshot, data, collection, utility, troubleshoot 
+summary: O utilitário de coleta de dados do SnapDrive é uma ferramenta de solução de problemas que reúne informações para diagnosticar os problemas. 
+---
+= Utilitário de coleta de dados
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O utilitário de coleta de dados do SnapDrive é uma ferramenta de solução de problemas que reúne informações para diagnosticar os problemas.
+
+O SnapDrive para UNIX fornece um utilitário de coleta de dados (SnapDrive.dc) que coleta informações de diagnóstico sobre o SnapDrive para UNIX, verificador de configuração do SnapDrive e sua configuração do sistema.

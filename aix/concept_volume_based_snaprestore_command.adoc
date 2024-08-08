@@ -1,0 +1,85 @@
+---
+permalink: aix/concept_volume_based_snaprestore_command.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snaprestore, command, volume 
+summary: Esta seção descreve os comandos e as opções para usar SnapRestore baseado em volume. 
+---
+= Comando SnapRestore baseado em volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Esta seção descreve os comandos e as opções para usar SnapRestore baseado em volume.
+
+`-vbsr` A opção é adicionada na CLI de restauração instantânea para selecionar SnapRestore baseado em volume. Use a seguinte sintaxe de comando para executar a restauração usando SnapRestore baseado em volume:
+
+[listing]
+----
+snapdrive snap restore {-lun | -dg | -vg | -hostvol |
+-lvol | -fs |-file} file_spec [file_spec ...] [{-lun | -dg |
+-vg | -hostvol | -lvol | -fs -file} file_spec [file_spec ...]
+...] -snapname snap_name [-force [-noprompt]][{-reserve |
+-noreserve}]
+[-vbsr [execute | preview]]
+----
+Se nenhum argumento for fornecido com o `-vbsr`, a saída padrão é a da `preview` opção. É utilizada uma `-verbose` opção que permite a saída detalhada de todas as verificações obrigatórias que podem ser sobrepostas pelo utilizador. A saída padrão quando `-verbose` a opção não é fornecida exibe os resultados das verificações falhadas.
+
+Se você não quiser que qualquer mensagem de confirmação seja exibida, ao executar o volume Based SnapRestore, você pode usar `-noprompt` e `-force` opção com `snap restore -vbsr execute` comando. A tabela a seguir descreve o comportamento do SnapDrive para UNIX dependendo das opções fornecidas por você.
+
+|===
+| S.N. | -vbsr executar | -força | -noprompt | Resultado 
+
+
+ a| 
+1.
+ a| 
+Não
+ a| 
+NA
+ a| 
+NA
+ a| 
+O modo de pré-visualização é o modo predefinido. Todas as verificações são feitas e o relatório para cada verificação é gerado.
+
+
+
+ a| 
+2.
+ a| 
+Sim
+ a| 
+Não
+ a| 
+Não
+ a| 
+Todas as verificações são feitas. Se qualquer verificação obrigatória de que um usuário pode substituir falhar, o SnapDrive para UNIX exibe uma mensagem de erro.
+
+
+
+ a| 
+3.
+ a| 
+Sim
+ a| 
+Sim
+ a| 
+Não
+ a| 
+Todas as verificações são feitas. Se alguma verificação obrigatória falhar, o SnapDrive para UNIX exibe uma mensagem de erro. Se qualquer verificação de que um usuário pode substituir falhar, o SnapDrive para UNIX solicitará que você.
+
+
+
+ a| 
+4.
+ a| 
+Sim
+ a| 
+Sim
+ a| 
+Sim
+ a| 
+Todas as verificações são feitas. Se alguma verificação obrigatória falhar, o SnapDrive para UNIX exibe uma mensagem de erro. Se qualquer verificação de que um usuário pode substituir falhar, o SnapDrive para UNIX não o solicitará.
+
+|===

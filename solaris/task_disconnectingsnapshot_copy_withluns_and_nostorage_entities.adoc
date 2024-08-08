@@ -1,0 +1,30 @@
+---
+permalink: solaris/task_disconnectingsnapshot_copy_withluns_and_nostorage_entities.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, disconnet, snapshot, copy, lun, storage 
+summary: Você pode usar o comando SnapDrive snap Disconnect para desconetar uma cópia Snapshot que contenha LUNs sem entidades de storage. 
+---
+= Desconexão da cópia Snapshot com LUNs e nenhuma entidade de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o `snapdrive snap disconnect` comando para desconetar uma cópia Snapshot que contenha LUNs sem entidades de storage.
+
+.Passos
+. Digite a seguinte sintaxe de comando:
++
+`*snapdrive snap disconnect -lun _long_lun_name_ [_lun_name ..._] [-devicetype {shared | dedicated}] [-split]*`
+
+
+
+O SnapDrive para UNIX remove os mapeamentos para as entidades de storage especificadas na linha de comando.
+
+O seguinte comando remove os mapeamentos para luna e Lunb na torradeira do sistema de armazenamento:
+
+[listing]
+----
+# snapdrive snap disconnect -lun toaster:/vol/vol1/luna lunb
+----

@@ -1,0 +1,18 @@
+---
+permalink: aix/concept_login_information_for_storage_systems.html 
+sidebar: sidebar 
+keywords: login, information, storage, system, snap, snapdrive 
+summary: Um nome de usuário ou senha permite que o SnapDrive para UNIX acesse cada sistema de armazenamento. Ele também fornece segurança porque, além de estar conetado como root, a pessoa que executa o SnapDrive para UNIX deve fornecer o nome de usuário ou senha corretos quando solicitado. Se um login for comprometido, você poderá excluí-lo e definir um novo login de usuário. 
+---
+= Informações de login para sistemas de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Um nome de usuário ou senha permite que o SnapDrive para UNIX acesse cada sistema de armazenamento. Ele também fornece segurança porque, além de estar conetado como root, a pessoa que executa o SnapDrive para UNIX deve fornecer o nome de usuário ou senha corretos quando solicitado. Se um login for comprometido, você poderá excluí-lo e definir um novo login de usuário.
+
+Você criou o login de usuário para cada sistema de armazenamento quando o configurou. Para que o SnapDrive para UNIX funcione com o sistema de armazenamento, você deve fornecê-lo com essas informações de login. Dependendo do que você especificou quando configurou os sistemas de armazenamento, cada sistema de armazenamento pode usar o mesmo login ou um login exclusivo.
+
+O SnapDrive para UNIX armazena esses logins e senhas de forma criptografada em cada host. Você pode especificar que o SnapDrive para UNIX criptografe essas informações quando ele se comunica com o sistema de armazenamento definindo a `_snapdrive.conf_` variável de configuração `_use-https-to-filer=on_` .

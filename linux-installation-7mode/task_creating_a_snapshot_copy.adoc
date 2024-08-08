@@ -1,0 +1,21 @@
+---
+permalink: linux-installation-7mode/task_creating_a_snapshot_copy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, create, copy 
+summary: 'Você pode criar cópias Snapshot de vários sistemas de arquivos, volumes de host, LUNs ou grupos de discos usando um único comando ao usar a rede de área de armazenamento (SAN) e volumes NFS em armazenamento conetado à rede (nas).' 
+---
+= Criando uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode criar cópias Snapshot de vários sistemas de arquivos, volumes de host, LUNs ou grupos de discos usando um único comando enquanto usa a rede de área de storage (SAN) e volumes NFS no storage conectado à rede (nas).
+
+.Passos
+. Criar uma cópia Snapshot:
++
+`*snapdrive snap create -fs _file_spec_ -snapname _snapshot_copy_name_*`
+
+

@@ -1,0 +1,19 @@
+---
+permalink: linux-administration/task_receiving_error_iscsi64_snapdrive_0001_666_fatal_error.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, error, connect, command, fatal, iscsi64 
+summary: Se o comando SnapDrive snap connect falhar com iscsi64 SnapDrive 0001-666 ERRO FATAL, a seguir está a solução alternativa descrita. 
+---
+= Erro de receção iscsi64 SnapDrive: 0001-666 erro FATAL
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se o `snapdrive snap connect` comando falhar com `iscsi64 snapdrive: 0001-666 FATAL error`:, a seguir está a solução alternativa descrita.
+
+.Passos
+. Adicione `filter = [ "r|/dev/cciss/.*|" ]` como o primeiro filtro ao `/etc/lvm/lvm.conf` arquivo, se o filtro ainda não estiver especificado.
+. Remover `/etc/lvm/.cache` e emitir `pvscan` para confirmar que nenhuma das `/dev/cciss/*` entradas é exibida.
+

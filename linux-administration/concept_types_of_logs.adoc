@@ -1,0 +1,31 @@
+---
+permalink: linux-administration/concept_types_of_logs.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, log, file, troubleshoot, audit, recovery, trace 
+summary: O SnapDrive para UNIX suporta vários tipos de arquivos de log, que ajudam a solucionar problemas quando o SnapDrive para UNIX não está funcionando como esperado. 
+---
+= Tipos de logs
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX suporta vários tipos de arquivos de log, que ajudam a solucionar problemas quando o SnapDrive para UNIX não está funcionando como esperado.
+
+* Log de auditoria
++
+O SnapDrive para UNIX Registra todos os comandos e seus códigos de retorno em um log de auditoria. O SnapDrive para UNIX faz uma entrada quando você inicia um comando e outra quando o comando está concluído. A entrada posterior inclui tanto o status do comando quanto o tempo de conclusão.
+
+* Registo de recuperação
++
+Algumas operações do SnapDrive para UNIX têm o potencial de deixar o sistema em um estado inconsistente ou menos utilizável se interrompido. Essa situação pode ocorrer se um usuário encerrar o programa ou se o host falhar no meio de uma operação. O log de recuperação contém as etapas de uma operação de restauração Snap. Ele documenta as etapas que são tomadas e o progresso feito para que o suporte técnico possa ajudá-lo no processo de recuperação manual.
+
+* Registo de rastreio
++
+O SnapDrive para UNIX informa informações úteis para diagnosticar problemas. Se tiver algum problema, o suporte técnico da NetApp poderá solicitar este ficheiro de registo.
+
++
+O SnapDrive 4,0 para UNIX introduziu o serviço daemon SnapDrive para UNIX. Para que os comandos SnapDrive para UNIX sejam executados, o daemon deve estar em execução. O rastreamento Daemon deve ser realizado para cada comando individual, mesmo quando os comandos são executados em paralelo. A localização e o nome do ficheiro de registo são `/var/log/sd-trace.log`. Esses arquivos de rastreamento têm apenas as entradas de rastreamento específicas do comando. Os logs de rastreamento para execução do daemon são gravados em um arquivo de rastreamento diferente ``/var/log/sd-daemon-trace.log` .
+
+

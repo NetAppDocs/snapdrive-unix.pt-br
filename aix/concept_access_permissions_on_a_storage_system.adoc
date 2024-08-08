@@ -1,0 +1,19 @@
+---
+permalink: aix/concept_access_permissions_on_a_storage_system.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, access, permissions, storage, system 
+summary: As permissões de acesso indicam se um host pode executar determinadas operações de armazenamento e cópia Snapshot. As permissões de acesso não afetam nenhuma das operações de exibição de armazenamento ou lista de armazenamento do SnapDrive. O SnapDrive permite especificar as permissões de acesso para cada host em um arquivo que reside no sistema de storage. 
+---
+= Permissões de acesso em um sistema de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+As permissões de acesso indicam se um host pode executar determinadas operações de armazenamento e cópia Snapshot. As permissões de acesso não afetam nenhuma das operações de exibição de armazenamento ou lista de armazenamento do SnapDrive. O SnapDrive permite especificar as permissões de acesso para cada host em um arquivo que reside no sistema de storage.
+
+Você também pode especificar a ação que o SnapDrive deve executar quando não encontrar um arquivo de permissão para um host especificado. Pode especificar a ação definindo o valor no `snapdrive.conf` ficheiro de configuração para `_all-access-if-rbac-unspecified_`. Você também pode ativar ou desativar o acesso ao sistema de armazenamento modificando as permissões de acesso.
+
+
+NOTE: No SnapDrive 4,0 para UNIX e posterior, é possível executar operações de storage dependendo dos recursos de controle de acesso baseado em funções.

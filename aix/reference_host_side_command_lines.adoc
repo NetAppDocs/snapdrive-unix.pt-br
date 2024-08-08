@@ -1,0 +1,49 @@
+---
+permalink: aix/reference_host_side_command_lines.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, host, side, command, line 
+summary: Os comandos SnapDrive para UNIX são usados para operações no lado do host. 
+---
+= Linhas de comando do lado do host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os comandos SnapDrive para UNIX são usados para operações no lado do host.
+
+A tabela a seguir fornece várias opções de linha de comando para operações do lado do host.
+
+|===
+| Operação | Opção de linha de comando 
+
+
+ a| 
+Conexão do host
+ a| 
+`snapdrive host connect -lun _long_lun_name_ [_lun_name ..._] [-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive host connect -fs _file_spec_ -nolvm -lun _long_lun_name_ [-nopersist][-mntopts options] [-fstype _type_] [-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive host connect -fs _file_spec_ -hostvol _file_spec_ -lun _long_lun_name_ [_lun_name_][-nopersist] [-mntopts _options_][-vmtype _type_]`
+
+
+
+ a| 
+Desconexão do host
+ a| 
+`snapdrive host disconnect-lun _long_lun_name_ [_lun_name..._] [-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive host disconnect {-vg | -dg | -fs | -lvol | -hostvol} _file_spec_[_file_spec ..._][{-vg | -dg | -fs | -lvol | -hostvol} _file_spec_ [_file_spec ..._]...] [-full] [-fstype _type_] [-vmtype _type_]`
+
+|===

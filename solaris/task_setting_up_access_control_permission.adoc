@@ -1,0 +1,65 @@
+---
+permalink: solaris/task_setting_up_access_control_permission.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, access, control, permission 
+summary: Você pode configurar a permissão de controle de acesso no SnapDrive para UNIX criando um diretório e arquivo especiais no volume raiz do sistema de armazenamento. 
+---
+= Configurando a permissão de controle de acesso
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode configurar a permissão de controle de acesso no SnapDrive para UNIX criando um diretório e arquivo especiais no volume raiz do sistema de armazenamento.
+
+Certifique-se de que você está conetado como um usuário root.
+
+.Passos
+. Crie o diretório `sdprbac` no volume raiz do sistema de armazenamento de destino.
++
+Uma maneira de tornar o volume raiz acessível é montar o volume usando NFS.
+
+. Crie o arquivo de permissões no `sdprbac` diretório. Certifique-se de que as seguintes afirmações são verdadeiras:
++
+** O arquivo deve ser nomeado `sdhost-name.prbac` onde host-name é o nome do host para o qual você está especificando permissões de acesso.
+** O arquivo deve ser somente leitura para garantir que o SnapDrive para UNIX possa lê-lo, mas que ele não pode ser modificado.
+
+
++
+Para conceder permissão de acesso a um host chamado dev-sun1, você criará o seguinte arquivo no sistema de storage: `/vol/vol1/sdprbac/sddev-sun1.prbac`
+
+. Defina as permissões no arquivo para esse host.
++
+Você deve usar o seguinte formato para o arquivo:
+
++
+** Você pode especificar apenas um nível de permissões. Para dar ao host acesso total a todas as operações, insira a string ALL ACCESS.
+** A string de permissão deve ser a primeira coisa no arquivo. O formato de arquivo é inválido se a string de permissão não estiver na primeira linha.
+** As strings de permissão são insensíveis a maiúsculas e minúsculas.
+** Nenhum espaço em branco pode preceder a string de permissão.
+** Nenhum comentário é permitido.
++
+Essas strings de permissão válidas permitem os seguintes níveis de acesso:
+
+** NENHUM - o host não tem acesso ao sistema de storage.
+** SNAP CREATE - o host pode criar cópias Snapshot.
+** USO INSTANTÂNEO - o host pode excluir e renomear cópias Snapshot.
+** SNAP ALL - o host pode criar, restaurar, excluir e renomear cópias Snapshot.
+** ARMAZENAMENTO CRIAR EXCLUSÃO - o host pode criar, redimensionar e excluir o armazenamento.
+** USO DO ARMAZENAMENTO - o host pode conetar e desconetar o armazenamento e também executar a estimativa de divisão de clones e iniciar divisão de clones no armazenamento.
+** STORAGE ALL - o host pode criar, excluir, conetar e desconetar o armazenamento e também executar a estimativa de divisão de clones e iniciar divisão de clones no armazenamento.
+** TODO O ACESSO - o host tem acesso a todas as operações anteriores do SnapDrive para UNIX.
++
+Cada uma dessas strings de permissão é discreta. Se você especificar O USO INSTANTÂNEO, o host poderá excluir ou renomear cópias Snapshot, mas não poderá criar cópias Snapshot ou restaurar ou executar nenhuma operação de provisionamento de storage.
+
++
+Independentemente das permissões definidas, o host pode executar operações de exibição e lista.
+
+
+
+. Verifique as permissões de acesso inserindo o seguinte comando:
++
+`*snapdrive config access show _filer_name_*`
+
+

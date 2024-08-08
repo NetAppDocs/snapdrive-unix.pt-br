@@ -1,0 +1,14 @@
+---
+permalink: aix/concept_snapshot_copy_operations.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, create, command, operation 
+summary: Você pode criar cópias Snapshot usando o comando SnapDrive snap Create . 
+---
+= Operações de cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode criar cópias Snapshot usando o `snapdrive snap create` comando.

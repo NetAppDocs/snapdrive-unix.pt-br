@@ -1,0 +1,19 @@
+---
+permalink: solaris/concept_other_ways_to_getsnapshot_copynames.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, copy, name, snapshot 
+summary: Use o comando SnapDrive snap list para exibir o nome da cópia Snapshot. 
+---
+= Outras maneiras de obter nomes de cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Use o `snapdrive snap list` comando para exibir o nome da cópia Snapshot.
+
+Outra maneira de obter um nome de cópia Snapshot é fazer login no sistema de armazenamento e usar o `snapdrive snap list` comando lá. Este comando exibe os nomes das cópias Snapshot.
+
+
+NOTE: O `snapdrive snap show` comando é equivalente ao comando do sistema de armazenamento `snapdrive snap list`.

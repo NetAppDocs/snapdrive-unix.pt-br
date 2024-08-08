@@ -1,0 +1,24 @@
+---
+permalink: solaris/concept_when_to_use_the_snapdrive_configuration_wizard.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, configuration, wizard 
+summary: Use o assistente de configuração do SnapDrive para atualizar as variáveis de configuração no assistente. Você pode executar o assistente de configuração a qualquer momento para modificar suas alterações de configuração para o SnapDrive. 
+---
+= Assistente de configuração do SnapDrive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Use o assistente de configuração do SnapDrive para atualizar as variáveis de configuração no assistente. Você pode executar o assistente de configuração a qualquer momento para modificar suas alterações de configuração para o SnapDrive.
+
+Pode executar o assistente de configuração a partir de `/opt/NTAPsnapdrive/setup/config_wizard`
+
+Introduza `exit` para fechar o assistente de configuração, sem guardar as alterações.
+
+Alternativamente, você pode modificar o valor das variáveis de configuração diretamente no `snapdrive.conf` arquivo.
+
+*Informações relacionadas*
+
+xref:reference_stack_requirements.adoc[Requisitos de pilha]

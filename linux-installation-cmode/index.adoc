@@ -1,0 +1,16 @@
+---
+permalink: linux-installation-cmode/index.html 
+sidebar: sidebar 
+keywords: guide, documentation, installation, setup, linux, clustered, data, ontap 
+summary: Descreve as tarefas iniciais que você precisa executar para implantar o SnapDrive para UNIX com o Clustered Data ONTAP em um ambiente Linux. 
+---
+= Guia de instalação e configuração para Linux para Clustered Data ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Este guia descreve as tarefas iniciais que você precisa executar para implantar o SnapDrive 5.3.2 para UNIX com o Clustered Data ONTAP em um ambiente Linux.
+
+Os tópicos incluem como instalar e configurar o produto e como fazer backup dos bancos de dados.

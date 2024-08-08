@@ -1,0 +1,26 @@
+---
+permalink: solaris/concept_reasons_to_deletesnapshotcopies.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, snapshot, copy 
+summary: Exclua cópias Snapshot mais antigas para liberar espaço no volume do sistema de storage ou para manter menos cópias Snapshot. 
+---
+= Motivos para excluir cópias Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Exclua cópias Snapshot mais antigas para liberar espaço no volume do sistema de storage ou para manter menos cópias Snapshot.
+
+Você pode excluir cópias Snapshot mais antigas pelos seguintes motivos:
+
+* Para manter menos cópias Snapshot armazenadas do que o limite rígido de 255 TB no volume do sistema de storage. Quando atingir o limite, as tentativas de criar novas cópias Snapshot falham.
+* Para libertar espaço no volume do sistema de armazenamento. Mesmo antes da cópia Snapshot atingir o limite, uma cópia Snapshot falhará se o disco não tiver espaço reservado suficiente para ela.
+* Você também pode usar o caractere curinga (*) em nomes de cópia Snapshot. A operação Snapshot show permite que você use o caractere curinga para mostrar todos os nomes de cópias Snapshot que correspondam a um determinado padrão. As regras a seguir se aplicam ao uso de curinga em nomes de cópia Snapshot:
++
+** Você pode usar um curinga apenas no final do nome. Não é possível usar o caractere curinga no início ou no meio de um nome de cópia Snapshot.
+** Não é possível usar o caractere curinga nos campos de volume do sistema de armazenamento ou do sistema de armazenamento de um nome de cópia Snapshot.
+
+
+

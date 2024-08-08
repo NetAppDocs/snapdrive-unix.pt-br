@@ -1,0 +1,28 @@
+---
+permalink: solaris/concept_multipath_access_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, multipath, access, support 
+summary: O SnapDrive para UNIX dá suporte ao acesso FC multipath aos sistemas de storage usando a solução de software padrão de multipathing. Usando multipathing, você pode configurar vários caminhos de rede entre o host e o sistema de armazenamento. 
+---
+= Suporte para acesso multipath no SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX dá suporte ao acesso FC multipath aos sistemas de storage usando a solução de software padrão de multipathing. Usando multipathing, você pode configurar vários caminhos de rede entre o host e o sistema de armazenamento.
+
+|===
+| Plataforma | Solução multipathing 
+
+
+ a| 
+Solaris
+ a| 
+* MPxIO
+* DMP
+
+
+|===
+Se um caminho falhar, o tráfego FC continuará nos caminhos restantes. Multipathing é necessário se o host tiver vários caminhos para um LUN, e ele funcionar tornando os caminhos subjacentes transparentes para o usuário. Se a solução multipathing especificada no arquivo de configuração para operações SnapDrive para UNIX for configurada e suportada, o SnapDrive para UNIX usará a solução multipathing especificada.

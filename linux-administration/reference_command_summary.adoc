@@ -1,0 +1,14 @@
+---
+permalink: linux-administration/reference_command_summary.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, summary, configuration, snapshot, host 
+summary: O SnapDrive para UNIX oferece suporte a diferentes linhas de comando, como configuração, provisionamento de storage, gerenciamento no lado do host e operação Snapshot. 
+---
+= Resumo do comando
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX oferece suporte a diferentes linhas de comando, como configuração, provisionamento de storage, gerenciamento no lado do host e operação Snapshot.

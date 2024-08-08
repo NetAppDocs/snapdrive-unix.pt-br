@@ -1,0 +1,36 @@
+---
+permalink: linux-administration/concept_support_for_vserver.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, support, vserver, storage, lif, data 
+summary: O SnapDrive para UNIX é compatível com SVM. O SVM é um servidor de storage virtual seguro que dá suporte a vários protocolos e storage unificado. Um SVM contém volumes de dados e uma ou mais LIFs, que ele usa para fornecer dados aos clientes. 
+---
+= Suporte para SVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX é compatível com SVM. O SVM é um servidor de storage virtual seguro que dá suporte a vários protocolos e storage unificado. Um SVM contém volumes de dados e uma ou mais LIFs, que ele usa para fornecer dados aos clientes.
+
+O SVM isola de forma segura o armazenamento e a rede de dados virtualizados compartilhados e aparece como um único servidor dedicado aos clientes. Cada SVM tem um domínio de autenticação de administrador separado e pode ser gerenciado de forma independente por um administrador de SVM.
+
+Os volumes de cada SVM estão relacionados através de junções e são montados em caminhos de junção. O sistema de arquivos de cada volume parece estar montado nas junções. O volume raiz do SVM é encontrado no nível superior da hierarquia do namespace; volumes adicionais são montados no volume raiz do SVM para estender o namespace global. Os volumes de dados do SVM contêm arquivos e LUNs.
+
+* Você pode usar o SnapDrive para UNIX para executar provisionamento de storage, operações de cópia Snapshot e operações de configuração em um SVM.
+* Os dados da aplicação não são armazenados no volume raiz do SVM.
+* Se a raiz do SVM for uma qtree, as operações de cópia Snapshot não serão suportadas.
+* Cada volume criado no SVM deve ser montado em um caminho de junção.
+
+
+*Informações relacionadas*
+
+link:concept_configuration_information_for_vserver_environment.adoc["Informações de configuração para SVM"]
+
+link:task_verifying_login_information_for_vserver.adoc["Verificando as informações de login para o SVM"]
+
+link:task_specifying_login_information_for_vserver.adoc["Especificando informações de login para o SVM"]
+
+link:task_deleting_a_user_for_a_vserver.adoc["Excluindo um usuário de um SVM"]
+
+link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["Guia de configuração do software ONTAP 9"]

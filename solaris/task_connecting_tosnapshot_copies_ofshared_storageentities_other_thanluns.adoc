@@ -1,0 +1,75 @@
+---
+permalink: solaris/task_connecting_tosnapshot_copies_ofshared_storageentities_other_thanluns.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, connect, snapshot, copy, shared, storage, lun 
+summary: Você pode usar o comando SnapDrive snap connect para se conetar a uma cópia Snapshot de entidades de storage compartilhadas que não sejam LUNs. 
+---
+= Conexão a cópias Snapshot de entidades de storage compartilhado que não LUNs
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o `snapdrive snap connect` comando para se conetar a uma cópia Snapshot de entidades de storage compartilhadas que não sejam LUNs.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive snap connect _fspec_set_ [_fspec_set..._] -snapname _long_snap_name_ [-devicetype shared] [-split]*`
+
++
+Nesta sintaxe `_fspec_set_`, é: `{-dg | -fs}_src_file_spec_ [_dest_file_spec_ ] [-destdg _dgname_]`
+
+
+
+O exemplo a seguir se conecta a uma cópia Snapshot que contém entidades de storage compartilhadas em um cluster de host de origem. A operação é executada a partir do nó não-mestre cluster, mas o comando é enviado para o nó mestre e executado:
+
+[listing]
+----
+# snapdrive snap connect -fs /mnt/sfortesting /mnt/sfortesting2 -
+snapname f270-
+197-109:/vol/vol2:testsfarcsnap -devicetype shared -autorename
+Execution started on cluster master: sfrac-57
+connecting sfortesting_SdDg:
+LUN copy sfortesting_SdLun_0 ... created
+(original: f270-197-109:/vol/vol2/sfortesting_SdLun)
+mapping new lun(s) ... done
+discovering new lun(s) ... done
+Connecting cluster node: sfrac-58 mapping lun\(s\) ... done
+discovering lun(s) ... done
+LUN f270-197-109:/vol/vol2/sfortesting_SdLun_0 connected
+- device filename(s): /dev/vx/dmp/c3t0d22s2
+Importing sfortesting_SdDg_0
+Activating hostvol sfracvxfstestfs_SdHv_0
+Successfully connected to snapshot f270-197-
+109:/vol/vol2:testsfarcsnap
+disk group sfortesting_SdDg_0 containing host volumes
+sfortesting_SdHv_0 (filesystem: /mnt/sfortesting2)
+----
+O exemplo a seguir se conecta a uma cópia Snapshot que contém entidades de storage compartilhadas em um cluster de host que não seja originário. A operação é executada a partir do nó não-mestre cluster, mas o comando é enviado para o nó mestre e executado:
+
+[listing]
+----
+# snapdrive snap connect -fs /mnt/sfortesting -snapname f270-197-
+109:/vol/vol2:testsfarcsnap -devicetype shared
+Execution started on cluster master: sfrac-57
+connecting sfortesting_SdDg:
+LUN copy sfortesting_SdLun_0 ... created
+(original: f270-197-109:/vol/vol2/sfortesting_SdLun)
+Step Action
+184 Connecting to a Snapshot copy
+mapping new lun(s) ... done
+discovering new lun(s) ... done
+Connecting cluster node: sfrac-58
+mapping lun(s) ... done
+discovering lun(s) ... done
+LUN f270-197-109:/vol/vol2/sfortesting_SdLun_0 connected
+- device filename(s): /dev/vx/dmp/c3t0d1s2
+Importing sfortesting_SdDg
+Activating hostvol sfortesting_SdHv
+Successfully connected to snapshot f270-197-
+109:/vol/vol2:testsfarcsnap
+disk group sfortesting_SdDg containing host volumes
+sfortesting_SdHv (filesystem: /mnt/sfortesting)
+----

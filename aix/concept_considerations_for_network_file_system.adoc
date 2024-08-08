@@ -1,0 +1,30 @@
+---
+permalink: aix/concept_considerations_for_network_file_system.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, guidelines, nfs, configuration 
+summary: 'Antes de instalar o SnapDrive para UNIX, você deve considerar o local onde o serviço sistema de arquivos de rede (NFS) é executado e o local para o qual os diretórios do sistema de armazenamento são exportados. Você deve verificar as permissões do cliente NFS e as permissões de leitura e gravação da interface.' 
+---
+= Diretrizes para configurações NFS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar o SnapDrive para UNIX, considere o local onde o serviço NFS (Network File System) é executado e o local para o qual os diretórios do sistema de storage são exportados. Você deve verificar as permissões do cliente NFS e as permissões de leitura e gravação da interface.
+
+Ao usar o SnapDrive para UNIX para restaurar ou se conetar a diretórios montados em NFS, você deve garantir que os diretórios do sistema de storage sejam exportados corretamente para o host. Se o seu host tiver várias interfaces IP que podem acessar o sistema de storage, certifique-se de que o diretório seja exportado corretamente para cada uma delas.
+
+O SnapDrive para UNIX emite avisos, a menos que todas essas interfaces tenham permissões de leitura e gravação, ou, no caso de `snapdrive snap connect` com a `-readonly` opção, ou pelo menos permissão somente leitura. Os `snapdrive snap restore` comandos e `snapdrive snap connect` falharão se nenhuma dessas interfaces tiver permissão para acessar o diretório.
+
+Ao executar o SFSR (Single File SnapRestore) como usuário raiz, você deve garantir que os diretórios do sistema de armazenamento sejam exportados com permissões de leitura e gravação no host e as seguintes regras de exportação devem ser definidas:
+
+* `rw=<hostname>, root=<hostname>` No Data ONTAP operando no modo 7D.
+* `rwrule = sys, rorule=sys, superuser= sys` Em Clustered Data ONTAP
+
+
+*Informações relacionadas*
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["Referência NFS da ONTAP 9"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1401220["Guia de gerenciamento de protocolos e acesso a arquivos do Data ONTAP 8.2 para o modo 7"]

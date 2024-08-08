@@ -1,0 +1,59 @@
+---
+permalink: aix/task_creating_an_lvm_a_vxvmentity_andspecifying_the_lun.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, lvm, lun, specify, create 
+summary: Você pode criar uma entidade host, como um sistema de arquivos, volume lógico ou grupo de discos e especificar o LUN que é criado como parte dele. 
+---
+= Criando uma entidade LVM e especificando o LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode criar uma entidade host, como um sistema de arquivos, volume lógico ou grupo de discos e especificar o LUN que é criado como parte dele.
+
+.Passos
+. Na linha de comando, digite o seguinte comando:
++
+`*snapdrive storage create _-host_lvm_fspec_ -lun _long_lun_name_ [_lun_name..._] -lunsize _size_ [-igroup _ig_name_ [_ig_name..._]] [{ -reserve | -noreserve }]*`
+
++
+Este exemplo cria o sistema de arquivos /mnt/acctfs com sistema de arquivos dependendo do seu host. Ele configura três LUNs no arquivo de configuração do sistema de armazenamento. Cada LUN tem 10 GB:
+
++
+`*# snapdrive storage create -fs /mnt/acctfs -fstype jfs2 -lun acctfiler:/vol/vol1/lunA lunB lunC -lunsize 10g*`
+
++
+[listing]
+----
+LUN acctfiler:/vol/vol1/lunA ... created
+LUN acctfiler:/vol/vol1/lunB ... created
+LUN acctfiler:/vol/vol1/lunC ... created
+mapping new lun(s) ... done
+discovering new lun(s) ... done
+LUN to device file mappings:
+- acctfiler:/vol/vol1/lunA => hdisk2
+- acctfiler:/vol/vol1/lunB => hdisk3
+- acctfiler:/vol/vol1/lunC => hdisk4
+disk group acctfs_SdDg created
+host volume acctfs_SdHv created
+file system /mnt/acctfs created
+----
++
+[listing]
+----
+LUN acctfiler:/vol/vol1/lunA ... created
+LUN acctfiler:/vol/vol1/lunB ... created
+LUN acctfiler:/vol/vol1/lunC ... created
+mapping new lun(s) ... done
+discovering new lun(s) ... done
+LUN to device file mappings:
+- acctfiler:/vol/vol1/lunA => /dev/vx/rdmp/c4t0d3s2
+- acctfiler:/vol/vol1/lunB => /dev/vx/rdmp/c4t0d7s2
+- acctfiler:/vol/vol1/lunC => /dev/vx/rdmp/c4t0d8s2
+disk group acctfsvg created
+host volume acctfshv created
+file system /mnt/acctfs created
+----
+

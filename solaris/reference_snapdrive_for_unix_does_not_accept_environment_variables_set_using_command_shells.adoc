@@ -1,0 +1,20 @@
+---
+permalink: solaris/reference_snapdrive_for_unix_does_not_accept_environment_variables_set_using_command_shells.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, fail, shell, variable 
+summary: Você não pode executar comandos SnapDrive para UNIX, tanto porque as variáveis de ambiente definidas através de um shell de comando não são aceitas no SnapDrive para UNIX, quanto quando os parâmetros Snapcreate-check-não persistente-nfs são definidos como Off. 
+---
+= Os comandos SnapDrive para UNIX falham quando as variáveis de ambiente são definidas usando um shell de comando
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você não pode executar comandos SnapDrive para UNIX, tanto porque as variáveis de ambiente definidas por meio de um shell de comando não são aceitas no SnapDrive para UNIX, quanto quando `*$LD_LIBRARY_PATH*` e `*snapcreate-check-nonpersistent-nfs*` os parâmetros estão definidos como Desativado.
+
+
+
+== Solução alternativa
+
+Use um script wrapper para o binário SnapDrive para UNIX e defina as variáveis de ambiente como visíveis para o binário.

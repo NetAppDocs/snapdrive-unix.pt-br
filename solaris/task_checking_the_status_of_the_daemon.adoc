@@ -1,0 +1,23 @@
+---
+permalink: solaris/task_checking_the_status_of_the_daemon.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, check, daemon, status, command 
+summary: Você pode verificar o status do daemon para ver se o daemon está sendo executado. Se o daemon já estiver em execução, você não precisará reiniciá-lo até que o arquivo de configuração do SnapDrive para UNIX seja atualizado. 
+---
+= Verificando o status do daemon
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode verificar o status do daemon para ver se o daemon está sendo executado. Se o daemon já estiver em execução, você não precisará reiniciá-lo até que o arquivo de configuração do SnapDrive para UNIX seja atualizado.
+
+Você deve estar logado como usuário root.
+
+.Passos
+. Verifique o status do daemon:
++
+`*snapdrived status*`
+
+

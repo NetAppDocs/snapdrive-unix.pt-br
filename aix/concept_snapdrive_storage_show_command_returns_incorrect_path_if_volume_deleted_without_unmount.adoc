@@ -1,0 +1,25 @@
+---
+permalink: aix/concept_snapdrive_storage_show_command_returns_incorrect_path_if_volume_deleted_without_unmount.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, vserver, storage, show, incorrect, unmount 
+summary: Se um volume for excluído no SVM sem desmontar o volume no sistema host e quando você executar o comando SnapDrive storage show -v, o caminho real está incorreto. 
+---
+= Se um volume for excluído no SVM sem desmontar o volume no sistema host, o comando SnapDrive storage show exibirá o caminho real incorreto
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se um volume for excluído no SVM sem desmontar o volume no sistema host e quando você executar `snapdrive storage show -v` o comando, o caminho real estará incorreto.
+
+Você também pode experimentar o mesmo quando o volume não é juntado no SVM. O exemplo a seguir mostra o caminho real incorreto:
+
+[listing]
+----
+# snapdrive storage show -fs /mnt /file1 -v
+NFS device: vs1:/vol_test1 mount point: /mnt
+(non-persistent)
+Protocol: NFS Actual Path:
+vs1:/vol/roovol1/vol_test1
+----

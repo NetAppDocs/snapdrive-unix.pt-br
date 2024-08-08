@@ -1,0 +1,42 @@
+---
+permalink: solaris/task_uninstalling_snapdrive_for_unix_from_a_solaris_host.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, solaris, host, uninstall 
+summary: Para desinstalar o SnapDrive para UNIX de um sistema Solaris, você deve usar o comando desinstalar. 
+---
+= Desinstalar o SnapDrive para UNIX a partir de um host Solaris
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para desinstalar o SnapDrive para UNIX de um sistema Solaris, você deve usar o `uninstall` comando.
+
+Certifique-se de que você está conetado como um usuário root.
+
+Quando você desinstalar o SnapDrive para UNIX em zonas de raiz esparsas, o processo de desinstalação não remove os links simbólicos para SnapDrive para UNIX `/usr/bin` e `/usr/sbin` porque os links simbólicos são montados como sistemas de arquivos somente leitura em zonas de raiz esparsas. Você deve remover esses links simbólicos da zona global. Antes de remover os links simbólicos, certifique-se de que nenhuma outra zona raiz esparsa esteja usando o SnapDrive para UNIX.
+
+`rm /usr/sbin/snapdrive`
+
+`rm /usr/sbin/snapdrived`
+
+`rm /usr/bin/snapdrive`
+
+.Passos
+. Use o seguinte comando para remover o software:
++
+`*uninstall*`
+
+. Responda y (ou sim) quando o comando perguntar se você tem certeza de que deseja remover o Kit Anexar.
++
+Se você responder n (ou não), o comando não desinstale o Attach Kit.
+
++
+Para evitar obter a consulta de confirmação, digite o `./uninstall` comando com a `-f` opção, que impede que o script de desinstalação seja executado no modo interativo.
+
++
+
+NOTE: Para garantir que todos os serviços do SnapDrive para UNIX sejam interrompidos, use o script de desinstalação do SnapDrive para UNIX; não use as ferramentas do sistema operacional como `pkgrm`o .
+
+

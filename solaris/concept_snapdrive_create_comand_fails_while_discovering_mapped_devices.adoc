@@ -1,0 +1,28 @@
+---
+permalink: solaris/concept_snapdrive_create_comand_fails_while_discovering_mapped_devices.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, create, command, fail, mapped, device 
+summary: Quando você executa o comando storage create no SnapDrive para UNIX, durante a etapa de descoberta, a descoberta de alguns dos dispositivos mapeados é rejeitada e o comando falha. 
+---
+= O comando Create do SnapDrive para armazenamento UNIX falha ao descobrir alguns dispositivos mapeados
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando você executa o `storage create` comando no SnapDrive para UNIX, durante o estágio de descoberta, a descoberta de alguns dos dispositivos mapeados é rejeitada e o comando falha.
+
+
+
+== Solução alternativa
+
+Para que todos os dispositivos sejam aceitos, edite a seção de filtro do `/etc/lvm/lvm.conf` arquivo:
+
+[listing]
+----
+filter = [ "a/.*/" ]
+----
+*Informações relacionadas*
+
+xref:concept_guidelines_for_thestorage_createoperation.adoc[Diretrizes para a operação de criação de armazenamento]

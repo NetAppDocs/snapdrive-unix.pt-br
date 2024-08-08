@@ -1,0 +1,23 @@
+---
+permalink: linux-administration/concept_operations_performed_using_wizards.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, wizards, storage, create 
+summary: Você pode usar assistentes diferentes para criar entidades de storage e manipular o SnapDrive para UNIX de maneira eficiente. 
+---
+= Operações realizadas usando assistentes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar assistentes diferentes para criar entidades de storage e manipular o SnapDrive para UNIX de maneira eficiente.
+
+Os seguintes comandos SnapDrive para UNIX têm um assistente equivalente para executar operações:
+
+* `storage create`
+* `storage delete`
+* `snap restore`
+* `snap connect`
+* `snap disconnect`
+

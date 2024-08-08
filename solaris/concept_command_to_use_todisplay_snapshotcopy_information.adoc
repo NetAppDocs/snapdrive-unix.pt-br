@@ -1,0 +1,25 @@
+---
+permalink: solaris/concept_command_to_use_todisplay_snapshotcopy_information.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, display, snapshot, copy 
+summary: 'Use o comando SnapDrive snap show (ou lista) para exibir informações sobre as cópias Snapshot.' 
+---
+= Comando a ser usado para exibir informações de cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Use o `snapdrive snap show` comando (ou `list`) para exibir informações sobre as cópias Snapshot.
+
+Você pode usar o `snapdrive snap show` comando (ou `list`) para exibir informações sobre cada cópia Snapshot criada pelo SnapDrive para UNIX. Você pode usar este comando para exibir informações sobre o seguinte:
+
+* Sistemas de storage
+* Volumes em sistemas de storage
+* Entidades de storage, como arquivos NFS e árvores de diretório, grupos de volumes, grupos de discos, sistemas de arquivos, volumes lógicos e volumes de host
+* Cópias Snapshot
+
+
+
+NOTE: As `show` formas e `list` deste comando são sinônimos. Para o SnapDrive 2,0 para UNIX e posterior, você deve usar o formato longo do nome da cópia Snapshot quando exibir informações sobre cópias snapshot.

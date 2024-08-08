@@ -1,0 +1,128 @@
+---
+permalink: aix/reference_stack_requirements.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, stack, requirement 
+summary: O SnapDrive para UNIX requer um sistema operacional host, sistemas de arquivos host, NFS, gerenciadores de volume, utilitários de host FC ou iSCSI, licenças de sistema de storage, software ONTAP, software MultiStore e acesso ao protocolo IP. O SnapDrive para UNIX também tem certos requisitos de pilha que deve cumprir. 
+---
+= Requisitos de pilha
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX requer um sistema operacional host, sistemas de arquivos host, NFS, gerentes de volume, utilitários de host FC ou iSCSI, licenças de sistema de storage, software ONTAP, software MultiStore e acesso ao protocolo IP (Internet Protocol). O SnapDrive para UNIX também tem certos requisitos de pilha que deve cumprir.
+
+
+
+== Entidades do lado do host
+
+A seguir está uma lista de entidades do lado do host:
+
+* O sistema operacional do host
+* Um gerenciador de volumes
+* Sistema de arquivos
+* AIX Host Utilities
+
+
+
+
+== Pilha SnapDrive para UNIX
+
+Você deve inserir valores aceitáveis para as `_multipathing-type_` variáveis , `_fstype_`, `_default-transport_` e `_vmtype_` no `snapdrive.conf` arquivo, conforme fornecido na pilha de matriz. Você deve verificar se os valores inseridos estão instalados e em execução no sistema host.
+
+|===
+| Plataforma host | Tipo de transporte predefinido | Tipo de multipathing | fstype | vmtype 
+
+
+ a| 
+AIX
+ a| 
+FCP
+ a| 
+nenhum
+ a| 
+jfs2
+ a| 
+lvm
+
+
+
+ a| 
+FCP
+ a| 
+nenhum
+ a| 
+jfs
+ a| 
+lvm
+
+
+
+ a| 
+FCP
+ a| 
+nativempio
+ a| 
+jfs2
+ a| 
+lvm
+
+
+
+ a| 
+FCP
+ a| 
+nativempio
+ a| 
+jfs
+ a| 
+lvm
+
+
+
+ a| 
+FCP
+ a| 
+DMP
+ a| 
+vxfs
+ a| 
+vxvm
+
+|===
+* Se você tiver stacks de storage FCP e iSCSI, o SnapDrive só oferecerá suporte a stacks de storage FCP.
++
+O SnapDrive não oferece suporte a pilhas de armazenamento iSCSI para AIX.
+
+* O sistema operacional host e os patches apropriados para AIX são instalados .
+* O gerenciador de volumes para AIX é LVM ou VxVM .
+* Os utilitários de host são instalados no AIX
++
+Por exemplo, se o multipathing estiver em uso com o SnapDrive para UNIX com um host AIX, você deverá configurar os recursos exigidos pelos Utilitários de host AIX para esse host.
+
+* O software ONTAP é instalado no seu sistema de storage.
+* O software MultiStore é instalado no seu sistema de storage para uma configuração de unidade do vFiler.
+* O acesso ao Protocolo de Internet (IP) está disponível entre o host e o sistema de armazenamento.
+
+
+O NetApp modifica os utilitários e componentes do host de forma contínua. Você pode acompanhar essas alterações usando a Matriz de interoperabilidade, que contém informações atualizadas sobre o uso de produtos NetApp em um ambiente SAN.
+
+A licença do sistema de storage e a licença MultiStore constituem as entidades do sistema de storage.
+
+
+
+== Requisitos de licenciamento do sistema de storage
+
+* Uma licença FC, iSCSI ou NFS, dependendo da configuração
+* Uma licença FlexClone
+* Uma licença SnapRestore no sistema de storage
+
+
+*Informações relacionadas*
+
+xref:concept_unable_to_select_a_storage_stack.adoc[Não é possível selecionar uma pilha de armazenamento]
+
+xref:concept_when_to_use_the_snapdrive_configuration_wizard.adoc[Assistente de configuração do SnapDrive]
+
+https://mysupport.netapp.com/NOW/products/interoperability["Interoperabilidade do NetApp"]

@@ -1,0 +1,74 @@
+---
+permalink: solaris/concept_managing_snapshot_copy_using_a_wizard.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, copy, wizard 
+summary: Você pode usar um assistente para gerenciar cópias Snapshot. Este assistente executa um conjunto de perguntas e ajuda você a executar as operações de snap connect, snap Restore e snap Disconnect. 
+---
+= Gerenciamento de cópias Snapshot usando um assistente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar um assistente para gerenciar cópias Snapshot. Este assistente executa um conjunto de perguntas e ajuda você a executar as operações de snap connect, snap Restore e snap Disconnect.
+
+Você pode executar o assistente usando o `snapdrive snap wizard` comando.
+
+A tabela a seguir lista as diferentes operações e comandos correspondentes para executar o assistente. Depois de iniciar o assistente, siga as etapas na janela do aplicativo.
+
+|===
+| Operação | Comando 
+
+
+ a| 
+Restauração do Snapshot
+ a| 
+`snapdrive snap wizard restore`
+
+
+
+ a| 
+Conexão instantânea
+ a| 
+`snapdrive snap wizard connect`
+
+
+
+ a| 
+Operação Snapshot Connect para sistema de arquivos com volume do sistema de storage
+
+
+
+ a| 
+Conexão instantânea para grupo de discos
+
+
+
+ a| 
+Desconexão Snapshot para LUN
+ a| 
+`snapdrive snap wizard disconnect`
+
+
+
+ a| 
+Desconexão Snapshot para um grupo de discos
+
+
+
+ a| 
+Desconexão de Snapshot para volume de host
+
+
+
+ a| 
+Desconexão Snapshot para sistema de arquivos
+
+|===
+*Limitações:* no SnapDrive para UNIX 4,1 e posterior, o `snapdrive snap wizard` comando tem as seguintes limitações:
+
+* O SnapRestore baseado em volume não é suportado com o `snap wizard restore` comando.
+* O volume FlexClone não é suportado com o `snap wizard connect` comando.
+* As operações em especificações de arquivos não responsivos não são suportadas com `snap wizard` comandos.
+

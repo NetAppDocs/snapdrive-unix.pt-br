@@ -1,0 +1,33 @@
+---
+permalink: aix/task_specifying_login_information_for_vserver.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, login, infromation, vserver, specify 
+summary: Você deve especificar as informações de login do usuário para o SVM. Dependendo do que você especificou quando configurou o SVM, cada SVM deve usar o nome de usuário configurado do SVM. Se houver uma alteração no nome do SVM, você deve garantir que o novo nome do SVM esteja configurado no SnapDrive para UNIX. 
+---
+= Especificando informações de login para o SVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve especificar as informações de login do usuário para o SVM. Dependendo do que você especificou quando configurou o SVM, cada SVM deve usar o nome de usuário configurado do SVM. Se houver uma alteração no nome do SVM, você deve garantir que o novo nome do SVM esteja configurado no SnapDrive para UNIX.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive config set _user_name filername_ [_filername..._]*`
+
++
+** `_user_name_` É o nome de usuário que foi especificado para o SVM quando você o configurou pela primeira vez. O usuário padrão é vsadmin. `_filername_` É o nome do SVM.
+** `_filer_name_` Permite que você insira vários VServers em uma linha de comando se todos tiverem o mesmo login ou senha de usuário. Tem de introduzir pelo menos um nome de SVM.
++
+[listing]
+----
+# snapdrive config set vsadmin clstr-vs2
+Password for vsadmin:
+Retype password:
+----
+
+
+

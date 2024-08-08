@@ -1,0 +1,49 @@
+---
+permalink: linux-administration/reference_preconfigured_roles_for_ease_of_user_role_configuration.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, roles, user, configuration, config, assign 
+summary: Funções pré-configuradas simplificam a tarefa de atribuir funções aos usuários. 
+---
+= Funções pré-configuradas para facilitar a configuração da função do usuário
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Funções pré-configuradas simplificam a tarefa de atribuir funções aos usuários.
+
+A tabela a seguir lista as funções predefinidas:
+
+|===
+| Nome da função | Descrição 
+
+
+ a| 
+GlobalSDStorage
+ a| 
+Gerencie o storage com o SnapDrive para UNIX
+
+
+
+ a| 
+GlobalSDConfig
+ a| 
+Gerenciar configurações com o SnapDrive para UNIX
+
+
+
+ a| 
+GlobalSDSnapshot
+ a| 
+Gerenciar cópias Snapshot com o SnapDrive para UNIX
+
+
+
+ a| 
+GlobalSDFullControl
+ a| 
+Uso completo do SnapDrive para UNIX
+
+|===
+Na tabela anterior, Global refere-se a todos os sistemas de storage gerenciados por um console do Operations Manager.

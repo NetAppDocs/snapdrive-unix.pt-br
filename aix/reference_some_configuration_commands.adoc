@@ -1,0 +1,108 @@
+---
+permalink: aix/reference_some_configuration_commands.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, configuration 
+summary: Existem poucos comandos que o ajudam a configurar o SnapDrive para UNIX. 
+---
+= Alguns comandos de configuração
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Existem poucos comandos que o ajudam a configurar o SnapDrive para UNIX.
+
+A tabela a seguir resume comandos adicionais que são úteis na configuração do SnapDrive para UNIX:
+
+|===
+| Comando ou ação | Descrição 
+
+
+ a| 
+Configurando e verificando sua versão do software SnapDrive para UNIX
+
+
+
+ a| 
+`*snapdrive config show*`
+ a| 
+Verifique os valores no `snapdrive.conf` arquivo.
+
+
+
+ a| 
+`*snapdrive version*`
+ a| 
+Verifique a versão do SnapDrive para UNIX.
+
+
+
+ a| 
+`*snapdrived start*`
+ a| 
+Inicie o daemon SnapDrive para UNIX.
+
+
+
+ a| 
+`*snapdrive config prepare luns -count count_value*`
+ a| 
+Prepare o host para criar um número específico de LUNs, bem como para determinar quantos LUNs você pode criar.
+
+
+
+ a| 
+`*snapdrive clone split*`
+ a| 
+Estime, inicie, pare e consulte o status do split para um clone de volume ou um clone de LUN.
+
+
+
+ a| 
+Edite as variáveis no `snapdrive.conf` arquivo.
+ a| 
+Altere o nome do caminho e as opções para os arquivos de log. O SnapDrive para UNIX Registra informações em três arquivos:
+
+* Um arquivo de auditoria
+* Um arquivo de recuperação
+* Um ficheiro de rastreio
+
+
+
+
+ a| 
+Definir e exibir permissões de controle de acesso entre um host e um sistema de armazenamento.
+
+
+
+ a| 
+Edite o arquivo de permissões de controle de acesso ( `_hostname_`SD .prbac) no sistema de armazenamento associado a esse host.
+ a| 
+Especifique as permissões de controle de acesso que um host tem em um sistema de storage. Você pode definir os seguintes níveis de acesso para um host em um sistema de storage:
+
+* NENHUM - sem acesso.
+* CRIAR SNAP - criar cópias Snapshot.
+* USO INSTANTÂNEO -- Excluir e renomear cópias Snapshot.
+* SNAP ALL - criar, restaurar, excluir e renomear cópias Snapshot.
+* ARMAZENAMENTO CRIAR DELETE--criar, redimensionar e excluir armazenamento.
+* USO DO ARMAZENAMENTO -- Conete e desconete o armazenamento.
+* ARMAZENAMENTO TUDO - criar, excluir, conetar e desconetar o armazenamento.
+* TODOS OS ACESSOS - todas as operações.
+
+
+
+
+ a| 
+`*snapdrive config access show <filer_name>*`
+ a| 
+Exibir informações sobre as permissões de controle de acesso que um host tem para um sistema de armazenamento.
+
+
+
+ a| 
+`*snapdrive config delete <filername> [<filername> . . .]*`
+ a| 
+Remova o par de nome de usuário especificado-senha do SnapDrive para UNIX.
+
+|===

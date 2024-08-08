@@ -1,0 +1,48 @@
+---
+permalink: solaris/concept_migrating_to_new_vserver_name.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, vserver, migrate, name 
+summary: Se você migrou de um SVM antigo para um novo SVM, você deve garantir que o novo nome de SVM esteja configurado no sistema host para executar quaisquer operações SnapDrive no SVM. 
+---
+= Migrando para o novo nome de SVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se você migrou de um SVM antigo para um novo SVM, você deve garantir que o novo nome de SVM esteja configurado no sistema host para executar quaisquer operações SnapDrive no SVM.
+
+As etapas a seguir devem ser executadas no sistema host sempre que você migrar para um novo nome de SVM:
+
+.Passos
+. Exclua o nome do SVM antigo configurado usando o seguinte comando:
++
+`*snapdrive config delete _appliance_name_*`
+
++
+O nome do SVM configurado antigo é removido do sistema host.
+
+. Exclua o conjunto de portas atribuído ao antigo SVM configurado usando o seguinte comando:
++
+`*snapdrive portset delete _filername_ [_filername..._]*`
+
+. Configure o novo nome de SVM usando o seguinte comando:
++
+`*snapdrive config set _vsadmin filername_ [_filername..._]*`
+
+. Atribua o conjunto de portas usando o seguinte comando:
++
+`*snapdrive portset add _portset_name_ filername [_filername..._]*`
+
+. Migre o novo nome de SVM usando o seguinte comando:
++
+`*snapdrive config migrate set _old_entry new_entry_*`
+
+
+
+Depois de migrar para o novo SVM, você estará pronto para executar operações SnapDrive no sistema host para esse novo nome de SVM.
+
+*Informações relacionadas*
+
+xref:task_migrating_from_old_host_name_to_new_host_name.adoc[Migração do sistema de armazenamento antigo para o novo sistema de armazenamento]

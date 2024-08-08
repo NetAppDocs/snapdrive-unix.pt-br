@@ -1,0 +1,23 @@
+---
+permalink: solaris/concept_restoring_multiple_storage_entities.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, restore, storage, multiple 
+summary: É possível restaurar uma cópia Snapshot que contenha várias entidades de storage. 
+---
+= Restaurar várias entidades de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+É possível restaurar uma cópia Snapshot que contenha várias entidades de storage.
+
+Para restaurar uma cópia Snapshot que contenha entidades de storage residentes em sistemas de storage de vários destinos, você precisa atender aos seguintes requisitos:
+
+* As entidades de storage especificadas no prompt de comando devem residir em um único sistema de storage ou em um par de HA.
+* O nome do volume do sistema de armazenamento de origem deve corresponder ao nome do volume do sistema de armazenamento de destino.
+* Você deve definir o `snapmirror-dest-multiple-filervolumes-enabled` argumento no `snapdrive.conf` arquivo como ativado.
+
+
+Você pode usar um comando para restaurar entidades de storage que residem em um único sistema de storage ou em um par de HA.

@@ -1,0 +1,105 @@
+---
+permalink: solaris/task_disconnectingsnapshot_copy_withstorage_entities.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, disconnect, snapshot, copy, storage 
+summary: Você pode usar o comando SnapDrive snap Disconnect para desconetar uma cópia Snapshot que contenha entidades de storage. 
+---
+= Desconexão da cópia Snapshot com entidades de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o `snapdrive snap disconnect` comando para desconetar uma cópia Snapshot que contenha entidades de storage.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive snap disconnect {-dg | -fs | -hostvol } _file_spec_ [_file_spec..._] [-dg | -fs | -hostvol } _file_spec_ [_file_spec..._]] [-full] [-devicetype {shared | dedicated}] [-fstype type] [-vmtype type] [-split]*`
+
++
+Esse comando deve sempre começar com a entidade de storage, por exemplo, `-lun` `-dg` , `-hostvol`, ou `-fs`.
+
++
+** Se especificar um LUN  `-lun`), tem de introduzir o nome de LUN longo. Não é possível especificar um LUN com a `-lun` opção na mesma linha de comando que outras entidades de armazenamento (`-vg`, `-dg`, , `-fs` `-lvol` ou `-hostvol` opções).
+** Se especificar um LUN RDM  `-lun`), tem de introduzir o nome de LUN RDM longo. Não é possível especificar um LUN RDM com a `-lun` opção na mesma linha de comando que outras entidades de armazenamento (`-vg`, `-dg`, , `-fs` `-lvol` ou `-hostvol` opções).
+** Se você especificar um ponto de montagem NFS, não será possível especificar entidades que não sejam NFS (`-vg`, , `-dg`, `-fs`, `-lvol` ou `-hostvol`) na mesma linha de comando. Você deve usar um comando separado para especificar o ponto de montagem NFS.
+
+
++
+
+NOTE: Uma mensagem de erro ocorre se a entidade host estiver usando LUNs que não fazem parte da cópia Snapshot. Um erro também ocorre se você especificar um subconjunto dos volumes de host e/ou sistemas de arquivos contidos em cada grupo de discos de destino.
+
+
+
+O SnapDrive para UNIX remove os mapeamentos para as entidades de storage especificadas na linha de comando.
+
+Essa linha de comando remove os mapeamentos para todos os LUNs subjacentes ao volume de host dg5/myvolume. Ele remove quaisquer LUNs temporários que sejam criados com uma operação Snapshot Connect:
+
+[listing]
+----
+# snapdrive snap disconnect -hostvol dg5/myvolume
+----
+Essa linha de comando remove os mapeamentos para todos os LUNs subjacentes ao volume de host dg5/myvolume. Ele remove quaisquer LUNs temporários que sejam criados com uma operação Snapshot Connect:
+
+[listing]
+----
+# snapdrive snap disconnect -hostvol dg5/myvolume
+----
+Este comando desconeta o mapeamento ao grupo de discos 1 (DG1) e ao LUN subjacente. Ele também remove quaisquer LUNs temporários que sejam criados com a operação Snapshot Connect:
+
+[listing]
+----
+# snapdrive snap disconnect -lun toaster:/vol/vol1/luna -dg dg1
+----
+Esta linha de comando remove o mapeamento para o sistema de arquivos FS1 e para o LUN RDM que o sustenta. Ele também remove quaisquer LUNs RDM temporários criados com a operação Snapshot Connect:
+
+[listing]
+----
+# snapdrive snap disconnect -fs mnt/RDMNew
+----
+Esta linha de comando remove o mapeamento para o sistema de arquivos FS1 e para o LUN que o sustenta. Ele também remove quaisquer LUNs temporários que sejam criados com a operação Snapshot Connect:
+
+[listing]
+----
+# snapdrive snap disconnect -fs mnt/fs1
+----
+Esta linha de comando remove os mapeamentos para os grupos de discos DG1, dg2 e dg3. Ele remove quaisquer LUNs temporários que sejam criados com a operação Snapshot Connect:
+
+[listing]
+----
+# snapdrive snap disconnect -dg dg1 dg2 dg3
+----
+Este exemplo desconeta uma cópia Snapshot com sistema de arquivos, grupo de discos na pilha Veritas:
+
+[listing]
+----
+# snapdrive snap disconnect -fs /mnt/fs1_clone -fstype vxfs
+delete file system /mnt/fs1_clone
+- fs /mnt/fs1_clone ... deleted
+- hostvol vxvm1_0/fs1_SdHv_0 ... deleted
+- dg vxvm1_0 ... deleted
+- LUN snoopy:/vol/vol1/lunVxvm1_0 ... deleted
+----
+Este exemplo desconeta uma cópia Snapshot com sistema de arquivos, grupo de discos na pilha LVM:
+
+[listing]
+----
+# snapdrive snap disconnect -fs /mnt/fs1_clone -fstype
+					ufs
+delete file system /mnt/fs1_clone
+- fs /mnt/fs1_clone ... deleted
+- hostvol lvm1_0/fs1_SdHv_0 ... deleted
+- dg lvm1_0 ... deleted
+- LUN snoopy:/vol/vol1/lunLvm1_0 ... deleted
+----
+Este exemplo desconeta uma cópia Snapshot com o sistema de arquivos:
+
+[listing]
+----
+# snapdrive snap disconnect -fs /mnt/fs1
+delete file system /mnt/fs1
+- fs /mnt/fs1 ... deleted
+- LUN lech:/vol/vol1/lun1_0 ... deleted
+----

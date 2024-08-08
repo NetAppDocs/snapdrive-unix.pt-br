@@ -1,0 +1,31 @@
+---
+permalink: solaris/concept_guidelines_for_connecting_snapshot_copies_in_a_host_cluster_environment.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, guideline, connect, copy, host, cluster, snapshot 
+summary: Você pode conectar uma cópia Snapshot de qualquer nó em um cluster de host. Siga as diretrizes ao se conetar a uma cópia Snapshot. 
+---
+= Diretrizes para a conexão de cópias Snapshot em um ambiente de cluster de host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode conectar uma cópia Snapshot de qualquer nó em um cluster de host. Siga as diretrizes ao se conetar a uma cópia Snapshot.
+
+* O `snapdrive snapshot connect` comando pode ser executado a partir de qualquer nó no cluster de host. Se você iniciar o `snapdrive snap connect` comando com a `-devicetype shared` opção de qualquer nó não-mestre no cluster de host, o comando será enviado para o nó mestre e executado. Para que isso aconteça, verifique se o `rsh` prompt de acesso ou `ssh` sem senha é permitido em todos os nós do cluster de host.
+* Os vários sistemas de arquivos e grupos de discos especificados nesta operação devem ter o mesmo escopo do tipo de dispositivo; ou seja, todos devem ser compartilhados ou todos devem ser dedicados.
+*  `snapdrive snap connect`O comando com NFS ou entidades de storage em LUNs brutos não é compatível.
+* A `-igroup` opção é suportada com a `-devicetype` opção dedicada e não com a `-devicetype` opção compartilhada no `snapdrive snap connect` comando.
+* O SnapDrive para UNIX executa o `snapdrive snap connect` comando no nó principal. Antes de criar as entidades de storage compartilhadas, ele cria e mapeia o LUN no nó principal e, em seguida, mapeia os LUNs em todos os nós que não são mestres. O is também cria e gerencia os grupos para todos os nós no cluster de host. Se ocorrer qualquer mensagem de erro durante esta sequência, a operação de ligação instantânea falha.
+* O `snapdrive snap connect` comando pode ser usado para conetar as seguintes entidades de armazenamento:
++
+** Um sistema de arquivos compartilhado ou grupo de discos que já está presente em um modo compartilhado ou dedicado no cluster de host.
+** Um sistema de arquivos dedicado ou grupo de discos para um único nó no cluster de host, mesmo que o sistema de arquivos ou grupo de discos já esteja presente em um modo compartilhado no cluster de host.
+** Cópia Snapshot de um sistema de arquivos ou grupo de discos que é criado em um nó fora do cluster de host.
+
+
+* Um sistema de arquivos dedicado ou grupo de discos que já esteja presente em um nó não-mestre não pode ser conetado novamente em um modo compartilhado no cluster de host sem a `-destdg` opção de um grupo de discos e a `-autorename` opção de um sistema de arquivos.
+
+
+Ou seja, se um sistema de arquivos já estiver presente no modo dedicado em um dos nós não-mestre no cluster de host, você terá que especificar o `snapdrive snap connect` comando com `-destdg` as opções e `-autorename` ou especificar explicitamente o sistema de arquivos de destino no comando.

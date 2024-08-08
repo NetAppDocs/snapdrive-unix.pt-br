@@ -1,0 +1,35 @@
+---
+permalink: linux-administration/concept_considerations_when_working_with_snapshot_copies.html 
+sidebar: sidebar 
+keywords: snap, snapdrive,  snapshot, copy, storage 
+summary: Há alguns considerações que você deve ter em mente ao usar uma cópia Snapshot, como o fato de que o SnapDrive para UNIX funciona apenas com cópias Snapshot criadas por ele, ou que as cópias snapshot são replicadas automaticamente do sistema de storage para o host, etc. 
+---
+= Considerações ao trabalhar com cópias Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Há alguns considerações que você deve ter em mente ao usar uma cópia Snapshot, como o fato de que o SnapDrive para UNIX funciona apenas com cópias Snapshot criadas por ele, ou que as cópias snapshot são replicadas automaticamente do sistema de storage para o host, etc.
+
+Ao trabalhar com operações do Snapshot, você deve considerar o seguinte:
+
+* O SnapDrive para UNIX funciona apenas com cópias Snapshot criadas.
++
+Ele não pode restaurar cópias Snapshot que não criou.
+
+* Quando você cria uma cópia Snapshot em um sistema de storage de destino, a cópia Snapshot é replicada automaticamente a partir do sistema de storage de origem no qual ela é criada para o sistema de storage de destino.
++
+O SnapDrive para UNIX também permite restaurar a cópia Snapshot no sistema de storage de destino.
+
+* A conexão com o host de origem ocorre quando você usa o `snapdrive snap connect` comando para se conetar a uma cópia Snapshot em um novo local no mesmo host onde ele foi conetado pela última vez (ou ainda está conetado).
+* Em hosts Linux, o SnapDrive 3,0 para UNIX e posterior suporta operações de conexão instantânea no host de origem, a menos que o LUN ou um LUN com um sistema de arquivos faça parte do gerenciador de volume do Linux LVM1.
+* No Data ONTAP operando no modo 7, o SnapDrive suporta links simbólicos que residem dentro de um ponto de montagem.
+* O suporte a snapshot para entidades de storage que abrangem vários volumes de sistemas de storage ou vários sistemas de storage é limitado em configurações que não permitem a operação de congelamento na pilha de software.
+* Ao exportar o volume através do protocolo NFS, tem de definir a opção ID de utilizador anónimo como 0 para que os comandos SnapDrive para UNIX funcionem.
+* Uma operação SFSR (Single-File SnapRestore) seguida imediatamente pela criação de uma cópia Snapshot falha.
++
+Tem de tentar novamente a operação após algum tempo. Para obter mais informações, consulte link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["Guia de gerenciamento de storage lógico do Clustered Data ONTAP"].
+
+

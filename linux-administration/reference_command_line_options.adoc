@@ -1,0 +1,268 @@
+---
+permalink: linux-administration/reference_command_line_options.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, commands, unix, command, options 
+summary: Existem várias opções que são usadas com comandos SnapDrive para UNIX. 
+---
+= Opções de linha de comando
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Existem várias opções que são usadas com comandos SnapDrive para UNIX.
+
+O SnapDrive para UNIX permite que você inclua as seguintes opções, conforme apropriado, com seus comandos. Em certos casos, você pode abreviar essas opções. Por exemplo, você pode usar `-h` em vez `-help` de .
+
+|===
+| Opção | Descrição 
+
+
+ a| 
+`-addlun`
+ a| 
+Diz ao SnapDrive para UNIX para adicionar um novo LUN gerado internamente a uma entidade de storage, a fim de aumentar seu tamanho.
+
+
+
+ a| 
+`-all`
+ a| 
+Usado com o {`show | list`comando SnapDrive storage para exibir todos os dispositivos e entidades LVM conhecidas pelo host.
+
+
+
+ a| 
+`-autoexpand`
+ a| 
+Usado com o `snapdrive snap connect` comando para permitir que você solicite que um grupo de discos seja conetado ao fornecer um subconjunto dos volumes lógicos ou sistemas de arquivos no grupo de discos.
+
+
+
+ a| 
+`-autorename`
+ a| 
+Usado com o `snapdrive snap connect` comando para habilitar o comando para renomear quaisquer entidades LVM recém-conetadas para as quais o nome padrão já está em uso.
+
+
+
+ a| 
+`-clone type`
+ a| 
+Método clone a ser usado durante `snap connect` a operação. Esse tipo se refere ao lunclone (cria clone(s) de lun), ideal (o SnapDrive escolhe automaticamente entre FlexClone(s) restritos(s) e clone de LUN dependendo da configuração de storage) e não restrito (cria FlexClone(s) que podem ser usados para provisionamento e operações Snapshot, assim como volumes flexíveis normais).
+
+
+
+ a| 
+`-capabilities`
+ a| 
+usado com `snapdrive storage show` comando para saber as operações permitidas nas especificações do arquivo host.
+
+
+
+ a| 
+`-devices` ou `-dev`
+ a| 
+Usado com o comando storage para exibir todos os dispositivos conhecidos pelo host.
+
+
+
+ a| 
+`-dgsize` ou `-vgsize`
+ a| 
+Usado com o `snapdrive storage create` comando para especificar o tamanho em bytes do grupo de discos que você deseja criar.
+
+
+
+ a| 
+`-force` (ou `-f`)
+ a| 
+Faz com que as operações sejam tentadas que o SnapDrive para UNIX não empreenderia normalmente. O SnapDrive para UNIX solicita a confirmação antes de executar a operação.
+
+
+
+ a| 
+`-fsopts`
+ a| 
+As opções que você deseja passar para a operação de host que cria o novo sistema de arquivos. Dependendo do sistema operacional do host, essa operação do host pode ser um comando como o `mkfs` comando.
+
+O argumento que você fornece com esta opção geralmente precisa ser especificado como uma cadeia de carateres cotada e deve conter o texto exato a ser passado para o comando.
+
+Por exemplo, você pode digitar `-o largefiles` como a opção que deseja passar para a operação do host.
+
+
+
+ a| 
+`-fstype`
+ a| 
+O tipo de sistema de arquivos que você deseja usar para as operações do SnapDrive para UNIX. O sistema de arquivos deve ser um tipo que o SnapDrive para UNIX suporta para o seu sistema operacional. Os valores atuais que você pode definir para essa variável são "'ext3 ou ext4'"
+
+Você também pode especificar o tipo de sistema de arquivos que deseja usar usando a `-fstype` variável de configuração.
+
+
+
+ a| 
+`-full`
+ a| 
+Permite que operações em uma entidade do lado do host especificada sejam executadas mesmo que a entidade não esteja vazia (por exemplo, a entidade pode ser um grupo de volumes contendo um ou mais volumes lógicos).
+
+
+
+ a| 
+`-growby`
+ a| 
+O número de bytes que você deseja adicionar a um LUN ou grupo de discos para aumentar seu tamanho.
+
+
+
+ a| 
+`-growto`
+ a| 
+O tamanho de destino em bytes para um LUN, grupo de discos ou grupo de volumes. O SnapDrive para UNIX calcula automaticamente o número de bytes necessários para alcançar o tamanho do alvo e aumenta o tamanho do objeto por esse número de bytes.
+
+
+
+ a| 
+`-help`
+ a| 
+Imprime a mensagem de uso para o comando e operação. Introduza esta opção por si só sem outras opções. A seguir estão os exemplos de possíveis linhas de comando.
+
+
+
+ a| 
+`-lunsize`
+ a| 
+O tamanho do LUN em bytes a ser criado por um determinado comando.
+
+
+
+ a| 
+`-mntopts`
+ a| 
+Especifica as opções que você deseja passar para o comando de montagem do host (por exemplo, para especificar o comportamento de log do sistema de arquivos). As opções também são armazenadas no arquivo de tabela do sistema de arquivos host. As opções permitidas dependem do tipo de sistema de arquivos host.
+
+ `-mntopts`O argumento que você fornece é uma opção do tipo de sistema de arquivos que é especificada usando o sinalizador do comando mount "'- o'". Não inclua no argumento a bandeira '''''' `-mntopts`. Por exemplo, a sequência `-mntopts tmplog` passa a string `-o tmplog` para a linha de comando mount e insere o texto "'tmplog" em uma nova linha de comando.
+
+
+
+ a| 
+`-nofilerfence`
+ a| 
+Suprime o uso do recurso de grupo de consistência do Data ONTAP na criação de cópias Snapshot que abrangem vários volumes de filer.
+
+No Data ONTAP 7,2 ou superior, você pode suspender o acesso a todo um volume de filer. Ao utilizar a `-nofilerfence` opção, pode congelar o acesso a um LUN individual.
+
+
+
+ a| 
+`-nolvm`
+ a| 
+Coneta ou cria um sistema de arquivos diretamente em um LUN sem envolver o LVM host.
+
+Todos os comandos que aceitam essa opção para conetar ou criar um sistema de arquivos diretamente em um LUN não a aceitarão para cluster de host ou recursos compartilhados. Esta opção é permitida apenas para recursos locais.
+
+
+
+ a| 
+`-nopersist`
+ a| 
+Coneta ou cria um sistema de arquivos, ou uma cópia Snapshot que tem um sistema de arquivos, sem adicionar uma entrada no arquivo de entrada de montagem persistente do host.
+
+
+
+ a| 
+`-prefixfv`
+ a| 
+prefixo a ser usado ao gerar o nome do volume clonado. O formato do nome do novo volume `<pre-fix>_<original_volume_name>` seria .
+
+
+
+ a| 
+`-reserve - noreserve`
+ a| 
+Usado com os `snapdrive storage create` comandos , `snapdrive snap connect` ou `snapdrive snap restore` para especificar se o SnapDrive para UNIX cria ou não uma reserva de espaço. Por padrão, o SnapDrive para UNIX cria reservas para operações de criação, redimensionamento e criação de instantâneos, e não cria reserva para operação de conexão instantânea.
+
+
+
+ a| 
+`-noprompt`
+ a| 
+Suprime a solicitação durante a execução do comando. Por padrão, qualquer operação que possa ter efeitos colaterais perigosos ou não intuitivos solicita que você confirme que o SnapDrive para UNIX deve ser tentado. Essa opção substitui esse prompt; quando combinada com a `-force` opção, o SnapDrive para UNIX executa a operação sem solicitar confirmação.
+
+
+
+ a| 
+`-quiet` (ou `-q`)
+ a| 
+Suprime a comunicação de erros e avisos, independentemente de serem normais ou diagnósticos. Ele retorna zero (sucesso) ou status não zero. A `-quiet` opção substitui a `-verbose` opção.
+
+Esta opção será ignorada para `snapdrive storage show` `snapdrive snap show` os comandos , e `snapdrive config show` .
+
+
+
+ a| 
+`-readonly`
+ a| 
+Necessário para configurações com Data ONTAP 7,1 ou qualquer configuração que use volumes tradicionais. Coneta o arquivo ou diretório NFS com acesso somente leitura.
+
+Opcional para configurações com Data ONTAP 7,0 que usam FlexVol volumes. Coneta o arquivo NFS ou a árvore de diretórios com acesso somente leitura. (O padrão é leitura/gravação).
+
+
+
+ a| 
+`-split`
+ a| 
+Permite dividir os volumes clonados ou LUNs durante as operações do Snapshot Connect e do Snapshot Disconnect.
+
+Você também pode dividir os volumes clonados ou LUNs usando a `_enable-split-clone_` variável de configuração.
+
+
+
+ a| 
+`-status`
+ a| 
+Usado com o `snapdrive storage show` comando para saber se o volume ou LUN é clonado.
+
+
+
+ a| 
+`-unrelated`
+ a| 
+Cria uma cópia Snapshot de `file_spec` entidades que não têm gravações dependentes quando a cópia Snapshot é feita. Como as entidades não têm gravações dependentes, o SnapDrive para UNIX cria uma cópia Snapshot consistente com falhas das entidades de storage individuais, mas não toma medidas para tornar as entidades consistentes umas com as outras.
+
+
+
+ a| 
+`-verbose` (ou `-v`)
+ a| 
+Exibe a saída detalhada, sempre que apropriado. Todos os comandos e operações aceitam essa opção, embora alguns possam ignorá-la.
+
+
+
+ a| 
+`-vgsize` ou `-dgsize`
+ a| 
+Usado com o `storage create` comando para especificar o tamanho em bytes do grupo de volumes que você deseja criar.
+
+
+
+ a| 
+`-vmtype`
+ a| 
+O tipo de gerenciador de volume que você deseja usar para as operações do SnapDrive para UNIX.
+
+Se o usuário especificar a `-vmtype` opção na linha de comando explicitamente, o SnapDrive para UNIX usará o valor especificado na opção, independentemente do valor especificado na `vmtype` variável de configuração. Se a `-vmtype` opção não for especificada na opção de linha de comando, o SnapDrive para UNIX usará o gerenciador de volume que está no arquivo de configuração.
+
+O gerenciador de volumes deve ser um tipo que o SnapDrive para UNIX suporte para seu sistema operacional. Valores atuais que você pode definir para essa variável como lvm.
+
+Você também pode especificar o tipo de gerenciador de volume que deseja usar usando a variável de configuração vmtype.
+
+
+
+ a| 
+`-vbsr {preview|execute}`
+ a| 
+A `preview` opção inicia um mecanismo de pré-visualização SnapRestore baseado em volume para o filespec de host dado. Com a `execute` opção, o SnapDrive para UNIX prossegue com SnapRestore baseado em volume para o filespec especificado.
+
+|===

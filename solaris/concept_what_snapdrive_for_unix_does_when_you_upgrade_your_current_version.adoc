@@ -1,0 +1,23 @@
+---
+permalink: solaris/concept_what_snapdrive_for_unix_does_when_you_upgrade_your_current_version.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, upgrade, current, version 
+summary: Você pode facilmente atualizar o SnapDrive para UNIX para a versão mais recente. Como parte do processo de atualização, poucas variáveis mudam no arquivo SnapDrive.conf. Para garantir que o SnapDrive para UNIX esteja funcionando corretamente, verifique os vários valores padrão no arquivo SnapDrive.conf. 
+---
+= Atualize o SnapDrive para UNIX para a versão atual
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode facilmente atualizar o SnapDrive para UNIX para a versão mais recente. Como parte do processo de atualização, poucas variáveis mudam no `snapdrive.conf` arquivo. Para garantir que o SnapDrive para UNIX esteja funcionando corretamente, verifique os vários valores padrão no `snapdrive.conf` arquivo.
+
+Para atualizar sua versão atual do SnapDrive para UNIX, você não precisa desinstalá-la. Em vez disso, você deve instalar a versão mais recente do software em cima da versão atual.
+
+Quando você instala uma nova versão, o SnapDrive para UNIX verifica se já tem uma versão instalada. Se o fizer, ele preserva o arquivo atual `snapdrive.conf` e renomeia a versão do arquivo que está sendo instalado `snapdrive.conf.x` no . Desta forma, evita a substituição do seu `snapdrive.conf` ficheiro, para que não perca quaisquer definições personalizadas no ficheiro.
+
+Por padrão, o SnapDrive para UNIX comenta as variáveis no `snapdrive.conf` arquivo. Isso significa que ele usa automaticamente os valores padrão para todas as variáveis, exceto as que você personaliza. Se você quiser alterar esses valores, adicione as variáveis ao arquivo atual `snapdrive.conf` e especifique os valores desejados.
+
+
+NOTE: Quando você executa uma atualização de patch, a versão do SnapDrive `snapdrive.conf` no arquivo não muda. No entanto, o `snapdrive version` comando fornece a versão apropriada.

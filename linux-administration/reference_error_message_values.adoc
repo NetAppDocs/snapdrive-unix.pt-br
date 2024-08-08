@@ -1,0 +1,1760 @@
+---
+permalink: linux-administration/reference_error_message_values.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, error, message, value, common 
+summary: É útil que você esteja ciente de algumas das mensagens de erro mais comuns que você pode ver ao usar o SnapDrive para UNIX e saber como resolvê-las. 
+---
+= Valores da mensagem de erro
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+É útil que você esteja ciente de algumas das mensagens de erro mais comuns que você pode ver ao usar o SnapDrive para UNIX e saber como resolvê-las.
+
+A tabela a seguir fornece informações detalhadas sobre os erros mais comuns que você pode encontrar ao usar o SnapDrive para UNIX:
+
+[cols="15,20,15,25,40"]
+|===
+| Código de erro | Código de retorno | Tipo | Mensagem | Solução 
+
+
+ a| 
+`0000-001`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Datapath has been configured for the storage system <STORAGE-SYSTEM-NAME>. Please delete it using snapdrive config delete -mgmtpath command and retry`.
+ a| 
+Antes de excluir o sistema de armazenamento, exclua o caminho de gerenciamento configurado para o sistema de armazenamento usando o `snapdrive config delete -mgmtpath` comando.
+
+
+
+ a| 
+`0001-242`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Unable to connect using https to storage system: 10.72.197.213. Ensure that 10.72.197.213 is a valid storage system name/address, and if the storage system that you configure is running on a Data ONTAP operating in 7-Mode, add the host to the trusted hosts (options trusted.hosts) and enable SSL on the storage system 10.72.197.213 or modify the snapdrive.conf to use http for communication and restart the snapdrive daemon. If the storage system that you configure is running on clustered Data ONTAP, ensure that the Vserver name is mapped to IP address of the Vserver's management LIF.``
+ a| 
+Verifique as seguintes condições:
+
+* Certifique-se de que o sistema de armazenamento que está ligado é um sistema de armazenamento válido.
+* Se o sistema de armazenamento que você está tentando configurar estiver sendo executado no Data ONTAP operando no modo 7, adicione o mesmo aos hosts confiáveis e ative o SSL no sistema de armazenamento ou modifique o `snapdrive.conf` arquivo para usar HTTP para comunicação; em seguida, reinicie o daemon SnapDrive.
+* Se o sistema de storage que você está tentando configurar estiver sendo executado em cluster Data ONTAP, verifique se o nome do SVM está mapeado para o endereço IP da interface lógica de gerenciamento (LIF) do SVM.
+
+
+
+
+ a| 
+`0003- 004`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Failed to deport LUN <LUN-NAME> on storage system <STORAGE-SYSTEM-NAME> from the Guest OS. Reason: No mapping device information populated from CoreOS`
+ a| 
+Isso acontece quando você executa a `snapdrive snap disconnect` operação no sistema operacional convidado.
+
+Verifique se há algum mapeamento LUN RDM no servidor ESX ou entrada RDM obsoleta no servidor ESX.
+
+Exclua o mapeamento RDM manualmente no servidor ESX, bem como no sistema operacional convidado.
+
+
+
+ a| 
+`0001- 019`
+ a| 
+3
+ a| 
+Comando
+ a| 
+`invalid command line -- duplicate filespecs: <dg1/vol2 and dg1/vol2>`
+ a| 
+Isso acontece quando o comando executado tem várias entidades de host no mesmo volume de host.
+
+Por exemplo, o comando especificou explicitamente o volume do host e o sistema de arquivos no mesmo volume do host.
+
+Execute as seguintes etapas:
+
+. Remova todas as instâncias duplicadas das entidades do host.
+. Execute o comando novamente.
+
+
+
+
+ a| 
+`0001-023`
+ a| 
+11
+ a| 
+Administrador
+ a| 
+`Unable to discover all LUNs in Disk Group dg1.Devices not responding: dg1 Please check the LUN status on the storage system and bring the LUN online if necessary or add the host to the trusted hosts (options trusted.hosts) and enable SSL on the storage system or retry after changing snapdrive.conf to use (http/https) for storage system communication and restarting snapdrive daemon.`
+ a| 
+Isso acontece quando uma consulta SCSI no dispositivo falha. Uma consulta SCSI no dispositivo pode falhar por vários motivos.
+
+Execute as seguintes etapas:
+
+. Defina a variável de configuração de retentativas de dispositivo para um valor mais alto.
++
+Por exemplo, defina-o como 10 (o valor padrão é 3) e execute o comando novamente.
+
+. Use o `snapdrive storage show` comando com a `-all` opção para obter informações sobre o dispositivo.
+. Verifique se o serviço FC ou iSCSI está ativo e em execução no sistema de storage.
++
+Caso contrário, contacte o administrador de armazenamento para colocar o sistema de armazenamento online.
+
+. Verifique se o serviço FC ou iSCSI está ativo no host.
+
+
+Se as soluções anteriores não resolverem o problema, entre em Contato com o suporte técnico.
+
+
+
+ a| 
+`0001-395`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`No HBAs on this host!`
+ a| 
+Isso ocorre se você tiver um grande número de LUNs conetados ao sistema host.
+
+Verifique se a variável `_enable-fcp-cache_` está definida como On (ligado) no `snapdrive.conf` ficheiro.
+
+
+
+ a| 
+`0001-389`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Cannot get HBA type for HBA assistant linuxfcp`
+ a| 
+Isso ocorre se você tiver um grande número de LUNs conetados ao sistema host.
+
+Verifique se a variável `_enable-fcp-cache_` está definida como On (ligado) no `snapdrive.conf` ficheiro.
+
+
+
+ a| 
+`0001-389`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Cannot get HBA type for HBA assistant vmwarefcp`
+ a| 
+As seguintes condições devem ser verificadas:
+
+* Antes de criar um armazenamento, verifique se você configurou a interface virtual usando o comando:
+
+
+`*snapdrive config set _-viadmin <user> <virtual_interface_IP or name>_*`
+
+* Verifique se o sistema de armazenamento existe para uma interface virtual e você ainda encontra a mesma mensagem de erro e, em seguida, reinicie o SnapDrive para UNIX para que a operação de criação de armazenamento seja bem-sucedida.
+* Verifique se você atende aos requisitos de configuração do Virtual Storage Console, conforme documentado no link:https://www.netapp.com/pdf.html?item=/media/7350-ds-3057.pdf["Console de storage virtual do NetApp para VMware vSphere"]
+
+
+
+
+ a| 
+`0001-682`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Host preparation for new LUNs failed: This functionality checkControllers is not supported.`
+ a| 
+Execute o comando novamente para que a operação SnapDrive seja bem-sucedida.
+
+
+
+ a| 
+`0001-859`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`None of the host's interfaces have NFS permissions to access directory <directory name> on storage system <storage system name>`
+ a| 
+No `snapdrive.conf` arquivo, verifique se a `_check-export-permission-nfs-clone_` variável de configuração está definida como `off`.
+
+
+
+ a| 
+`0002-253`
+ a| 
+ a| 
+Administrador
+ a| 
+`Flex clone creation failed`
+ a| 
+É um erro do lado do sistema de armazenamento. Recolha os registos sd-trace.log e do sistema de armazenamento para o resolver.
+
+
+
+ a| 
+`0002-264`
+ a| 
+ a| 
+Administrador
+ a| 
+`FlexClone is not supported on filer <filer name>`
+ a| 
+O FlexClone não é compatível com a versão atual do Data ONTAP do sistema de storage. Atualize a versão Data ONTAP do sistema de armazenamento para 7,0 ou posterior e tente novamente o comando.
+
+
+
+ a| 
+`0002-265`
+ a| 
+ a| 
+Administrador
+ a| 
+`Unable to check flex_clone license on filer <filername>`
+ a| 
+É um erro do lado do sistema de armazenamento. Colete os logs do sd-trace.log e do sistema de armazenamento para solucioná-lo.
+
+
+
+ a| 
+`0002-266`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`FlexClone is not licensed on filer <filername>`
+ a| 
+O FlexClone não é licenciado no sistema de storage. Tente novamente o comando depois de adicionar a licença FlexClone no sistema de armazenamento.
+
+
+
+ a| 
+`0002-267`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`FlexClone is not supported on root volume <volume-name>`
+ a| 
+FlexClones não pode ser criado para volumes raiz.
+
+
+
+ a| 
+`0002-270`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`The free space on the aggregate <aggregate-name> is less than <size> MB(megabytes) required for diskgroup/flexclone metadata`
+ a| 
+. Para conexão a LUNs brutos usando FlexClones, é necessário espaço livre de 2 MB no agregado.
+. Libere algum espaço no agregado conforme as etapas 1 e 2 e tente novamente o comando.
+
+
+
+
+ a| 
+`0002-332`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`SD.SnapShot.Restore access denied on qtree storage_array1:/vol/vol1/qtree1 for user lnx197-142\john`
+ a| 
+Contacte o administrador do Operations Manager para conceder a capacidade necessária ao utilizador.
+
+
+
+ a| 
+`0002-364`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Unable to contact DFM: lnx197-146, please change user name and/or password.`
+ a| 
+Verifique e corrija o nome de usuário e a senha do usuário sd-admin.
+
+
+
+ a| 
+`0002-268`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`<volume-Name> is not a flexible volume`
+ a| 
+Não é possível criar FlexClones para volumes tradicionais.
+
+
+
+ a| 
+`0003-003`
+ a| 
+ a| 
+Administrador
+ a| 
+. `Failed to export LUN <LUN_NAME> on storage system <STORAGE_NAME> to the Guest OS.`
++
+ or
+
+ a| 
+* Verifique se há algum mapeamento de LUN RDM na entrada de RDM obsoleta do servidor ESX (ou) no servidor ESX.
+* Exclua o mapeamento RDM manualmente no servidor ESX, bem como no sistema operacional convidado.
+
+
+
+
+ a| 
+`0003-012`
+ a| 
+ a| 
+Administrador
+ a| 
+`Virtual Interface Server win2k3-225-238 is not reachable.`
+ a| 
+O NIS não está configurado no para o sistema operacional host/Guest.
+
+Tem de fornecer o nome e o mapeamento IP no ficheiro localizado em `/etc/hosts`
+
+Por exemplo: `# cat /etc/hosts10.72.225.238 win2k3-225-238.eng.org.com win2k3-225-238`
+
+
+
+ a| 
+`0001-552`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Not a valid Volume-clone or LUN-clone`
+ a| 
+A divisão de clones não pode ser criada para volumes tradicionais.
+
+
+
+ a| 
+`0001-553`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Unable to split "FS-Name" due to insufficient storage space in <Filer- Name>`
+ a| 
+A divisão de clones continua o processo de divisão e, de repente, a divisão de clones pára devido ao espaço de armazenamento insuficiente não disponível no sistema de armazenamento.
+
+
+
+ a| 
+`0003-002`
+ a| 
+ a| 
+Comando
+ a| 
+`No more LUN's can be exported to the guest OS.`
+ a| 
+Como o número de dispositivos suportados pelo servidor ESX para um controlador atingiu o limite máximo, você deve adicionar mais controladores para o sistema operacional convidado.
+
+*OBSERVAÇÃO:* o servidor ESX limita o controlador máximo por sistema operacional convidado a 4.
+
+
+
+ a| 
+`9000- 023`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`No arguments for keyword -lun`
+ a| 
+Este erro ocorre quando o comando com a `-lun` palavra-chave não tem o `_lun_name_` argumento.
+
+O que fazer: Faça um dos seguintes procedimentos;
+
+. Especifique o `_lun_name_` argumento para o comando com a `-lun` palavra-chave.
+. Verifique a mensagem de ajuda do SnapDrive para UNIX
+
+
+
+
+ a| 
+`0001-028`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`File system </mnt/qa/dg4/vol1> is of a type (hfs) not managed by snapdrive. Please resubmit your request, leaving out the file system <mnt/qa/dg4/vol1>`
+ a| 
+Esse erro ocorre quando um tipo de sistema de arquivos não suportado faz parte de um comando.
+
+O que fazer: Excluir ou atualizar o tipo de sistema de arquivos e, em seguida, usar o comando novamente.
+
+Para obter as informações mais recentes sobre compatibilidade de software, consulte a Matriz de interoperabilidade.
+
+
+
+ a| 
+`9000-030`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`-lun may not be combined with other keywords`
+ a| 
+Esse erro ocorre quando você combina a `-lun` palavra-chave com a `-fs` palavra-chave ou `-dg`. Este é um erro de sintaxe e indica o uso inválido do comando.
+
+O que fazer: Execute o comando novamente apenas com a `-lun` palavra-chave.
+
+
+
+ a| 
+`0001-034`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`mount failed: mount: <device name> is not a valid block device"`
+ a| 
+Esse erro ocorre somente quando o LUN clonado já está conetado ao mesmo filespec presente na cópia Snapshot e então você tenta executar o `snapdrive snap restore` comando.
+
+O comando falha porque o daemon iSCSI remapeia a entrada do dispositivo para o LUN restaurado quando você exclui o LUN clonado.
+
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Execute o `snapdrive snap restore` comando novamente.
+. Exclua o LUN conetado (se ele estiver montado no mesmo filespec que na cópia Snapshot) antes de tentar restaurar uma cópia Snapshot de um LUN original.
+
+
+
+
+ a| 
+`0001-046 and 0001-047`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`Invalid snapshot name: </vol/vol1/NO_FILER_PRE FIX> or Invalid snapshot name: NO_LONG_FILERNAME - filer volume name is missing`
+ a| 
+Este é um erro de sintaxe que indica o uso inválido do comando, em que uma operação de captura instantânea é tentada com um nome de captura instantânea inválido.
+
+O que fazer: Execute as seguintes etapas:
+
+. Use o comando SnapDrive snap list - arquivador <filer-volume-name> para obter uma lista de cópias snapshot.
+. Execute o comando com o argumento long_snap_name.
+
+
+
+
+ a| 
+`9000-047`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`More than one -snapname argument given`
+ a| 
+O SnapDrive para UNIX não pode aceitar mais de um nome de instantâneo na linha de comando para executar quaisquer operações de instantâneo.
+
+O que fazer: Execute o comando novamente, com apenas um nome de instantâneo.
+
+
+
+ a| 
+`9000-049`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`-dg and -vg may not be combined`
+ a| 
+Esse erro ocorre quando você combina as `-dg` palavras-chave e `-vg` . Este é um erro de sintaxe e indica o uso inválido de comandos.
+
+O que fazer: Execute o comando com a `-dg` palavra-chave ou `-vg` .
+
+
+
+ a| 
+`9000-050`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`-lvol and -hostvol may not be combined`
+ a| 
+Esse erro ocorre quando você combina as `-lvol` palavras-chave e `-hostvol` . Este é um erro de sintaxe e indica o uso inválido de comandos. O que fazer: Execute as seguintes etapas:
+
+. Altere a `-lvol` opção para `-hostvol` opção ou vice-versa na linha de comando.
+. Execute o comando.
+
+
+
+
+ a| 
+`9000-057`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`Missing required -snapname argument`
+ a| 
+Este é um erro de sintaxe que indica um uso inválido do comando, em que uma operação Snapshot é tentada sem fornecer o argumento snap_NAME.
+
+O que fazer: Execute o comando com um nome instantâneo apropriado.
+
+
+
+ a| 
+`0001-067`
+ a| 
+6
+ a| 
+Comando
+ a| 
+`Snapshot hourly.0 was not created by snapdrive.`
+ a| 
+Essas são as cópias Snapshot automáticas por hora criadas pelo Data ONTAP.
+
+
+
+ a| 
+`0001-092`
+ a| 
+6
+ a| 
+Comando
+ a| 
+`snapshot <non_existent_24965> doesn't exist on a filervol exocet: </vol/vol1>`
+ a| 
+A cópia Snapshot especificada não foi encontrada no sistema de storage. O que fazer: Use o `snapdrive snap list` comando para encontrar as cópias Snapshot que existem no sistema de storage.
+
+
+
+ a| 
+`0001- 099`
+ a| 
+10
+ a| 
+Administrador
+ a| 
+`Invalid snapshot name: <exocet:/vol2/dbvol:New SnapName> doesn't match filer volume name <exocet:/vol/vol1>`
+ a| 
+Este é um erro de sintaxe que indica o uso inválido de comandos, em que uma operação de captura instantânea é tentada com um nome de captura instantânea inválido.
+
+O que fazer: Execute as seguintes etapas:
+
+. Use o `snapdrive snap list - filer _<filer-volume-name_` comando para obter uma lista de cópias Snapshot.
+. Execute o comando com o formato correto do nome do instantâneo qualificado pelo SnapDrive para UNIX. Os formatos qualificados são: `_long_snap_name_` E `_short_snap_name_`.
+
+
+
+
+ a| 
+`0001-122`
+ a| 
+6
+ a| 
+Administrador
+ a| 
+`Failed to get snapshot list on filer <exocet>: The specified volume does not exist.`
+ a| 
+Este erro ocorre quando o volume do sistema de armazenamento especificado (arquivador) não existe.
+
+O que fazer: Execute as seguintes etapas:
+
+. Contacte o administrador de armazenamento para obter a lista de volumes válidos do sistema de armazenamento.
+. Execute o comando com um nome de volume válido do sistema de armazenamento.
+
+
+
+
+ a| 
+`0001-124`
+ a| 
+111
+ a| 
+Administrador
+ a| 
+`Failed to removesnapshot <snap_delete_multi_inuse_24374> on filer <exocet>: LUN clone`
+ a| 
+A `Snapshot delete` operação falhou para a cópia Snapshot especificada porque o clone LUN estava presente.
+
+O que fazer: Execute as seguintes etapas:
+
+. Use o comando SnapDrive storage show com a `-all` opção de encontrar o clone LUN para a cópia Snapshot (parte da saída de cópia Snapshot de backup).
+. Entre em Contato com o administrador de storage para dividir o LUN do clone.
+. Execute o comando novamente.
+
+
+
+
+ a| 
+`0001-155`
+ a| 
+4
+ a| 
+Comando
+ a| 
+`Snapshot <dup_snapname23980> already exists on <exocet: /vol/vol1>. Please use -f (force) flag to overwrite existing snapshot`
+ a| 
+Esse erro ocorre se o nome da cópia Snapshot usado no comando já existir.
+
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Execute o comando novamente com um nome Snapshot diferente.
+. Execute o comando novamente com o `-f` sinalizador (force) para substituir a cópia Snapshot existente.
+
+
+
+
+ a| 
+`0001-158`
+ a| 
+84
+ a| 
+Comando
+ a| 
+`diskgroup configuration has changed since <snapshotexocet:/vol/vo l1:overwrite_noforce_25 078> was taken. removed hostvol </dev/dg3/vol4> Please use '-f' (force) flag to override warning and complete restore`
+ a| 
+O grupo de discos pode conter vários LUNs e, quando a configuração do grupo de discos muda, você encontra esse erro. Por exemplo, ao criar uma cópia Snapshot, o grupo de discos consistia em X número de LUNs e, depois de fazer a cópia, o grupo de discos pode ter X número Y de LUNs.
+
+O que fazer: Use o comando novamente com a `-f` bandeira (force).
+
+
+
+ a| 
+`0001-185`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`storage show failed: no NETAPP devices to show or enable SSL on the filers or retry after changing snapdrive.conf to use http for filer communication.`
+ a| 
+Este problema pode ocorrer pelas seguintes razões:
+
+Se o daemon iSCSI ou o serviço FC no host tiver parado ou estiver com defeito, o `snapdrive storage show -all` comando falhará, mesmo que haja LUNs configurados no host.
+
+O que fazer: Resolver o serviço iSCSI ou FC com defeito.
+
+O sistema de storage no qual os LUNs estão configurados está inativo ou está sendo reiniciado.
+
+O que fazer: Aguarde até que os LUNs estejam ativos.
+
+O valor definido para a `_usehttps- to-filer_` variável de configuração pode não ser uma configuração suportada.
+
+O que fazer: Execute as seguintes etapas:
+
+. Use o `sanlun lun show all` comando para verificar se há LUNs mapeados para o host.
+. Se houver LUNs mapeados para o host, siga as instruções mencionadas na mensagem de erro.
+
+
+Alterar o valor `_usehttps- to-filer_` da variável de configuração (para "'on'" se o valor for "'off'"; para "'off' se o valor for "'on'").
+
+
+
+ a| 
+`0001-226`
+ a| 
+3
+ a| 
+Comando
+ a| 
+`'snap create' requires all filespecs to be accessible Please verify the following inaccessible filespec(s): File System: </mnt/qa/dg1/vol3>`
+ a| 
+Esse erro ocorre quando a entidade host especificada não existe.
+
+O que fazer: Use o `snapdrive storage show` comando novamente com a `-all` opção para encontrar as entidades de host que existem no host.
+
+
+
+ a| 
+`0001- 242`
+ a| 
+18
+ a| 
+Administrador
+ a| 
+`Unable to connect to filer: <filername>`
+ a| 
+O SnapDrive para UNIX tenta se conetar a um sistema de armazenamento por meio do protocolo HTTP seguro. O erro pode ocorrer quando o host não consegue se conetar ao sistema de armazenamento.
+
+O que fazer: Execute as seguintes etapas:
+
+. Problemas de rede:
++
+.. Use o comando nslookup para verificar a resolução do nome DNS para o sistema de armazenamento que funciona através do host.
+.. Adicione o sistema de armazenamento ao servidor DNS se ele não existir.
++
+Você também pode usar um endereço IP em vez de um nome de host para se conetar ao sistema de armazenamento.
+
+
+
+. Configuração do sistema de armazenamento:
++
+.. Para que o SnapDrive para UNIX funcione, você deve ter a chave de licença para o acesso HTTP seguro.
+.. Depois que a chave de licença estiver configurada, verifique se você pode acessar o sistema de armazenamento por meio de um navegador da Web.
+
+
+. Execute o comando depois de executar a Etapa 1 ou a Etapa 2 ou ambas.
+
+
+
+
+ a| 
+`0001- 243`
+ a| 
+10
+ a| 
+Comando
+ a| 
+`Invalid dg name: <SDU_dg1>`
+ a| 
+Esse erro ocorre quando o grupo de discos não está presente no host e, posteriormente, o comando falha. Por exemplo, `_SDU_dg1_` não está presente no host.
+
+O que fazer: Execute as seguintes etapas:
+
+. Use o `snapdrive storage show -all` comando para obter todos os nomes dos grupos de discos.
+. Execute o comando novamente, com o nome correto do grupo de discos.
+
+
+
+
+ a| 
+`0001- 246`
+ a| 
+10
+ a| 
+Comando
+ a| 
+`Invalid hostvolume name: </mnt/qa/dg2/BADFS>, the valid format is <vgname/hostvolname>, i.e. <mygroup/vol2>`
+ a| 
+O que fazer: Execute o comando novamente, com o seguinte formato apropriado para o nome do volume do host: `vgname/hostvolname`
+
+
+
+ a| 
+`0001- 360`
+ a| 
+34
+ a| 
+Administrador
+ a| 
+`Failed to create LUN </vol/badvol1/nanehp13_ unnewDg_fve_SdLun> on filer <exocet>: No such volume`
+ a| 
+Esse erro ocorre quando o caminho especificado inclui um volume do sistema de armazenamento que não existe.
+
+O que fazer: Entre em Contato com o administrador de armazenamento para obter a lista de volumes do sistema de armazenamento que estão disponíveis para uso.
+
+
+
+ a| 
+`0001- 372`
+ a| 
+58
+ a| 
+Comando
+ a| 
+`+Bad lun name::+` `</vol/vol1/sce_lun2a> - format not recognized`
+ a| 
+Este erro ocorre se os nomes de LUN especificados no comando não aderirem ao formato predefinido suportado pelo SnapDrive para UNIX. O SnapDrive para UNIX requer que os nomes de LUN sejam especificados no seguinte formato predefinido: `<filer-name: /vol/<volname>/<lun-name>`
+
+O que fazer: Execute as seguintes etapas:
+
+. Use o `snapdrive help` comando para saber o formato predefinido para nomes LUN que o SnapDrive para UNIX suporta.
+. Execute o comando novamente.
+
+
+
+
+ a| 
+`0001- 373`
+ a| 
+6
+ a| 
+Comando
+ a| 
+`The following required 1 LUN(s) not found: exocet:</vol/vol1/NotARealLun>`
+ a| 
+Este erro ocorre quando o LUN especificado não é encontrado no sistema de armazenamento.
+
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Para ver os LUNs conetados ao host, use o `snapdrive storage show -dev` comando ou `snapdrive storage show -all` comando.
+. Para ver toda a lista de LUNs no sistema de armazenamento, contacte o administrador de armazenamento para obter a saída do comando lun show do sistema de armazenamento.
+
+
+
+
+ a| 
+`0001- 377`
+ a| 
+43
+ a| 
+Comando
+ a| 
+`Disk group name <name> is already in use or conflicts with another entity.`
+ a| 
+Esse erro ocorre quando o nome do grupo de discos já está em uso ou entra em conflito com outra entidade. O que fazer: Faça um dos seguintes procedimentos:
+
+. Execute o comando com a `- autorename` opção
+. Use o `snapdrive storage show` comando com a `-all` opção para localizar os nomes que o host está usando. Execute o comando especificando outro nome que o host não está usando.
+
+
+
+
+ a| 
+`0001- 380`
+ a| 
+43
+ a| 
+Comando
+ a| 
+`Host volume name <dg3/vol1> is already in use or conflicts with another entity.`
+ a| 
+Esse erro ocorre quando o nome do volume do host já está em uso ou entra em conflito com outra entidade
+
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Execute o comando com a `- autorename` opção.
+. Use o `snapdrive storage show` comando com a `-all` opção para localizar os nomes que o host está usando. Execute o comando especificando outro nome que o host não está usando.
+
+
+
+
+ a| 
+`0001- 417`
+ a| 
+51
+ a| 
+Comando
+ a| 
+`The following names are already in use: <mydg1>. Please specify other names.`
+ a| 
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Execute o comando novamente com a `-autorename` opção.
+.  `snapdrive storage show - all`Use o comando para encontrar os nomes que existem no host. Execute o comando novamente para especificar explicitamente outro nome que o host não está usando.
+
+
+
+
+ a| 
+`0001- 430`
+ a| 
+51
+ a| 
+Comando
+ a| 
+`You cannot specify both -dg/vg dg and - lvol/hostvol dg/vol`
+ a| 
+Este é um erro de sintaxe que indica um uso inválido de comandos. A linha de comando pode aceitar a `-dg/vg` palavra-chave ou a `-lvol/hostvol` palavra-chave, mas não ambas.
+
+O que fazer: Execute o comando apenas com a `-dg/vg` palavra-chave ou `- lvol/hostvol`.
+
+
+
+ a| 
+`0001- 434`
+ a| 
+6
+ a| 
+Comando
+ a| 
+`snapshot exocet:/vol/vol1:NOT_E IST doesn't exist on a storage volume exocet:/vol/vol1`
+ a| 
+Esse erro ocorre quando a cópia Snapshot especificada não é encontrada no sistema de storage.
+
+O que fazer: Use o `snapdrive snap list` comando para encontrar as cópias Snapshot que existem no sistema de storage.
+
+
+
+ a| 
+`0001- 435`
+ a| 
+3
+ a| 
+Comando
+ a| 
+`You must specify all host volumes and/or all file systems on the command line or give the -autoexpand option. The following names were missing on the command line but were found in snapshot <snap2_5VG_SINGLELUN _REMOTE>: Host Volumes: <dg3/vol2> File Systems: </mnt/qa/dg3/vol2>`
+ a| 
+O grupo de discos especificado tem vários volumes de host ou sistema de arquivos, mas o conjunto completo não é mencionado no comando.
+
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Volte a emitir o comando com a `- autoexpand` opção.
+. Use o `snapdrive snap show` comando para encontrar toda a lista de volumes de host e sistemas de arquivos. Execute o comando especificando todos os volumes de host ou sistemas de arquivos.
+
+
+
+
+ a| 
+`0001- 440`
+ a| 
+6
+ a| 
+Comando
+ a| 
+`snapshot snap2_5VG_SINGLELUN_ REMOTE does not contain disk group 'dgBAD'`
+ a| 
+Esse erro ocorre quando o grupo de discos especificado não faz parte da cópia Snapshot especificada.
+
+O que fazer: Para descobrir se há alguma cópia Snapshot para o grupo de discos especificado, faça um dos seguintes procedimentos:
+
+. Use o `snapdrive snap list` comando para localizar as cópias Snapshot no sistema de storage.
+. Use o `snapdrive snap show` comando para localizar os grupos de discos, volumes de host, sistemas de arquivos ou LUNs presentes na cópia Snapshot.
+. Se existir uma cópia Snapshot para o grupo de discos, execute o comando com o nome Snapshot.
+
+
+
+
+ a| 
+`0001- 442`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`More than one destination - <dis> and <dis1> specified for a single snap connect source <src>. Please retry using separate commands.`
+ a| 
+O que fazer: Executar um comando separado `snapdrive snap connect`, de modo que o novo nome do grupo de discos de destino (que faz parte do comando snap connect) não seja o mesmo que o que já faz parte das outras unidades de grupo de discos do mesmo `snapdrive snap connect` comando.
+
+
+
+ a| 
+`0001- 465`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`The following filespecs do not exist and cannot be deleted: Disk Group: <nanehp13_ dg1>`
+ a| 
+O grupo de discos especificado não existe no host, portanto a operação de exclusão para o grupo de discos especificado falhou.
+
+O que fazer: Veja a lista de entidades no host usando o `snapdrive storage show` comando com a opção tudo.
+
+
+
+ a| 
+`0001- 476`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Unable to discover the device associated with <long lun name> If multipathing in use, there may be a possible multipathing configuration error. Please verify the configuration and then retry.`
+ a| 
+Pode haver muitas razões para essa falha.
+
+* Configuração de host inválida:
++
+O iSCSI, FC ou a solução multipathing não está configurada corretamente.
+
+* Configuração de rede ou switch inválida:
++
+A rede IP não está configurada com as regras de encaminhamento ou filtros adequados para o tráfego iSCSI, ou os switches FC não estão configurados com a configuração de zoneamento recomendada.
+
+
+
+Os problemas anteriores são muito difíceis de diagnosticar de forma algorítmica ou sequencial.
+
+O que fazer: NetAppIt recomenda que antes de usar o SnapDrive para UNIX, siga as etapas recomendadas no Guia de configuração de utilitários do host (para o sistema operacional específico) para descobrir LUNs manualmente.
+
+Depois de descobrir LUNs, use os comandos SnapDrive para UNIX.
+
+
+
+ a| 
+`0001- 486`
+ a| 
+12
+ a| 
+Administrador
+ a| 
+`LUN(s) in use, unable to delete. Please note it is dangerous to remove LUNs that are under Volume Manager control without properly removing them from Volume Manager control first.`
+ a| 
+O SnapDrive para UNIX não pode excluir um LUN que faz parte de um grupo de volumes.
+
+O que fazer: Execute as seguintes etapas:
+
+. Exclua o grupo de discos usando o comando `snapdrive storage delete -dg <dgname>`.
+. Eliminar o LUN.
+
+
+
+
+ a| 
+`0001- 494`
+ a| 
+12
+ a| 
+Comando
+ a| 
+`Snapdrive cannot delete <mydg1>, because 1 host volumes still remain on it. Use -full flag to delete all file systems and host volumes associated with <mydg1>`
+ a| 
+O SnapDrive para UNIX não pode excluir um grupo de discos até que todos os volumes de host no grupo de discos sejam explicitamente solicitados a serem excluídos.
+
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Especifique o `-full` sinalizador no comando.
+. Execute as seguintes etapas:
++
+.. Use o `snapdrive storage show -all` comando para obter a lista de volumes de host que estão no grupo de discos.
+.. Mencione cada um deles explicitamente no comando SnapDrive para UNIX.
+
+
+
+
+
+
+ a| 
+`0001- 541`
+ a| 
+65
+ a| 
+Comando
+ a| 
+`Insufficient access permission to create a LUN on filer, <exocet>.`
+ a| 
+O SnapDrive para UNIX usa o `sdhostname.prbac` ou `sdgeneric.prbacfile` no volume do sistema de armazenamento raiz (arquivador) para seu mecanismo de controle de pseudo acesso.
+
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Modifique `sd-hostname.prbac` o arquivo ou `sdgeneric. prbac` no sistema de storage para incluir as seguintes permissões necessárias (pode ser uma ou muitas):
++
+.. NENHUM
+.. SNAP CRIAR
+.. UTILIZAÇÃO DE ENCAIXE
+.. ENCAIXAR TUDO
+.. ARMAZENAMENTO CRIAR EXCLUSÃO
+.. USO DE ARMAZENAMENTO
+.. ARMAZENAMENTO TUDO
+.. TODOS OS ACESSOS
++
+*NOTA:*
+
++
+[]
+====
+*** Se você não tiver `sd-hostname.prbac` arquivo, modifique o `sdgeneric.prbac` arquivo no sistema de armazenamento.
+*** Se você tiver ambos `sd-hostname.prbac` e `sdgeneric.prbac` arquivo, modifique as configurações somente em `sdhostname.prbac` arquivo no sistema de armazenamento.
+
+
+====
+
+
+. No `snapdrive.conf` arquivo, verifique se a `all-access-if-rbacunspecified` variável de configuração está definida como "'on'".
+
+
+
+
+ a| 
+`0001-559`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Detected I/Os while taking snapshot. Please quiesce your application. See Snapdrive Admin. Guide for more information.`
+ a| 
+Esse erro ocorre se você tentar criar uma cópia Snapshot, enquanto as operações de entrada/saída paralelas ocorrem na especificação do arquivo e o valor de `snapcreate-cg-timeout` é definido como urgente.
+
+O que fazer: Aumente o valor de tempo de grupos de consistência definindo o valor de `snapcreate-cg-timeout` como relaxado.
+
+
+
+ a| 
+`0001- 570`
+ a| 
+6
+ a| 
+Comando
+ a| 
+`Disk group <dg1> does not exist and hence cannot be resized`
+ a| 
+Esse erro ocorre quando o grupo de discos não está presente no host e, posteriormente, o comando falha.
+
+O que fazer: Execute as seguintes etapas:
+
+. Use o `snapdrive storage show -all` comando para obter todos os nomes dos grupos de discos.
+. Execute o comando com o nome correto do grupo de discos.
+
+
+
+
+ a| 
+`0001- 574`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`<VmAssistant> lvm does not support resizing LUNs in disk groups`
+ a| 
+Esse erro ocorre quando o gerenciador de volumes que é usado para executar essa tarefa não suporta o redimensionamento LUN.
+
+O SnapDrive para UNIX depende da solução de gerenciador de volume para suportar o redimensionamento de LUN, se o LUN fizer parte de um grupo de discos.
+
+O que fazer: Verifique se o gerenciador de volumes que você está usando suporta redimensionamento LUN.
+
+
+
+ a| 
+`0001- 616`
+ a| 
+6
+ a| 
+Comando
+ a| 
+`1 snapshot(s) NOT found on filer: exocet:/vol/vol1:MySnapName>`
+ a| 
+O SnapDrive para UNIX não pode aceitar mais de um nome de instantâneo na linha de comando para executar quaisquer operações de instantâneo. Para corrigir este erro, volte a emitir o comando com um nome de instantâneo.
+
+Este é um erro de sintaxe que indica o uso inválido do comando, em que uma operação de captura instantânea é tentada com um nome de captura instantânea inválido. Para corrigir este erro, execute os seguintes passos:
+
+. Use o `snapdrive snap list - filer <filer-volume-name>` comando para obter uma lista de cópias Snapshot.
+. Execute o comando com o `*long_snap_name*` argumento.
+
+
+
+
+ a| 
+`0001- 640`
+ a| 
+1
+ a| 
+Comando
+ a| 
+`Root file system / is not managed by snapdrive`
+ a| 
+Esse erro ocorre quando o sistema de arquivos raiz no host não é suportado pelo SnapDrive para UNIX. Esta é uma solicitação inválida para o SnapDrive para UNIX.
+
+
+
+ a| 
+`0001- 684`
+ a| 
+45
+ a| 
+Administrador
+ a| 
+`Mount point <fs_spec> already exists in mount table`
+ a| 
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Execute o comando SnapDrive para UNIX com um ponto de montagem diferente.
+. Verifique se o ponto de montagem não está em uso e, em seguida, manualmente (usando qualquer editor) exclua a entrada dos seguintes arquivos:
+
+
+Linux: /Etc/fstab
+
+
+
+ a| 
+`0001- 796 and 0001- 767`
+ a| 
+3
+ a| 
+Comando
+ a| 
+`0001-796 and 0001-767`
+ a| 
+O SnapDrive para UNIX não suporta mais de um LUN no mesmo comando com a `-nolvm` opção.
+
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Use o comando novamente para especificar apenas um LUN com a `-nolvm` opção.
+. Use o comando sem a `- nolvm` opção. Isso usará o gerenciador de volumes suportado presente no host, se houver.
+
+
+
+
+ a| 
+`2715`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`Volume restore zephyr not available for the filer <filename>Please proceed with lun restore`
+ a| 
+Para versões mais antigas do Data ONTAP, o zapi de restauração de volume não está disponível. Reemita o comando com SFSR.
+
+
+
+ a| 
+`2278`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`SnapShots created after <snapname> do not have volume clones ... FAILED`
+ a| 
+Divida ou exclua os clones
+
+
+
+ a| 
+`2280`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`LUNs mapped and not in active or SnapShot <filespec-name> FAILED`
+ a| 
+Un-map/ storage Desconete as entidades do host
+
+
+
+ a| 
+`2282`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`No SnapMirror relationships exist ... FAILED`
+ a| 
+. Exclua os relacionamentos, ou
+. Se o SnapDrive para UNIX RBAC com Gerenciador de operações estiver configurado, peça ao administrador do Gerenciador de operações para conceder `SD.Snapshot.DisruptBaseline` capacidade ao usuário.
+
+
+
+
+ a| 
+`2286`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`LUNs not owned by <fsname> are application consistent in snapshotted volume ... FAILED. Snapshot luns not owned by <fsname> which may be application inconsistent`
+ a| 
+Verifique se os LUNs mencionados nos resultados da verificação não estão em uso. Somente depois disso, use a `-force` opção.
+
+
+
+ a| 
+`2289`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`No new LUNs created after snapshot <snapname> ... FAILED`
+ a| 
+Verifique se os LUNs mencionados nos resultados da verificação não estão em uso. Somente depois disso, use a `-force` opção.
+
+
+
+ a| 
+`2290`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`Could not perform inconsistent and newer Luns check. Snapshot version is prior to SDU 4.0`
+ a| 
+Isso acontece com os snapshots SnapDrive 3,0 para UNIX quando usados com `-vbsr`o . Verifique manualmente se os LUNs mais recentes criados não serão mais utilizados e, em seguida, prossiga com `-force` a opção.
+
+
+
+ a| 
+`2292`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`No new SnapShots exist... FAILED. SnapShots created will be lost.`
+ a| 
+Verifique se os instantâneos mencionados nos resultados da verificação não serão mais utilizados. E se sim, então prossiga com `-force` a opção.
+
+
+
+ a| 
+`2297`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`Both normal files) and LUN(s) exist ... FAILED`
+ a| 
+Certifique-se de que os ficheiros e LUNs mencionados nos resultados da verificação não serão mais utilizados. E se sim, então prossiga com `-force` a opção.
+
+
+
+ a| 
+`2302`
+ a| 
+NA
+ a| 
+NA
+ a| 
+`NFS export list does not have foreign hosts ... FAILED`
+ a| 
+Entre em Contato com o administrador de storage para remover os hosts estrangeiros da lista de exportação ou garantir que os hosts estrangeiros não estejam usando os volumes por meio de NFS.
+
+
+
+ a| 
+`9000-305`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Could not detect type of the entity /mnt/my_fs. Provide a specific option (-lun, -dg, -fs or -lvol) if you know the type of the entity`
+ a| 
+Verifique a entidade se ela já existe no host. Se você sabe o tipo da entidade fornecer o tipo de arquivo-spec.
+
+
+
+ a| 
+`9000-303`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Multiple entities with the same name - /mnt/my_fs exist on this host. Provide a specific option (-lun, -dg, -fs or -lvol) for the entity you have specified.`
+ a| 
+O usuário tem várias entidades com o mesmo nome. Neste caso, o usuário precisa fornecer o tipo de especificação de arquivo explicitamente.
+
+
+
+ a| 
+`9000-304`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`/mnt/my_fs is detected as keyword of type file system, which is not supported with this command.`
+ a| 
+A operação no arquivo_spec detetado automaticamente não é suportada com este comando. Verifique com a respetiva ajuda para a operação.
+
+
+
+ a| 
+`9000-301`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Internal error in auto defection`
+ a| 
+Erro do motor de deteção automática. Forneça o log de rastreamento e daemon para análise posterior.
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`snapdrive.dc tool unable to compress data on RHEL 5Ux environment`
+ a| 
+O utilitário de compactação não está instalado por padrão. Você deve instalar o utilitário de compactação `ncompress` , por `ncompress-4.2.4-47.i386.rpm` exemplo .
+
+Para instalar o utilitário de compactação, digite o seguinte comando: `rpm -ivh ncompress-4.2.4-47.i386.rpm`
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Invalid filespec`
+ a| 
+Este erro ocorre quando a entidade de host especificada não existe ou inacessível.
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Job Id is not valid`
+ a| 
+Esta mensagem é exibida para o status do grupo clone, resultado ou operação de parada se o ID do trabalho especificado for um trabalho inválido ou o resultado do trabalho já estiver consultado. Tem de especificar uma ID de trabalho válida ou disponível e tentar novamente esta operação.
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Split is already in progress`
+ a| 
+Esta mensagem é apresentada quando:
+
+* A divisão de clones já está em andamento para um determinado clone de volume ou clone de LUN.
+* A divisão de clones está concluída, mas a tarefa não foi removida.
+
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Not a valid Volume-Clone or LUN-Clone`
+ a| 
+Filespec especificado ou nome de caminho LUN não é um clone de volume válido ou clone de LUN.
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`No space to split volume`
+ a| 
+A mensagem de erro deve-se ao espaço de armazenamento necessário não está disponível para dividir o volume. Libere espaço suficiente no agregado para dividir o clone de volume.
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+NA
+ a| 
+`filer-data:junction_dbsw information not available -- LUN may be offline`
+ a| 
+Esse erro pode ocorrer quando o `/etc/fstab` arquivo foi configurado incorretamente. Nesse caso, enquanto os caminhos de montagem eram NFS, mas eram considerados LUNs pelo SnapDrive para UNIX.
+
+O que fazer: Adicione "/" entre o nome do arquivador e o caminho de junção.
+
+
+
+ a| 
+`0003-013`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`A connection error occurred with Virtual Interface server. Please check if Virtual Interface server is up and running.`
+ a| 
+Esse erro pode ocorrer quando a licença no servidor esx expirar e o serviço VSC não estiver em execução.
+
+O que fazer: Instalar a licença do ESX Server e reiniciar o serviço VSC.
+
+
+
+ a| 
+`0002-137`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Unable to get the fstype and mntOpts for 10.231.72.21:/vol/ips_vol3 from snapshot 10.231.72.21:/vol/ips_vol3:t5120-206-66_nfssnap.`
+ a| 
+O que fazer: Faça um dos seguintes procedimentos
+
+. Adicione o endereço IP da interface de datapath ou o endereço IP específico como o nome do host no `/etc/hosts` arquivo.
+. Crie uma entrada para a interface de datapath ou o endereço IP do nome de host no DNS.
+. Configure os dados LIFS do SVM para suportar o gerenciamento de SVM (com firewall-policy)
++
+`*net int modify _-vserver Vserver_nameLIF_name-firewall-policy_ mgmt*`
+
+. Adicione o endereço IP de gerenciamento do host às regras de exportação do SVM.
+
+
+
+
+ a| 
+`13003`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Insufficient privileges: user does not have read access to this resource.`
+ a| 
+Este problema é visto no SnapDrive para UNIX 5,2.2. Antes do SnapDrive para UNIX 5,2.2, o usuário vsadmin configurado no SnapDrive para UNIX precisa ter a função 'vsadmin_volume'. A partir do SnapDrive para UNIX 5,2.2, o usuário vsadmin precisa de funções de acesso elevadas, caso contrário SnapMirror-GET-iter zapi falha.
+
+O que fazer: Criar função vsadmin em vez de vsadmin_volume e atribuir ao usuário vsadmin.
+
+
+
+ a| 
+`0001-016`
+ a| 
+NA
+ a| 
+Comando
+ a| 
+`Could not acquire lock file on storage system.`
+ a| 
+A criação de instantâneos falha devido a espaço insuficiente no volume. Ou devido à existência de `.snapdrive_lock` arquivo no sistema de armazenamento.
+
+O que fazer: Faça um dos seguintes procedimentos:
+
+. Exclua o arquivo `/vol/<volname>/.snapdrive_lock` no sistema de armazenamento e tente novamente a operação snap Create. Para excluir o arquivo, faça login no sistema de armazenamento, entre no modo de privilégio avançado e execute o comando `rm /vol/<volname>/.snapdrive_lock` no prompt do sistema de armazenamento.
+. Certifique-se de que existe espaço suficiente no volume antes de tirar fotografias.
+
+
+
+
+ a| 
+`0003-003`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Failed to export LUN on storage system <controller name> to the Guest OS. Reason: FLOW-11019: Failure in MapStorage: No storage system configured with interface.`
+ a| 
+Esse erro ocorre devido à ausência de controladores de armazenamento, que é configurado no servidor ESX.
+
+O que fazer: Adicione os controladores e credenciais de armazenamento no servidor ESX.
+
+
+
+ a| 
+`0001-493`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Error creating mount point: Unexpected error from mkdir: mkdir: cannot create directory: Permission denied Check whether mount point is under automount paths.`
+ a| 
+As operações de clone falham quando a especificação do arquivo de destino está sob os caminhos de contagem automática.
+
+O que fazer: Certifique-se de que o ponto filespec/mount de destino não esteja sob os caminhos de montagem automática.
+
+
+
+ a| 
+`0009-049`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Failed to restore from snapshot on storage system: Failed to restore file from Snapshot copy for volume on Vserver.`
+ a| 
+Este erro ocorre quando o tamanho do volume está cheio ou o volume ultrapassou o limite de velocidade.
+
+O que fazer: Aumente o tamanho do volume e certifique-se de que o valor limite de um volume seja mantido abaixo do valor de Autodelete.
+
+
+
+ a| 
+`0001-682`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Host preparation for new LUNs failed: This functionality is not supported.`
+ a| 
+Este erro ocorre quando a criação de novas IDs de LUN falha.
+
+O que fazer: Aumente o número de LUNs a serem criados usando
+
+`*snapdrive config prepare luns _-count count_value_*`
+
+comando.
+
+
+
+ a| 
+`0001-060`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Failed to get information about Diskgroup: Volume Manager linuxlvm returned vgdisplay command failed.`
+ a| 
+Esse erro ocorre quando o SnapDrive para UNIX 4.1.1 e versão inferior é usado no RHEL 5 e versão superior.
+
+O que fazer: Atualize a versão do SnapDrive e tente novamente, já que o suporte não está disponível para o SnapDrive para UNIX 4.1.1 e versão inferior a partir de RHEL5.
+
+
+
+ a| 
+`0009-045`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Failed to create snapshot on storage system: Snapshot operation not allowed due to clones backed by snapshots. Try again after sometime.`
+ a| 
+Esse erro ocorre durante a operação de Snap Restore (SFSR) de arquivo único seguido pela criação imediata de snapshot.
+
+O que fazer: Tente novamente a operação de criação de instantâneos depois de algum tempo.
+
+
+
+ a| 
+`0001-304`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Error creating disk/volume group: Volume manager failed with: metainit: No such file or directory.`
+ a| 
+Esse erro ocorre durante a execução do armazenamento SnapDrive Create dg, hostvol e fs Solaris com ambiente Sun Cluster.
+
+O que fazer: Desinstale o software Sun Cluster e tente novamente as operações.
+
+
+
+ a| 
+`0001-122`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Failed to get snapshot list on filer the specified volume <volname> does not exist.`
+ a| 
+Esse erro ocorre quando o SnapDrive para UNIX tenta criar Instantâneo usando o caminho do sistema de arquivos ativo exportado do volume (caminho real) e não com o caminho do volume exportado fictício.
+
+O que fazer: Use volumes com o caminho do sistema de arquivos ativo exportado.
+
+
+
+ a| 
+`0001-476`
+ a| 
+NA
+ a| 
+Administrador
+ a| 
+`Unable to discover the device. If multipathing in use, there may be a possible multipathing configuration error. Please verify the configuration and then retry.`
+ a| 
+Existem várias razões para este erro poder ocorrer.
+
+As seguintes condições a serem verificadas: Antes de criar o armazenamento, verifique se o zoneamento é adequado.
+
+Verifique o protocolo de transporte e o tipo de multipathing no `snapdrive.conf` arquivo e certifique-se de que os valores adequados estão definidos.
+
+Verifique o status do daemon multipath, se o multipathing-type estiver definido como nativempio, inicie o multipathd e reinicie o daemon snapdrived.
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+NA
+ a| 
+`FS fails to be mounted after reboot due to unavailability of LV.`
+ a| 
+Isto acontece quando o LV não está disponível após a reinicialização. Portanto, o sistema de arquivos não está montado.
+
+O que fazer: Após a reinicialização, faça vgchange que traz LV para cima e, em seguida, monte o sistema de arquivos.
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+NA
+ a| 
+`Status call to SDU daemon failed.`
+ a| 
+Existem várias razões para este erro ocorrer. Este erro indica que a tarefa SnapDrive para UNIX relacionada a uma operação específica falhou abruptamente (daemon filho terminado) antes que a operação pudesse ser concluída.
+
+Se a criação de armazenamento ou a exclusão falhar com "Falha na chamada de status para o daemon SnapDrive para UNIX", pode ser devido à falha da chamada para o ONTAP para obter as informações de volume. Tente novamente as operações do SnapDrive após algum tempo.
+
+A operação do SnapDrive para UNIX pode falhar ao executar "kpartx -l" ao criar partições ou outros comandos do sistema operacional devido aos valores inadequados `multipath.conf`. Certifique-se de que os valores adequados são definidos e que não existem palavras-chave duplicadas `multipath.conf` no ficheiro.
+
+Ao executar o SFSR, o SnapDrive para UNIX cria instantâneo temporário que pode falhar se o número máximo de valor instantâneo for atingido. Exclua os instantâneos mais antigos e tente novamente a operação de restauração.
+
+
+
+ a| 
+NA
+ a| 
+NA
+ a| 
+NA
+ a| 
+`map in use; can't flush`
+ a| 
+Esse erro ocorre se houver algum dispositivo obsoleto deixado para trás ao tentar lavar o dispositivo multipath durante as operações de exclusão ou desconexão de armazenamento.
+
+O que fazer: Verifique se existem dispositivos obsoletos executando o comando
+
+`*multipath*`
+
+`_-l egrep -ifail_` e certifique-se de `_flush_on_last_del_` que está definido como "sim" no `multipath.conf` ficheiro.
+
+|===
+*Informações relacionadas*
+
+https://mysupport.netapp.com/NOW/products/interoperability["Interoperabilidade do NetApp"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2547936["Guia de instalação do Linux Unified Host Utilities 7,1"]

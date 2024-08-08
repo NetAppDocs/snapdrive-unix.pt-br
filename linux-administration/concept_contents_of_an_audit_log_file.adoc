@@ -1,0 +1,56 @@
+---
+permalink: linux-administration/concept_contents_of_an_audit_log_file.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, audit, log, file 
+summary: O log de auditoria mostra informações sobre comandos emitidos com o SnapDrive para UNIX. 
+---
+= Conteúdo de um arquivo de log de auditoria
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O log de auditoria mostra informações sobre comandos emitidos com o SnapDrive para UNIX.
+
+O arquivo de log de auditoria mantém o histórico das seguintes informações:
+
+* Os comandos emitidos.
+* O valor de retorno desses comandos.
+* O ID do usuário que invocou o comando.
+* Um timestamp indicando quando o comando foi iniciado (sem código de retorno) e outro timestamp indicando quando o comando terminou (com um código de retorno). O registo de registo de auditoria mostra apenas informações `snapdrive` sobre a utilização (comandos emitidos).
+
+
+Um arquivo de log de auditoria contém as seguintes informações.
+
+|===
+| Campo | Descrição 
+
+
+ a| 
+uid
+ a| 
+ID de utilizador
+
+
+
+ a| 
+gid
+ a| 
+ID do grupo
+
+
+
+ a| 
+MsgText
+ a| 
+texto da mensagem
+
+
+
+ a| 
+Código de retorno
+ a| 
+retornar código de um comando
+
+|===

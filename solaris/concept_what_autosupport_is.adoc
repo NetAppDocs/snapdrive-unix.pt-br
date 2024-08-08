@@ -1,0 +1,14 @@
+---
+permalink: solaris/concept_what_autosupport_is.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, autosupport 
+summary: O AutoSupport permite que o SnapDrive para UNIX envie quaisquer falhas operacionais que sejam incorridas devido ao SnapDrive ser enviado para a visualização de log do sistema de armazenamento no arquivo /etc/log/ems. 
+---
+= O que é AutoSupport
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O AutoSupport permite que o SnapDrive para UNIX envie quaisquer falhas operacionais que sejam incorridas devido ao SnapDrive ser enviado para a visualização de log do sistema de armazenamento no `/etc/log/ems` arquivo.

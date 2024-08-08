@@ -1,0 +1,70 @@
+---
+permalink: solaris/task_estimating_the_storage_space_using_a_snapshot_copy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, space, snapshot, copy, estimate 
+summary: 'A estimativa de divisão de clones ajuda você a estimar o espaço de armazenamento necessário (em MB) usando uma cópia Snapshot, quando não há clone disponível para uma cópia Snapshot no sistema de armazenamento.' 
+---
+= Estimando o espaço de armazenamento usando uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A estimativa de divisão de clones ajuda você a estimar o espaço de armazenamento necessário (em MB) usando uma cópia Snapshot, quando não há clone disponível para uma cópia Snapshot no sistema de storage.
+
+.Passos
+. Digite o seguinte comando para estimar o espaço de armazenamento necessário.
++
+`*snapdrive clone split estimate -snapname [_long_snap_name_] {-volclone|-lunclone}] [-v | -verbose]*`
+
+
+
+O exemplo a seguir estima o espaço de storage para dividir um clone de LUN usando uma cópia Snapshot.
+
+[listing]
+----
+snapdrive clone split estimate -snapname f3050-220-112:/vol/vol_1:snap_1 -lunclone
+Resource       Container  Required Available Storage
+                          Space(MB)Space(MB) Status
+f3050-220-112: f3050-220 	5120	   14078    AVAILABLE
+/vol/vol_1:snap_1 -112:/vol/vol_1
+----
+O exemplo a seguir estima o espaço de storage para dividir um clone de LUN usando uma cópia Snapshot com a `-fs` opção.
+
+[listing]
+----
+# snapdrive clone split estimate -fs /mnt/my_mnt1 -snapname f3050-220-112:/vol/vol_1:snap_1 -lunclone
+Resource         Container Required Available Storage
+                            Space(MB)Space(MB) Status
+f3050-220-112:   f3050-220  4120     14078  AVAILABLE
+/vol/vol_1:snap_1 -112:/vol/vol_1
+----
+O exemplo a seguir estima o espaço de storage para dividir um clone de volume usando uma cópia Snapshot com a `-fs` opção.
+
+[listing]
+----
+# snapdrive clone split estimate -fs /mnt/fs1 -snapname f3050-220-112:/vol/vol_1:snap_1 -volclone
+Resource      Container   Required Available Storage
+                          Space(MB)Space(MB) Status
+f3050-220-112:  f3050-220 54019   54517  AVAILABLE
+/vol/vol0:snap_1 112:aggr0
+----
+O exemplo a seguir estima o espaço de storage para dividir um clone de volume usando uma cópia Snapshot.
+
+[listing]
+----
+# snapdrive clone split estimate -snapname f3050-220-112:/vol/vol_1:snap_1 -volclone
+Resource      Container   Required Available Storage
+                          Space(MB)Space(MB) Status
+f3050-220-112:  f3050-220 54019    54517    AVAILABLE
+/vol/vol0:snap_1 112:aggr0
+----
+[NOTE]
+====
+* O campo "recurso" contém o nome da cópia Snapshot, se a estimativa do grupo clone for feita para uma cópia Snapshot.
+* Se você fornecer qualquer especificação de arquivo morto juntamente com a opção cópia Snapshot com `-lunclone`, o "espaço necessário" será exibido como 0.
+* A estimativa de divisão de clone de LUN usando Snapshot está disponível apenas para cópias Snapshot criadas a partir do SnapDrive 4,2 para UNIX e posterior.
+
+
+====

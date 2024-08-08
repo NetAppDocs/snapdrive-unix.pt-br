@@ -1,0 +1,14 @@
+---
+permalink: solaris/concept_audit_recovery_and_trace_logging_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, audit, recovery, trace, log 
+summary: O SnapDrive para UNIX ajuda a manter vários tipos de arquivos de log, como arquivos de auditoria, recuperação e rastreamento. Esses arquivos de log são usados posteriormente para solução de problemas. 
+---
+= Auditoria, recuperação e log de rastreamento no SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX ajuda a manter vários tipos de arquivos de log, como arquivos de auditoria, recuperação e rastreamento. Esses arquivos de log são usados posteriormente para solução de problemas.

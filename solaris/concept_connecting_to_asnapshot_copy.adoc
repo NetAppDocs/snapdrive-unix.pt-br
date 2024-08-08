@@ -1,0 +1,27 @@
+---
+permalink: solaris/concept_connecting_to_asnapshot_copy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, connect, snapshot, copy 
+summary: Você pode conetar uma cópia Snapshot de um host para um host diferente. 
+---
+= Conetando-se a uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode conetar uma cópia Snapshot de um host para um host diferente.
+
+O SnapDrive para UNIX permite conetar um host a uma cópia Snapshot de um local diferente em um host. Esse novo local pode estar no host onde você tirou a cópia Snapshot (o host de origem) ou em um host diferente (o host não originário).
+
+Ser capaz de configurar as cópias Snapshot em um novo local significa que você pode fazer backup de uma cópia Snapshot para outro meio, realizar manutenção em um grupo de discos ou acessar os dados da cópia Snapshot sem interromper a cópia original dos dados.
+
+Com este comando, você pode conetar um host a uma cópia Snapshot que contenha qualquer uma das seguintes opções:
+
+* LUNs
+* Um sistema de arquivos criado diretamente em um LUN
+* Grupos de discos, volumes de host e sistemas de arquivos criados em LUNs
+* Árvores de diretório NFS
+* Grupos de discos, volumes de host e sistemas de arquivos no sistema de storage compartilhado
+

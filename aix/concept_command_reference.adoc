@@ -1,0 +1,14 @@
+---
+permalink: aix/concept_command_reference.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, reference 
+summary: O SnapDrive para UNIX suporta vários comandos. Essas referências de comando ajudam você a aprender sobre os comandos, suas opções, palavras-chave e argumentos. 
+---
+= Referência do comando
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX suporta vários comandos. Essas referências de comando ajudam você a aprender sobre os comandos, suas opções, palavras-chave e argumentos.

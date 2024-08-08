@@ -1,0 +1,40 @@
+---
+permalink: linux-administration/reference_snapdrive_for_unix_operations_fails_improper_multipath_settings_aliased_devices_used.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, unix, fail, multipath, settings, device, error, sdu, rhel, command 
+summary: Quando você executa o comando storage show ou snap create no RHEL 5,11, o comando exibe a seguinte mensagem de erro. A chamada de status para o daemon SDU falhou e no host SLES11SP3 com opção –nolvm quando o LVM host não está envolvido. 
+---
+= As operações do SnapDrive para UNIX falham devido a configurações de multipath inadequadas quando os dispositivos com alias são usados.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando você executa o `storage show` comando ou `snap create` no RHEL 5,11, o comando exibe a seguinte mensagem de erro:
+
+`Status call to SDU daemon failed and in SLES11SP3 host with --nolvm option when the host LVM is not involved.`
+
+* *`snapdrive storage show -all` o comando não mostra o nome de alias correto*
++
+O SnapDrive para UNIX não mostra o nome de alias adequado para os dispositivos de mapeador. Esse problema ocorre quando a seção multipaths_size não é adequada no `multipath.conf` arquivo.
+
+* *Solução alternativa*
++
+Você deve garantir que chaves de fechamento sejam inseridas nas configurações de multipath.
+
+* *As operações do SnapDrive falham com o erro abaixo quando os nomes de alias foram definidos para os dispositivos mapeador*
++
+[listing]
+----
+Snapdrive could not import /dev/mapper/lvm_fs_SdDg:   device-mapper: resume ioctl failed: Invalid argument
+  Unable to resume lvm_fs_SdDg-lvm_fs_SdHv (252:4)   1 logical volume(s) in volume group "lvm_fs_SdDg" now active”
+----
++
+Esse problema ocorre quando o mapeamento de nomes de alias com os dispositivos não é adequado.
+
+* *Solução alternativa*
++
+Execute `multipath-ll` e certifique-se de que o mapeamento de nomes de alias com os dispositivos é adequado e execute as operações do SnapDrive para UNIX.
+
+

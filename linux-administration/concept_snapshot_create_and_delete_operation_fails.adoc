@@ -1,0 +1,115 @@
+---
+permalink: linux-administration/concept_snapshot_create_and_delete_operation_fails.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, create, delete, fail, remove, lun 
+summary: A operação de criação e exclusão de Snapshot não remove cópias snapshot no sistema de storage porque os LUNs estão ocupados. 
+---
+= Falha na operação de criação e exclusão de instantâneos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A operação de criação e exclusão de Snapshot não remove cópias snapshot no sistema de storage porque os LUNs estão ocupados.
+
+É apresentada a seguinte mensagem de erro:
+
+[listing]
+----
+0001-124 Admin error: Failed to remove snapshot <snap-name> on
+filer <filer-name>: LUN clone
+----
+Você pode encontrar esse erro e pode não ser capaz de excluir diretamente uma cópia Snapshot se o seguinte for verdadeiro:
+
+* Um grupo de discos abrange vários sistemas de storage.
+* Os seguintes comandos SnapDrive são executados em loop por mais de 50 iterações (o número de iterações depende do sistema operacional do host):
++
+** `snapdrive storage create`
+** `snapdrive snap create`
+** `snapdrive storage delete`
+** `snapdrive snap restore`
+** `snapdrive snap connect`
+** `snapdrive storage delete`
+** `snapdrive snap delete`
+
+
+
+
+Nesse ponto, o status da cópia Snapshot no sistema de storage mostra `*LUNs-Busy*`, e esse status dura algumas horas.
+
+
+
+== Solução alternativa
+
+|===
+| *Se...* | *Então*... 
+
+
+ a| 
+Há LUNs clonados em uma cópia Snapshot que não estão conectados a um host.
+ a| 
+Você pode fazer um dos seguintes procedimentos para excluir a cópia Snapshot:
+
+* Divida os LUNs clonados do sistema de armazenamento usando o `filer split clone` comando.
+* Exclua os LUNs clonados.
+
+
+
+
+ a| 
+Há LUNs clonados em uma cópia Snapshot que não estão conectados a um host.
+ a| 
+Execute as seguintes etapas:
+
+. Desconete os LUNs clonados do host usando o `snapdrive snap disconnect` comando.
+. Exclua os LUNs clonados.
+. Exclua a cópia Snapshot.
+
+
+
+
+ a| 
+Há um dos seguintes:
+
+* LUNs clonados em uma cópia Snapshot que também está presente em outras cópias Snapshot
+* LUNs clonados de backup
+
+ a| 
+Execute as seguintes etapas:
+
+. Execute o seguinte comando no prompt de comando do sistema de armazenamento: `lun snap usage -s <volumename>< snap-name>`
++
+Ela lista o nome das cópias Snapshot que contêm as cópias Snapshot dos LUNs clonados, como mostrado no exemplo a seguir:
+
++
+[listing]
+----
+tonic*> lun snap usage vol1
+james_lun (filer view)
+mpiotest2:
+LUN:
+/vol/vol1/.snapshot/mpiotest2/d
+hilip_0
+Backed By:
+/vol/vol1/.snapshot/dhilip_lun/
+james
+----
+. Exclua as cópias Snapshot do sistema de storage na mesma ordem que estão listadas na saída do comando de uso do snap lun, como mostrado no exemplo a seguir.
++
+`snap delete vol1 mpiotest2`
+
++
+
+NOTE: Certifique-se de que a cópia Snapshot que você está excluindo não seja usada por nenhum outro host. Se ele estiver sendo acessado, você não pode excluir.
+
+
+
+
+
+ a| 
+Não há LUNs clonados
+ a| 
+Aguarde até que o `LUNs-Busy` status da cópia Snapshot no sistema de armazenamento desapareça.
+
+|===

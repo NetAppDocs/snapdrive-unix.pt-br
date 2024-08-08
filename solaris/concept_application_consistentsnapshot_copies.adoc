@@ -1,0 +1,23 @@
+---
+permalink: solaris/concept_application_consistentsnapshot_copies.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, application, snapshot, copy 
+summary: Para fazer uma cópia Snapshot consistente com as aplicações, é necessário interromper a aplicação antes da operação Snapshot. 
+---
+= Cópias Snapshot consistentes com aplicações
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para fazer uma cópia Snapshot consistente com as aplicações, é necessário interromper a aplicação antes da operação Snapshot.
+
+Para garantir que uma cópia Snapshot seja consistente com o aplicativo, talvez seja necessário interromper ou executar as etapas necessárias para silenciar o aplicativo antes de fazer a cópia Snapshot. Observe que as instalações de backup automático de banco de dados dependem dos métodos usados pelo DBMS, e nem sempre exigem e/S para arquivos de banco de dados.
+
+Se o aplicativo não tiver concluído suas transações e gravado dados no sistema de storage, a cópia Snapshot resultante pode não ser consistente com o aplicativo.
+
+
+NOTE: Se o seu aplicativo puder se recuperar de uma cópia Snapshot consistente com falhas, você não precisará pará-la. Consulte a documentação da sua candidatura. Para obter mais informações sobre como fazer cópias Snapshot consistentes com aplicações.
+
+Você deve fazer uma nova cópia Snapshot sempre que adicionar ou remover um volume de host, uma árvore de diretórios LUN ou NFS, ou redimensionar volumes de host ou sistemas de arquivos. Isso garante que você tenha uma cópia consistente do grupo de discos recém-configurado que poderá usar se precisar restaurar o grupo de discos.

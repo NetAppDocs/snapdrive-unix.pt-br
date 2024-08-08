@@ -1,0 +1,53 @@
+---
+permalink: solaris/task_installing_snapdrivefor_unix_on_asolaris_host.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, install, solaris, host, unix 
+summary: Para instalar o SnapDrive para UNIX em um host Solaris, você deve confirmar que você está conetado como root. Se você estiver executando esse arquivo remotamente e a configuração do sistema não permitir que você faça login como root, você pode usar o comando su para se tornar root. O arquivo de instalação é um arquivo Solaris.pkg padrão. 
+---
+= Instalando o SnapDrive para UNIX em um host Solaris
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para instalar o SnapDrive para UNIX em um host Solaris, você deve confirmar que você está conetado como root. Se você estiver executando esse arquivo remotamente e a configuração do sistema não permitir que você faça login como root, você pode usar o `su` comando para se tornar root. O arquivo de instalação é um arquivo Solaris.pkg padrão.
+
+Certifique-se de que não elimina o diretório onde o SnapDrive para UNIX está instalado. Se você excluir o diretório, podem ocorrer problemas ao iniciar e parar o daemon. Você também deve ter instalado os Utilitários de host do Solaris antes de instalar o SnapDrive para UNIX.
+
+Em zonas de raiz esparsas, a instalação do SnapDrive para UNIX só pode ser parcialmente bem-sucedida porque alguns dos sistemas de arquivos têm acesso somente leitura na zona raiz esparsa. Para evitar essa situação, você pode criar alguns links simbólicos na zona global, de modo que os links estejam disponíveis para as zonas de raiz esparsas.
+
+`ln -s /opt/NTAPsnapdrive/bin/snapdrive /usr/bin/snapdrive`
+
+`ln -s /opt/NTAPsnapdrive/bin/snapdrive /usr/sbin/snapdrive`
+
+`ln -s /opt/NTAPsnapdrive/bin/snapdrived /usr/sbin/snapdrived`
+
+.Passos
+. Mude para o diretório no seu host Solaris, onde você colocou o software baixado do site de suporte da NetApp.
+. Digite o seguinte comando para instalar o SnapDrive para UNIX:
++
+`*./install*`
+
++
+O script instala o software SnapDrive para UNIX sem problemas. Ele grava informações de instalação em um arquivo de log.
+
++
+[listing]
+----
+# ./install
+		Installing NTAPsnapdrive now ...
+		NTAPsnapdrive install completed successfully.
+		snapdrive Installation complete. Log is in
+		/tmp/snapdrive_install_log.23752.
+----
+. Conclua a configuração configurando o SnapDrive para UNIX para o sistema.
++
+A maioria dessas informações é definida por padrão; no entanto, você precisa especificar as seguintes informações:
+
++
+** As informações de login do sistema de armazenamento.
+** As configurações do AutoSupport (o AutoSupport é um recurso opcional, mas é recomendável ativá-lo).
+
+
+

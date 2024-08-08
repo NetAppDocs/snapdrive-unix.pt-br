@@ -1,0 +1,43 @@
+---
+permalink: solaris/concept_operation_with_multiple_storage_objects.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, object, multiple, error 
+summary: O exemplo a seguir mostra a mensagem de erro que você receberia quando você não é um usuário autorizado para realizar a operação específica. 
+---
+= Operação com vários objetos de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O exemplo a seguir mostra a mensagem de erro que você receberia quando você não é um usuário autorizado para realizar a operação específica.
+
+[listing]
+----
+[john]$ snapdrive storage show –all
+
+Connected LUNs and devices:
+
+device filename   adapter  path  size  proto  state  clone  lun path                           backing Snapshot
+----------------  -------  ----  ----  -----  -----  -----  --------                           ---------------
+/dev/sdao            -     -     200m  iscsi  online  No    storage_array1:/vol/vol2/passlun1           -
+/dev/sda1            -     -     200m  fcp    online  No    storage_array1:/vol/vol2/passlun2           -
+
+Host devices and file systems:
+
+dg: testfs1_SdDg                dgtype lvm
+hostvol: /dev/mapper/testfs1_SdDg-testfs1_SdHv  state: AVAIL
+fs: /dev/mapper/testfs1_SdDg-testfs1_SdHv       mount point: /mnt/testfs1 (persistent) fstype ufs
+
+device filename   adapter  path  size  proto  state   clone  lun path                                backing Snapshot
+----------------  -------  ----  ----  -----  -----   -----  --------                                ---------
+/dev/sdn             -      P    108m  iscsi  online   No    storage_array1:/vol/vol2/testfs1_SdLun         -
+/dev/sdn1             -      P    108m  fcp  online   No    storage_array1:/vol/vol2/testfs1_SdLun1         -
+
+0002-719 Warning: SD.Storage.Read access denied on volume storage_array1:/vol/vol1 for user unix_host\john on Operations Manager server ops_mngr_server
+----
+John está autorizado a listar entidades de storage no vol2, mas não no vol1. O SnapDrive para UNIX exibe entidades de vol1 e exibe uma mensagem de aviso para vol2.
+
+
+NOTE: Para `storage list` comandos , `storage show`, , `snap list` e `snap show` SnapDrive para UNIX exibe um aviso em vez de erro.

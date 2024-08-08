@@ -1,0 +1,16 @@
+---
+permalink: solaris/concept_configuration_information_in_snapdrive_for_unix_for_guest_os.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, configuration, guest, operating, system 
+summary: Você deve configurar os sistemas de armazenamento e o Virtual Storage Console no sistema operacional convidado para provisionar LUNs RDM. 
+---
+= Informações de configuração no SnapDrive para UNIX para sistema operacional convidado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve configurar os sistemas de armazenamento e o Virtual Storage Console no sistema operacional convidado para provisionar LUNs RDM.
+
+As informações de login são necessárias para se comunicar com o Virtual Storage Console para provisionar o LUN RDM. Uma vez concluída a configuração, o SnapDrive para UNIX permite que você crie LUNs RDM no sistema operacional convidado.

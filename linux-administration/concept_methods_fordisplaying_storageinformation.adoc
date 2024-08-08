@@ -1,0 +1,27 @@
+---
+permalink: linux-administration/concept_methods_fordisplaying_storageinformation.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, display, storage, show, command 
+summary: Para facilitar a exibição de informações sobre armazenamento, o SnapDrive para UNIX fornece vários formatos para o comando SnapDrive storage show. 
+---
+= Métodos para exibir informações de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para facilitar a exibição de informações sobre armazenamento, o SnapDrive para UNIX fornece vários formatos para o `snapdrive storage show` comando.
+
+As operações de exibição de armazenamento se enquadram nas seguintes categorias gerais:
+
+* Exibindo informações sobre um LUN específico.
+* Listando informações sobre LUNs disponíveis para sistemas de storage específicos ou volumes de sistema de storage.
+* Exibindo informações sobre LUNs associados aos argumentos especificados.
++
+Esses argumentos podem incluir entidades NFS, sistemas de arquivos, volumes de host ou grupos de disco. Se você usar a `-verbose` opção no prompt de comando, o SnapDrive para UNIX fornece saída detalhada, como mostrar a hierarquia de armazenamento, incluindo os LUNs de backup.
+
+* Exibindo informações sobre os dispositivos conhecidos pelo host.
+* Exibindo informações sobre todos os dispositivos e entidades LVM conhecidas pelo host.
+* Exibindo o status de um recurso como compartilhado ou dedicado.
+

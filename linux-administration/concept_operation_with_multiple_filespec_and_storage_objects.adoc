@@ -1,0 +1,22 @@
+---
+permalink: linux-administration/concept_operation_with_multiple_filespec_and_storage_objects.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, filespec, storage, objects, operation, multiple 
+summary: O exemplo a seguir mostra a mensagem de erro que você receberia quando você não é um usuário autorizado para realizar a operação específica. 
+---
+= Operação com vários filespec e objetos de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O exemplo a seguir mostra a mensagem de erro que você receberia quando você não é um usuário autorizado para realizar a operação específica.
+
+[listing]
+----
+[marc]$ snapdrive storage create -lun storage_array1:/vol/vol1/lun5 lun6 -lun storage_array1:/vol/vol2/lun2 -lunsize 100m
+0002-332 Admin error:SD.Storage.Write access denied on volume storage_array1:/vol/vol1 for user nis_domain\marc on Operations Manager server ops_mngr_server
+SD.Storage.Write access denied on volume storage_array1:/vol/vol2 for user nis_domain\marc on Operations Manager server ops_mngr_server
+----
+Neste exemplo, três LUNs residem em dois volumes de sistema de storage, vol1 e vol2. O usuário Marc pertence a nis_domain e não está autorizado a criar filespec em vol1 e vol2. O SnapDrive para UNIX exibe as duas mensagens de erro no exemplo anterior. As mensagens de erro mostram que o usuário deve ter `SD.Storage.Write` acesso em vol1 e vol2.

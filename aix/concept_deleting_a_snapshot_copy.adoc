@@ -1,0 +1,14 @@
+---
+permalink: aix/concept_deleting_a_snapshot_copy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, snapshot, copy 
+summary: Você pode excluir uma cópia Snapshot em um sistema de armazenamento usando o comando SnapDrive snap delete. 
+---
+= Excluindo uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode excluir uma cópia Snapshot em um sistema de armazenamento usando o `snapdrive snap delete` comando.

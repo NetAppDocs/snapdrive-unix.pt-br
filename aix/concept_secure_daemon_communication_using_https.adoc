@@ -1,0 +1,24 @@
+---
+permalink: aix/concept_secure_daemon_communication_using_https.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, secure, daemon, https 
+summary: Você pode usar HTTPS para serviços da Web seguros e comunicação daemon. A comunicação segura é ativada definindo algumas variáveis de configuração no arquivo SnapDrive.conf e gerando e instalando o certificado autoassinado ou CA-assinado. 
+---
+= Comunicação daemon segura usando HTTPS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar HTTPS para serviços da Web seguros e comunicação daemon. A comunicação segura é ativada definindo algumas variáveis de configuração no `snapdrive.conf` arquivo e gerando e instalando o certificado autoassinado ou assinado pela CA.
+
+Você deve fornecer o certificado auto-assinado ou CA-assinado no caminho especificado no `snapdrive.conf` arquivo. Para usar HTTPS para comunicação, você deve definir os seguintes parâmetros no `snapdrive.conf` arquivo:
+
+* `use-https-to-sdu-daemon=on`
+* `contact-https-port-sdu-daemon=4095`
+* `sdu-daemon-certificate-path=/opt/NetApp/snapdrive/snapdrive.pem`
+
+
+
+NOTE: O SnapDrive 5,0 para UNIX e versões posteriores suportam HTTPS para comunicação daemon. Por padrão, a opção é definida como `off`.

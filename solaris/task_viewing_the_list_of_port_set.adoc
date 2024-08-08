@@ -1,0 +1,29 @@
+---
+permalink: solaris/task_viewing_the_list_of_port_set.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, view, list, port, set 
+summary: Você pode usar o comando SnapDrive portset list para exibir todos os conjuntos de portas configurados no SnapDrive no host. 
+---
+= Visualizar a lista de conjuntos de portas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o `snapdrive portset list` comando para exibir todos os conjuntos de portas configurados no SnapDrive no host.
+
+.Passos
+. Digite o seguinte comando no sistema host:
++
+`*snapdrive portset list*`
+
++
+[listing]
+----
+snapdrive portset list
+appliance name   Portset name
+-----------------------------
+vs91        ps2
+----
+

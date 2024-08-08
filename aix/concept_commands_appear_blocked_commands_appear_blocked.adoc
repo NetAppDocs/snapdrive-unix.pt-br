@@ -1,0 +1,26 @@
+---
+permalink: aix/concept_commands_appear_blocked_commands_appear_blocked.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, blocked 
+summary: Não é possível executar comandos SnapDrive para UNIX porque os comandos parecem estar bloqueados por mais de 10 minutos. Você pode ter que esperar que o comando seja concluído. 
+---
+= Os comandos aparecem bloqueados
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Não é possível executar comandos SnapDrive para UNIX porque os comandos parecem estar bloqueados por mais de 10 minutos. Você pode ter que esperar que o comando seja concluído.
+
+Esse comportamento ocorre em casos raros quando o VxVM/DMP precisa de tempo para gerenciar o daemon de configuração de volume. Os gatilhos para esse comportamento incluem o seguinte:
+
+* Um sistema de armazenamento que se recuperou de pânico
+* Um adaptador de destino do sistema de armazenamento que fez a transição de offline para online
+
+
+
+
+== Solução alternativa
+
+Aguarde até que o comando seja concluído. O daemon de configuração Veritas precisa de vários minutos para executar e descobrir o estado atual dos dispositivos.

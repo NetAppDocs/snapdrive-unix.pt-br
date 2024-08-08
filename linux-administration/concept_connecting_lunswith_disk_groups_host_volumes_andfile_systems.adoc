@@ -1,0 +1,43 @@
+---
+permalink: linux-administration/concept_connecting_lunswith_disk_groups_host_volumes_andfile_systems.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, lun, disk, host, volumes, file 
+summary: Para usar o comando SnapDrive storage connect para conetar LUNs com grupos de discos, volumes de host e sistemas de arquivos, você precisa seguir a sintaxe. 
+---
+= Conexão de LUNs com grupos de discos, volumes de host e sistemas de arquivos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para usar o `snapdrive storage connect` comando para conetar LUNs com grupos de discos, volumes de host e sistemas de arquivos, você precisa seguir a sintaxe.
+
+Introduza o seguinte comando:
+
+`*snapdrive storage connect-fs _file_spec_ -hostvol _file_spec_ -lun _long_lun_name_ [_lun_name..._] [-igroup _ig_name_ [_ig_name..._]] [-nopersist] [-mntopts _options_] [-fstype _type_] [-vmtype _type_]`*»
+
+
+
+== Exemplo: Conetando um sistema de arquivos criado em um LUN
+
+[listing]
+----
+# snapdrive storage connect -fs /mnt/fs -lun f270-221-189:/vol/vol0/lun111 -nolvm
+mapping lun(s) ... done
+discovering lun(s) ... done
+LUN f270-221-189:/vol/vol0/lun111 connected
+- device filename(s): /dev/vx/dmp/fas2700_939
+----
+
+
+== Exemplo: Conexão de um sistema de arquivos criado em um LUN RDM
+
+[listing]
+----
+# snapdrive storage connect -fs /mnt/fs -lun lech:/vol/vol1/lun1 -nolvm
+exporting new lun(s) to Guest OS ... done
+discovering lun(s) ... done
+LUN lech:/vol/vol1/lun1 connected
+- device filename(s): /dev/sdb
+----

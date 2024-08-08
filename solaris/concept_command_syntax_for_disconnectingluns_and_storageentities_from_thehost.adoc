@@ -1,0 +1,16 @@
+---
+permalink: solaris/concept_command_syntax_for_disconnectingluns_and_storageentities_from_thehost.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, syntax, lun, storage, host, disconnect 
+summary: Para usar o comando SnapDrive storage disconnect para remover os mapeamentos dos LUNs com entidades de armazenamento, use a seguinte sintaxe. 
+---
+= Sintaxe de comando para desconetar LUNs e entidades de armazenamento do host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para usar o `snapdrive storage disconnect` comando para remover os mapeamentos dos LUNs com entidades de armazenamento, use a seguinte sintaxe:
+
+`*snapdrive storage disconnect { -dg | -fs | -hostvol } _file_spec_ [_file_spec..._] [{ -dg | -fs | -hostvol } _file_spec_ [_file_spec...] ..._] [-full] [-fstype _type_] [-vmtype _type_]*`

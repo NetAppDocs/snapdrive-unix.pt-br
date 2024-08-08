@@ -1,0 +1,23 @@
+---
+permalink: solaris/concept_the_storagedisconnect_command.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, disconnect, command 
+summary: A operação de desconexão de storage remove os LUNs ou as LUNs e entidades de storage que foram mapeadas para o host usando o comando SnapDrive storage Create ou SnapDrive storage connect. 
+---
+= O comando de desconexão de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A `storage disconnect` operação remove os LUNs, ou os LUNs e entidades de armazenamento que foram mapeados para o host usando o `snapdrive storage create` comando ou `snapdrive storage connect`.
+
+Use o `snapdrive storage disconnect` comando para desconetar:
+
+* LUNs
+* Um sistema de arquivos criado diretamente em um LUN
+* Grupos de discos, volumes de host e sistemas de arquivos criados em LUNs
+
+
+Quando o SnapDrive para UNIX remove os mapeamentos de LUN, ele exporta os grupos de discos ou sistemas de arquivos que os LUNs contêm. Essa ação, que marca o disco e o sistema de arquivos como exportados, é a única alteração que desconetar os mapeamentos tem no conteúdo dos LUNs.

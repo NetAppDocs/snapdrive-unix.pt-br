@@ -1,0 +1,11 @@
+---
+permalink: releasenotes.html 
+sidebar: sidebar 
+keywords: release, notes, new, features, fixed, issues, known, limitations 
+summary: Descreve novos recursos, notas de atualização, problemas corrigidos, limitações conhecidas e problemas conhecidos. 
+---
+= Notas de versão do SnapDrive para Unix 5.3.2
+:allow-uri-read: 
+
+
+A link:https://library.netapp.com/ecm/ecm_get_file/ECMLP2849339["Notas de versão do SnapDrive para Unix 5.3.2"] descreve novos recursos, notas de atualização, problemas corrigidos, limitações conhecidas e problemas conhecidos. É necessário iniciar sessão no site de suporte da NetApp para aceder às Notas de versão.

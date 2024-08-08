@@ -1,0 +1,23 @@
+---
+permalink: aix/task_forcibly_stopping_the_daemon.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, daemon, stop, daemon 
+summary: Você pode forçar o daemon quando não quiser esperar que todos os comandos completem a execução. Depois que a solicitação para parar forçosamente o daemon é recebida, o daemon SnapDrive para UNIX cancela quaisquer comandos que estejam em execução ou na fila. Quando você pára o daemon à força, o estado do seu sistema pode ser indefinido. Este método não é recomendado. 
+---
+= Forçar a interrupção do daemon
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode forçar o daemon quando não quiser esperar que todos os comandos completem a execução. Depois que a solicitação para parar forçosamente o daemon é recebida, o daemon SnapDrive para UNIX cancela quaisquer comandos que estejam em execução ou na fila. Quando você pára o daemon à força, o estado do seu sistema pode ser indefinido. Este método não é recomendado.
+
+Você deve estar logado como usuário root.
+
+.Passos
+. Forçosamente parar o daemon:
++
+`*snapdrived -force stop*`
+
+

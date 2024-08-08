@@ -1,0 +1,41 @@
+---
+permalink: aix/task_adding_a_port_set_in_snapdrive.html 
+sidebar: sidebar 
+keywords: port, set, snap, snapdrive, add 
+summary: Você pode adicionar um conjunto de portas no sistema de armazenamento para se comunicar com um SVM. Esta é uma atividade única e deve ser feita antes de usar o sistema de storage. 
+---
+= Adicionar um conjunto de portas no SnapDrive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode adicionar um conjunto de portas no sistema de armazenamento para se comunicar com um SVM. Esta é uma atividade única e deve ser feita antes de usar o sistema de storage.
+
+
+NOTE: Se você quiser atualizar para o SnapDrive 5,2 para UNIX, certifique-se de que as versões anteriores do SnapDrive para grupos UNIX sejam associadas manualmente à porta definida pelo administrador de armazenamento.
+
+No exemplo a seguir, o administrador de armazenamento usa o nome do SVM em vez de um endereço IP e verifica se o nome do SVM está registrado em um servidor DNS.
+
+.Passos
+. Digite o seguinte comando no host:
++
+`*snapdrive portset add _portset_name filername [filername...]_*`
+
++
+`_portset_name_` é o nome do conjunto de portas.
+
++
+`_filername_` É o nome do SVM.
+
++
+[listing]
+----
+snapdrive portset add ps2 vs91
+Added portset configuration for appliance: vs91
+----
++
+O conjunto de portas PS2 foi adicionado com sucesso no SnapDrive.
+
+

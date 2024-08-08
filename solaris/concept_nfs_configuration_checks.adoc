@@ -1,0 +1,26 @@
+---
+permalink: solaris/concept_nfs_configuration_checks.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, nfs, configuration, check 
+summary: 'Para configurações que usam NFS (Network File System), você deve verificar se os clientes NFS estão operando corretamente, antes de configurar seus sistemas de host e armazenamento.' 
+---
+= Verificações de configuração de NFS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para configurações que usam NFS (Network File System), você deve verificar se os clientes NFS estão operando corretamente antes de configurar seus sistemas de host e storage.
+
+Se você tiver uma configuração que use NFS, deverá concluir as seguintes tarefas:
+
+* Certifique-se de que os clientes NFS estão operando corretamente.
++
+Para obter mais informações sobre o gerenciamento de protocolos NFS, consulte link:https://library.netapp.com/ecm/ecm_download_file/ECMP1401220["Guia de gerenciamento de protocolos e acesso a arquivos para o modo 7D."] se você estiver usando o Data ONTAP 7-Mode; consulte  se estiver usando o link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["Guia de gerenciamento de acesso a arquivos para NFS"]Clustered Data ONTAP.
+
+* Configure seus sistemas de host e storage.
++
+Para usar o SnapDrive para UNIX com diretórios montados em NFS nos sistemas de storage, você deve garantir que os diretórios do sistema de storage sejam exportados corretamente para o host. Se o seu host tiver várias interfaces IP (Internet Protocol), bem como interfaces de dados e gerenciamento para o sistema de storage, você deverá garantir que o diretório seja exportado corretamente para as interfaces de dados e gerenciamento. O SnapDrive para UNIX emite avisos, a menos que todas essas interfaces tenham permissões de leitura ou gravação, ou no caso do `snapdrive snap connect` comando com a `-readonly` opção, pelo menos permissões somente leitura. Os `snapdrive snap restore` comandos e `snapdrive snap connect` falharão se nenhuma dessas interfaces tiver permissão para acessar o diretório.
+
+

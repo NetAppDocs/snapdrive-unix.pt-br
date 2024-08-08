@@ -1,0 +1,14 @@
+---
+permalink: solaris/concept_what_the_configuration_wizard_does.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, configuration, wizard 
+summary: O assistente de configuração do SnapDrive permite configurar o SnapDrive para UNIX e as configurações NFS ou SAN, dependendo do ambiente. Alternativamente, você também pode abrir o arquivo SnapDrive.conf e editar as variáveis de configuração. 
+---
+= O que o assistente de configuração do SnapDrive faz
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O assistente de configuração do SnapDrive permite configurar o SnapDrive para UNIX e as configurações NFS ou SAN, dependendo do ambiente. Alternativamente, você também pode abrir o `snapdrive.conf` arquivo e editar as variáveis de configuração.

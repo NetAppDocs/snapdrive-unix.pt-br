@@ -1,0 +1,14 @@
+---
+permalink: solaris/concept_command_to_use_torename_a_snapshotcopy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, rename, snapshot, copy 
+summary: Use o comando snapshot Rename para renomear uma cópia Snapshot. 
+---
+= Comando a ser usado para renomear uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Use o `snapshot snap rename` comando para renomear uma cópia Snapshot.

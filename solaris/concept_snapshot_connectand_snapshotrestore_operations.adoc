@@ -1,0 +1,22 @@
+---
+permalink: solaris/concept_snapshot_connectand_snapshotrestore_operations.html 
+sidebar: sidebar 
+keywords: snap, snapshot, restore, connect, operation 
+summary: A cópia Snapshot clona as informações quando você se conecta à cópia Snapshot. 
+---
+= Operações de restauração do Snapshot Connect e do Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A cópia Snapshot clona as informações quando você se conecta à cópia Snapshot.
+
+Diferentemente da operação de restauração do Snapshot, a operação de conexão do Snapshot não substitui o conteúdo existente das LUNs que compõem a entidade host pelo conteúdo da cópia Snapshot. Ele clones as informações.
+
+Após a conexão ser estabelecida, as operações de restauração do Snapshot Connect e do Snapshot realizam atividades semelhantes:
+
+* A operação Snapshot connect ativa volumes lógicos para a entidade de storage, monta sistemas de arquivos e, opcionalmente, adiciona uma entrada à tabela do sistema de arquivos host.
+* A operação de restauração Snapshot ativa os volumes lógicos da entidade de storage, monta os sistemas de arquivos e aplica as entradas de montagem do sistema de arquivos host que foram preservadas na cópia Snapshot.
+

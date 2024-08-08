@@ -1,0 +1,56 @@
+---
+permalink: linux-administration/task_stopping_the_clone_and_lun_clone_split.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, clone, split, lun, volume, specification 
+summary: Você pode parar o grupo clone para um clone de volume ou clone LUN usando a ID da tarefa ou a especificação do arquivo. 
+---
+= Parar a operação de divisão de clone de volume ou clone de LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode parar o grupo clone para um clone de volume ou clone LUN usando a ID da tarefa ou a especificação do arquivo.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive clone split stop [-lun] _long_lun_name_ [_long_lun_name..._] |[{-dg | -vg | -fs | -hostvol | -lvol} _file_spec_ [file_spec...]] | [-job _<jobid>_]*`
+
++
+O SnapDrive para UNIX interrompe a operação clone split stop que está em andamento.
+
+
+
+O exemplo a seguir mostra a operação de divisão de clones que é interrompida usando a especificação de arquivo.
+
+[listing]
+----
+# snapdrive clone split stop -fs /mnt/my_mnt4 /mnt/my_mnt3
+Clone-Split for "/mnt/my_mnt4" is 0% Completed and Stopped.
+Clone-Split for "/mnt/my_mnt3" is 0% Completed and Stopped.
+----
+O exemplo a seguir mostra a operação de divisão de clones que é interrompida usando o ID da tarefa.
+
+[listing]
+----
+# snapdrive clone split stop -job B265Dbv8gh
+Clone-Split for "/mnt/my_mnt3" is 14% Completed and Stopped.
+Clone-Split for "/mnt/my_mnt4" is 17% Completed and Stopped.
+----
+O exemplo a seguir é uma saída típica que mostra a operação clone split stop para uma especificação de arquivo que já está parada.
+
+[listing]
+----
+# snapdrive clone split stop -fs /mnt/my_mnt4 /mnt/my_mnt3
+Clone-Split for "/mnt/my_mnt3" is not stopped : No split is in progress for this resource
+Clone-Split for "/mnt/my_mnt4" is not stopped : No split is in progress for this resource
+----
+[NOTE]
+====
+* Se a divisão de clones for interrompida para uma especificação de arquivo específica no ID da tarefa e a parada de divisão de clones for bem-sucedida, a especificação de arquivo será removida da tarefa.
+* Se a divisão de clones for interrompida para uma tarefa e a parada de divisão de clones for bem-sucedida para todas as especificações de arquivo na tarefa, a tarefa será removida do conjunto de tarefas.
+
+
+====

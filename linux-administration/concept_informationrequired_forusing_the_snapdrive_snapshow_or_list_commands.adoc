@@ -1,0 +1,104 @@
+---
+permalink: linux-administration/concept_informationrequired_forusing_the_snapdrive_snapshow_or_list_commands.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, list, command, storage, display, show 
+summary: Você pode usar o comando SnapDrive snap show ou lista para exibir informações sobre sistemas de storage, volumes de sistema de storage, discos ou grupos de volumes, sistema de arquivos, cópias Snapshot e assim por diante. 
+---
+= Informações necessárias para usar os comandos SnapDrive snap show ou list
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o comando `snapdrive snap show` ou `list` exibir informações sobre sistemas de storage, volumes de sistema de storage, discos ou grupos de volumes, sistema de arquivos, cópias Snapshot e assim por diante.
+
+A tabela a seguir fornece as informações que você precisa fornecer quando você usa o `snapdrive snap show | list` comando.
+
+
+NOTE: Você pode usar os mesmos argumentos, independentemente de você inserir `snapdrive snap show` ou `snapdrive snap list` como o comando. Estes comandos são sinônimos.
+
+|===
+| Requisito/opção | Argumento 
+
+
+ a| 
+Com base no comando inserido, você pode exibir informações sobre qualquer um dos seguintes itens:
+
+* Sistemas de storage
+* Volumes do sistema de storage
+* Grupos de disco ou volume
+* Sistemas de arquivos
+* Host ou volumes lógicos
+* Cópias Snapshot
+
+
+O valor inserido para `file_spec` o argumento deve identificar a entidade de armazenamento sobre a qual deseja exibir informações. O comando assume que as entidades estão no host atual.
+
+
+
+ a| 
+Sistema de (`-filer`storage )
+ a| 
+`_filername_`
+
+
+
+ a| 
+Um volume no sistema de armazenamento (`-filervol`)
+ a| 
+`_filervol_`
+
+
+
+ a| 
+Grupo de discos (`-dg _file_spec_`) ou grupo de (`-vg _file_spec_`volumes )
+ a| 
+`_name of the disk or volume group_`
+
+
+
+ a| 
+Sistema de (`-fs _file_spec_`ficheiros )
+ a| 
+`_filesystem_name_`
+
+
+
+ a| 
+Volume do (`-hostvol _file_spec_`host ) ou volume (`-lvol _file_spec_`lógico )
+ a| 
+`_name of the host or logical volume_`
+
+
+
+ a| 
+Nome da cópia Snapshot (`-snapname _long_snap_name_`)
+ a| 
+`_long_snap_name_`
+
+
+
+ a| 
+Nomes de cópia Snapshot adicionais
+ a| 
+`_snap_name_` (versão longa ou curta)
+
+
+
+ a| 
+Se quiser exibir informações sobre uma cópia Snapshot, especifique o nome da cópia Snapshot. Para a primeira cópia Snapshot, `_long_snap_name_` insira a versão longa do nome, que inclui o nome do sistema de storage, o volume e o nome da cópia Snapshot. Você pode usar a versão curta do nome da cópia Snapshot se estiver no mesmo sistema de storage e volume.
+
+
+
+ a| 
+`-verbose`
+ a| 
+.
+
+
+
+ a| 
+Para exibir informações adicionais, inclua a `-verbose` opção.
+
+|===

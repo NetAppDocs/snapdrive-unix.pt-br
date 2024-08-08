@@ -1,0 +1,27 @@
+---
+permalink: aix/concept_snapdrive_for_unix_provisioning_in_an_lvma_vxvm_environment.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, lvm, provisioning, environment 
+summary: Os comandos de storage SnapDrive para UNIX provisionam entidades LVM criando objetos LVM. 
+---
+= Provisionamento SnapDrive para UNIX em um ambiente LVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+Os comandos de storage SnapDrive para UNIX provisionam entidades LVM criando objetos LVM.
+
+Se você solicitar uma operação de armazenamento SnapDrive para UNIX que forneça uma entidade LVM - por exemplo, um grupo de discos que inclua volumes de host ou sistemas de arquivos - o `snapdrive storage` comando funciona com a LVM para criar os objetos LVM e sistemas de arquivos que usam o armazenamento.
+
+Durante a operação de provisionamento de storage, ocorrem as seguintes ações:
+
+* O LVM host combina LUNs de um sistema de storage em discos ou grupos de volumes.
++
+O storage é então dividido em volumes lógicos, que são usados como se fossem dispositivos de disco brutos para armazenar sistemas de arquivos ou dados brutos.
+
+* O SnapDrive para UNIX é integrado à LVM host para determinar quais LUNs NetApp compõem cada grupo de discos, volume de host e sistema de arquivos solicitados para uma cópia Snapshot.
++
+Como os dados de qualquer volume de host especificado podem ser distribuídos por todos os discos no grupo de discos, as cópias Snapshot podem ser feitas e restauradas somente para grupos de discos inteiros.
+
+

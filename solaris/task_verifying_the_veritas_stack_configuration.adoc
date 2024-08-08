@@ -1,0 +1,54 @@
+---
+permalink: solaris/task_verifying_the_veritas_stack_configuration.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, verify, veritas, stack, configuration 
+summary: Para verificar a configuração da pilha Veritas, você deve executar os comandos SnapDrive storage connect e vxdisk list. 
+---
+= Verificando a configuração da pilha Veritas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para verificar a configuração da pilha Veritas, é necessário executar os `snapdrive storage connect` comandos e `vxdisk list` .
+
+Para verificar a configuração da pilha Veritas, primeiro você deve confirmar se instalou os seguintes itens nesta ordem:
+
+. Biblioteca NTAPasl
+. Licenças da Veritas
+. Pilha Veritas (base de armazenamento)
+. Licenças multipathing
+. Software SnapDrive para UNIX
+
+
+Em seguida, execute as seguintes etapas:
+
+.Passos
+. Digite o seguinte comando para se conetar a um dispositivo específico do sistema operacional:
++
+`*snapdrive storage connect -lun _long_lun_name_*`
+
++
+onde o long_lun_name é o nome lun.
+
+. Digite o seguinte comando para obter as informações do dispositivo:
++
+`*vxdisk list*`
+
+
+
+Você pode obter um dos seguintes resultados:
+
+* Se a configuração do Veritas no host estiver correta, a saída esperada para o status do dispositivo será
++
+`online invalid.`
+
+* Se a configuração do Veritas no host estiver incorreta, a saída esperada para o status do dispositivo será
++
+`error.`
+
++
+Esta mensagem de erro ocorre quando você instala a pilha Veritas sem instalar a biblioteca NTAPasl. Para corrigir essa mensagem de erro, você deve instalar a biblioteca NTAPasl e executar o `vxinstall` comando para colocar os LUNs e grupos de discos on-line.
+
+

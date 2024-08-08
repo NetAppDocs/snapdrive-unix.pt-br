@@ -1,0 +1,23 @@
+---
+permalink: solaris/task_starting_the_snapdrive_for_unix_daemon.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, start, daemon 
+summary: Você deve iniciar e executar o daemon SnapDrive para UNIX antes de usar qualquer comando SnapDrive para UNIX. 
+---
+= Iniciando o daemon SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve iniciar e executar o daemon SnapDrive para UNIX antes de usar qualquer comando SnapDrive para UNIX.
+
+Você deve estar logado como usuário root.
+
+.Passos
+. Inicie o daemon:
++
+`*snapdrived start*`
+
+

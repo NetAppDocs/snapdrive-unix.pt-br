@@ -1,0 +1,16 @@
+---
+permalink: linux-administration/concept_what_the_trace_log_file_is.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, trace, log, file, troubelshoot, problem, issue 
+summary: O suporte técnico usa o arquivo de log de rastreamento para solucionar problemas. 
+---
+= O que é o arquivo de log de rastreamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O suporte técnico usa o arquivo de log de rastreamento para solucionar problemas.
+
+Ativar o ficheiro de registo de rastreio não afeta o desempenho do sistema. Por padrão, esse arquivo está habilitado. Pode desativar definindo a `snapdrive.conftrace-enabled` variável para `off`.

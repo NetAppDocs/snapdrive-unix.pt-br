@@ -1,0 +1,16 @@
+---
+permalink: solaris/task_recieving_error_does_not_look_snapdrive_generated.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, error, disconnect, clone, volume 
+summary: Em alguns casos, a operação SnapDrive snap Disconnect não elimina o volume clonado e a mensagem de erro não parece gerada por SnapDrive é exibida. 
+---
+= A operação de desconexão instantânea não elimina o volume clonado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Em alguns casos, `snapdrive snap disconnect` a operação não consegue excluir o volume clonado e a mensagem de erro `does not look SnapDrive-generated` aparece.
+
+A solução alternativa para o problema é reverter para o nome original da cópia Snapshot e garantir que o `_bypass-snapdrive-clone-generated-check_` está definido como `on` no `snapdrive.conf` arquivo.

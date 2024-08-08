@@ -1,0 +1,20 @@
+---
+permalink: linux-administration/concept_guidelines_forrenaming_snapshotcopies.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, rename, snapshot, copy, command 
+summary: Ao renomear cópias Snapshot, verifique se as duas cópias Snapshot não têm o mesmo nome. 
+---
+= Diretrizes para renomear cópias Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ao renomear cópias Snapshot, verifique se as duas cópias Snapshot não têm o mesmo nome.
+
+Siga estas diretrizes quando usar o `snapdrive snap rename` comando:
+
+* Uma mensagem de erro ocorre se você tentar renomear uma cópia Snapshot para um volume diferente do sistema de armazenamento.
+* Uma mensagem de erro ocorre se o novo nome para a cópia Snapshot já existir. Você pode usar a `-force` opção para forçar o SnapDrive para UNIX a alterar o nome sem gerar uma mensagem de erro.
+

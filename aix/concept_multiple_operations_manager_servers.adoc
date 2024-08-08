@@ -1,0 +1,34 @@
+---
+permalink: aix/concept_multiple_operations_manager_servers.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, multiple, operations, manager, console, server 
+summary: O SnapDrive para UNIX suporta vários servidores de console do Gerenciador de operações. Esse recurso é necessário quando um grupo de sistemas de storage é gerenciado por mais de um servidor de console do Operations Manager. O SnapDrive para UNIX contacta os servidores da consola do Gestor de operações na mesma ordem em que os servidores da consola do Gestor de operações estão configurados no SnapDrive para UNIX. Você pode executar o comando SnapDrive config list para obter a ordem de configuração. 
+---
+= Vários servidores de console do Operations Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX suporta vários servidores de console do Gerenciador de operações. Esse recurso é necessário quando um grupo de sistemas de storage é gerenciado por mais de um servidor de console do Operations Manager. O SnapDrive para UNIX contacta os servidores da consola do Gestor de operações na mesma ordem em que os servidores da consola do Gestor de operações estão configurados no SnapDrive para UNIX. Você pode executar o `snapdrive config list` comando para obter a ordem de configuração.
+
+O exemplo a seguir mostra a saída para vários servidores de console do Operations Manager:
+
+[listing]
+----
+# snapdrive config list
+username    appliance name     appliance type
+---------------------------------------------
+root        storage_array1     StorageSystem
+root        storage_array2     StorageSystem
+sd-admin    ops_mngr_server1   DFM
+sd-admin    ops_mngr_server2   DFM
+----
+No exemplo anterior, storage_array1 é gerenciado por OPS_mngr_server1 e storage_array2 é gerenciado por OPS_mngr_server2. Neste exemplo, o SnapDrive para UNIX contacta OPS_mngr_server1 primeiro. Se OPS_mngr_server1 não for capaz de determinar o acesso, o SnapDrive para UNIX contacta OPS_mngr_server2.
+
+O SnapDrive para UNIX entra em Contato com o segundo console do Gerenciador de operações somente nas seguintes condições:
+
+* Quando o primeiro console do Operations Manager não consegue determinar o acesso. Essa situação pode ocorrer porque o primeiro console do Operations Manager não está gerenciando o sistema de storage.
+* Quando o primeiro console do Operations Manager estiver inativo.
+

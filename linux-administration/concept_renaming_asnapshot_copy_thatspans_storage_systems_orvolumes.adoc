@@ -1,0 +1,18 @@
+---
+permalink: linux-administration/concept_renaming_asnapshot_copy_thatspans_storage_systems_orvolumes.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, rename, copy, snapshot, storage, volume 
+summary: Para cópias Snapshot que cruzam vários sistemas de storage ou volumes de sistema de storage, renomeie todas as cópias Snapshot relacionadas. 
+---
+= Renomeando uma cópia Snapshot que abrange sistemas de storage ou volumes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para cópias Snapshot que cruzam vários sistemas de storage ou volumes de sistema de storage, renomeie todas as cópias Snapshot relacionadas.
+
+Você também pode usar esse comando para renomear uma cópia Snapshot que está em vários sistemas de armazenamento ou vários volumes de sistema de armazenamento.
+
+Se você renomear uma dessas cópias Snapshot, também deverá renomear todas as cópias Snapshot relacionadas usando o mesmo nome. Isso ocorre porque o SnapDrive para UNIX usa um nome curto quando cria a cópia Snapshot, mesmo que ela abrange vários sistemas de storage ou volumes. O comando Rename altera o nome da cópia Snapshot atual, mas não altera o nome das cópias Snapshot relacionadas nos outros locais.

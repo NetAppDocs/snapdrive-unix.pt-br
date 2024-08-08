@@ -1,0 +1,35 @@
+---
+permalink: aix/concept_guidelines_fordisconnectingsnapshot_copies_for_nfs_entities.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, guidelines, disconnect, copy, nfs, entities 
+summary: A operação de desconexão para uma cópia Snapshot pode ser executada a partir de qualquer nó em um ambiente de cluster de host. Use opções de comando para desconetar uma entidade de storage de um nó específico. 
+---
+= Diretrizes para desconetar cópias Snapshot de entidades NFS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A operação de desconexão para uma cópia Snapshot pode ser executada a partir de qualquer nó em um ambiente de cluster de host. Use opções de comando para desconetar uma entidade de storage de um nó específico.
+
+Siga estas diretrizes ao desconetar cópias Snapshot que contêm entidades NFS:
+
+* Se você desconetar uma árvore de diretórios NFS conetada com permissão somente leitura, o SnapDrive para UNIX executará as seguintes ações:
++
+** Desmonta o sistema de ficheiros.
+** Remove a entrada de montagem no ficheiro de tabela do sistema de ficheiros.
+** Remove o ponto de montagem.
+** Não remove as regras de exportação do diretório cópia Snapshot, que foi criado durante a conexão do NFS filespec do host secundário (o host que não tem permissão de exportação no volume pai).
+
+
+* Se você desconetar uma árvore de diretórios NFS conetada com permissão de leitura-gravação, o SnapDrive para UNIX executará as seguintes ações:
++
+** Desmonta o sistema de ficheiros.
+** Remove a entrada de montagem no ficheiro de tabela do sistema de ficheiros.
+** Exclui a árvore de diretórios NFS que corresponde ao sistema de arquivos no clone do FlexVol volume.
+** Destrói o clone FlexVol volume subjacente (se estiver vazio).
+** Remove o ponto de montagem.
+
+
+

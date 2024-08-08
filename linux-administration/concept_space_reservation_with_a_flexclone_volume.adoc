@@ -1,0 +1,24 @@
+---
+permalink: linux-administration/concept_space_reservation_with_a_flexclone_volume.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, space, flexclone, restricted, unrestricted, reservation, operation 
+summary: Você pode executar a operação de reserva de espaço em volumes FlexClone restritos e irrestritos. Por padrão, os volumes FlexClone não têm reservas de gravação. 
+---
+= Reserva de espaço com um volume FlexClone
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode executar a operação de reserva de espaço em volumes FlexClone restritos e irrestritos. Por padrão, os volumes FlexClone não têm reservas de gravação.
+
+A seguir estão as configurações de reserva de espaço do FlexClone para volumes FlexClone restritos e irrestritos:
+
+*Volumes FlexClone não restritos:* se `-reserve` a opção for fornecida na CLI ou `flexclone-writereserve-enabled = on` na `snapdrive.conf`, a reserva de espaço será definida como volume na FlexClone, caso contrário não será nenhuma. O SnapDrive para UNIX mostra uma mensagem de erro se o espaço disponível no agregado não for suficiente para aderir a esta configuração.
+
+*Volumes FlexClone restritos:*
+
+* A configuração de reserva de espaço no nível do volume está sempre desativada; ou seja, a reserva de espaço está definida como NENHUMA.
+* Se `-reserve` a opção ou `-noreserve` for fornecida na CLI, a reserva de espaço será ativada ou desativada respetivamente nos LUNs que pertencem à especificação do arquivo host. Caso contrário, os LUNs relacionados às especificações do arquivo host no FlexClone herdam a reserva de espaço dos LUNs de volume pai.
+

@@ -1,0 +1,51 @@
+---
+permalink: solaris/concept_snapdrive_for_unix_incorrectly_interprets_the_dollar_sign_symbol.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, dollar, sign 
+summary: O SnapDrive para UNIX interpreta incorretamente o sinal de dólar e todos os carateres especiais de forma diferente, se os carateres especiais forem especificados como parte de um valor de configuração. 
+---
+= O SnapDrive para UNIX interpreta incorretamente o sinal de dólar
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX interpreta incorretamente o sinal de dólar e todos os carateres especiais de forma diferente, se os carateres especiais forem especificados como parte de um valor de configuração.
+
+Todos os valores de configuração especificados devem ser numéricos. Se você especificar valor ou qualquer outro caractere especial como parte do valor de configuração, o SnapDrive para UNIX aceita o valor, mas interpreta o valor numérico mencionado após o caractere especial de uma maneira diferente.
+
+
+
+== Exemplo
+
+O seguinte é um exemplo de como o dólar é interpretado:
+
+[listing]
+----
+#a=$123
+#echo $a
+23
+
+[root@vm-linux-51-233 ~]# /opt/NetApp/snapdrive/bin/config_set volume-clone-retry-sleep=$129
+[root@vm-linux-51-233 ~]# /opt/NetApp/snapdrive/bin/config_show |grep volume-clone-retry-sleep
+volume-clone-retry-sleep:Number of seconds between retries during flex-clone create:'3':'29':1:0:'^[0-9]+$':filer
+----
+Neste exemplo, o SnapDrive para UNIX interpreta o valor de configuração (123 dólares) como 23.
+
+
+
+== Solução alternativa
+
+Especifique uma barra invertida (') antes de USD. Modifique o exemplo anterior da seguinte forma:
+
+[listing]
+----
+#a=\$123
+#echo $a
+23
+
+[root@vm-linux-51-233 ~]# /opt/NetApp/snapdrive/bin/config_set volume-clone-retry-sleep=$129
+[root@vm-linux-51-233 ~]# /opt/NetApp/snapdrive/bin/config_show |grep volume-clone-retry-sleep
+volume-clone-retry-sleep:Number of seconds between retries during flex-clone create:'3':'29':1:0:'^[0-9]+$':filer
+----

@@ -1,0 +1,20 @@
+---
+permalink: solaris/concept_snapdrive_operations_fail_in_multiple_subnet_configuration.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, fail, multiple, subnet, configuration 
+summary: 'As operações do SnapDrive falham em várias configurações de sub-rede, se o acesso ICMP (Protocolo de mensagens de Controle de Internet) estiver desativado ou se os pacotes ICMP forem descartados entre o host e a rede do sistema de armazenamento.' 
+---
+= As operações do SnapDrive falham na configuração de sub-rede múltipla
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+As operações do SnapDrive falham em várias configurações de sub-rede, se o acesso ICMP (Internet Control Message Protocol) estiver desativado ou se os pacotes ICMP forem descartados entre o host e a rede do sistema de armazenamento.
+
+
+
+== Solução alternativa
+
+Certifique-se de que `_enable-ping-to-check-filer-reachability_` está definido como `off`.

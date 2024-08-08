@@ -1,0 +1,32 @@
+---
+permalink: aix/task_guidelines_fordisplayingsnapshot_copies.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, display, snapshot, copy 
+summary: Você pode usar curingas para exibir as cópias Snapshot. É possível exibir todas as cópias Snapshot presentes em um objeto específico. 
+---
+= Diretrizes para a exibição de cópias Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar curingas para exibir as cópias Snapshot. É possível exibir todas as cópias Snapshot presentes em um objeto específico.
+
+Tenha em mente os seguintes pontos antes de trabalhar com cópias Snapshot:
+
+* Você pode usar o caractere curinga (*) em nomes de cópia Snapshot. A operação Snapshot show permite que você use o caractere curinga para mostrar todos os nomes de cópias Snapshot que correspondam a um determinado padrão ou a todos os nomes de cópias Snapshot em um determinado volume. As regras a seguir se aplicam ao usar curinga em nomes de cópia Snapshot:
++
+** Você pode usar um curinga apenas no final do nome. Não é possível usar o caractere curinga no início ou no meio de um nome de cópia Snapshot.
+** Não é possível usar o caractere curinga nos campos de volume do sistema de armazenamento ou do sistema de armazenamento de um nome de cópia Snapshot.
+
+
+* Você também pode usar esse comando para listar todas as cópias Snapshot em objetos específicos, incluindo sistemas de storage e seus volumes, grupos de discos, grupos de volumes de host, sistemas de arquivos, volumes de host e volumes lógicos.
+* Se você inserir um `snapdrive snap show` comando e o SnapDrive para UNIX não localizar nenhuma cópia Snapshot, ele exibirá a mensagem "não há cópias Snapshot correspondentes". Se você especificar argumentos na linha de comando e algumas partes delas não existirem, o SnapDrive para UNIX retornará uma lista parcial daqueles para os quais cópias Snapshot são encontradas. Ele também lista os argumentos que eram inválidos.
+* Se o `snapdrive snap create` comando for interrompido abruptamente, um arquivo incompleto `.stoc.xml` é armazenado no volume no sistema de armazenamento. Devido a isso, todas as cópias Snapshot agendadas feitas pelo sistema de storage terão uma cópia do arquivo incompleto `.stoc.xml`. Para que o `snapdrive snap list` comando funcione com sucesso, execute as seguintes etapas:
+
+
+.Passos
+. Exclua o arquivo incompleto `.stoc.xml` no volume.
+. Exclua as cópias Snapshot agendadas feitas pelo sistema de storage que contém o arquivo incompleto `.stoc.xml`.
+

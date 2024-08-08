@@ -1,0 +1,43 @@
+---
+permalink: solaris/concept_postinstallation_checks.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, post, install, check 
+summary: Após a conclusão da instalação, você deve executar algumas tarefas para garantir que o SnapDrive para UNIX seja instalado com êxito. 
+---
+= Realizar verificações pós-instalação
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Após a conclusão da instalação, você deve executar algumas tarefas para garantir que o SnapDrive para UNIX seja instalado com êxito.
+
+. Verifique se o programa de instalação instalou todos os arquivos necessários em seu host.
+. Confirme se as variáveis de configuração no `snapdrive.conf` arquivo têm as configurações corretas.
++
+Para a maioria dessas variáveis, os valores padrão devem ser aplicáveis.
+
+. Forneça o SnapDrive para UNIX com as informações de login do sistema de armazenamento atual.
++
+Quando você configura o sistema de armazenamento, você forneceu um login de usuário para ele. O SnapDrive para UNIX precisa dessas informações de login para trabalhar com o sistema de storage.
+
+. Para usar o controle de acesso baseado em função (RBAC), defina a `_rbac-method=dfm_` variável no `snapdrive.conf` arquivo.
++
+Por padrão, o SnapDrive 4,0 para UNIX e posterior acessa os sistemas de storage usando as credenciais raiz. A funcionalidade RBAC não está ativada.
+
+. Para usar HTTPS para uma conexão segura com o sistema de armazenamento e o serviço daemon, defina o `_use-https-to-sdu-daemon=on_` no `snapdrive.conf` arquivo.
++
+
+NOTE: O SnapDrive 5,0 para UNIX e versões posteriores suportam HTTPS para comunicação daemon. Por padrão, a opção é definida como `off`.
+
+. Instale o certificado do servidor utilizado pelo SnapDrive para UNIX no
++
+`sdu-daemon-certificate-path=/opt/NTAPsnapdrive/snapdrive.pem` caminho conforme especificado no `snapdrive.conf` arquivo.
+
+. Altere a senha padrão do serviço daemon SnapDrive para UNIX executando o seguinte comando:
++
+`*snapdrived passwd*`
+
+. Verifique os detalhes dos componentes de configuração instalados em `/var/log/sdconfcheck.out`.
+

@@ -1,0 +1,35 @@
+---
+permalink: linux-administration/concept_changing_the_defaults_for_the_audit_logs.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, default, audit, log 
+summary: Você pode usar o arquivo SnapDrive.conf para alterar os parâmetros de Registro dos arquivos de log de auditoria, como tamanho máximo do arquivo de log de auditoria e número máximo de arquivos de auditoria antigos. 
+---
+= Alterar os padrões para os logs de auditoria
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o arquivo SnapDrive.conf para alterar os parâmetros de Registro dos arquivos de log de auditoria, como tamanho máximo do arquivo de log de auditoria e número máximo de arquivos de auditoria antigos.
+
+O arquivo SnapDrive.conf permite que você defina os seguintes valores para o log de auditoria:
+
+* O tamanho máximo do arquivo de log de auditoria. O tamanho padrão é 20K. Depois que o tamanho do arquivo atingir o valor especificado no arquivo SnapDrive.conf, o SnapDrive para UNIX renomeia o arquivo de log de auditoria atual adicionando um número arbitrário ao nome. Em seguida, um novo arquivo de auditoria é iniciado usando o nome especificado pelo valor audit-log-file.
+* O número máximo de arquivos de auditoria antigos que o SnapDrive para UNIX salva. A predefinição é 2.
+
+
+*Exemplo de um arquivo de log de auditoria:*
+
+[listing]
+----
+2501: Begin uid=0 gid=1 15:35:02 03/12/04 snapdrv snap create -dg
+rdg -snapname snap_rdg1
+2501: Status=0 15:35:07 03/12/04
+2562: Begin uid=0 gid=1 15:35:16 03/12/04 snapdrv snap create -dg
+rdg -snapname snap_rdg1
+2562: FAILED Status=4 15:35:19 03/12/04
+----
+O primeiro par de linhas neste exemplo mostra uma operação que foi bem-sucedida, como indicado pela linha "Status 0".
+
+O segundo par de linhas indica uma operação que falhou. O código de retorno de "4" significa "já existe". Se você olhar para as duas linhas de comando, você pode ver que a primeira criou uma cópia Snapshot chamada snap_rdg1. A segunda linha tentou fazer o mesmo, mas o nome já existia, então a operação falhou.

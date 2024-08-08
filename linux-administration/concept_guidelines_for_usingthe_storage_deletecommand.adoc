@@ -1,0 +1,25 @@
+---
+permalink: linux-administration/concept_guidelines_for_usingthe_storage_deletecommand.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, delete, command, guidelines, file 
+summary: O comando SnapDrive storage delete tem algumas restrições no SnapDrive para UNIX. 
+---
+= Diretrizes para usar o comando de exclusão de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O `snapdrive storage delete` comando tem algumas restrições no SnapDrive para UNIX.
+
+* Quando você exclui um sistema de arquivos, o SnapDrive para UNIX sempre remove o ponto de montagem do sistema de arquivos.
++
+Os hosts Linux permitem que você anexe vários sistemas de arquivos a um único ponto de montagem. No entanto, o SnapDrive para UNIX requer um ponto de montagem exclusivo para cada sistema de arquivos. O `snapdrive storage delete` comando falhará se você usá-lo para excluir sistemas de arquivos que estão conetados a um único ponto de montagem.
+
+* Se você usar a `-lun` opção para especificar o nome de um LUN que seja membro de um grupo de discos de host ou de um sistema de arquivos, o `snapdrive storage delete` comando falhará.
+* Se você usar `-lun` a opção para especificar o nome do LUN que não é descoberto pelo software multipathing no host, o `snapdrive storage delete` comando falhará.
+
+
+
+NOTE: `snapdrive storage delete` O comando falha ao usar o LUN RDM, se o igrop de mapeamento tiver mais de dois nomes de porta mundial (WWPN) em versões anteriores ao SnapDrive 5,2 para UNIX.

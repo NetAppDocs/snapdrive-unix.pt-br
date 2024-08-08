@@ -1,0 +1,119 @@
+---
+permalink: aix/task_generating_ca_signed_certificate.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, generate, ca, certificate 
+summary: O serviço daemon SnapDrive para UNIX requer que você gere um certificado assinado pela CA para uma comunicação daemon bem-sucedida. Você deve fornecer o certificado assinado pela CA no caminho especificado no arquivo SnapDrive.conf. 
+---
+= Gerando um certificado assinado pela CA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O serviço daemon SnapDrive para UNIX requer que você gere um certificado assinado pela CA para uma comunicação daemon bem-sucedida. Você deve fornecer o certificado assinado pela CA no caminho especificado no `snapdrive.conf` arquivo.
+
+* Você deve estar logado como usuário root.
+* Você deve ter definido os seguintes parâmetros no `snapdrive.conf` arquivo para usar HTTPS para comunicação:
++
+** use-https-to-sdu-daemon
+** contact-https-port-sdu-daemon 4095
+** sdu-daemon-certificate-path=`/opt/NetApp/snapdrive/snapdrive.pem`
+
+
+
+
+.Passos
+. Gerar uma nova chave privada RSA não criptografada em um formato pem:
++
+`*$ openssl genrsa -out privkey.pem 1024*`
+
++
+[listing]
+----
+Generating RSA private key, 1024 bit long modulus
+ ....................++++++ ....................................++++++
+e is 65537 (0x10001)
+----
+. Configure `/etc/ssl/openssl.cnf` para criar a chave privada da CA e o certificado vi `/etc/ssl/openssl.cnf`.
+. Crie um certificado não assinado usando sua chave privada RSA:
++
+`*$ openssl req -new -x509 -key privkey.pem -out cert.pem*`
+
++
+[listing]
+----
+You are about to be asked to enter information that will be
+incorporated into your certificate request.
+What you are about to enter is what is called a Distinguished Name or
+a DN.
+There are quite a few fields but you can leave some blank For some
+fields there will be a default value, If you enter '.', the field
+will be left blank.
+-----
+Country Name (2 letter code) [XX]:NY
+State or Province Name (full name) []:Nebraska Locality Name (eg,
+city) [Default City]:Omaha Organization Name (eg, company) [Default
+Company Ltd]:abc.com Organizational Unit Name (eg, section) []:
+Common Name (eg, your name or your server's hostname) []:localhost
+Email Address []:abc@example.org
+----
+. Use sua chave privada e seu certificado para criar uma CSR:
++
+`*cat cert.pem privkey.pem | openssl x509 -x509toreq -signkey privkey.pem -out certreq.csr*`
+
++
+[listing]
+----
+Getting request Private Key Generating certificate request
+----
+. Assine o certificado com a chave privada da CA usando o CSR que você acabou de criar:
++
+`*$ openssl ca -in certreq.csr -out newcert.pem*`
+
++
+[listing]
+----
+Using configuration from /etc/pki/tls/openssl.cnf Check that the
+request matches the signature Signature ok Certificate Details:
+         Serial Number: 4096 (0x1000)
+         Validity
+            Not Before: May 17 06:02:51 2015 GMT
+             Not After : May 16 06:02:51 2016 GMT
+             Subject:
+             countryName               = NY
+             stateOrProvinceName       = Nebraska
+             organizationName          = abc.com
+             commonName                = localhost
+             emailAddress              = abc@example.org
+             X509v3 extensions:
+             X509v3 Basic Constraints:
+                 CA:FALSE
+             X509v3 Key Usage:
+                 Digital Signature, Non Repudiation, Key Encipherment
+             Netscape Comment:
+                 OpenSSL Generated Certificate
+             X509v3 Subject Key Identifier:
+                 FB:B0:F6:A0:9B:F2:C2:BC:50:BF:45:B2:9D:DB:AA:3B:C5:07:5B:7F
+             X509v3 Authority Key Identifier:
+
+ keyid:FB:B0:F6:A0:9B:F2:C2:BC:50:BF:45:B2:9D:DB:AA:3B:C5:07:5B:7F
+
+ Certificate is to be certified until May 16 06:02:51 2016 GMT (365
+ days) Sign the certificate? [y/n]:y
+
+
+ 1 out of 1 certificate requests certified, commit? [y/n]y Write out
+ database with 1 new entries Data Base Updated
+----
+. Instale o certificado assinado e a chave privada a ser usada por um servidor SSL.
++
+[listing]
+----
+The newcert.pem is the certificate signed by your local CA that you can then use in an
+ssl server:
+( openssl x509 -in newcert.pem; cat privkey.pem ) > server.pem
+ln -s server.pem `openssl x509 -hash -noout -in server.pem`.0 # dot-zero
+( server.pem refers to location of https server certificate)
+----
+

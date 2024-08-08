@@ -1,0 +1,107 @@
+---
+permalink: linux-administration/reference_informationrequired_forusing_the_snapdrive_storagedisconnect_command.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, disconnect, command, storage 
+summary: A tabela a seguir fornece as informações que você precisa fornecer quando você usa o comando SnapDrive storage disconnect . 
+---
+= Informações necessárias para usar o comando SnapDrive storage disconnect
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A tabela a seguir fornece as informações que você precisa fornecer quando você usa o `snapdrive storage disconnect` comando:
+
+|===
+| Requisito | Argumento 
+
+
+ a| 
+Com base no comando que você insere, você pode remover mapeamentos de qualquer um dos seguintes itens:
+
+* LUNs
++
+Se você desconetar um ou mais LUNs, o primeiro argumento deve usar a forma longa do nome do LUN, que especifica o nome do sistema de armazenamento, o nome do volume e o nome do LUN dentro do volume.
+
++
+Para especificar LUNs adicionais, você pode usar o nome do LUN sozinho se o novo LUN estiver no mesmo sistema de armazenamento e volume que o LUN anterior. Caso contrário, você pode especificar um novo nome de sistema de armazenamento e um nome de volume (ou apenas um nome de volume) para substituir os valores anteriores.
+
+* Sistemas de arquivos em LUNs
++
+O `file_spec` dado a `-fs` é o nome do ponto de montagem do sistema de arquivos. O SnapDrive para UNIX localiza e desconeta automaticamente o LUN que está associado ao sistema de arquivos especificado.
+
+* Grupos de disco ou volume
+* Sistemas de arquivos em disco ou grupos de volume
+* Host ou volumes lógicos
+
+
+O valor inserido para o argumento file_spec deve identificar a entidade de armazenamento que você está desconetanto.
+
+
+
+ a| 
+UM LUN (`-lun`)
+ a| 
+`_lun_name_` (forma longa ou curta)
+
+
+
+ a| 
+Grupo de discos (`-dg _file_spec_`) ou grupo de volume ('-vg _file_spec_)
+ a| 
+nome do disco ou grupo de volumes
+
+
+
+ a| 
+Sistema de (`-fs _file_spec_`ficheiros )
+ a| 
+`_filesystem_name_`
+
+
+
+ a| 
+Volume do (`-hostvol _file_spec_`host ) ou volume (`-lvol _file_spec_`lógico )
+ a| 
+nome do host ou volume lógico
+
+
+
+ a| 
+Se você quiser que o SnapDrive para UNIX desconete o armazenamento especificado, mesmo que inclua no prompt de comando uma entidade do lado do host que tenha outras entidades (como um grupo de discos que tenha um ou mais volumes de host), inclua a `-full` opção no prompt de comando.
+
+Se você não incluir essa opção, você deve especificar apenas entidades vazias do lado do host.
+
+
+
+ a| 
+`-full`
+ a| 
+.
+
+
+
+ a| 
+Se você quiser desativar um nó ou um cluster de host do compartilhamento de um sistema de arquivos
+
+
+
+ a| 
+`-fstype`
+ a| 
+`_type_`
+
+
+
+ a| 
+`-vmtype`
+ a| 
+`_type_`
+
+
+
+ a| 
+*Opcional:* especifica o tipo de sistema de arquivos e gerenciador de volume a ser usado para operações do SnapDrive para UNIX.
+
+|===

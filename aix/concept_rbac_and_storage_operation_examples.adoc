@@ -1,0 +1,14 @@
+---
+permalink: aix/concept_rbac_and_storage_operation_examples.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, rbac, storage, operation, example 
+summary: O controle de acesso baseado em função permite operações de storage dependendo dos recursos atribuídos a você. Você receberá uma mensagem de erro se não tiver as capacidades certas para realizar a operação de armazenamento. 
+---
+= Exemplos de operação de storage e RBAC
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O controle de acesso baseado em função permite operações de storage dependendo dos recursos atribuídos a você. Você receberá uma mensagem de erro se não tiver as capacidades certas para realizar a operação de armazenamento.

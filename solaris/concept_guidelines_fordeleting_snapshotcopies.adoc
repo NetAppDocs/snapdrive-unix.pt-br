@@ -1,0 +1,20 @@
+---
+permalink: solaris/concept_guidelines_fordeleting_snapshotcopies.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, snapshot, copy 
+summary: Não é possível excluir uma cópia Snapshot que esteja em uso ou se a cópia Snapshot estiver em vários volumes do sistema de storage. 
+---
+= Diretrizes para a exclusão de cópias Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Não é possível excluir uma cópia Snapshot que esteja em uso ou se a cópia Snapshot estiver em vários volumes do sistema de storage.
+
+Siga estas diretrizes quando usar o `snapdrive snap delete` comando:
+
+* A operação de exclusão de snapshot falha se alguma das cópias de snapshot que você deseja excluir estiver em uso ou não criada pelo SnapDrive para UNIX. Você pode substituir esse comportamento incluindo a `-force` opção com o `snapdrive snap delete` comando.
+* Se você tiver uma cópia Snapshot que abranja vários volumes do sistema de storage, exclua manualmente a cópia Snapshot em cada volume.
+

@@ -1,0 +1,38 @@
+---
+permalink: linux-administration/task_deleting_a_snapshotcopy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, snapshot, delelte, command 
+summary: Você pode usar o comando SnapDrive snap delete para excluir uma cópia Snapshot. 
+---
+= Excluindo uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o `snapdrive snap delete` comando para excluir uma cópia Snapshot.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive snap delete [-snapname] _long_snap_name_ [_snap_name..._] [-verbose] [-force [-noprompt]]*`
+
++
+
+NOTE: Se a cópia Snapshot especificada estiver em uso, essa operação falhará. O SnapDrive para UNIX informa que essa operação foi concluída com êxito somente se todas as cópias Snapshot forem removidas.
+
+
+
+O SnapDrive para UNIX exclui o conteúdo existente dos LUNs especificados na `snap delete` linha de comando e os substitui pelo conteúdo dos LUNs na cópia Snapshot especificada.
+
+Este exemplo exibe uma lista do que está sendo excluído:
+
+[listing]
+----
+# snapdrive snap delete -v filer1:/vol/vol1/snap1 snap2 snap3
+snapdrive: deleting
+filer1:/vol/vol1/snap1
+filer1:/vol/vol1/snap2
+filer1:/vol/vol1/snap3
+----

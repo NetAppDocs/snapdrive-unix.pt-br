@@ -1,0 +1,14 @@
+---
+permalink: aix/concept_what_snapdrive_wizard_is.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, wizard 
+summary: O SnapDrive tem assistentes diferentes que o ajudam a executar uma determinada operação SnapDrive de forma interativa. 
+---
+= O que são os assistentes do SnapDrive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive tem assistentes diferentes que o ajudam a executar uma determinada operação SnapDrive de forma interativa.

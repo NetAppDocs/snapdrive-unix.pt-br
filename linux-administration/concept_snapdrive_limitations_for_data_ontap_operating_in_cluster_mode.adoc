@@ -1,0 +1,27 @@
+---
+permalink: linux-administration/concept_snapdrive_limitations_for_data_ontap_operating_in_cluster_mode.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, clustered, ontap, limitations, operations 
+summary: Alguns recursos e operações do SnapDrive não são compatíveis com o Clustered Data ONTAP. 
+---
+= Limitações do SnapDrive para Clustered Data ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Alguns recursos e operações do SnapDrive não são compatíveis com o Clustered Data ONTAP.
+
+* O provisionamento de storage e as operações de gerenciamento de Snapshot não são compatíveis com o volume raiz do SVM.
+* As operações com especificação de arquivo ou LUNs que abrangem Data ONTAP operando em sistemas de 7 modos e storage executados em Data ONTAP em cluster não são suportadas.
+* Os links simbólicos que residem dentro de um ponto de montagem não são suportados.
+* Os agregados que contêm volumes de SVM devem ser atribuídos à lista de agregados do SVM para configurar o SVM e executar operações SnapDrive.
+* O SnapDrive para UNIX não suporta a migração do SVM porque não é suportado pelo Clustered Data ONTAP.
+* A operação snap connect com a `-readonly` opção monta apenas o `.snapshot` diretório no host e não cria o volume clone.
++
+No Clustered Data ONTAP, a política de exportação é definida apenas no nível do volume e não no nível do diretório. Portanto, o `.snapshot` diretório não pode ser exportado para o host secundário (o host que não tem a permissão de exportação no volume pai).
+
+* O SnapDrive para UNIX não suporta operações de SnapRestore baseadas em volume (VBSR) de uma cópia Snapshot criada antes da cópia Snapshot base, quando o volume está em uma operação SnapMirror ou SnapVault.
+* O SnapDrive para UNIX não suporta a `snapdelete` operação da cópia Snapshot criada antes da atualização do SnapVault, quando o volume está na relação SnapVault (XDP).
+

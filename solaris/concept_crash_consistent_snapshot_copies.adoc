@@ -1,0 +1,20 @@
+---
+permalink: solaris/concept_crash_consistent_snapshot_copies.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, copy, crash, consistent 
+summary: Talvez seja necessário criar cópias Snapshot consistentes com falhas do sistema de arquivos ou grupos de disco. O SnapDrive para UNIX cria cópias Snapshot que contêm a imagem de todos os volumes do sistema de storage especificados na entidade. 
+---
+= Cópias Snapshot consistentes com falhas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Talvez seja necessário criar cópias Snapshot consistentes com falhas do sistema de arquivos ou grupos de disco. O SnapDrive para UNIX cria cópias Snapshot que contêm a imagem de todos os volumes do sistema de storage especificados na entidade.
+
+Quando você cria uma cópia Snapshot de uma entidade de storage, como um sistema de arquivos ou um grupo de discos, o SnapDrive para UNIX cria uma cópia Snapshot que contém a imagem de todos os volumes do sistema de storage que compõem a entidade especificada usando um `file_spec` argumento. O `file_spec` argumento especifica a entidade de storage, como o sistema de arquivos, LUN ou árvore de diretório NFS que o SnapDrive para UNIX usa para criar a cópia Snapshot.
+
+O SnapDrive para UNIX cria componentes de storage consistentes que compõem a entidade solicitada na cópia Snapshot. Isso significa que LUNs ou diretórios que estão sendo usados fora dos especificados pelo `snapdrive snap create` argumento de comando `file_spec` podem não ter imagens consistentes na cópia Snapshot. O SnapDrive para UNIX permite restaurar apenas as entidades especificadas pelo `file_spec` argumento que são consistentes na cópia Snapshot.
+
+Cópias snapshot de entidades contidas em um único volume de sistema de storage são sempre consistentes com falhas. O SnapDrive para UNIX toma medidas especiais para garantir que as cópias Snapshot que abrangem vários sistemas de storage ou volumes de sistema de storage também sejam consistentes com falhas. O método usado pelo SnapDrive para UNIX para garantir a consistência de falhas depende da versão do Data ONTAP usada onde residem as entidades de storage na cópia Snapshot.

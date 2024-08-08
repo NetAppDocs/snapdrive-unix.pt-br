@@ -1,0 +1,25 @@
+---
+permalink: solaris/concept_default_vaules_for_the_trace_log_files.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, default, value, trace, log 
+summary: Os arquivos de log de rastreamento permitem definir vários parâmetros e também alterá-los. Esses parâmetros devem ser definidos no arquivo SnapDrive.conf. 
+---
+= Valores padrão para os arquivos de log de rastreamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os arquivos de log de rastreamento permitem definir vários parâmetros e também alterá-los. Esses parâmetros devem ser definidos no `snapdrive.conf` arquivo.
+
+Os seguintes valores devem ser definidos no `snapdrive.conf` arquivo:
+
+* O nome do ficheiro que contém o registo de rastreio.
+* O tamanho máximo do ficheiro de registo de rastreio. O tamanho padrão é "0 " bytes. Esse valor garante que cada arquivo de log de rastreamento contenha apenas um comando SnapDrive para UNIX.
++
+Se você redefinir o tamanho padrão para um valor diferente de 0, quando o arquivo atingir o tamanho especificado, o SnapDrive para UNIX renomeia o arquivo de log de rastreamento atual adicionando um número arbitrário ao nome. Em seguida, ele inicia um novo arquivo de log de rastreamento usando o nome especificado pelo `trace-log-file` valor.
+
+* O número máximo de arquivos de rastreamento antigos que o SnapDrive para UNIX salva. A predefinição é 100.
+* Os tipos de mensagens que o SnapDrive para UNIX grava no arquivo de log de rastreamento. Por padrão, o arquivo de log de rastreamento contém erros fatais, erros de administrador, erros de comando, avisos e mensagens de informações.
+

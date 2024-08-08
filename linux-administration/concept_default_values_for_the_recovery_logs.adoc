@@ -1,0 +1,61 @@
+---
+permalink: linux-administration/concept_default_values_for_the_recovery_logs.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, default, recovery, log, value 
+summary: Você pode alterar o nome do arquivo de log de recuperação e o número máximo de arquivos de log de recuperação antigos que o SnapDrive para UNIX salva. 
+---
+= Valores predefinidos para os registos de recuperação
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode alterar o nome do arquivo de log de recuperação e o número máximo de arquivos de log de recuperação antigos que o SnapDrive para UNIX salva.
+
+O `snapdrive.conf` arquivo permite que você defina os seguintes valores para o Registro de recuperação:
+
+* O nome do arquivo que contém o log de recuperação, como `recovery.log` .
+* O número máximo de arquivos de recuperação antigos que o SnapDrive para UNIX salva. A predefinição é 20. O SnapDrive para UNIX mantém esse número de logs de recuperação, se o problema com o processo não for identificado imediatamente. O SnapDrive para UNIX inicia um novo arquivo de log de recuperação cada vez que conclui uma operação. Em seguida, renomeia o anterior adicionando um número arbitrário ao nome, como `recovery.log.0` , `recovery.log.1` e assim por diante.
+
+
+
+NOTE: O tamanho do arquivo de log de recuperação depende da operação que é executada. Cada log de recuperação contém informações sobre uma única operação. Quando essa operação estiver concluída, o SnapDrive para UNIX inicia um novo log de recuperação, independentemente do tamanho do arquivo anterior. Como resultado, não há tamanho máximo para um arquivo de log de recuperação.
+
+O log de recuperação de exemplo a seguir mostra que o SnapDrive para UNIX restaurou duas cópias Snapshot antes que as operações sejam interrompidas. Você pode enviar esse arquivo de log de recuperação para o suporte técnico para obter assistência na restauração das cópias Snapshot restantes.
+
+[listing]
+----
+6719: BEGIN 15:52:21 03/09/04 snapdrive snap restore -dg jssdg -
+snapname natasha:/vol/vol1:abort_snap_restore
+6719: BEGIN 15:52:27 03/09/04 create rollback snapshot:
+natasha:/vol/vol1:abort_snap_restore.RESTORE_ROLLBACK_03092004_155
+225
+6719: END 15:52:29 03/09/04 create rollback snapshot:
+natasha:/vol/vol1:abort_snap_restore.RESTORE_ROLLBACK_03092004_155
+225 successful
+6719: BEGIN 15:52:29 03/09/04 deactivate disk group: jssdg
+6719: BEGIN 15:52:29 03/09/04 stop host volume:
+/dev/vx/dsk/jssdg/jvol_1
+6719: END 15:52:30 03/09/04 stop host volume:
+/dev/vx/dsk/jssdg/jvol_1 successful
+6719: BEGIN 15:52:30 03/09/04 unmount file system: /mnt/demo_fs
+6719: END 15:52:30 03/09/04 unmount file system: /mnt/demo_fs
+successful
+6719: BEGIN 15:52:30 03/09/04 stop host volume:
+/dev/vx/dsk/jssdg/jvol_2
+6719: END 15:52:30 03/09/04 stop host volume:
+/dev/vx/dsk/jssdg/jvol_2 successful
+6719: BEGIN 15:52:30 03/09/04 deport disk group: jssdg
+6719: END 15:52:30 03/09/04 deport disk group: jssdg successful
+6719: END 15:52:30 03/09/04 deactivate disk group: jssdg
+successful
+6719: BEGIN 15:52:31 03/09/04 SFSR of LUN: /vol/vol1/lun1 from
+snapshot: abort_snap_restore
+6719: END 15:52:31 03/09/04 SFSR of LUN: /vol/vol1/lun1 from
+snapshot: abort_snap_restore successful
+6719: BEGIN 15:52:47 03/09/04 SFSR of LUN: /vol/vol1/lun2 from
+snapshot: abort_snap_restore
+6719: END 15:52:47 03/09/04 SFSR of LUN: /vol/vol1/lun2 from
+snapshot: abort_snap_restore successful
+----

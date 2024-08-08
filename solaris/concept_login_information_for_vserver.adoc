@@ -1,0 +1,14 @@
+---
+permalink: solaris/concept_login_information_for_vserver.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, login, vserver 
+summary: Um nome de usuário e senha permitem que o SnapDrive para UNIX acesse o SVM. Ele também fornece segurança porque, além de estar conetado como vsadmin, você deve executar o SnapDrive para UNIX e fornecer o nome de usuário e senha corretos sempre que solicitado. 
+---
+= Informações de login para o SVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Um nome de usuário e senha permitem que o SnapDrive para UNIX acesse o SVM. Ele também fornece segurança porque, além de estar conetado como vsadmin, você deve executar o SnapDrive para UNIX e fornecer o nome de usuário e senha corretos sempre que solicitado.

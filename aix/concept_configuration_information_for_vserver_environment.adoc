@@ -1,0 +1,22 @@
+---
+permalink: aix/concept_configuration_information_for_vserver_environment.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, configuration, vserver, information 
+summary: Você deve configurar o SVM no SnapDrive para UNIX para executar operações do SnapDrive. 
+---
+= Informações de configuração para SVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve configurar o SVM no SnapDrive para UNIX para executar operações do SnapDrive.
+
+Para configurar o SVM com o SnapDrive para UNIX, no Clustered Data ONTAP, certifique-se de que o endereço IP da interface lógica de gerenciamento (LIF) do SVM seja mapeado com o nome do SVM, no DNS (Serviço de nomes de domínio) ou no `/etc/hosts` arquivo. Você também deve garantir que o nome do SVM esteja configurado no SnapDrive para UNIX usando o seguinte comando:
+
+`*snapdrive config set <vsadmin> <Vserver name>*`
+
+*Informações relacionadas*
+
+xref:concept_support_for_vserver.adoc[Suporte para SVM]

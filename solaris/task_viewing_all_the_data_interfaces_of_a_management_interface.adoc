@@ -1,0 +1,28 @@
+---
+permalink: solaris/task_viewing_all_the_data_interfaces_of_a_management_interface.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, view, data, interface, management 
+summary: Você pode visualizar todas as interfaces de dados para uma interface de gerenciamento usando o comando SnapDrive config list em um ambiente NFS. 
+---
+= Visualização de todas as interfaces de dados para uma interface de gerenciamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode visualizar todas as interfaces de dados de uma interface de gerenciamento usando o `snapdrive config list` comando em um ambiente NFS.
+
+. Na CLI, digite o seguinte comando:
++
+`*snapdrive config list -mgmtpath*`
+
++
+[listing]
+----
+#snapdrive config list -mgmtpath
+system name        management interface   datapath interface
+-------------------------------------------------------------------------------
+f3050-197-91        10.72.197.91           10.72.220.91|10.72.168.91
+----
+

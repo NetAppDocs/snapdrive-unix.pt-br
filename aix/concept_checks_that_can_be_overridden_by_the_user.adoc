@@ -1,0 +1,28 @@
+---
+permalink: aix/concept_checks_that_can_be_overridden_by_the_user.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, check, override, user 
+summary: Antes que o SnapRestore baseado em volume seja executado, o SnapDrive para UNIX executa algumas verificações de que um usuário pode substituir usando a opção -force. Essas verificações são necessárias para que o SnapRestore baseado em volume seja usado com segurança. 
+---
+= Verificações que podem ser substituídas pelo usuário
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes que o SnapRestore baseado em volume seja executado, o SnapDrive para UNIX executa algumas verificações de que um usuário pode substituir usando `-force` a opção. Essas verificações são necessárias para que o SnapRestore baseado em volume seja usado com segurança.
+
+Recomenda-se que você siga as várias verificações que o sistema executa, mas você pode substituir essas verificações usando a `-force` opção.
+
+Você pode substituir o seguinte SnapDrive para UNIX para verificações de SnapRestore baseadas em volume:
+
+* O SnapDrive para UNIX verifica LUNs na cópia Snapshot que não são consistentes com falhas. Se ele encontrar um LUN inconsistente na aplicação na cópia Snapshot, ele o avisará sobre ela.
+* O SnapDrive para UNIX verifica se há LUNs adicionais no volume ativo que foram criados após a cópia Snapshot ter sido obtida. Se o SnapDrive for UNIX encontrar LUNs adicionais, ele avisa que esses LUNs adicionais no volume ativo são perdidos.
+* O SnapDrive para UNIX verifica se há novas cópias Snapshot. Essas novas cópias Snapshot não são restauradas e são perdidas.
+* O SnapDrive para UNIX verifica se há arquivo normal (arquivos visíveis do host local) em um volume.
+* O SnapDrive para UNIX verifica as exportações de NFS.
+* O SnapDrive para UNIX verifica compartilhamentos CIFS.
+
+
+Se as cópias Snapshot tiverem sido criadas usando o SnapDrive 3,0 para UNIX ou anterior, a visualização SnapRestore baseada em volume não poderá executar as duas primeiras verificações na lista mencionada anteriormente. Se tiver fornecido `-force` a opção, durante a execução do SnapRestore baseado em volume, é apresentada uma mensagem de aviso para efetuar estas verificações em excesso e prosseguir.

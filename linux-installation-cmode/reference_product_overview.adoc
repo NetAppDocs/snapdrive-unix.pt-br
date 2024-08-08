@@ -1,0 +1,43 @@
+---
+permalink: linux-installation-cmode/reference_product_overview.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, product, overview, summary, unix 
+summary: O SnapDrive para UNIX é uma solução de gerenciamento de dados e storage baseada em host para ambientes UNIX. O SnapDrive para UNIX simplifica o gerenciamento de dados, melhora a disponibilidade dos dados e aumenta a confiabilidade dos dados das aplicações por meio do provisionamento de storage simplificado e das cópias Snapshot consistentes com o sistema de arquivos. 
+---
+= Visão geral do produto
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX é uma solução de gerenciamento de dados e storage baseada em host para ambientes UNIX. O SnapDrive para UNIX simplifica o gerenciamento de dados, melhora a disponibilidade dos dados e aumenta a confiabilidade dos dados das aplicações por meio do provisionamento de storage simplificado e das cópias Snapshot consistentes com o sistema de arquivos.
+
+Você pode usar o SnapDrive para UNIX como um produto independente ou junto com outros produtos SnapManager executados no UNIX. O SnapDrive para UNIX implantado junto com o SnapManager permite que você crie backup de dados consistente com aplicativos.
+
+
+
+== Destaques do SnapDrive
+
+O SnapDrive para UNIX permite simplificar tarefas de gerenciamento de storage. Algumas das tarefas que você pode executar usando o SnapDrive para UNIX são:
+
+* Criação de cópias Snapshot usando a tecnologia Data ONTAP Snapshot em cluster.
++
+O SnapDrive para UNIX permite criar e excluir cópias Snapshot de um sistema de arquivos, grupo de volumes, volume de host ou LUN e clonar entidades de storage de cópias Snapshot.
+
+* Provisionamento e gerenciamento de storage com pouca ou nenhuma inatividade de aplicações ou host.
++
+O SnapDrive para UNIX permite criar e excluir componentes de storage, incluindo grupos de discos, volumes de host, sistemas de arquivos e LUNs em ambientes de cluster de host. O SnapDrive para UNIX também permite que você expanda o armazenamento, conete o armazenamento a um host e desconete o armazenamento de um host.
+
+* Fornece controle de acesso baseado em funções, que permite que os administradores de storage restrinjam as operações que os usuários do SnapDrive podem executar, dependendo das funções atribuídas.
+
+
+Além desses principais recursos, o SnapDrive oferece as seguintes vantagens:
+
+* Operação aprimorada de divisão de clones
+* SnapRestore baseado em volume (VBSR)
+* Opções de interface de linha de comando (CLI)
+* Utilitário de coleta de dados
+* Suporte para renomeação do sistema de storage
+* Suporte para LUNs RDM Fibre Channel em sistemas operacionais Linux Guest
+

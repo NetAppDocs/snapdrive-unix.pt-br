@@ -1,0 +1,48 @@
+---
+permalink: aix/concept_log_file_rotation_settings.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, file, log, rotation, setting 
+summary: Os valores especificados para a variável no arquivo SnapDrive.conf afetam a rotação do arquivo de log. 
+---
+= Definições de rotação do ficheiro de registo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os valores especificados para a variável no `snapdrive.conf` arquivo afetam a rotação do arquivo de log.
+
+Os valores especificados no `snapdrive.conf` ficheiro permitem rotações automáticas de ficheiros de registo. Você pode alterar esses valores, se necessário, editando as `snapdrive.conf` variáveis. As seguintes opções afetam a rotação do arquivo de log:
+
+* `audit-log-max-size`
+* `audit-log-save`
+* `trace-max-size`
+* `trace-log-max-save`
+* `recovery-log-save`
+
+
+Com a rotação automática de logs, o SnapDrive para UNIX mantém arquivos de log antigos até atingir o limite especificado na `audit-log-save` variável , `trace-log-save` e `recovery-log-save` . Em seguida, elimina o ficheiro de registo mais antigo.
+
+O SnapDrive para UNIX rastreia qual arquivo é mais antigo atribuindo ao arquivo o número "0" quando ele cria o arquivo. Cada vez que cria um novo ficheiro, aumenta em 1 o número atribuído a cada um dos ficheiros de registo existentes. Quando o número de um arquivo de log atinge o valor de salvamento, o SnapDrive para UNIX exclui esse arquivo.
+
+*Exemplo:* este exemplo usa o `1s` comando para exibir informações sobre os arquivos de log no sistema.
+
+Com base nessas configurações, você verá as seguintes informações em arquivos de log.
+
+[listing]
+----
+# ls -l /var/log/sd*
+-rw-r--r-- 1 root other 12247 Mar 13 13:09 /var/log/sd-audit.log
+-rw-r--r-- 1 root other 20489 Mar 12 16:57 /var/log/sd-audit.log.0
+-rw-r--r-- 1 root other 20536 Mar 12 03:13 /var/log/sd-audit.log.1
+-rw-r--r-- 1 root other 3250 Mar 12 18:38 /var/log/sd-recovery.log.1
+-rw-r--r-- 1 root other 6250 Mar 12 18:36 /var/log/sd-recovery.log.2
+-rw-r--r-- 1 root other 6238 Mar 12 18:33 /var/log/sd-recovery.log.3
+-rw-r--r-- 1 root other 191704 Mar 13 13:09 /var/log/sd-trace.log
+-rw-r--r-- 1 root other 227929 Mar 12 16:57 /var/log/sd-trace.log.0
+-rw-r--r-- 1 root other 213970 Mar 12 15:14 /var/log/sd-trace.log.1
+-rw-r--r-- 1 root other 261697 Mar 12 14:16 /var/log/sd-trace.log.2
+-rw-r--r-- 1 root other 232904 Mar 12 14:15 /var/log/sd-trace.log.3
+-rw-r--r-- 1 root other 206905 Mar 12 14:14 /var/log/sd-trace.log.4
+----

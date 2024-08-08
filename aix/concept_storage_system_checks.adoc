@@ -1,0 +1,25 @@
+---
+permalink: aix/concept_storage_system_checks.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, prepare, storage, system 
+summary: Antes de instalar o SnapDrive para UNIX, você deve preparar o sistema de storage garantindo que seu sistema de storage atenda a alguns requisitos. 
+---
+= Preparar o sistema de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar o SnapDrive para UNIX, você deve preparar o sistema de storage garantindo que seu sistema de storage atenda a alguns requisitos.
+
+Você deve preparar seu sistema de storage verificando as seguintes condições:
+
+* Prontidão do sistema de storage
+* Requisitos do sistema
+* Endereço IP do parceiro do sistema de storage
+* Configurações SnapDrive para UNIX em um ambiente NFS
+* Preparação de volume para LUNs UNIX e entidades NFS
+* A `snap reserve` opção está definida como 0
+* No Data ONTAP operando no modo 7, a `vfiler.vol_clone_zapi_allow` variável de configuração é definida como `on`, para se conetar a uma cópia Snapshot para um volume ou LUN em uma unidade do vFiler.
+

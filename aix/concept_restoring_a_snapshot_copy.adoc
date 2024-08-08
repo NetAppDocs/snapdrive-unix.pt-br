@@ -1,0 +1,14 @@
+---
+permalink: aix/concept_restoring_a_snapshot_copy.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, restore, snapshot, copy 
+summary: Você pode restaurar uma cópia Snapshot de uma única entidade de storage ou várias entidades de storage. 
+---
+= Restaurar uma cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode restaurar uma cópia Snapshot de uma única entidade de storage ou várias entidades de storage.

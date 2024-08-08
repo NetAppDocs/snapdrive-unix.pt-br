@@ -1,0 +1,117 @@
+---
+permalink: aix/reference_informationrequired_forusing_the_snapdrive_storagedelete_command.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, delete, command, required 
+summary: Há algumas informações que você precisa fornecer antes de usar o comando SnapDrive storage delete. Essas informações ajudam você a usar o comando corretamente. 
+---
+= Informações necessárias para usar o comando SnapDrive storage DELETE
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Há algumas informações que você precisa fornecer antes de usar o `snapdrive storage delete` comando. Essas informações ajudam você a usar o comando corretamente.
+
+|===
+| Requisito | Argumento 
+
+
+ a| 
+Com base no comando inserido, você pode excluir qualquer um dos seguintes tipos de armazenamento:
+
+* LUNs
++
+Especifique um ou mais LUNs que pretende eliminar do sistema de armazenamento.
+
++
+Se você excluir um ou mais LUNs, o primeiro argumento deve usar a forma longa do nome do LUN, que especifica o nome do sistema de armazenamento, o nome do volume e o nome do LUN dentro do volume.
+
++
+Para especificar LUNs adicionais, você pode usar o nome do LUN sozinho se o novo LUN estiver no mesmo sistema de armazenamento e volume que o LUN anterior. Caso contrário, você pode especificar um novo nome de sistema de armazenamento e um nome de volume (ou apenas um nome de volume) para substituir os valores anteriores.
+
+* Um sistema de arquivos criado diretamente em um LUN
+* Grupos de disco ou volume
+* Sistemas de arquivos em disco ou grupos de volume
+* Host ou volumes lógicos
+
+
+O valor inserido para o argumento file_spec deve identificar a entidade de armazenamento que você está excluindo.
+
+
+
+ a| 
+UM LUN (`-lun`)
+ a| 
+`_long_lun_name_`
+
+
+
+ a| 
+LUNs adicionais
+ a| 
+`_lun_name_` (forma longa ou curta)
+
+
+
+ a| 
+Grupo de discos (`-dg _file_spec_`) ou grupo de (`- vg _file_spec_`volumes )
+ a| 
+nome do grupo de discos ou grupo de volumes
+
+
+
+ a| 
+Sistema de (`-fs _file_spec_`ficheiros )
+ a| 
+`_filesystem_name_`
+
+
+
+ a| 
+Volume do (`-hostvol _file_spec_`host ) ou volume (`-lvol _file_spec_`lógico )
+ a| 
+nome do volume do host ou volume lógico
+
+
+NOTE: Você deve fornecer o volume solicitado e o grupo de discos que o contém; por exemplo `- hostvol dg3/acct_volume`, .
+
+
+
+ a| 
+Se você quiser que o SnapDrive para UNIX exclua o armazenamento especificado, mesmo que inclua no prompt de comando uma entidade do lado do host que tenha outras entidades (como um grupo de discos que tenha um ou mais volumes de host), inclua a `-full` opção no prompt de comando.
+
+Se você não incluir essa opção, você deve especificar apenas entidades vazias do lado do host.
+
+
+
+ a| 
+`-full`
+ a| 
+.
+
+
+
+ a| 
+Para especificar a entidade de host compartilhada para a qual você deseja excluir o armazenamento.
+
+
+
+ a| 
+`-fstype`
+ a| 
+`_type_`
+
+
+
+ a| 
+`-vmtype`
+ a| 
+`_type_`
+
+
+
+ a| 
+*Opcional:* especifica o tipo de sistema de arquivos e gerenciador de volume a ser usado para operações do SnapDrive para UNIX.
+
+|===

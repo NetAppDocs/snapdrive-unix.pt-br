@@ -1,0 +1,11 @@
+---
+permalink: index.html 
+sidebar: sidebar 
+---
+= Documentação do SnapDrive para UNIX 5.3.2
+:allow-uri-read: 
+
+
+Bem-vindo à Biblioteca de informações do SnapDrive para UNIX. Aqui você encontrará documentação para o 5.3.2 do software SnapDrive para UNIX, incluindo como instalar, configurar, usar e administrar o SnapDrive para Linux, Solaris e AIX.
+
+Documentação para versões anteriores do SnapDrive para Unix estão disponíveis no link:https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30050["Site de suporte da NetApp"].

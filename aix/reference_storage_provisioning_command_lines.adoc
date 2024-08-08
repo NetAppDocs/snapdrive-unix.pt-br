@@ -1,0 +1,163 @@
+---
+permalink: aix/reference_storage_provisioning_command_lines.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, provisioning, command, line 
+summary: Alguns comandos do SnapDrive para UNIX são usados para provisionamento de storage. 
+---
+= Linhas de comando de provisionamento de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Alguns comandos do SnapDrive para UNIX são usados para provisionamento de storage.
+
+As seguintes opções de linha de comando são usadas para operações de provisionamento de storage:
+
+|===
+| Operação | Opção de linha de comando 
+
+
+ a| 
+Criar
+ a| 
+`snapdrive storage create-lun _long_lun_name_ [_lun_name ..._] -lunsize _size_ [{ -dg | -vg } _dg_name_] [-igroup _ig_name_ [_ig_name ..._]] [{ -reserve | -noreserve }][-fstype _type_] [-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive storage create {-lvol | -hostvol} _file_spec_ [{-dg | -vg} _dg_name_]{-dgsize | -vgsize} _size_-filervol _long_filer_path_ [{-noreserve | -reserve}] [-fstype _type_] [-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive storage create -fs _file_spec_ -nolvm [-fsopts options ] [-mntopts options] [-nopersist] { -lun _long_lun_name_ | -filervol _long_filer_path_ } -lunsize _size_ [-igroup _ig_name_ [_ig_name ..._]] [{ -reserve | -noreserve }] [-fstype _type_] [-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive storage create _host_lvm_fspec_ -filervol _long_filer_path_ -dgsize _size_ [-igroup _ig_name_ [_ig_name ..._]] [{ -reserve | -noreserve }]`
+
+
+
+ a| 
+`snapdrive storage create _host_lvm_fspec_ -lun _long_lun_name_ [_lun_name ..._] -lunsize _size_ [-igroup _ig_name_ [_ig_name ..._]] [{ -reserve | -noreserve }]`
+
+[NOTE]
+====
+Você pode usar qualquer um dos formatos para o `-file_spec` argumento, dependendo do tipo de armazenamento que deseja criar. (Lembre-se que `-dg` é sinônimo de `-vg`, e `-hostvol` é sinônimo `-lvol` de .)
+
+Para criar um sistema de arquivos diretamente em um LUN, use este formato: `-fs _file_spec_ [-nolvm -fs _type_] [-fsops _options_] [-mntopts _options_] [-vmtype _type_]`
+
+Para criar um sistema de arquivos que use um grupo de discos ou um volume de host, use este formato: `-fs _file_spec_ [-fstype _type_] [-fsopts _options_] [-mntops _options_] [-hostvol _file_spec_] [-dg _dg_name_] [-vmtype _type_]`
+
+Para criar um volume lógico ou de host, use este formato: `[-hostvol _file_spec_] [-dg _dg_name_] [-fstype _type_] [-vmtype _type_]`
+
+Para criar um grupo de discos, use este formato: `-dg _dg_name_ [-fstype _type_] [-vmtype _type_]`
+
+====
+
+
+ a| 
+Ligar
+ a| 
+`snapdrive storage connect -fs _file_spec -nolvm_ -lun _long_lun_name_ [-igroup _ig_name_ [_ig_name ..._]] [-nopersist] [-mntopts options] [-fstype _type_] [-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive storage connect -fs _file_spec_ -hostvol _file_spec_ -lun _long_lun_name_ [_lun_name ..._] [-igroup _ig_name_ [_ig_name ..._]][-nopersist] [-mntopts options] [-fstype _type_] [-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive storage connect -lun _long_lun_name_ [_lun_name ..._][-igroup _ig_name_ [_ig_name ..._]][-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive storage connect -lun _long_lun_name_ [_lun_name..._][-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive storage connect -fs_file_spec_ {-hostvol | -lvol} _file_spec_ -lun _long_lun_name_ [_lun_name..._] [-nopersist] [-mntopts options] [-fstype _type_] [-vmtype _type_]`
+
+
+
+ a| 
+Desligar
+ a| 
+`snapdrive storage disconnect -lun _long_lun_name_ [_lun_name..._] [-vmtype _type_]`
+
+
+
+ a| 
+`snapdrive storage disconnect {-vg | -dg | -fs | -lvol | -hostvol} _file_spec_ [_file_spec ..._] [{-vg | -dg | -fs | -lvol | -hostvol} _file_spec_ ...] ...] [-full] [-fstype _type_] [-vmtype _type_]`
+
+
+
+ a| 
+Redimensionar
+ a| 
+`snapdrive storage resize {-dg | -vg} _file_spec_ [_file_spec_ ...]{-growby | -growto} _size_ [_-addlun_ [-igroup _ig_name_ [_ig_name ..._]]] [{ -reseserve | -noreserve }]] [-fstype _type_] [-vmtype _type_]`
+
+
+
+ a| 
+Mostrar/Lista
+ a| 
+`snapdrive storage { show | list } -filer _filername_ [_filername ..._] [-verbose] [-quiet] [-capabilities]`
+
+
+
+ a| 
+`snapdrive storage { show | list } -filervol _long_filer_path_ [_filer_path..._][-verbose] [-quiet] [-capabilities]`
+
+
+
+ a| 
+`snapdrive storage { show | list } {-all | device} [-capabilities]`
+
+
+
+ a| 
+`snapdrive storage show [-verbose] {-filer _filername_ [_filername..._] | -filervol _volname_ [_volname..._]} [-capabilities]`
+
+
+
+ a| 
+`snapdrive storage { show| list } -lun _long_lun_name_ [_lun_name ..._] [-verbose] [-quiet] [-status] [-capabilities]`
+
+
+
+ a| 
+`snapdrive storage { show | list } { -vg | -dg | -fs | -lvol |-hostvol } _file_spec_ [_file_spec ..._] [{ -vg | -dg | -fs | -lvol | -hostvol } _file_spec_ [_file_spec ..._]] [-verbose] [-quiet [-fstype _type_] [-vmtype _type_] [-status] [-capabilities]`
+
+
+
+ a| 
+`snapdrive storage { show | list } { -filer _filer_name_ [_filer_name_ ...] | -filervol _long_filer_path_ [_filer_path ..._] } [-verbose] [-capabilities] [-quiet]`
+
+
+
+ a| 
+`snapdrive storage { show | list } -lun _long_lun_name_ [_lun_name ..._] [-verbose] [-status] [-fstype _type_] [-vmtype _type_] [-capabilities] [-quiet]`
+
+
+
+ a| 
+Eliminar
+ a| 
+`snapdrive storage delete [-lun] _long_lun_name_ [lun_name...] [-fstype type] [-vmtype type]`
+
+
+
+ a| 
+`snapdrive storage delete [-vg | -dg | -fs | -lvol | -hostvol] _file_spec_ [_file_spec ..._] [{-vg | -dg | -fs | -lvol | -hostvol} _file_spec_ [_file_spec ..._] ...] [-full] ] [-fstype type] [-vmtype type]`
+
+|===
+*Informações relacionadas*
+
+xref:reference_command_line_arguments.adoc[Argumentos de linha de comando]

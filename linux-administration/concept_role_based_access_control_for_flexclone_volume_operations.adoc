@@ -1,0 +1,30 @@
+---
+permalink: linux-administration/concept_role_based_access_control_for_flexclone_volume_operations.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, role, access, control, rbac, flexcone, volume, manager, operations, storage 
+summary: Se o Gerenciador de operações estiver configurado com o sistema, o administrador do Gerenciador de operações deverá conceder a você os recursos necessários para realizar operações de storage no FlexClone volumes. 
+---
+= Controles de acesso baseados em função para operações de volume do FlexClone
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se o Gerenciador de operações estiver configurado com o sistema, o administrador do Gerenciador de operações deverá conceder a você os recursos necessários para realizar operações de storage no FlexClone volumes.
+
+* Volume FlexClone não restrito*: Você deve ter os seguintes recursos para executar operações de storage em um volume FlexClone irrestrito:
+
+* Para `snap connect`, você deve ter `SD.SnapShot.UnrestrictedClone` capacidade no volume pai.
+* Para `snap disconnect`, você deve ter `SD.SnapShot.DestroyUnrestrictedClone` capacidade no volume FlexClone.
+
+
+*Volumes FlexClone restritos*: Você precisa ter os seguintes recursos para operações de storage em um volume FlexClone restrito:
+
+* Para `snap connect` você deve ter `SD.SnapShot.Clone` capacidade no volume pai.
+* Para `snap disconnect` você deve ter `SD.SnapShot.Clone` capacidade no volume pai.
+
+
+Para dividir o volume FlexClone durante `snap connect` a operação, `SD.Storage.Write` acesse a capacidade no volume pai.
+
+Para executar operações de storage em volumes FlexClone divididos durante o `snap disconnect`, para volumes FlexClone divididos, é necessário ter `SD.Storage.Delete` funcionalidades no clone de volume dividido.

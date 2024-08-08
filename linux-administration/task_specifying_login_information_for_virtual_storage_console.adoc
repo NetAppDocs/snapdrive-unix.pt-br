@@ -1,0 +1,56 @@
+---
+permalink: linux-administration/task_specifying_login_information_for_virtual_storage_console.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, login, virtual, storage, console, rdm, lun 
+summary: O console de armazenamento virtual deve ser configurado no SnapDrive para UNIX para provisionar LUNs RDM no sistema operacional convidado. No entanto, há um nome de usuário e uma senha que permitem que o SnapDrive para UNIX acesse o console de armazenamento virtual. O Virtual Storage Console não autentica essas credenciais de login. 
+---
+= Especificando informações de login para o Virtual Storage Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O console de armazenamento virtual deve ser configurado no SnapDrive para UNIX para provisionar LUNs RDM no sistema operacional convidado. No entanto, há um nome de usuário e uma senha que permitem que o SnapDrive para UNIX acesse o console de armazenamento virtual. O Virtual Storage Console não autentica essas credenciais de login.
+
+Verifique se o Virtual Storage Console está configurado com o vCenter.
+
+. Introduza o seguinte comando:
++
+`*snapdrive config set -viadmin <user> <viadmin_name>*`
+
++
+`_user_` é o nome de usuário do sistema de interface virtual.
+
++
+`_viadmin_name_` É o nome ou o endereço IP do sistema de interface virtual.
+
+. No prompt, digite a senha, se houver uma.
++
+[NOTE]
+====
+Se não tiver definido nenhuma palavra-passe, prima
+
+`Enter`
+
+(o valor nulo) quando solicitado para uma senha.
+
+====
++
+Este exemplo configura um usuário chamado `sdadmin` para uma interface virtual:
+
++
+[listing]
+----
+guest# snapdrive config set -viadmin sdadmin ruffleskin
+Password for sdadmin:
+Retype Password:
+----
++
+O SnapDrive para UNIX agora está pronto para provisionar LUNs RDM no sistema operacional convidado.
+
++
+
+NOTE: Se você deseja configurar uma nova interface virtual, os detalhes da interface virtual existente são sobrescritos, já que o SnapDrive para UNIX permite que você tenha apenas uma interface virtual configurada para um sistema operacional convidado.
+
+

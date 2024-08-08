@@ -1,0 +1,30 @@
+---
+permalink: aix/task_deleting_igroup.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, igroup, delete 
+summary: Você pode excluir qualquer iggroup que esteja configurado para um sistema de armazenamento, mas não seja mais necessário. 
+---
+= Eliminar um grupo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode excluir qualquer iggroup que esteja configurado para um sistema de armazenamento, mas não seja mais necessário.
+
+.Passos
+. Digite o seguinte comando no host:
++
+`*snapdrive igroup delete _filer_name_*`
+
++
+[listing]
+----
+snapdrive igroup delete toaster
+Deleted igroup configuration for appliance: toaster
+----
++
+O grupo `ig` configurado para a torradeira do sistema de armazenamento foi removido com sucesso.
+
+

@@ -1,0 +1,18 @@
+---
+permalink: linux-administration/concept_displayingsnapshot_copiesresiding_on_astorage_system.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, storage, copy, display 
+summary: Você pode usar o comando SnapDrive para exibir cópias Snapshot em um sistema de storage. 
+---
+= Exibição de cópias Snapshot que residem em um sistema de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o comando SnapDrive para exibir cópias Snapshot em um sistema de storage.
+
+Para exibir informações sobre cópias Snapshot que residem em um sistema de storage, use a seguinte sintaxe:
+
+`snapdrive snap show -filer filername [filername...] [-verbose]``

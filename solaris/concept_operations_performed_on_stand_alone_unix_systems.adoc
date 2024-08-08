@@ -1,0 +1,24 @@
+---
+permalink: solaris/concept_operations_performed_on_stand_alone_unix_systems.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, unix, stand, alone 
+summary: O SnapDrive para UNIX em sistemas UNIX independentes permite criar armazenamento e gerenciar cópias Snapshot de LUNs, sistemas de arquivos, volumes lógicos e grupos de discos. 
+---
+= Operações executadas em sistemas UNIX autônomos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX em sistemas UNIX autônomos permite criar armazenamento e gerenciar cópias Snapshot de LUNs, sistemas de arquivos, volumes lógicos e grupos de discos.
+
+* Crie storage que inclua LUNs, sistemas de arquivos, volumes lógicos e grupos de discos.
++
+Depois de criar o armazenamento, você pode aumentar ou reduzir a capacidade de armazenamento, conetar o armazenamento a um host ou desconectá-lo e exibir informações de configuração sobre o armazenamento.
+
+* Crie uma cópia Snapshot de um ou mais grupos de volumes em um sistema de storage.
++
+A cópia Snapshot pode conter sistemas de arquivos, volumes lógicos, grupos de discos, LUNs e árvores de diretório NFS. Depois de criar uma cópia Snapshot, você pode renomear, restaurar ou excluir a cópia Snapshot. Você também pode conetar uma cópia Snapshot a um local diferente no mesmo host ou diferente. Depois de conetar a cópia Snapshot, você pode exibir e modificar o conteúdo ou desconetar. Você também pode exibir informações sobre cópias Snapshot criadas.
+
+

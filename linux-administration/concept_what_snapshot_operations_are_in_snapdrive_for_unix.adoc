@@ -1,0 +1,18 @@
+---
+permalink: linux-administration/concept_what_snapshot_operations_are_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, ontap, image, host, storage, data, unix 
+summary: O SnapDrive para UNIX permite que você use a tecnologia Data ONTAP Snapshot para fazer uma imagem de dados de host armazenados em um sistema de armazenamento. 
+---
+= Quais são as operações Snapshot no SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX permite que você use a tecnologia Snapshot do Data ONTAP para criar uma imagem (cópia Snapshot) dos dados do host armazenados em um sistema de storage.
+
+Essa cópia Snapshot fornece uma cópia desses dados, que pode ser restaurada posteriormente. Os dados na cópia Snapshot podem existir em um sistema de storage ou abranger vários sistemas de storage e seus volumes. Esses sistemas de storage podem estar em pares de HA ou em sistemas de arquivos locais de nós ou em grupos de disco ou LUNs em um ambiente de cluster de host. Em um host UNIX não agrupado com o SnapDrive para UNIX instalado, é possível criar uma cópia Snapshot de um ou mais grupos de volumes em um sistema de storage.
+
+A cópia Snapshot pode conter sistemas de arquivos, volumes lógicos, grupos de discos, LUNs e árvores de diretório NFS. Depois de criar uma cópia Snapshot, você pode renomeá-la, restaurá-la ou excluí-la. Você também pode se conetar a um local diferente no mesmo host ou a um host diferente. Depois de se conetar, você pode exibir e modificar o conteúdo da cópia Snapshot ou desconetar a cópia Snapshot. Além disso, o SnapDrive para UNIX permite exibir informações sobre a cópia Snapshot que você criou. Em um host UNIX em cluster com o SnapDrive para UNIX instalado, é possível executar operações de snapshot nos nós de cluster de host que incluem grupos de disco e sistemas de arquivos. As operações de snapshot incluem criar, renomear, restaurar, conetar, desconetar, exibir e excluir.

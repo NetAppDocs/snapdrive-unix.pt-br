@@ -1,0 +1,44 @@
+---
+permalink: aix/task_creating_an_lvm_a_vxvm_entity_and_settingup_the_lunautomatically.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, lv, lun, create, automatically 
+summary: Você pode criar uma entidade como um sistema de arquivos, volume lógico ou grupo de discos no host e fazer com que o SnapDrive para UNIX crie automaticamente o LUN associado. 
+---
+= Criando uma entidade LVM e configurando o LUN automaticamente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode criar uma entidade como um sistema de arquivos, volume lógico ou grupo de discos no host e fazer com que o SnapDrive para UNIX crie automaticamente o LUN associado.
+
+* O `host_lvm_fspec` argumento permite especificar se deseja criar um sistema de arquivos, volume lógico ou grupo de discos. Este argumento tem três formatos gerais. O formato que você usa depende da entidade que deseja criar.
++
+Para criar um sistema de arquivos, use este formato: `-fs file_spec [-fstype type] [-fsopts options] [-mntopts options] [-nopersist] [ -hostvol file_spec] [ -dg dg_name]`
+
++
+Para criar um volume lógico ou de host, use este formato:
+
++
+`*[-hostvol file_spec] _file_spec_ [-dg _dg_name_]*`
+
++
+Para criar um disco ou grupo de volumes, use este formato:
+
++
+`*-dg__dg_name__*`
+
+* Se você criar um sistema de arquivos, também poderá incluir as especificações de volume do host, as especificações do grupo de discos ou as duas especificações para indicar o volume do host e o grupo de discos no qual o sistema de arquivos reside. Se você não incluir essas especificações, o SnapDrive para UNIX gerará automaticamente os nomes do volume do host e do grupo de discos ou ambos.
+* Quando você especifica um volume de host, o SnapDrive para UNIX cria um volume de host concatenado. Embora esse seja o único formato que o SnapDrive para UNIX suporta ao criar volumes de host, ele permite manipular volumes de host distribuídos existentes.
+
+
+.Passos
+. Na linha de comando, digite o seguinte comando:
++
+`*snapdrive storage create _host_vxvm_fspec_ -filervol _long_filer_path_ -dgsize size [-igroup _ig_name [ig_name ...]]_ [{ -reserve | -noreserve }]*`
+
++
+O SnapDrive para UNIX cria a entidade de host especificada e cria LUNs para ela no sistema de storage especificado. Ele executa todas as tarefas associadas à preparação e descoberta do host para cada um dos LUNs, bem como mapeia e coneta os LUNs à entidade do host.
+
+

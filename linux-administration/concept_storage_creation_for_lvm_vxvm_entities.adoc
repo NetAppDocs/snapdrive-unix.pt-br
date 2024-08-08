@@ -1,0 +1,14 @@
+---
+permalink: linux-administration/concept_storage_creation_for_lvm_vxvm_entities.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, create, lvm, file, ext4, ext3 
+summary: Se você usar o SnapDrive para UNIX para criar um volume lógico ou um sistema de arquivos usando o LVM, o SnapDrive para UNIX criará automaticamente o grupo de discos necessário. O SnapDrive para UNIX cria o sistema de arquivos com base no tipo suportado pelo gerenciador de volume do host. Para Linux, ele inclui EXT4 ou ext3. 
+---
+= Criação de storage para entidades LVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se você usar o SnapDrive para UNIX para criar um volume lógico ou um sistema de arquivos usando o LVM, o SnapDrive para UNIX criará automaticamente o grupo de discos necessário. O SnapDrive para UNIX cria o sistema de arquivos com base no tipo suportado pelo gerenciador de volume do host. Para Linux, ele inclui EXT4 ou ext3.

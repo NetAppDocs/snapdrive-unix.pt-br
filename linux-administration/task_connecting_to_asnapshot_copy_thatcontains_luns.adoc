@@ -1,0 +1,69 @@
+---
+permalink: linux-administration/task_connecting_to_asnapshot_copy_thatcontains_luns.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, lun, connect, command 
+summary: Você pode se conetar a uma cópia Snapshot que contenha LUNs usando o comando SnapDrive snap Connect. 
+---
+= Conexão a uma cópia Snapshot que contenha LUNs
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode se conetar a uma cópia Snapshot que contenha LUNs usando o `snapdrive snap connect` comando.
+
+.Passos
+. Digite a seguinte sintaxe de comando para se conetar a uma cópia Snapshot que contenha LUNs:
++
+`*snapdrive snap connect -lun _s_lun_named_lun_name_ [[-lun] _s_lun_named_lun_name..._ -snapname _long_snap_name_ [-igroup _ig_name_ [_ig_name..._]] [-split]*``
+
++
+
+NOTE: O `_s_lun_name_` e `_d_lun_name_` deve estar no formato lun_name ou qtree_name/lun_name.
+
+
+
+O SnapDrive para UNIX clona os LUNs especificados e os coneta a um novo local.
+
+O exemplo a seguir coneta o LUN mylun1, em hornet/vol/vol1/tusdaysnapshot a mylun1copy:
+
+[listing]
+----
+# ./snapdrive snap connect -lun mylun1 mylun1copy -snapname
+hornet:/vol/vol1:tuesdaysnapshot
+connecting hornet:/vol/vol1/mylun1:
+LUN copy mylun1copy ... created
+(original: hornet:/vol/vol1/mylun1) mapping new lun(s) ... done
+discovering new lun(s) ... done
+----
+O exemplo a seguir coneta dois LUNs, mylun1 e mylun2, a mylun1copy e mylun2copy, respetivamente:
+
+[listing]
+----
+# ./snapdrive snap connect -lun mylun1 mylun1copy -lun mylun2
+mylun2copy -snapname hornet:/vol/vol1:tuesdaysnapshot
+connecting hornet:/vol/vol1/mylun1:
+LUN copy mylun1copy ... created
+(original: hornet:/vol/vol1/mylun1)
+mapping new lun(s) ... done
+connecting hornet:/vol/vol1/mylun2:
+LUN copy mylun2copy ... created
+(original: hornet:/vol/vol1/mylun2)
+mapping new lun(s) ... done
+discovering new lun(s) ... done
+----
+O exemplo a seguir coneta o LUN lun1_0 ao instantâneo lech:/vol/vol1:rrt:
+
+[listing]
+----
+
+snapdrive snap connect -fs /mnt/fs /mnt/fs1  -snapname lech:/vol/vol1:rrt
+connecting /mnt/fs:
+   LUN copy lun1_0 ... created
+     (original: lech:/vol/vol1/lun1)
+   exporting new lun(s) to Guest OS ... done
+   discovering new lun(s) ... done
+Successfully connected to snapshot lech:/vol/vol1:rrt
+        file system: /mnt/fs1
+----

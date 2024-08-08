@@ -1,0 +1,21 @@
+---
+permalink: solaris/concept_snapdrived_start_command_fails.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, start, command, fail 
+summary: Em algumas condições, o comando de arranque ajustado pode falhar. Existem algumas etapas de solução de problemas para resolver isso. 
+---
+= o comando de arranque ajustado falha
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Em algumas condições `snapdrived start`, o comando pode falhar. Existem algumas etapas de solução de problemas para resolver isso.
+
+* Verifique se a porta daemon especificada no `snapdrive.conf` arquivo já está em uso por outro aplicativo.
+* Verifique se uma instância anterior do daemon está parada corretamente.
+* Verifique se o limite de semáforo em todo o sistema é atingido, caso em que o daemon start não funciona.
+* Verifique se algum dos serviços como iSCSI, VxVM não está em execução na máquina.
+* Se HTTPS estiver definido como `on`, verifique se o certificado autoassinado está instalado no diretório especificado.
+

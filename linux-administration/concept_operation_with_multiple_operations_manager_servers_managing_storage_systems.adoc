@@ -1,0 +1,22 @@
+---
+permalink: linux-administration/concept_operation_with_multiple_operations_manager_servers_managing_storage_systems.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, systems, operation, multiple, manager, console, server 
+summary: A saída a seguir mostra a mensagem de erro que você receberia quando os sistemas de armazenamento são gerenciados pelo console de vários gerentes de operações. 
+---
+= Operação com vários servidores de console do Operations Manager que gerenciam sistemas de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A saída a seguir mostra a mensagem de erro que você receberia quando os sistemas de armazenamento são gerenciados pelo console de vários gerentes de operações.
+
+[listing]
+----
+[root]# snapdrive storage create -lun storage_array1:/vol/vol1/lun5 lun6 -lun storage_array2:/vol/vol1/lun2 -lunsize 100m
+0002-332 Admin error:SD.Storage.Write access denied on volume storage_array1:/vol/vol1 for user unix_host\root on Operations Manager server ops_mngr_server1
+SD.Storage.Write access denied on volume storage_array2:/vol/vol1 for user unix_host\root on Operations Manager server ops_mngr_server2
+----
+o storage_array1 é gerenciado pelo ops_mngr_server1 e o storage_array2 é gerenciado pelo ops_mngr_server2. O administrador do UNIX_host não está autorizado a criar filespec no storage_array1 e storage_array2. No exemplo anterior, o SnapDrive para UNIX exibe o console do Gerenciador de operações usado para determinar o acesso.

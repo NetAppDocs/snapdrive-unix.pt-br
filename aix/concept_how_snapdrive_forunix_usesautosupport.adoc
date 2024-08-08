@@ -1,0 +1,24 @@
+---
+permalink: aix/concept_how_snapdrive_forunix_usesautosupport.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, autosupport, support 
+summary: 'As mensagens do AutoSupport são registradas na visualização de log do EMS do sistema de armazenamento quando a opção habilitado para AutoSupport está definida como On no arquivo SnapDrive.conf. Por padrão, essa opção está definida como On no arquivo SnapDrive.conf. O SnapDrive para UNIX envia mensagens AutoSupport para o sistema de armazenamento, onde as mensagens são registradas no sistema de Gerenciamento de Eventos (EMS).' 
+---
+= Como o SnapDrive para UNIX usa o AutoSupport
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+As mensagens AutoSupport são registadas na vista de registo EMS do sistema de armazenamento quando a `_autosupport-enabled_` opção está definida como On (ligado) no `snapdrive.conf` ficheiro. Por padrão, essa opção está definida como `_on_` no `snapdrive.conf` arquivo. O SnapDrive para UNIX envia mensagens AutoSupport para o sistema de armazenamento, onde as mensagens são registradas no sistema de Gerenciamento de Eventos (EMS).
+
+Uma mensagem AutoSupport é enviada durante qualquer um dos seguintes cenários:
+
+* Quando uma operação é interrompida devido a uma falha operacional, uma mensagem AutoSupport é enviada para o sistema de armazenamento para o qual a operação falhou.
+* Se vários sistemas de storage estiverem conetados ao host e a falha operacional ocorrer em mais de um sistema de storage, o SnapDrive para UNIX enviará a mensagem AutoSupport a um sistema de storage específico para o qual a operação falha.
+* Quando um novo controlador de armazenamento é adicionado usando `_snapdrive config set <username> <filername>_`o , o SnapDrive para UNIX envia uma mensagem AutoSupport para o sistema de armazenamento especificado.
+* Quando o daemon SnapDrive é reiniciado ou iniciado, a mensagem AutoSupport é enviada para o sistema de armazenamento configurado.
+* Quando o `snapdrive storage show -all` comando é executado, a mensagem AutoSupport é enviada para todos os sistemas de armazenamento configurados.
+* Quando há uma operação de criação de snap bem-sucedida, a mensagem AutoSupport é enviada para o sistema de storage.
+

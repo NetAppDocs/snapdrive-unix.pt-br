@@ -1,0 +1,20 @@
+---
+permalink: aix/reference_unable_to_install_snapdrive_for_unix_patches_on_aix_by_default.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, install, aix, patch, default 
+summary: 'Você não pode instalar versões de patch do SnapDrive para UNIX no AIX por padrão usando a ferramenta de interface de gerenciamento do sistema (SMIT).' 
+---
+= Não é possível instalar patches do SnapDrive para UNIX no AIX por padrão
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você não pode instalar versões de patch do SnapDrive para UNIX no AIX por padrão usando a ferramenta de interface de gerenciamento do sistema (SMIT).
+
+
+
+== Solução alternativa
+
+Certifique-se de selecionar a `overwrite` opção no SMIT quando instalar a versão de patch do SnapDrive para UNIX para AIX.

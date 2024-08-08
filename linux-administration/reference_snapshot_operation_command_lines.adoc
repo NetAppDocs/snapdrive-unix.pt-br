@@ -1,0 +1,104 @@
+---
+permalink: linux-administration/reference_snapshot_operation_command_lines.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, command, unix 
+summary: Os comandos SnapDrive para UNIX são usados para operações Snapshot. 
+---
+= Linhas de comando da operação Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os comandos SnapDrive para UNIX são usados para operações Snapshot.
+
+A tabela a seguir fornece várias opções de linha de comando para operações Snapshot.
+
+|===
+| Operação | Opções de linha de comando 
+
+
+ a| 
+Criar
+ a| 
+`snapdrive snap create [-lun | -dg | -vg | -hostvol | -lvol | -fs] _file_spec_ [file_spec ...] [{-lun | -dg | -vg | -hostvol | -lvol | -fs} _file_spec_ [file_spec ...] ...] -snapname _snap_name_ [-force [-noprompt]] [-unrelated] [-fstype type] [-vmtype type]`
+
+
+
+ a| 
+Mostrar/Lista
+ a| 
+`snapdrive snap { show | list } -filervol _filervol_ [_filervol..._][-verbose]`
+
+
+
+ a| 
+`snapdrive snap { show | list } [-verbose] {-vg | -dg | -fs | -lvol | -hostvol} _file_spec_ [file_spec...] [-fstype type] [-vmtype type]`
+
+
+
+ a| 
+`snapdrive snap [-verbose] [-snapname] _long_snap_name_ [snap_name ...]`
+
+
+
+ a| 
+`snapdrive snap {show |list} [-verbose] [-lun | -vg | -dg | -fs | -lvol | -hostvol] _file_spec_ [file_spec...]`
+
+
+
+ a| 
+Ligar
+ a| 
+`snapdrive snap connect -lun _s_lun_named_lun_name_ [[-lun] _s_lun_named_lun_name ..._] -snapname _long_snap_name_ [-split] [-clone {lunclone | optimal | unrestricted}] [-prefixfvprefixstr] [-verbose]`
+
+
+NOTE: Em um comando SnapDrive snap connect , o nome do LUN deve estar no formato `lun_name` ou `qtree_name/lun_name`.
+
+
+
+ a| 
+`snapdrive snap connect _fspec_set_ [_fspec_set..._] -snapname _long_snap_name_ [-autoexpand] [-autorename] [-nopersist] [-mntopts options] [{-reserve | -noreserve}] [-readonly] [-split] [-clone {lunclone | optimal | unrestricted}] [-prefixfv prefixstr] [-verbose]`
+
+[NOTE]
+====
+O argumento fspec_set tem o seguinte formato:
+
+`[-vg | -dg | -fs | -lvol | -hostvol] _src_file_spec_[_dest_file_spec_] [{-destdg | -destvg} dgname] [{-destlv | -desthv} lvname]`
+
+====
+
+
+ a| 
+Mudar o nome
+ a| 
+`snapdrive snap rename -[snapname ]_old_long_snap_name new_snap_name_ [-force [-noprompt]]`
+
+
+
+ a| 
+Restaurar
+ a| 
+`snapdrive snap restore [-lun | -dg | -vg | -hostvol | -lvol | -fs | -file] _file_spec_ [file_spec ...] [{-lun | -dg | -vg | -hostvol | -lvol | -fs | -file} _file_spec_ [file_spec ...] ...] -snapname _snap_name_ [-force [-noprompt]] [-mntopts options][{-reserve | -noreserve}] [-vbsr [preview|execute]]`
+
+
+
+ a| 
+Desligar
+ a| 
+`snapdrive snap disconnect -lun _long_lun_name_ [_lun_name..._] [-fstype type] [-vmtype type][-split]`
+
+
+
+ a| 
+`snapdrive snap disconnect {-dg | -vg | -hostvol | -lvol | -fs} _file_spec_ [file_spec ...] [{-dg | -vg | -hostvol | -lvol | -fs} _file_spec_ [file_spec ...] ...] [-full] [-fstype type] [-vmtype type] [-split]`
+
+
+
+ a| 
+Eliminar
+ a| 
+`snapdrive snap delete [-snapname] _long_snap_name_ [_snap_name..._][-verbose] [-force [-noprompt]]`
+
+|===

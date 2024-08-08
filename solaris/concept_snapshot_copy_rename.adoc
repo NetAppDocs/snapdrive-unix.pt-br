@@ -1,0 +1,14 @@
+---
+permalink: solaris/concept_snapshot_copy_rename.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, snapshot, copy, rename 
+summary: Você pode alterar o nome de uma cópia Snapshot usando o comando snapshot Rename. Uma cópia Snapshot que está em vários sistemas de storage ou volumes de sistema de storage também pode ser renomeada. 
+---
+= Mudar o nome da cópia Snapshot
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode alterar o nome de uma cópia Snapshot usando o `snapshot snap rename` comando. Uma cópia Snapshot que está em vários sistemas de storage ou volumes de sistema de storage também pode ser renomeada.

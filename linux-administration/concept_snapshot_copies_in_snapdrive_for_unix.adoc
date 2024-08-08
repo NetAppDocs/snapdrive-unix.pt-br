@@ -1,0 +1,14 @@
+---
+permalink: linux-administration/concept_snapshot_copies_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, create, snapshot, copy, host, data 
+summary: O SnapDrive para UNIX permite criar cópias Snapshot de dados de host. 
+---
+= Criação e uso de cópias Snapshot no SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX permite criar cópias Snapshot de dados de host.

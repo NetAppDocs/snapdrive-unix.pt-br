@@ -1,0 +1,18 @@
+---
+permalink: solaris/concept_preparation_for_installing_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, install, perpare, unix 
+summary: Os hosts nos quais você está instalando o SnapDrive para UNIX devem atender aos requisitos específicos de software, hardware, navegador, banco de dados e sistema operacional. Para obter as informações mais recentes sobre esses requisitos, consulte a Matriz de interoperabilidade. 
+---
+= Preparando-se para instalar o SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os hosts nos quais você está instalando o SnapDrive para UNIX devem atender aos requisitos específicos de software, hardware, navegador, banco de dados e sistema operacional. Para obter as informações mais recentes sobre esses requisitos, consulte a Matriz de interoperabilidade.
+
+*Informações relacionadas*
+
+https://mysupport.netapp.com/NOW/products/interoperability["Interoperabilidade do NetApp"]

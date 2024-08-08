@@ -1,0 +1,27 @@
+---
+permalink: linux-administration/concept_mixed_environments_of_san_and_nfs.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, san, nfs, mixed, interface, management 
+summary: Em ambientes mistos SAN e NFS, o gerenciamento e a interface de dados devem ser mapeados para que a primeira interface de dados seja a mesma que a interface de gerenciamento. 
+---
+= Ambientes SAN e NFS mistos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Em ambientes mistos SAN e NFS, o gerenciamento e a interface de dados devem ser mapeados para que a primeira interface de dados seja a mesma que a interface de gerenciamento.
+
+No exemplo a seguir, a interface de gerenciamento é `10.72.197.91`, e a interface de dados é `10.72.220.91`.
+
+[listing]
+----
+
+#snapdrive config set -mgmtpath f3050-197-91 f3050-197-91 f3050-197-91 f3050-220-91
+
+#snapdrive config list -mgmtpath
+ system name        management interface   datapath interface
+ --------------------------------------------------------------------
+ bart               10.72.197.91           10.72.197.91|10.72.220.91
+----

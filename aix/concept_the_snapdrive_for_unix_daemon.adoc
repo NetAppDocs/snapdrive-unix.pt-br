@@ -1,0 +1,14 @@
+---
+permalink: aix/concept_the_snapdrive_for_unix_daemon.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, daemon 
+summary: Antes de executar qualquer comando SnapDrive para UNIX, você deve entender os serviços web e daemon e como usá-los. Todos os comandos SnapDrive para UNIX funcionam usando o serviço daemon. Antes de usar o SnapDrive para UNIX em seu host AIX, você deve iniciar o daemon, que permite que o SnapDrive para UNIX se integre de forma integrada e segura com outros produtos NetApp e não-NetApp. 
+---
+= Entendendo o daemon SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de executar qualquer comando SnapDrive para UNIX, você deve entender os serviços web e daemon e como usá-los. Todos os comandos SnapDrive para UNIX funcionam usando o serviço daemon. Antes de usar o SnapDrive para UNIX em seu host AIX, você deve iniciar o daemon, que permite que o SnapDrive para UNIX se integre de forma integrada e segura com outros produtos NetApp e não-NetApp.

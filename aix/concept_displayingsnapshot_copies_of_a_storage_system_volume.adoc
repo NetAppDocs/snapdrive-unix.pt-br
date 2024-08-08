@@ -1,0 +1,18 @@
+---
+permalink: aix/concept_displayingsnapshot_copies_of_a_storage_system_volume.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, display, snapshot, copy, storage, system, volume 
+summary: Você pode usar o comando SnapDrive para exibir cópias Snapshot em um volume do sistema de storage. 
+---
+= Exibição de cópias Snapshot de um volume de sistema de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o comando SnapDrive para exibir cópias Snapshot em um volume do sistema de storage.
+
+Para exibir informações sobre cópias Snapshot de um volume do sistema de storage, use a seguinte sintaxe:
+
+`snapdrive snap show -filervol filervol [filervol...] [-verbose]`

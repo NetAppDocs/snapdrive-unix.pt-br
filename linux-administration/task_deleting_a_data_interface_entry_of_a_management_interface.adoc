@@ -1,0 +1,36 @@
+---
+permalink: linux-administration/task_deleting_a_data_interface_entry_of_a_management_interface.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, delete, interface, management, config, nfs, command 
+summary: Você pode excluir uma entrada de interface de dados associada a uma interface de gerenciamento específica em um ambiente NFS usando o comando SnapDrive config delete -mgmtpath. 
+---
+= Exclusão de uma entrada de interface de dados para uma interface de gerenciamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode excluir uma entrada de interface de dados associada a uma interface de gerenciamento específica em um ambiente NFS usando o `snapdrive config delete -mgmtpath` comando.
+
+.Passos
+. Na CLI, digite o seguinte comando:
++
+`*snapdrive config delete -mgmtpath data_interface*`
+
++
+[listing]
+----
+#snapdrive config delete –mgmtpath f3050-197-91
+Deleted configuration for appliance: f3050-197-91
+----
++
+O seguinte é um exemplo para SVM.
+
++
+[listing]
+----
+#snapdrive config delete –mgmtpath clstr-vs2
+Deleted configuration for appliance: clstr-vs2
+----
+

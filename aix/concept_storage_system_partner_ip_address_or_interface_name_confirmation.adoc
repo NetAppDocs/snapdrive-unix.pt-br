@@ -1,0 +1,33 @@
+---
+permalink: aix/concept_storage_system_partner_ip_address_or_interface_name_confirmation.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, system, ip, interface, name, address 
+summary: Quando você executa o programa de configuração em seu sistema de storage, ele solicita que você forneça um endereço IP ou um nome de interface para que um sistema de storage parceiro use em caso de failover. Se você não fornecer isso, o SnapDrive para UNIX não poderá pesquisar as entidades de storage em um sistema de storage que assumiu. 
+---
+= Confirmação do endereço IP ou do nome da interface do parceiro do sistema de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando você executa o programa de configuração em seu sistema de storage, ele solicita que você forneça um endereço IP ou um nome de interface para que um sistema de storage parceiro use em caso de failover. Se você não fornecer isso, o SnapDrive para UNIX não poderá pesquisar as entidades de storage em um sistema de storage que assumiu.
+
+Um endereço IP do parceiro ou o nome da interface é o endereço IP ou o nome da interface do sistema de storage do parceiro na configuração de par de HA. Se o sistema de storage primário falhar, o sistema de storage do parceiro assumirá o funcionamento do sistema de storage primário.
+
+
+
+== Exemplo: Script de configuração do sistema de armazenamento
+
+A seguinte saída de exemplo do script de configuração do sistema de armazenamento solicita o endereço IP:
+
+[listing]
+----
+storage_system_A> setup...
+Should interface e0 take over a partner IP address during failover?
+[n]: y
+Please enter the IP address or interface name to be taken over by e0
+[]: 10.2.21.35
+storage_system_A> reboot -t 0
+----
+Este exemplo usa o endereço IP 10,2.21,35.

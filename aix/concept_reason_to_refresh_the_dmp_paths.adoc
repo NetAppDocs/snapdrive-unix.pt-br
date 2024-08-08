@@ -1,0 +1,36 @@
+---
+permalink: aix/concept_reason_to_refresh_the_dmp_paths.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, dmp, path, refresh 
+summary: Em hosts com configurações FC e DMP, o comando SnapDrive storage DELETE - lun pode travar. 
+---
+= Motivo para atualizar os caminhos DMP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Em hosts com configurações FC e DMP, o `snapdrive storage delete - lun` comando pode travar.
+
+O comando pode travar devido à instalação inadequada ou configuração dos seguintes componentes:
+
+* NTAPasl
+* Pilha Veritas (base de armazenamento)
+* Licenças multipathing
+
+
+Você deve atualizar as informações de caminhos DMP corretamente após qualquer caminho FC ser ativado, desativado ou adicionado. Para atualizar os caminhos do DMP, execute os seguintes comandos de forma sequencial, conforme listado abaixo.
+
+|===
+| *Plataforma* | *Comando* 
+
+
+ a| 
+AIX
+ a| 
+* `cfgmg`
+* `vxdisk scandisk`
+
+
+|===

@@ -1,0 +1,33 @@
+---
+permalink: aix/concept_considerations_forstorage_operations.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, considerations, storage, operations 
+summary: Você deve ter em mente algumas considerações relacionadas aos vários comandos de armazenamento. 
+---
+= Considerações para operações de armazenamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você deve ter em mente algumas considerações relacionadas aos vários comandos de armazenamento.
+
+* O suporte é limitado para grupos de volumes que abrangem vários volumes de sistema de storage ou vários sistemas de storage. Você não pode usar o `snapdrive storage create` comando para criar grupos de volume que se estendem por sistemas de armazenamento.
++
+Neste caso, o SnapDrive para UNIX suporta os seguintes comandos de chave:
+
++
+** `snapdrive snap create`
+** `snapdrive snap restore`
+** `snapdrive snap connect`
+** `snapdrive snap disconnect`
+
+
+* O `snapdrive storage resize` comando não funciona com LUNs mapeados diretamente para o host ou com os sistemas de arquivos que eles contêm.
+* O SnapDrive para UNIX não fornece nenhuma opção para controlar a formatação dos volumes de host que ele cria. O SnapDrive para UNIX cria apenas volumes de host concatenados. Ele funciona corretamente em volumes de host de outros formatos (como volumes listrados) que foram criados usando outro aplicativo.
+* Não é possível restaurar uma parte de um grupo de discos. O SnapDrive para UNIX faz backup e restaura apenas grupos de discos inteiros.
+
+
+
+NOTE: As operações do SnapDrive realizadas de um sistema operacional não Linux para um sistema operacional Linux, usando até mesmo o `-mntopts` comando, para NFS, falham em todas as versões anteriores ao Red Hat Enterprise Linux 6.

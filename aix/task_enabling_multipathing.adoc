@@ -1,0 +1,164 @@
+---
+permalink: aix/task_enabling_multipathing.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, enable, multipathing, hba 
+summary: Para usar multipathing no SnapDrive para UNIX, você deve concluir etapas que incluem a instalação e a inicialização do HBA. Se você estiver usando uma solução multipathing não-NetApp, você deve baixar o software e o pacote de aplicativos do site do fornecedor HBA. 
+---
+= Ativar multipathing
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para usar multipathing no SnapDrive para UNIX, você deve concluir etapas que incluem a instalação e a inicialização do HBA. Se você estiver usando uma solução multipathing não-NetApp, você deve baixar o software e o pacote de aplicativos do site do fornecedor HBA.
+
+Seu sistema deve estar executando versões atuais dos componentes do sistema FC e iSCSI.
+
+http://mysupport.netapp.com/matrix["Ferramenta de Matriz de interoperabilidade do NetApp"]
+
+.Passos
+. Instale os HBAs suportados antes de instalar o software Host Utilities apropriado.
++
+
+NOTE: O SnapDrive para UNIX é compatível com HBAs de vários fornecedores.
+
+. Inicie o serviço HBA.
++
+Se o serviço HBA não estiver em execução, a seguinte mensagem de erro será exibida quando você executar comandos SnapDrive para UNIX, como `snapdrive storage create` e `snapdrive config prepare luns`:
+
++
+[listing]
+----
+0001-876 Admin error: HBA assistant not found
+----
++
+Você deve verificar se o número necessário de caminhos está ativo e em execução. Você pode verificar os caminhos usando o utilitário sanlun, que está incluído com o software Host Utilities. Por exemplo, na configuração de multipathing FC, você pode usar o `sanlun fcp show adapter -v` comando.
+
++
+No exemplo a seguir, há duas portas HBA (fcd0 e fcd1) conetadas ao host que estão operacionais (estado da porta). Você pode ter apenas um iniciador HBA ou iSCSI e deve configurar multipathing fornecendo mais de um caminho para os LUNs de destino.
+
++
+[listing]
+----
+# sanlun fcp show adapter -v
+adapter name: fcd0
+WWPN: 50060b000038c428
+WWNN: 50060b000038c429
+driver name: fcd
+model: A6826A
+model description: Fibre Channel Mass Storage Adapter
+(PCI/PCI-X)
+serial number: Not Available
+hardware version: 3
+driver version: @(#) libfcd.a HP Fibre Channel
+ISP 23xx & 24xx Driver B.11.23.04
+/ux/core/isu/FCD/kern/src/common/wsio/fcd_init.c:Oct 18
+2005,08:19:50
+firmware version: 3.3.18
+Number of ports: 1 of 2
+port type: Fabric
+port state: Operational
+supported speed: 2 GBit/sec
+negotiated speed: 2 GBit/sec
+OS device name: /dev/fcd0
+adapter name: fcd1
+WWPN: 50060b000038c42a
+WWNN: 50060b000038c42b
+driver name: fcd
+model: A6826A
+model description: Fibre Channel Mass Storage Adapter
+(PCI/PCI-X)
+serial number: Not Available
+hardware version: 3
+driver version: @(#) libfcd.a HP Fibre Channel
+ISP 23xx & 24xx Driver B.11.23.04
+/ux/core/isu/FCD/kern/src/common/wsio/fcd_init.c:Oct 18
+2005,08:19:50
+firmware version: 3.3.18
+Number of ports: 2 of 2 port type: Fabric
+port state: Operational
+supported speed: 2 GBit/sec
+negotiated speed: 2 GBit/sec
+OS device name: /dev/fcd1
+----
++
+Se o multipathing estiver habilitado em um host, vários caminhos serão visíveis para o mesmo LUN. Você pode usar o `sanlun lun show all` comando para verificar os caminhos. No exemplo a seguir, você pode encontrar vários caminhos para o mesmo LUN (`fish: /vol/vol1/lun`):
+
++
+[listing]
+----
+filer:         lun-pathname        device filename  adapter    protocol   lun size              lun state
+    filer_1:        fish/vol/vol1/l1      hdisk36          fcs0       FCP       5m   (5242880)        GOOD
+    filer_2:        fish/vol/vol0/lunKr   hdisk39          fcs0       FCP       100m (104857600)      GOOD
+    filer_3:        fish/vol/vol0/testaix hdisk2           fcs0       FCP       200m (209715200)      GOOD
+    filer_4:        fish/vol/vol1/l1      hdisk45          fcs1       FCP       5m   (5242880)        GOOD
+----
+. Em uma configuração FC, zoneie as portas HBA do host e as portas de destino usando a configuração de zoneamento do switch.
+. Instale e configure o switch FC ou iSCSI apropriado.
+. Verifique os requisitos de pilha do SnapDrive para UNIX.
+. Instale ou atualize o SnapDrive para UNIX.
+. Verifique a instalação do SnapDrive para UNIX.
+. Localize o `snapdrive.conf` caminho do arquivo.
+. Configure as seguintes variáveis de configuração `snapdrive.conf` no arquivo:
++
+** `_multipathing-type_`
+** `_default-transport_`
+** `_fstype_`
+** `_vmtype_`
++
+Para cada host, o tipo de multipathing, o tipo de transporte, o sistema de arquivos e o tipo de gerenciador de volume dependem um do outro. A tabela a seguir descreve todas as combinações possíveis:
+
+
+
++
+|===
+| Plataforma host | Tipo de transporte predefinido | Tipo de multipathing | fstype | vmtype 
+
+
+ a| 
+AIX
+ a| 
+FCP
+ a| 
+absoluto
+ a| 
+jfs2 ou jfs
+ a| 
+lvm
+
+
+
+ a| 
+nativempio
+ a| 
+jfs2 ou jfs
+ a| 
+lvm
+
+
+
+ a| 
+dmp
+ a| 
+vxfs
+ a| 
+vxvm
+
+|===
++
+A tabela anterior fornece os valores suportados das `_multipathing-type_` variáveis de configuração , `_default-transport_`, `_fstype_` e . `_vmtype_`
+
+. Salve o `snapdrive.conf` arquivo.
++
+O SnapDrive para UNIX verifica automaticamente esse arquivo sempre que ele for iniciado. Você deve reiniciar o daemon SnapDrive para UNIX para que as alterações entrem em vigor.
+
+
+
+*Informações relacionadas*
+
+http://mysupport.netapp.com["Suporte à NetApp"]
+
+https://mysupport.netapp.com/NOW/products/interoperability["Interoperabilidade do NetApp"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1119223["AIX Host Utilities 6,0 Guia de instalação e configuração"]

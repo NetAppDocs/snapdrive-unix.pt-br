@@ -1,0 +1,14 @@
+---
+permalink: linux-installation-cmode/concept_provisioning_storage.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, provision, storage, system 
+summary: O SnapDrive para UNIX permite provisionar storage e se conectar a um sistema de storage existente usando opções de linha de comando do host. Você também pode provisionar storage usando o Data ONTAP. 
+---
+= Provisionamento de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX permite provisionar storage e se conectar a um sistema de storage existente usando opções de linha de comando do host. Você também pode provisionar storage usando o Data ONTAP.

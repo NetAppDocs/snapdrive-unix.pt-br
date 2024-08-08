@@ -1,0 +1,25 @@
+---
+permalink: linux-administration/concept_security_featuresprovided_bysnapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, security, control, user, storage, permission, login 
+summary: O SnapDrive para UNIX fornece certos recursos que permitem que você trabalhe com ele de forma mais segura. Esses recursos oferecem mais controle sobre quais usuários podem executar operações em um sistema de storage e de qual host. 
+---
+= Quais são os recursos de segurança
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX fornece certos recursos que permitem que você trabalhe com ele de forma mais segura. Esses recursos oferecem mais controle sobre quais usuários podem executar operações em um sistema de storage e de qual host.
+
+Os recursos de segurança permitem que você execute as seguintes tarefas:
+
+* Configurar permissões de controle de acesso
+* Especifique as informações de login para os sistemas de armazenamento
+* Especifique que o SnapDrive para UNIX usa HTTPS
+
+
+O recurso de controle de acesso permite especificar quais operações um host executando o SnapDrive para UNIX pode executar em um sistema de armazenamento. Você define essas permissões individualmente para cada host. Além disso, para permitir que o SnapDrive para UNIX acesse um sistema de armazenamento, você deve fornecer o nome de login e a senha para esse sistema de armazenamento.
+
+O recurso HTTPS permite especificar criptografia SSL para todas as interações com o sistema de armazenamento através da interface Gerenciar ONTAP, incluindo o envio das senhas. Esse comportamento é o padrão no SnapDrive 4,1 para UNIX e versões posteriores para hosts Linux; no entanto, você pode desativar a criptografia SSL alterando o valor da `use-https-to-filer` variável de configuração para `off`.

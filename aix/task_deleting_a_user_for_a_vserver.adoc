@@ -1,0 +1,33 @@
+---
+permalink: aix/task_deleting_a_user_for_a_vserver.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, vserver, delete, user 
+summary: Você pode excluir informações de login de um SVM executando o comando SnapDrive config delete. 
+---
+= Excluindo um usuário de um SVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode excluir informações de login de um SVM executando o `snapdrive config delete` comando.
+
+.Passos
+. Introduza o seguinte comando:
++
+`*snapdrive config delete _appliance_name_*`
+
++
+`_appliance_name_` É o nome do SVM no qual você deseja excluir informações de login.
+
++
+[listing]
+----
+# snapdrive config delete clstr-vs2
+Deleted configuration for appliance: clstr-vs2
+----
++
+O SnapDrive para UNIX remove as informações de login do SVM especificado.
+
+

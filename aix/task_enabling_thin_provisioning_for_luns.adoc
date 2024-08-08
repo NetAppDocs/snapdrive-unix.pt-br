@@ -1,0 +1,36 @@
+---
+permalink: aix/task_enabling_thin_provisioning_for_luns.html 
+sidebar: sidebar 
+keywords: enable, snap, snapdrive, lun, provision 
+summary: Você pode usar o SnapDrive para UNIX para realizar thin Provisioning em seu sistema de storage. Thin Provisioning também é conhecido como reserva de espaço. 
+---
+= Ativação do thin Provisioning para LUNs
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode usar o SnapDrive para UNIX para realizar thin Provisioning em seu sistema de storage. Thin Provisioning também é conhecido como reserva de espaço.
+
+.Passos
+. Defina o `_space-reservations-enabled_` valor da variável de configuração como ligado.
++
+Você também pode ativar o provisionamento de thin Provisioning usando os `-reserve` parâmetros `-noreserve` e.
+
++
+O parâmetro substitui o valor mencionado na `_-space-reservations-enabled_` variável.
+
++
+Você pode usar `-reserve` e `-noreserve` com os seguintes comandos para ativar ou desativar a reserva LUN:
+
++
+** `snapdrive storage create`
+** `snapdrive storage resize`
+** `snapdrive snap connect`
+** `snapdrive snap restore`
+
+
+
+
+Por padrão, o SnapDrive para UNIX habilita a reserva de espaço para operações de criação de armazenamento novas ou novas. Para operações de restauração de snap e snap connect, ele usa a reserva de espaço presente na cópia Snapshot se os `-reserve` parâmetros ou `-noreserve` não forem especificados na linha de comando ou se o valor no arquivo de configuração não for comentado.

@@ -1,0 +1,23 @@
+---
+permalink: solaris/concept_connecting_multiple_storage_entities.html 
+sidebar: sidebar 
+keywords: snap, snapdrve, storage, entity, connect, multiple 
+summary: Você pode conectar uma cópia Snapshot que contém várias entidades de storage. 
+---
+= Conexão de várias entidades de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode conectar uma cópia Snapshot que contém várias entidades de storage.
+
+Para conectar uma cópia Snapshot que contém entidades de storage que residem em sistemas de storage de vários destinos, você precisa atender aos seguintes requisitos:
+
+* As entidades de storage especificadas no prompt de comando devem residir em um único sistema de storage ou em um par de HA.
+* O nome do volume do sistema de armazenamento de origem deve corresponder ao nome do volume do sistema de armazenamento de destino.
+* Você deve definir a `_snapmirror-dest-multiple-filervolumes-enabled_` variável no `snapdrive.conf` arquivo como "'on'".
+
+
+Você pode usar um comando para conectar entidades de storage que residem em um único sistema de storage ou em um par de HA.

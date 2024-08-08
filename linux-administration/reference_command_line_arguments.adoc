@@ -1,0 +1,208 @@
+---
+permalink: linux-administration/reference_command_line_arguments.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, argument, format, copy, snapshot 
+summary: O SnapDrive para UNIX toma argumentos em um formato específico. 
+---
+= Argumentos de linha de comando
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O SnapDrive para UNIX toma argumentos em um formato específico.
+
+A tabela a seguir descreve os argumentos que você pode especificar com as palavras-chave.
+
+Use o formato `snapdrive type_name operation_name [<keyword/option> <arguments>]`; por exemplo, se você quiser criar uma cópia Snapshot chamada `snap_hr` do sistema de arquivos host `/mnt/dir` , digite a seguinte linha de comando:
+
+`*snapdrive snap create -fs/mnt/dir -snapname _snap_hr*`.
+
+|===
+| Argumento | Descrição 
+
+
+ a| 
+dest_fspec
+ a| 
+O nome pelo qual a entidade de destino será acessível após seus grupos de discos ou LUNs serem conetados.
+
+
+
+ a| 
+dgname
+ a| 
+O nome de um grupo de discos ou de um grupo de volumes.
+
+
+
+ a| 
+d_lun_name
+ a| 
+Permite especificar um nome de destino que o SnapDrive para UNIX usa para disponibilizar o LUN na cópia recém-conetada da cópia Snapshot.
+
+
+
+ a| 
+nome do arquivo
+ a| 
+O nome de um sistema de armazenamento.
+
+
+
+ a| 
+ficheiro_path
+ a| 
+Um nome de caminho para um objeto de sistema de storage. Esse nome pode conter o nome e o volume do sistema de armazenamento, mas não precisa se o SnapDrive for UNIX puder usar valores padrão para os componentes ausentes com base nos valores fornecidos nos argumentos anteriores. A seguir estão exemplos de nomes de caminhos:
+
+* `test_filer:/vol/vol3/qtree_2`
+* `/vol/vol3/qtree_2`
+* `qtree_2`
+
+
+
+
+ a| 
+file_spec
+ a| 
+O nome de uma entidade de storage, como um volume de host, LUN, grupo de disco ou volume, sistema de arquivos ou árvore de diretórios NFS.
+
+Em geral, você usa o argumento file_spec como um dos seguintes:
+
+* Um objeto que você deseja que o SnapDrive para UNIX faça uma cópia Snapshot ou restaure a partir de uma cópia Snapshot
+* Um objeto que você deseja criar ou usar ao provisionar storage
+
+
+Os objetos não precisam ser todos do mesmo tipo. Se você fornecer vários volumes de host, todos eles devem pertencer ao mesmo gerenciador de volumes.
+
+Se você fornecer valores para esse argumento que são resolvidos para grupos de disco redundantes ou volumes de host, o comando falhará.
+
+Exemplo de uso incorreto: Este exemplo assume que o DG1 tem volumes de host HV1 e hv2, com sistemas de arquivos FS1 e FS2. Como resultado, os argumentos a seguir falhariam porque envolvem grupos de disco redundantes ou volumes de host.
+
+`-dg _dg1_ -hostvoldg1/hv1`
+
+`-dg _dg1_`
+
+`-fs/fs1`
+
+`-hostvol dg1/hv1 -fs /fs1`
+
+Exemplo de uso correto: Este exemplo mostra o uso correto para este argumento.
+
+`-hostvoldg1/hv1dg1/hv2`
+
+`-fs/fs1/fs2`
+
+`-hostvoldg1/hv1 -fs/fs2`
+
+
+
+ a| 
+fspec_set
+ a| 
+Usado com o comando snap connect para identificar:
+
+* Uma entidade LVM host
+* Um sistema de arquivos contido em um LUN
+
+
+O argumento também permite especificar um conjunto de nomes de destino que o SnapDrive para UNIX usa quando torna a entidade disponível na cópia recém-conetada da cópia Snapshot.
+
+O formato para fspec_set é: `{ -vg | -dg | -fs | -lvol | -hostvol } _src_fspec_ [_dest_fspec_] [{ -destdg | -destvg } _dg_name_] [{ - destlv | -desthv } _lv_name_]`
+
+
+
+ a| 
+host_lvm_fspec
+ a| 
+Permite especificar se deseja criar um sistema de arquivos, volume lógico ou grupo de discos quando você está executando o comando storage Create. Este argumento pode ter qualquer um dos três formatos como descrito no seguinte. O formato que você usa depende da entidade que deseja criar.
+
+
+NOTE: As `-dg` opções e `-vg` são sinônimos que refletem o fato de que alguns sistemas operacionais se referem a grupos de discos e outros se referem a grupos de volumes. Além disso, `-lvol` e `-hostvol` também são sinônimos. Este guia usa -dg para se referir a grupos de discos e grupos de volumes e `-hostvol` para se referir a volumes lógicos e volumes de host.
+
+
+
+ a| 
+Para criar um sistema de arquivos, use este formato: -Fs file_spec ``[-fstype _type_] [-fsopts _options_] [-hostvol _file_spec_] [-dg _dg_name_] To create a logical or host volume, use this format: [-hostvol _file_spec_] [-dg _dg_name_] | -hostvol` para criar um disco ou grupo de volume, use este formato: File_spec `[-dg _dg_name_] | -dg _dg_name_`
+
+Você deve nomear a entidade de nível superior que você está criando. Você não precisa fornecer nomes para quaisquer entidades subjacentes. Se você não fornecer nomes para as entidades subjacentes, o SnapDrive para UNIX os cria com nomes gerados internamente.
+
+Se você especificar que o SnapDrive para UNIX cria um sistema de arquivos, especifique um tipo que o SnapDrive para UNIX suporta com o LVM host. Estes tipos incluem `ext4` ou `ext3`
+
+A opção `-fsopts` é usada para especificar opções a serem passadas para a operação de host que cria o novo sistema de arquivos; por exemplo `mkfs`, .
+
+
+
+ a| 
+ig_name
+ a| 
+O nome de um grupo de iniciadores.
+
+
+
+ a| 
+long_filer_path
+ a| 
+Um nome de caminho que inclui o nome do sistema de armazenamento, o nome do volume e, possivelmente, outros elementos de diretório e arquivo dentro desse volume. A seguir estão exemplos de nomes de caminhos longos:
+
+`test_filer:/vol/vol3/qtree_2`
+
+`10.10.10.1:/vol/vol4/lun_21`
+
+
+
+ a| 
+long_lun_name
+ a| 
+Um nome que inclui o nome do sistema de armazenamento, o volume e o nome do LUN. O seguinte é um exemplo de um nome de LUN longo:
+
+`test_filer:/vol/vol1/lunA`
+
+
+
+ a| 
+long_snap_name
+ a| 
+Um nome que inclui o nome do sistema de storage, o volume e o nome da cópia Snapshot. Veja a seguir um exemplo de um nome de cópia Snapshot longa: `test_filer:/vol/account_vol:snap_20040202`
+
+Com os `snapdrive snap show` comandos e `snapdrive snap delete`, você pode usar o caractere asterisco (*) como curinga para corresponder a qualquer parte do nome de cópia Snapshot. Se você usar um caractere curinga, deverá colocá-lo no final do nome da cópia Snapshot. O SnapDrive para UNIX exibe uma mensagem de erro se você usar um curinga em qualquer outro ponto de um nome.
+
+Exemplo: Este exemplo usa curingas com o `snap show` comando e o `snap delete` comando: `snap show myfiler:/vol/vol2:mysnap*`
+
+`myfiler:/vol/vol2:/yoursnap* snap show myfiler:/vol/vol1/qtree1:qtree_snap* snap delete 10.10.10.10:/vol/vol2:mysnap* 10.10.10.11:/vol/vol3:yoursnap* hersnap`
+
+Limitação para curingas: Não é possível inserir um curinga no meio de um nome de cópia Snapshot. Por exemplo, a linha de comando a seguir produz uma mensagem de erro porque o caractere curinga está no meio do nome da cópia Snapshot: `banana:/vol/vol1:my*snap`
+
+
+
+ a| 
+lun_name
+ a| 
+O nome de um LUN. Este nome não inclui o sistema de armazenamento e o volume onde o LUN está localizado. O seguinte é um exemplo de um nome LUN: Luna
+
+
+
+ a| 
+caminho
+ a| 
+Qualquer nome de caminho.
+
+
+
+ a| 
+prefixo_string
+ a| 
+prefixo usado na geração de nomes do clone de volume
+
+
+
+ a| 
+s_lun_name
+ a| 
+Indica uma entidade LUN que é capturada na cópia Snapshot especificada pelo `_long_snap_name_`.
+
+|===
+*Informações relacionadas*
+
+xref:reference_storage_provisioning_command_lines.adoc[Linhas de comando de provisionamento de armazenamento]

@@ -1,0 +1,34 @@
+---
+permalink: solaris/concept_guidelines_for_storage_connection_in_a_host_cluster_environment.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, connect, host, cluster 
+summary: Você precisa seguir algumas diretrizes antes de usar o comando SnapDrive storage connect em um ambiente de cluster de host. 
+---
+= Diretrizes para conexão de storage em um ambiente de cluster de host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você precisa seguir algumas diretrizes antes de usar o `snapdrive storage connect` comando em um ambiente de cluster de host.
+
+* Se um novo nó for adicionado à configuração do cluster de host que usa um grupo de discos compartilhado ou sistema de arquivos, use o `snapdrive storage connect -devicetype shared` comando. Você pode executar a operação de conexão de storage do SnapDrive a partir de qualquer nó no cluster de host.
+* Para que uma operação de conexão de armazenamento seja bem-sucedida, o seguinte não deve acontecer:
++
+** As entidades de storage não devem estar presentes em nenhum nó no cluster de host.
+** Os LUNs não devem ser mapeados para nenhum nó no cluster de host.
+
+
+* Você pode se conetar a uma entidade de armazenamento em um nó específico usando a `-devicetype dedicated` opção ou omitindo a `-devicetype` opção na sintaxe da linha de comando, porque o valor padrão é dedicado.
+* A conexão de armazenamento em todo o cluster do host do sistema de arquivos é suportada em grupos de discos que usam o gerenciador de volume Veritas com o sistema de arquivos Veritas (VxFS). Essa operação não é compatível com LUNs brutos, ou seja, a `-nolvm` opção não é suportada.
+* A `-igroup` opção não é suportada no `snapdrive storage connect` comando.
+* A operação de conexão de armazenamento falha se uma das seguintes situações for verdadeira:
++
+** Se ocorrer algum erro durante o processo de conexão de uma entidade de armazenamento. O SnapDrive para UNIX executa essa operação a partir do nó principal em um cluster de host. Antes de criar as entidades de storage compartilhadas, ele cria LUNs, mapeia os LUNs para o nó principal e mapeia os LUNs para todos os nós que não são mestres. O SnapDrive para UNIX cria e gerencia internamente os grupos para todos os nós.
+** Se um nó no cluster de host encerrar e reinicializar antes de iniciar o Gerenciador de volumes em cluster (CVM), o grupo de discos compartilhados usado pelos LUNs deve ser descoberto no nó. Por padrão, os LUNs ficam visíveis se o endereço da porta FC não for alterado; caso contrário, os LUNs precisam ser mapeados usando o `snapdrive storage connect` comando.
+
+
+* Você pode realizar a operação de conexão de storage compartilhado com entidades de storage em um LUN criado com dados de entidade de storage dedicada e, posteriormente, desconetado, somente se as entidades de storage não existirem em nenhum nó de cluster de host.
+* Você pode realizar a operação de conexão de storage dedicada a entidades de storage em um LUN com metadados de entidade de storage compartilhada, somente se o nó atual não fizer parte do cluster de host ou se as entidades de storage não existirem no cluster de host.
+

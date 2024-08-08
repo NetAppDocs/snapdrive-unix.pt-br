@@ -1,0 +1,26 @@
+---
+permalink: linux-administration/task_forcing_daemon_restart.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, force, restart, daemon, stop 
+summary: Você pode forçar o daemon a reiniciar. Uma reinicialização forçada do daemon interrompe a execução de todos os comandos em execução. 
+---
+= Forçando a reinicialização do daemon
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode forçar o daemon a reiniciar. Uma reinicialização forçada do daemon interrompe a execução de todos os comandos em execução.
+
+Certifique-se de que você está conetado como um usuário root.
+
+.Passos
+. Digite o seguinte comando para reiniciar o daemon com força:
++
+`*snapdrived -force restart*`
+
++
+Depois que a solicitação de reinicialização forçada for recebida, o daemon pára todos os comandos em execução e na fila. O daemon é reiniciado somente após cancelar a execução de todos os comandos em execução.
+
+

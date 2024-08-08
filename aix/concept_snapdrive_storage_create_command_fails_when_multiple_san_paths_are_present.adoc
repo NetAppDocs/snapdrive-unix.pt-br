@@ -1,0 +1,39 @@
+---
+permalink: aix/concept_snapdrive_storage_create_command_fails_when_multiple_san_paths_are_present.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, storage, create, command, san, multipathing, fail 
+summary: O comando SnapDrive storage create falha quando vários caminhos SAN estão presentes, mas multipathing está desativado. 
+---
+= O comando SnapDrive storage Create falha quando vários caminhos SAN estão presentes, mas multipathing está desativado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O comando SnapDrive storage `create` falha quando vários caminhos SAN estão presentes, mas o multipathing está desativado.
+
+Por exemplo, para duas LIFs iSCSI para um SVM:
+
+[listing]
+----
+[root@scspr0189449001 etc]# iscsiadm --mode session --rescan
+Rescanning session [sid: 1, target: iqn.1992-08.com.netapp:sn.f7335762b23e11e695360050569c153a:vs.3, portal: 10.224.70.253,3260]
+Rescanning session [sid: 2, target: iqn.1992-08.com.netapp:sn.f7335762b23e11e695360050569c153a:vs.3, portal: 10.224.70.254,3260]
+----
+ `multipathing-type`Quando está definido como `none` no arquivo SnapDrive.conf e o serviço multipath está desativado, tentando criar armazenamento usando LVM, retorna o seguinte erro:
+
+[listing]
+----
+root@scspr0189449001 etc]# snapdrive storage create -fs /mnt/test -lun rgvsim:/vol/asmvol/test -lunsize 500m
+        LUN rgvsim:/vol/asmvol/test ... created
+        mapping new lun(s) ... done
+        discovering new lun(s) ... *failed*
+        Cleaning up ...
+         - LUN rgvsim:/vol/asmvol/test ... deleted
+         0001-422 Admin error: LVM initialization of luns failed:
+        Device /dev/sdb,/dev/sdc not found (or ignored by filtering).
+----
+Isso acontece porque o `pvcreate` comando usa ambos os dispositivos separados por uma vírgula como um único dispositivo `pvcreate /dev/sdb,/dev/sdc` e um dispositivo chamado `/dev/sdb,/dev/sdc` que não existe.
+
+Quando há vários caminhos para o armazenamento e o LVM precisa ser usado, então o multipathing deve ser ativado.

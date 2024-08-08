@@ -1,0 +1,16 @@
+---
+permalink: aix/concept_command_syntax_for_disconnectingluns_from_the_host.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, command, syntax, lun, disconnect, host 
+summary: Para usar o comando SnapDrive storage disconnect para remover os mapeamentos dos LUNs especificados, use a seguinte sintaxe. 
+---
+= Sintaxe de comando para desconetar LUNs do host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para usar o `snapdrive storage disconnect` comando para remover os mapeamentos dos LUNs especificados, use a seguinte sintaxe:
+
+`snapdrive storage disconnect -lun long_lun_name [lun_name...]`

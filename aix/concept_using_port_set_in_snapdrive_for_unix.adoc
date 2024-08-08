@@ -1,0 +1,16 @@
+---
+permalink: aix/concept_using_port_set_in_snapdrive_for_unix.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, port, set 
+summary: O conjunto de portas é um grupo de porta ou interface de dados SAN e é usado para controlar o caminho disponível para um host agrupando o conjunto de porta ou interface de dados SAN. 
+---
+= Usando o conjunto de portas no SnapDrive para UNIX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O conjunto de portas é um grupo de porta ou interface de dados SAN e é usado para controlar o caminho disponível para um host agrupando o conjunto de porta ou interface de dados SAN.
+
+A configuração do conjunto de portas é criada pelo administrador de armazenamento no sistema de armazenamento e é uma tarefa opcional. Quando não há nenhum conjunto de portas configurado no host, o host pode exibir todos os caminhos, dependendo dos limites de configuração SCSI do host. O SnapDrive para UNIX permite que o administrador de armazenamento especifique um único conjunto de portas por SVM. Portanto, há uma restrição no número de caminhos que o host pode visualizar através do SVM.

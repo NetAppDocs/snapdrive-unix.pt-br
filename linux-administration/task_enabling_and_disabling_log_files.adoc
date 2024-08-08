@@ -1,0 +1,51 @@
+---
+permalink: linux-administration/task_enabling_and_disabling_log_files.html 
+sidebar: sidebar 
+keywords: snap, snapdrive, enable, disable, log, file, name 
+summary: Se quiser ativar um ficheiro de registo, especifique um nome de ficheiro como o valor no par nome-valor do ficheiro de registo que pretende ativar. Se pretender desativar um ficheiro, não introduza um valor para o parâmetro de nome do ficheiro de registo. 
+---
+= Ativar e desativar ficheiros de registo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se quiser ativar um ficheiro de registo, especifique um nome de ficheiro como o valor no par nome-valor do ficheiro de registo que pretende ativar. Se pretender desativar um ficheiro, não introduza um valor para o parâmetro de nome do ficheiro de registo.
+
+Você deve ter feito login como usuário root.
+
+.Passos
+. Abra o `snapdrive.conf` arquivo em um editor de texto.
+. Escolha a opção adequada para ativar ou desativar um ficheiro de registo.
++
+|===
+| Se você quiser... | Então... 
+
+
+ a| 
+*Ativar um ficheiro de registo*
+ a| 
+ Specify a file name as the value in the name-value pair of the log file you want to enable. SnapDrive for UNIX only writes log files if it has the name of a file to write to. The default names for the log files are as follows:
+** Registo de auditoria: `sd-audit.log`
+** Registo de recuperação: `sd-recovery.log`
+** Registo de rastreio: `sd-trace.log`
+
+
+
+NOTE: O caminho para esses arquivos pode variar dependendo do sistema operacional do host.
+
+
+
+ a| 
+*Desativar um arquivo de log*
+ a| 
+ Do not enter a value for the log file name parameter. If you do not supply a value, there is no file name to which SnapDrive for UNIX can write the log information.
+*Exemplo* este exemplo desativa o arquivo de log de auditoria. `audit-log-file=""`
+
+|===
+. Salve o `snapdrive.conf` arquivo depois de fazer todas as alterações.
++
+O SnapDrive para UNIX verifica automaticamente esse arquivo sempre que ele for iniciado. Você deve reiniciar o daemon SnapDrive para UNIX para que as alterações entrem em vigor.
+
+
