@@ -20,8 +20,6 @@ Você deve especificar as informações de login do usuário para o SVM. Depende
 +
 ** `_user_name_` É o nome de usuário que foi especificado para o SVM quando você o configurou pela primeira vez. O usuário padrão é vsadmin. `_filername_` É o nome do SVM.
 ** `_filer_name_` Permite que você insira vários VServers em uma linha de comando se todos tiverem o mesmo login ou senha de usuário. Tem de introduzir pelo menos um nome de SVM.
-
-
 +
 [listing]
 ----
@@ -29,4 +27,6 @@ Você deve especificar as informações de login do usuário para o SVM. Depende
 Password for vsadmin:
 Retype password:
 ----
+
+
 
